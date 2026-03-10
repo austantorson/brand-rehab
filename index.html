@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Rehab | Social Content Studio for Boss Babes & Business Owners</title>
+<meta name="description" content="Brand Rehab is a social media content studio helping busy business owners build consistent, converting content. Stop guessing. Start growing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Cabinet+Grotesk:wght@400;500;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:     #FDF8F3;
+  --blush:     #F9EEE8;
+  --rose:      #F2D9D5;
+  --matcha:    #C8D9C0;
+  --matcha-dk: #7A9E72;
+  --matcha-lt: #E6EFE3;
+  --pink:      #E8A0B0;
+  --pink-dk:   #C4607A;
+  --pink-lt:   #FCF0F3;
+  --mauve:     #D4A5B5;
+  --coffee:    #2A1A14;
+  --espresso:  #1A0E09;
+  --mocha:     #5C3828;
+  --latte:     #9B7060;
+  --sand:      #E8DDD6;
+
+  --grad-pink: linear-gradient(135deg, #E8A0B0 0%, #C4607A 100%);
+  --grad-matcha: linear-gradient(135deg, #C8D9C0 0%, #7A9E72 100%);
+  --grad-warm: linear-gradient(135deg, #F2D9D5 0%, #E8A0B0 60%, #C8D9C0 100%);
+  --grad-dark: linear-gradient(160deg, #2A1A14 0%, #1A0E09 100%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;cursor:none}
+.cursor{position:fixed;width:12px;height:12px;background:var(--pink-dk);border-radius:50%;pointer-events:none;z-index:99999;transition:transform .15s ease,background .2s;mix-blend-mode:multiply;left:-20px;top:-20px}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--pink-dk);border-radius:50%;pointer-events:none;z-index:99998;transition:all .08s ease;opacity:.5;left:-40px;top:-40px}
+body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(--coffee);overflow-x:hidden;line-height:1.6}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;opacity:.35}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 5%;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
+nav.scrolled{background:rgba(253,248,243,.97);backdrop-filter:blur(20px);padding:14px 5%;border-bottom:1px solid var(--rose);box-shadow:0 4px 32px rgba(196,96,122,.07)}
+.logo{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:white;text-decoration:none;letter-spacing:-.01em}
+.logo em{color:var(--pink);font-style:normal}
+nav.scrolled .logo{color:var(--coffee)}
+nav.scrolled .logo em{color:var(--pink-dk)}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:color .2s}
+nav.scrolled .nav-links a{color:var(--latte)}
+.nav-links a:hover{color:white}
+nav.scrolled .nav-links a:hover{color:var(--pink-dk)}
+.nav-cta{background:var(--pink-dk)!important;color:white!important;padding:10px 22px!important;border-radius:100px!important;transition:all .25s!important;box-shadow:0 4px 16px rgba(196,96,122,.3)!important}
+.nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 8px 28px rgba(196,96,122,.45)!important}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--espresso)}
+.hero-blob1{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,176,.22) 0%,transparent 70%);top:-200px;right:-100px;animation:floatBlob 14s ease-in-out infinite}
+.hero-blob2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,217,192,.18) 0%,transparent 70%);bottom:-100px;left:-100px;animation:floatBlob 18s ease-in-out infinite reverse}
+.hero-blob3{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(242,217,213,.14) 0%,transparent 70%);top:45%;left:38%;animation:floatBlob 11s ease-in-out infinite 3s}
+@keyframes floatBlob{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.06)}66%{transform:translate(-20px,30px) scale(.94)}}
+.hero-bg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1800&q=80&fit=crop');background-size:cover;background-position:center 30%;opacity:.1}
+.hero-content{position:relative;z-index:2;padding:140px 5% 100px;max-width:820px}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border:1px solid rgba(232,160,176,.25);border-radius:100px;padding:8px 18px;margin-bottom:32px;animation:fadeUp .8s ease both}
+.hero-tag-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);animation:pulse 2s ease-in-out infinite}
+.hero-tag span{font-family:'Cabinet Grotesk',sans-serif;font-size:.71rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+h1.hero-h1{font-family:'Fraunces',serif;font-size:clamp(2.8rem,6.2vw,6rem);font-weight:300;line-height:1.0;color:white;margin-bottom:0;animation:fadeUp .8s ease .1s both;letter-spacing:-.02em}
+h1.hero-h1 strong{font-weight:700;display:block}
+h1.hero-h1 em{font-style:italic;color:var(--pink);display:block}
+.hero-line{width:60px;height:2.5px;background:var(--grad-pink);border-radius:2px;margin:28px 0;animation:fadeUp .8s ease .2s both}
+.hero-sub{font-size:1.05rem;font-weight:400;color:rgba(255,255,255,.62);line-height:1.82;max-width:500px;margin-bottom:8px;animation:fadeUp .8s ease .25s both}
+.hero-sub2{font-family:'Fraunces',serif;font-size:1.22rem;font-style:italic;font-weight:400;color:var(--matcha);margin-bottom:44px;animation:fadeUp .8s ease .3s both}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .8s ease .36s both}
+.hero-stats{position:absolute;bottom:0;left:0;right:0;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);animation:fadeUp .8s ease .5s both}
+.hstat{padding:20px 0;text-align:center;background:rgba(255,255,255,.04);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.06);transition:background .3s}
+.hstat:last-child{border-right:none}
+.hstat:hover{background:rgba(232,160,176,.1)}
+.hstat .n{font-family:'Cabinet Grotesk',sans-serif;font-size:2rem;color:white;display:block;font-weight:800;line-height:1;letter-spacing:-.02em}
+.hstat .n em{color:var(--pink);font-style:normal}
+.hstat p{font-size:.62rem;color:rgba(255,255,255,.38);letter-spacing:.1em;text-transform:uppercase;margin-top:5px;font-weight:500}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:none;cursor:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;border-radius:100px;transition:all .25s;padding:14px 32px}
+.btn-primary{background:var(--grad-pink);color:white;box-shadow:0 8px 28px rgba(196,96,122,.32)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(196,96,122,.45)}
+.btn-ghost{background:transparent;color:white;border:1.5px solid rgba(255,255,255,.25)}
+.btn-ghost:hover{border-color:var(--pink);color:var(--pink)}
+.btn-dark{background:var(--coffee);color:white;border:none;box-shadow:0 6px 24px rgba(42,26,20,.2)}
+.btn-dark:hover{transform:translateY(-2px);background:var(--mocha)}
+
+/* MARQUEE */
+.marquee{background:var(--pink-dk);overflow:hidden;height:48px;display:flex;align-items:center}
+.mtrack{display:flex;white-space:nowrap;animation:mq 26s linear infinite}
+.mitem{display:inline-flex;align-items:center;gap:16px;padding:0 24px;font-family:'Cabinet Grotesk',sans-serif;font-size:.73rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82);flex-shrink:0}
+.mstar{color:rgba(255,255,255,.4)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* EYEBROW */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
+.eyebrow-bar{width:22px;height:2.5px;border-radius:2px}
+.eyebrow span{font-family:'Cabinet Grotesk',sans-serif;font-size:.71rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.eyebrow.pink span{color:var(--pink-dk)}
+.eyebrow.pink .eyebrow-bar{background:var(--pink-dk)}
+.eyebrow.matcha span{color:var(--matcha-dk)}
+.eyebrow.matcha .eyebrow-bar{background:var(--matcha-dk)}
+.eyebrow.light span{color:rgba(255,255,255,.5)}
+.eyebrow.light .eyebrow-bar{background:rgba(255,255,255,.35)}
+.eyebrow.center{justify-content:center}
+
+/* HEADINGS */
+.display-h{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4vw,3.8rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--coffee)}
+.display-h em{font-style:italic;color:var(--pink-dk)}
+.display-h.matcha em{color:var(--matcha-dk)}
+.display-h.light{color:white}
+.display-h.light em{color:var(--pink)}
+
+/* SECTION */
+.sp{padding:108px 5%}
+.si{max-width:1200px;margin:0 auto}
+
+/* PAIN */
+.pain{position:relative;overflow:hidden;background:var(--espresso)}
+.pain-sh1{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,176,.11) 0%,transparent 70%);top:-200px;right:8%}
+.pain-sh2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(200,217,192,.09) 0%,transparent 70%);bottom:5%;left:4%}
+.pain-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.pain-sub{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.85;font-weight:400;margin-top:18px;max-width:400px}
+.pain-sub em{color:var(--pink);font-style:italic}
+.qcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--pink);border-radius:0 12px 12px 0;padding:20px 24px;transition:all .3s;position:relative}
+.qcard:hover{background:rgba(232,160,176,.07);transform:translateX(5px);border-left-color:var(--matcha)}
+.qcard p{font-size:.91rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.75}
+.qcard:nth-child(2){border-left-color:var(--matcha)}
+.qcard:nth-child(3){border-left-color:var(--mauve)}
+
+/* CHECKLIST */
+.chk-section{background:var(--cream);position:relative;overflow:hidden}
+.chk-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-warm)}
+.chk-bg{position:absolute;font-family:'Fraunces',serif;font-size:18vw;font-weight:700;color:var(--rose);opacity:.3;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:-.04em}
+.section-hdr{text-align:center;margin-bottom:52px}
+.section-hdr .sub{font-size:.95rem;color:var(--latte);margin-top:14px;font-weight:400;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.78}
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:48px}
+.chk{display:flex;align-items:flex-start;gap:14px;padding:18px 22px;background:white;border:1.5px solid var(--sand);border-radius:14px;cursor:none;transition:all .25s}
+.chk:hover{border-color:var(--pink);box-shadow:0 4px 20px rgba(196,96,122,.1);transform:translateY(-2px)}
+.chk.on{border-color:var(--pink-dk);background:var(--pink-lt)}
+.chkbox{width:24px;height:24px;border:2px solid var(--sand);border-radius:8px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:.72rem;color:transparent;font-weight:700}
+.chk.on .chkbox{background:var(--pink-dk);border-color:var(--pink-dk);color:white}
+.chk:hover .chkbox{border-color:var(--pink)}
+.chk p{font-size:.88rem;color:var(--coffee);line-height:1.58}
+.fam-cta{background:var(--coffee);border-radius:20px;padding:44px 52px;display:flex;align-items:center;justify-content:space-between;gap:36px;position:relative;overflow:hidden}
+.fam-cta::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,176,.12) 0%,transparent 70%)}
+.fam-cta-txt p:first-child{font-family:'Fraunces',serif;font-size:1.5rem;color:white;line-height:1.45;margin-bottom:8px}
+.fam-cta-txt p:first-child em{font-style:italic;color:var(--pink)}
+.fam-cta-txt p:last-child{font-size:.82rem;color:rgba(255,255,255,.45)}
+
+/* ACCENT STRIP */
+.accent-strip{background:var(--matcha-lt);border-top:2px solid var(--matcha);border-bottom:2px solid var(--matcha);padding:40px 5%}
+.as-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.as-txt{font-family:'Fraunces',serif;font-size:1.2rem;font-style:italic;color:var(--coffee)}
+.as-txt strong{font-style:normal;color:var(--matcha-dk)}
+.pills{display:flex;gap:9px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.pill.y{background:white;color:var(--matcha-dk);border:1.5px solid var(--matcha)}
+.pill.p{background:var(--pink-lt);color:var(--pink-dk);border:1.5px solid var(--rose)}
+.pill.s{background:white;color:var(--mocha);border:1.5px solid var(--sand)}
+
+/* STATS */
+.stats-section{background:white;position:relative;overflow:hidden}
+.stats-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-warm)}
+.stats-section::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad-matcha)}
+.stats-blob{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,217,192,.18) 0%,transparent 70%);bottom:-200px;right:-100px;pointer-events:none}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--sand);border-radius:20px;overflow:hidden;background:white;position:relative;z-index:1}
+.sblk{padding:44px 28px;text-align:center;border-right:1.5px solid var(--sand);transition:background .3s;cursor:default;position:relative}
+.sblk:last-child{border-right:none}
+.sblk::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.sblk:nth-child(1)::before{background:var(--pink-dk)}
+.sblk:nth-child(2)::before{background:var(--matcha-dk)}
+.sblk:nth-child(3)::before{background:var(--mauve)}
+.sblk:nth-child(4)::before{background:var(--latte)}
+.sblk:hover{background:var(--cream)}
+.sblk .lbl{font-family:'Cabinet Grotesk',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:10px;color:var(--latte)}
+.sblk .n{font-family:'Cabinet Grotesk',sans-serif;font-size:2.9rem;color:var(--coffee);display:block;line-height:1;margin-bottom:8px;font-weight:800;letter-spacing:-.03em}
+.sblk:nth-child(1) .n{color:var(--pink-dk)}
+.sblk:nth-child(2) .n{color:var(--matcha-dk)}
+.sblk .sub{font-size:.74rem;color:var(--latte);font-weight:500}
+
+/* SOCIAL PROOF */
+.sproof{padding:108px 5%;background:var(--espresso);position:relative;overflow:hidden}
+.sproof-bg{position:absolute;inset:0;opacity:.04;background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1800&q=80&fit=crop');background-size:cover}
+.sp-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:22px;max-width:1200px;margin-left:auto;margin-right:auto}
+.iggrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1200px;margin:0 auto;align-items:start}
+.igc{background:#1e1210;border-radius:28px;border:5px solid #291710;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden;transition:transform .4s}
+.igc:hover{transform:translateY(-8px)}
+.igc:nth-child(2){margin-top:28px}
+.igc:nth-child(4){margin-top:18px}
+.igc-in{aspect-ratio:9/19;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.ign{position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:18px;background:#1e1210;border-radius:0 0 12px 12px;z-index:10}
+.igh{padding:22px 10px 8px;display:flex;align-items:center;gap:8px;background:white;flex-shrink:0}
+.igav{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:var(--grad-pink)}
+.igc:nth-child(even) .igav{background:var(--grad-matcha)}
+.ign2{font-family:'Cabinet Grotesk',sans-serif;font-size:.56rem;font-weight:700;color:var(--coffee);display:block}
+.ighn{font-size:.44rem;color:var(--latte)}
+.igimgw{flex:1;min-height:0;position:relative;overflow:hidden}
+.igimgw img{width:100%;height:100%;object-fit:cover;display:block}
+.igov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(26,14,9,.88) 100%);display:flex;align-items:flex-end;padding:10px}
+.igov p{font-family:'Fraunces',serif;font-size:.56rem;color:white;line-height:1.3;font-style:italic}
+.igf{background:white;padding:8px 10px;flex-shrink:0}
+.igacts{display:flex;gap:8px;margin-bottom:4px;font-size:.68rem}
+.iglikes{font-family:'Cabinet Grotesk',sans-serif;font-size:.48rem;font-weight:700;color:var(--coffee);display:block;margin-bottom:2px}
+.igcap{font-size:.43rem;color:var(--latte);line-height:1.3}
+
+/* TESTIMONIALS */
+.testimonials{padding:108px 5%;background:var(--blush);position:relative;overflow:hidden}
+.testimonials::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-pink)}
+.test-blob{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,217,192,.28) 0%,transparent 70%);bottom:-200px;right:-100px;pointer-events:none}
+.test-hdr{text-align:center;margin-bottom:52px}
+.pull-q{background:white;border-radius:24px;padding:44px 52px;margin-bottom:48px;position:relative;box-shadow:0 8px 40px rgba(196,96,122,.08);border:1px solid var(--rose)}
+.pull-q::before{content:'\201C';font-family:'Fraunces',serif;font-size:8rem;color:var(--pink);opacity:.14;position:absolute;top:-20px;left:32px;line-height:1;pointer-events:none}
+.pull-q p{font-family:'Fraunces',serif;font-size:clamp(1.15rem,2.2vw,1.85rem);font-style:italic;font-weight:300;color:var(--coffee);line-height:1.55;max-width:820px;margin:0 auto;position:relative;z-index:1;text-align:center}
+.pull-q p em{color:var(--pink-dk);font-style:normal;font-weight:700}
+.pull-q cite{display:block;margin-top:18px;font-family:'Cabinet Grotesk',sans-serif;font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--latte);font-style:normal;text-align:center}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tc{background:white;padding:30px 26px;border-radius:20px;border:1.5px solid var(--sand);transition:all .3s;position:relative;overflow:hidden}
+.tc:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(196,96,122,.1);border-color:var(--rose)}
+.tc.feat{background:var(--coffee);border-color:var(--coffee)}
+.stars{font-size:.65rem;letter-spacing:4px;margin-bottom:14px;color:var(--pink-dk)}
+.tc.feat .stars{color:var(--pink)}
+.tc-txt{font-size:.91rem;color:var(--coffee);line-height:1.78;margin-bottom:20px;font-style:italic}
+.tc.feat .tc-txt{color:rgba(253,248,243,.82)}
+.tc-auth{display:flex;align-items:center;gap:12px}
+.av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:800;flex-shrink:0;color:white}
+.tc:nth-child(1) .av{background:var(--grad-pink)}
+.tc:nth-child(2) .av{background:var(--coffee)}
+.tc:nth-child(3) .av{background:var(--grad-matcha)}
+.tc.feat .av{background:rgba(255,255,255,.1);color:var(--pink)}
+.auth-nm{font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.83rem;color:var(--coffee);display:block}
+.tc.feat .auth-nm{color:white}
+.auth-role{font-size:.7rem;color:var(--latte)}
+.tc.feat .auth-role{color:rgba(255,255,255,.45)}
+
+/* PROCESS */
+.process-section{background:var(--espresso);position:relative;overflow:hidden}
+.process-section::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80&fit=crop');background-size:cover;background-position:center;opacity:.05}
+.ps1{position:absolute;top:10%;right:5%;width:200px;height:200px;border-radius:50%;border:1px solid rgba(232,160,176,.1)}
+.ps2{position:absolute;bottom:10%;left:8%;width:140px;height:140px;border-radius:50%;border:1px solid rgba(200,217,192,.1)}
+.psteps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border-radius:20px;overflow:hidden;position:relative;z-index:1;background:rgba(255,255,255,.05)}
+.step{padding:52px 36px;background:rgba(26,14,9,.6);transition:background .3s;position:relative}
+.step:hover{background:rgba(26,14,9,.25)}
+.step:nth-child(1){border-top:2px solid var(--pink)}
+.step:nth-child(2){border-top:2px solid var(--matcha)}
+.step:nth-child(3){border-top:2px solid var(--mauve)}
+.step-n{font-family:'Cabinet Grotesk',sans-serif;font-size:4rem;display:block;line-height:1;margin-bottom:20px;font-weight:800;letter-spacing:-.04em}
+.step:nth-child(1) .step-n{color:rgba(232,160,176,.18)}
+.step:nth-child(2) .step-n{color:rgba(200,217,192,.18)}
+.step:nth-child(3) .step-n{color:rgba(212,165,181,.18)}
+.step:hover .step-n{opacity:.7}
+.step h3{font-family:'Fraunces',serif;font-size:1.4rem;color:white;margin-bottom:12px;font-weight:400}
+.step p{font-size:.87rem;color:rgba(255,255,255,.62);line-height:1.82}
+
+/* TEAM */
+.team-section{padding:108px 5%;background:white;position:relative;overflow:hidden}
+.team-section::before{content:'';position:absolute;bottom:0;left:0;right:0;height:300px;background:linear-gradient(0deg,var(--blush),transparent);pointer-events:none}
+.tgrid-p{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.tp{text-align:center;position:relative;z-index:1}
+.tp-photo{width:100%;aspect-ratio:3/4;border-radius:24px;overflow:hidden;margin-bottom:22px;position:relative}
+.tp-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;filter:saturate(.9)}
+.tp:hover .tp-photo img{transform:scale(1.04);filter:saturate(1.1)}
+.tp-photo-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(42,26,20,.45) 100%)}
+.tp-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px}
+.tp:nth-child(1) .tp-photo::after{background:var(--pink-dk)}
+.tp:nth-child(2) .tp-photo::after{background:var(--matcha-dk)}
+.tp:nth-child(3) .tp-photo::after{background:var(--mauve)}
+.tp-nm{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--coffee);margin-bottom:4px;font-weight:700}
+.tp-role{font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px}
+.tp:nth-child(1) .tp-role{color:var(--pink-dk)}
+.tp:nth-child(2) .tp-role{color:var(--matcha-dk)}
+.tp:nth-child(3) .tp-role{color:var(--mocha)}
+.tp-bio{font-size:.85rem;color:var(--latte);line-height:1.75}
+
+/* IMG BREAK */
+.img-break{position:relative;height:400px;overflow:hidden}
+.img-break img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 10s ease}
+.img-break:hover img{transform:scale(1.03)}
+.img-break-ov{position:absolute;inset:0;background:linear-gradient(110deg,rgba(26,14,9,.82) 0%,rgba(26,14,9,.4) 55%,transparent 100%);display:flex;align-items:center;padding:0 6%}
+.img-break-txt h3{font-family:'Fraunces',serif;font-size:clamp(1.7rem,3.4vw,2.9rem);font-weight:300;font-style:italic;color:white;line-height:1.22;margin-bottom:12px}
+.img-break-txt h3 em{font-style:normal;color:var(--pink)}
+.img-break-txt p{font-size:.9rem;color:rgba(255,255,255,.6);max-width:400px;line-height:1.78}
+.img-break::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad-warm)}
+
+/* PRICING */
+.pricing-section{background:var(--cream);position:relative;overflow:hidden}
+.pricing-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-warm)}
+.pr-bg-blob{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(200,217,192,.18) 0%,transparent 70%);bottom:-250px;left:-100px;pointer-events:none}
+.pr-hdr{text-align:center;margin-bottom:64px;position:relative;z-index:1}
+.pr-hdr .sub{font-size:.9rem;color:var(--latte);margin-top:14px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.75}
+.pr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start;position:relative;z-index:1}
+.pc{background:white;border:1.5px solid var(--sand);border-radius:20px;padding:30px 24px;transition:all .3s;position:relative;overflow:hidden}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pc:nth-child(1)::before{background:var(--sand)}
+.pc:nth-child(2)::before{background:var(--matcha)}
+.pc:nth-child(3)::before{background:var(--grad-pink)}
+.pc:nth-child(4)::before{background:var(--mauve)}
+.pc:hover{border-color:var(--rose);transform:translateY(-4px);box-shadow:0 16px 48px rgba(196,96,122,.1)}
+.pc.feat{background:var(--coffee);border-color:var(--coffee);transform:translateY(-14px);box-shadow:0 24px 64px rgba(42,26,20,.3)}
+.pc.feat:hover{transform:translateY(-20px)}
+.pbadge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--grad-pink);color:white;font-family:'Cabinet Grotesk',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border-radius:0 0 10px 10px;white-space:nowrap;box-shadow:0 4px 12px rgba(196,96,122,.3)}
+.pc-nm{font-family:'Fraunces',serif;font-size:1.22rem;color:var(--coffee);margin-bottom:6px;font-weight:700}
+.pc.feat .pc-nm{color:white}
+.pc-desc{font-size:.79rem;color:var(--latte);margin-bottom:18px;line-height:1.65}
+.pc.feat .pc-desc{color:rgba(253,248,243,.55)}
+.pc-price{display:flex;align-items:baseline;gap:4px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--sand)}
+.pc.feat .pc-price{border-bottom-color:rgba(255,255,255,.1)}
+.pc-amt{font-family:'Cabinet Grotesk',sans-serif;font-size:2.8rem;color:var(--coffee);line-height:1;font-weight:800;letter-spacing:-.03em}
+.pc.feat .pc-amt{color:white}
+.pc-per{font-size:.74rem;color:var(--latte);margin-left:2px;font-weight:500}
+.pc.feat .pc-per{color:rgba(255,255,255,.4)}
+.pc-feats{list-style:none;margin-bottom:24px}
+.pc-feats li{display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:.8rem;color:var(--coffee);border-bottom:1px solid var(--sand);line-height:1.5}
+.pc.feat .pc-feats li{color:rgba(253,248,243,.8);border-bottom-color:rgba(255,255,255,.07)}
+.pc-feats li::before{content:'✦';font-size:.58rem;flex-shrink:0;margin-top:3px;color:var(--pink)}
+.pc:nth-child(1) .pc-feats li::before{color:var(--sand)}
+.pc:nth-child(2) .pc-feats li::before{color:var(--matcha-dk)}
+.pc.feat .pc-feats li::before{color:var(--pink)}
+.pbtn{display:block;text-align:center;padding:13px;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:none;border:none;width:100%;transition:all .25s}
+.pbtn.primary{background:var(--grad-pink);color:white;box-shadow:0 4px 16px rgba(196,96,122,.25)}
+.pbtn.primary:hover{opacity:.9;transform:translateY(-1px)}
+.pbtn.matcha-btn{background:var(--grad-matcha);color:white}
+.pbtn.matcha-btn:hover{opacity:.9;transform:translateY(-1px)}
+.pbtn.outline{background:transparent;border:1.5px solid var(--sand);color:var(--latte)}
+.pbtn.outline:hover{border-color:var(--pink);color:var(--pink-dk)}
+.pbtn.light-ol{background:transparent;border:1.5px solid rgba(255,255,255,.18);color:rgba(255,255,255,.65)}
+.pbtn.light-ol:hover{border-color:var(--pink);color:var(--pink)}
+.pslots{font-family:'Cabinet Grotesk',sans-serif;font-size:.65rem;color:var(--latte);text-align:center;margin-top:8px;font-weight:600}
+.pc.feat .pslots{color:rgba(255,255,255,.35)}
+.ht-row{margin-top:16px;background:white;border:1.5px solid var(--rose);border-radius:20px;padding:42px 48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;transition:all .3s;overflow:hidden;position:relative}
+.ht-row::before{content:'';position:absolute;top:-70px;right:-70px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(200,217,192,.14) 0%,transparent 70%)}
+.ht-row:hover{box-shadow:0 16px 56px rgba(196,96,122,.1);border-color:var(--pink)}
+.ht-lbl{font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pink-dk);margin-bottom:8px}
+.ht-ttl{font-family:'Fraunces',serif;font-size:1.8rem;color:var(--coffee);margin-bottom:10px;line-height:1.2}
+.ht-ttl em{font-style:italic;color:var(--matcha-dk)}
+.ht-desc{font-size:.84rem;color:var(--latte);line-height:1.78;margin-bottom:14px;max-width:540px}
+.ht-price{font-family:'Cabinet Grotesk',sans-serif;font-size:2.6rem;color:var(--coffee);font-weight:800;letter-spacing:-.03em}
+.ht-price em{color:var(--pink-dk);font-style:normal}
+.ht-price span{font-size:.8rem;color:var(--latte);font-family:'Instrument Sans',sans-serif;font-weight:400}
+
+/* CTA BANNER */
+.cta-banner{position:relative;overflow:hidden;background:var(--pink-dk)}
+.cta-banner-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=1800&q=80&fit=crop');background-size:cover;background-position:center 25%;opacity:.07}
+.ctas1{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);top:-200px;right:-100px}
+.ctas2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,217,192,.1) 0%,transparent 70%);bottom:-100px;left:10%}
+.cta-in{position:relative;z-index:2;padding:120px 5%;text-align:center;max-width:720px;margin:0 auto}
+.cta-in h2{color:white;margin:14px 0 18px}
+.cta-in > p{font-size:.98rem;color:rgba(255,255,255,.72);margin-bottom:36px;line-height:1.85;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-pills{display:flex;justify-content:center;gap:14px;margin-bottom:40px;flex-wrap:wrap}
+.cpill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:7px 16px;font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.88);backdrop-filter:blur(8px)}
+.cpill::before{content:'';width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.6)}
+
+/* FAQ */
+.faq-section{padding:108px 5%;background:white;position:relative}
+.faq-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-warm)}
+.faq-in{max-width:780px;margin:0 auto}
+.faq-hdr{text-align:center;margin-bottom:52px}
+.faq-item{border-bottom:1.5px solid var(--sand);padding:22px 0}
+.faq-q{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;cursor:none}
+.faq-q h4{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:400;color:var(--coffee);line-height:1.5}
+.faq-tog{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--sand);background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-size:.88rem;font-weight:700;color:var(--latte);flex-shrink:0;cursor:none;transition:all .3s}
+.faq-item.open .faq-tog{background:var(--pink-dk);border-color:var(--pink-dk);color:white;transform:rotate(45deg)}
+.faq-ans{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.faq-item.open .faq-ans{max-height:300px}
+.faq-ans p{font-size:.89rem;color:var(--latte);line-height:1.85;padding-top:14px}
+
+/* FOOTER */
+footer{background:var(--espresso);position:relative}
+footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
+.ft-inner{padding:72px 5% 52px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;max-width:1200px;margin:0 auto}
+.ft-brand a{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--pink);text-decoration:none;display:block;margin-bottom:14px}
+.ft-brand a em{color:white;font-style:normal}
+.ft-brand p{font-size:.83rem;color:rgba(255,255,255,.45);line-height:1.82;max-width:280px}
+.ft-col h5{font-family:'Cabinet Grotesk',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
+.ft-col ul{list-style:none}
+.ft-col li{margin-bottom:10px}
+.ft-col a{text-decoration:none;font-size:.83rem;color:rgba(255,255,255,.5);transition:color .2s}
+.ft-col a:hover{color:var(--pink)}
+.ft-bot{border-top:1px solid rgba(255,255,255,.05);padding:22px 5%;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
+.ft-bot p{font-size:.7rem;color:rgba(255,255,255,.25)}
+.soc{display:flex;gap:10px}
+.soc-a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:.8rem;transition:all .25s;cursor:none}
+.soc-a:hover{border-color:var(--pink);background:rgba(196,96,122,.15);transform:scale(1.1)}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(26,14,9,.78);backdrop-filter:blur(16px);z-index:9000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-ov.active{opacity:1;pointer-events:all}
+.modal{background:white;border-radius:24px;padding:48px;max-width:520px;width:100%;position:relative;transform:translateY(20px);transition:transform .3s;max-height:92vh;overflow-y:auto}
+.modal-ov.active .modal{transform:translateY(0)}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-pink);border-radius:24px 24px 0 0}
+.modal-x{position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--sand);background:var(--cream);cursor:none;font-size:.9rem;display:flex;align-items:center;justify-content:center;color:var(--latte);transition:all .2s;font-weight:700}
+.modal-x:hover{background:var(--rose);border-color:var(--rose)}
+.modal h3{font-family:'Fraunces',serif;font-size:1.8rem;color:var(--coffee);margin-bottom:5px;font-weight:700}
+.mplan{display:inline-block;background:var(--pink-lt);color:var(--pink-dk);font-family:'Cabinet Grotesk',sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:22px;border:1px solid var(--rose)}
+.price-sum{background:var(--cream);border-radius:12px;padding:16px 20px;margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;border:1.5px solid var(--sand)}
+.price-sum p{font-size:.76rem;color:var(--latte);font-weight:500}
+.price-sum .amt{font-family:'Cabinet Grotesk',sans-serif;font-size:2rem;color:var(--coffee);font-weight:800;letter-spacing:-.02em}
+.mfg{margin-bottom:14px}
+.mfg label{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--latte);margin-bottom:6px}
+.mfg input,.mfg textarea{width:100%;padding:12px 16px;border:1.5px solid var(--sand);border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:.87rem;color:var(--coffee);background:white;transition:border-color .2s;outline:none}
+.mfg input:focus,.mfg textarea:focus{border-color:var(--pink)}
+.mfg textarea{resize:vertical;min-height:72px}
+.stripe-note{display:flex;align-items:center;gap:8px;font-size:.69rem;color:var(--latte);margin-top:12px;justify-content:center}
+.stripe-note::before{content:'🔒'}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.r1{transition-delay:.12s}.r2{transition-delay:.24s}.r3{transition-delay:.36s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.pr-grid{grid-template-columns:repeat(2,1fr)}.pc.feat{transform:translateY(0)}.iggrid{grid-template-columns:repeat(3,1fr)}.igc:nth-child(4),.igc:nth-child(5){display:none}.ht-row{grid-template-columns:1fr;gap:24px}}
+@media(max-width:768px){.nav-links{display:none}.hero-stats{position:static;grid-template-columns:repeat(2,1fr)}.pain-grid{grid-template-columns:1fr;gap:32px}.checklist{grid-template-columns:1fr}.fam-cta{flex-direction:column;padding:30px 24px}.sgrid{grid-template-columns:repeat(2,1fr)}.tgrid{grid-template-columns:1fr}.psteps{grid-template-columns:1fr}.tgrid-p{grid-template-columns:1fr}.pr-grid{grid-template-columns:1fr}.ft-inner{grid-template-columns:1fr;gap:32px}.ft-bot{flex-direction:column;gap:14px}.iggrid{grid-template-columns:repeat(2,1fr)}.igc:nth-child(4){display:block}.as-in{flex-direction:column}.pull-q{padding:28px 24px}.ht-row{padding:28px}}
+@media(max-width:480px){.hero-stats{grid-template-columns:repeat(2,1fr)}.hero-btns{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">Brand<em>Rehab</em></a>
+  <ul class="nav-links">
+    <li><a href="#process">Process</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://calendly.com" target="_blank" class="nav-cta">Book Free Call ✦</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-blob3"></div>
+  <div class="hero-bg-img"></div>
+  <div class="hero-content">
+    <div class="hero-tag"><span class="hero-tag-dot"></span><span>Social Content Studio · Built for Business Owners</span></div>
+    <h1 class="hero-h1">Your brand.<strong>Your content.</strong><em>Your audience.</em></h1>
+    <div class="hero-line"></div>
+    <p class="hero-sub">You already know you need to show up consistently. You just don't have the time — or the system — to make it happen every single week.</p>
+    <p class="hero-sub2">That ends here. ✨</p>
+    <div class="hero-btns">
+      <a href="https://calendly.com" target="_blank" class="btn btn-primary">Book Your Free Strategy Call ↗</a>
+      <a href="#pricing" class="btn btn-ghost">See Plans</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><span class="n">100<em>+</em></span><p>Business owners served</p></div>
+    <div class="hstat"><span class="n">2.3<em>M</em></span><p>Top client followers</p></div>
+    <div class="hstat"><span class="n">1<em> Wk</em></span><p>Average launch time</p></div>
+    <div class="hstat"><span class="n">+100<em>%</em></span><p>Avg. monthly growth</p></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="mtrack">
+    <span class="mitem"><span class="mstar">✦</span> Content Strategy</span><span class="mitem"><span class="mstar">✦</span> Instagram Growth</span><span class="mitem"><span class="mstar">✦</span> Reel Scripts</span><span class="mitem"><span class="mstar">✦</span> Carousel Design</span><span class="mitem"><span class="mstar">✦</span> Brand Positioning</span><span class="mitem"><span class="mstar">✦</span> Short-Form Video</span><span class="mitem"><span class="mstar">✦</span> SEO Optimization</span><span class="mitem"><span class="mstar">✦</span> Analytics &amp; Growth</span><span class="mitem"><span class="mstar">✦</span> Content Strategy</span><span class="mitem"><span class="mstar">✦</span> Instagram Growth</span><span class="mitem"><span class="mstar">✦</span> Reel Scripts</span><span class="mitem"><span class="mstar">✦</span> Carousel Design</span><span class="mitem"><span class="mstar">✦</span> Brand Positioning</span><span class="mitem"><span class="mstar">✦</span> Short-Form Video</span><span class="mitem"><span class="mstar">✦</span> SEO Optimization</span><span class="mitem"><span class="mstar">✦</span> Analytics &amp; Growth</span>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section class="pain sp" id="results">
+  <div class="pain-sh1"></div><div class="pain-sh2"></div>
+  <div class="si">
+    <div class="pain-grid">
+      <div class="reveal">
+        <div class="eyebrow light"><div class="eyebrow-bar" style="background:rgba(255,255,255,.35)"></div><span>Sound Familiar?</span></div>
+        <h2 class="display-h light" style="margin-top:12px">You care about<br>your business.<br><em>The content keeps<br>falling through.</em></h2>
+        <p class="pain-sub">You're not lazy. You're not behind. You just don't have a system built around <em>you</em>. That's exactly what we fix.</p>
+      </div>
+      <div class="reveal r1" style="display:flex;flex-direction:column;gap:14px">
+        <div class="qcard"><p>"I'm getting distracted by conflicting advice and trying to piece together a strategy, but I haven't found anything that consistently gets results — and it's exhausting."</p></div>
+        <div class="qcard"><p>"I've tried seemingly everything to grow my audience, but I'm hitting a wall month after month with little to no growth."</p></div>
+        <div class="qcard"><p>"I'm doing it all by myself. I've got no one to brainstorm with or guide me on what to do next — I have so many questions with no clear answers."</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK 1 -->
+<div class="img-break">
+  <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1800&q=80&fit=crop" alt="Content creator at work" loading="lazy">
+  <div class="img-break-ov">
+    <div class="img-break-txt">
+      <h3>Stop guessing. Stop wasting hours.<br><em>Start owning your niche.</em></h3>
+      <p>Your content should work as hard as you do. Let us build the engine.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<section class="chk-section sp">
+  <div class="chk-bg">SAME.</div>
+  <div class="si" style="position:relative;z-index:1">
+    <div class="section-hdr reveal">
+      <div class="eyebrow pink center"><div class="eyebrow-bar" style="background:var(--pink-dk)"></div><span>Tell Me, Which of These Have You Already Tried?</span></div>
+      <h2 class="display-h" style="margin-top:12px;text-align:center">Check everything<br>that applies.</h2>
+      <p class="sub">Every box you check is proof you need a strategy built for you — not borrowed from someone else's playbook.</p>
+    </div>
+    <div class="checklist reveal">
+      <div class="chk" onclick="this.classList.toggle('on')"><div class="chkbox">✓</div><p>Posted consistently for 2 weeks, burned out, and went quiet again</p></div>
+      <div class="chk" onclick="this.classList.toggle('on')"><div class="chkbox">✓</div><p>Followed every trending audio hoping something would stick</p></div>
+      <div class="chk" onclick="this.classList.toggle('on')"><div class="chkbox">✓</div><p>Downloaded free content templates that didn't fit your brand</p></div>
+      <div class="chk" onclick="this.classList.toggle('on')"><div class="chkbox">✓</div><p>Paid for a course on content strategy that you never finished</p></div>
+      <div class="chk" onclick="this.classList.toggle('on')"><div class="chkbox">✓</div><p>Hired a SMMA who didn't really get your voice or audience</p></div>
+      <div class="chk" onclick="this.classList.toggle('on')"><div class="chkbox">✓</div><p>Tried to batch content and lost your entire day</p></div>
+    </div>
+    <div class="fam-cta reveal">
+      <div class="fam-cta-txt">
+        <p>If you checked more than two, you're not the problem.<br><em>The missing piece is a strategy built around you.</em></p>
+        <p>Month-to-month. No contracts. Onboarded in 3–5 days.</p>
+      </div>
+      <a href="https://calendly.com" target="_blank" class="btn btn-primary" style="white-space:nowrap;flex-shrink:0">Let's Build Yours →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ACCENT STRIP -->
+<div class="accent-strip reveal">
+  <div class="as-in">
+    <p class="as-txt"><strong>From hours of guesswork</strong> — to a plan that runs itself.</p>
+    <div class="pills">
+      <span class="pill y">Strategy</span><span class="pill p">Growth</span><span class="pill s">Consistency</span><span class="pill y">Conversion</span><span class="pill p">Authority</span><span class="pill s">Clarity</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="stats-section sp">
+  <div class="stats-blob"></div>
+  <div class="si" style="position:relative;z-index:1">
+    <div class="section-hdr reveal" style="margin-bottom:52px">
+      <div class="eyebrow matcha center"><div class="eyebrow-bar" style="background:var(--matcha-dk)"></div><span>By the Numbers</span></div>
+      <h2 class="display-h matcha" style="margin-top:12px;text-align:center">Growth you can<br><em>actually measure.</em></h2>
+    </div>
+    <div class="sgrid reveal">
+      <div class="sblk"><span class="lbl">Clients Served</span><span class="n">100+</span><span class="sub">Business owners &amp; creatives</span></div>
+      <div class="sblk"><span class="lbl">Avg Growth</span><span class="n">+100%</span><span class="sub">Monthly follower increase</span></div>
+      <div class="sblk"><span class="lbl">Top Client</span><span class="n">2.3M</span><span class="sub">Followers reached</span></div>
+      <div class="sblk"><span class="lbl">Onboard Time</span><span class="n">5 Days</span><span class="sub">From call to live content</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="sproof">
+  <div class="sproof-bg"></div>
+  <div class="si" style="position:relative;z-index:2">
+    <div class="sp-hdr reveal">
+      <div>
+        <div class="eyebrow light"><div class="eyebrow-bar" style="background:rgba(255,255,255,.35)"></div><span>Client Results</span></div>
+        <h2 class="display-h light" style="margin-top:12px">What growth<br><em>actually looks like.</em></h2>
+      </div>
+      <a href="https://calendly.com" target="_blank" class="btn btn-primary">Start Growing →</a>
+    </div>
+    <div class="iggrid reveal">
+      <div class="igc"><div class="igc-in"><div class="ign"></div><div class="igh"><div class="igav"></div><div><span class="ign2">@brandrehab</span><span class="ighn">Social Content Studio</span></div></div><div class="igimgw"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80&fit=crop" alt="" loading="lazy"><div class="igov"><p>How We Grew This Account 4x in 60 Days</p></div></div><div class="igf"><div class="igacts"><span>❤️</span><span>💬</span><span>📤</span><span>🔖</span></div><span class="iglikes">31,204 likes · 2.1K saves</span><div class="igcap">The exact strategy inside 👇 save this</div></div></div></div>
+      <div class="igc"><div class="igc-in"><div class="ign"></div><div class="igh"><div class="igav"></div><div><span class="ign2">@brandrehab</span><span class="ighn">Social Content Studio</span></div></div><div class="igimgw"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&q=80&fit=crop" alt="" loading="lazy"><div class="igov"><p>3 Content Pillars Every Business Owner Needs</p></div></div><div class="igf"><div class="igacts"><span>❤️</span><span>💬</span><span>📤</span><span>🔖</span></div><span class="iglikes">18,447 likes · 1.8K saves</span><div class="igcap">Which pillar are you missing? ⬇️</div></div></div></div>
+      <div class="igc"><div class="igc-in"><div class="ign"></div><div class="igh"><div class="igav"></div><div><span class="ign2">@brandrehab</span><span class="ighn">Social Content Studio</span></div></div><div class="igimgw"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80&fit=crop" alt="" loading="lazy"><div class="igov"><p>Why Consistent Posting Won't Save Your Brand</p></div></div><div class="igf"><div class="igacts"><span>❤️</span><span>💬</span><span>📤</span><span>🔖</span></div><span class="iglikes">44,882 likes · 3.4K saves</span><div class="igcap">Read this before your next post 🔥</div></div></div></div>
+      <div class="igc"><div class="igc-in"><div class="ign"></div><div class="igh"><div class="igav"></div><div><span class="ign2">@brandrehab</span><span class="ighn">Social Content Studio</span></div></div><div class="igimgw"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80&fit=crop" alt="" loading="lazy"><div class="igov"><p>Our Client Just Hit 100K — Here's What We Did</p></div></div><div class="igf"><div class="igacts"><span>❤️</span><span>💬</span><span>📤</span><span>🔖</span></div><span class="iglikes">22,103 likes · 1.2K saves</span><div class="igcap">Proof that strategy > luck every time ✨</div></div></div></div>
+      <div class="igc"><div class="igc-in"><div class="ign"></div><div class="igh"><div class="igav"></div><div><span class="ign2">@brandrehab</span><span class="ighn">Social Content Studio</span></div></div><div class="igimgw"><img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=80&fit=crop" alt="" loading="lazy"><div class="igov"><p>Stop Posting Without a Strategy (Do This Instead)</p></div></div><div class="igf"><div class="igacts"><span>❤️</span><span>💬</span><span>📤</span><span>🔖</span></div><span class="iglikes">27,553 likes · 1.4K saves</span><div class="igcap">The system every business owner needs 👇</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="test-blob"></div>
+  <div class="si" style="position:relative;z-index:1">
+    <div class="test-hdr reveal">
+      <div class="eyebrow pink center"><div class="eyebrow-bar" style="background:var(--pink-dk)"></div><span>Client Love</span></div>
+      <h2 class="display-h" style="margin-top:12px;text-align:center">The results speak.<br><em>So do our clients.</em></h2>
+    </div>
+    <div class="pull-q reveal">
+      <p>"I used to spend half my Sunday dreading Monday's posts. Now my entire month is planned before the week starts. <em>I've got my weekends back</em> — and my engagement has never been higher."</p>
+      <cite>— Shiraz Gidwani, CEO &amp; National Strategist · 2.3M followers</cite>
+    </div>
+    <div class="tgrid">
+      <div class="tc feat reveal">
+        <div class="stars">★★★★★</div>
+        <p class="tc-txt">"Felicia and the team completely transformed how I show up online. I went from posting randomly to having a clear, consistent strategy that actually converts followers into paying clients."</p>
+        <div class="tc-auth"><div class="av">AM</div><div><span class="auth-nm">Alexis Monroe</span><span class="auth-role">Founder, Monroe Wellness · 48K followers</span></div></div>
+      </div>
+      <div class="tc reveal r1">
+        <div class="stars">★★★★★</div>
+        <p class="tc-txt">"I was stuck at 3K followers for over a year. Within 60 days of working with Brand Rehab, I broke 25K. The strategy was built for my niche — and it shows in every single metric."</p>
+        <div class="tc-auth"><div class="av">JL</div><div><span class="auth-nm">Jasmine Liu</span><span class="auth-role">Business Coach · 25K followers</span></div></div>
+      </div>
+      <div class="tc reveal r2">
+        <div class="stars">★★★★★</div>
+        <p class="tc-txt">"The Content Engine is worth every dollar. Dedicated team, weekly reviews, and I haven't had to think about what to post in 4 months. My business grew 40% this quarter."</p>
+        <div class="tc-auth"><div class="av">KR</div><div><span class="auth-nm">Kira Reyes</span><span class="auth-role">E-commerce Founder · 112K followers</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK 2 -->
+<div class="img-break">
+  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1800&q=80&fit=crop" alt="Team collaboration" loading="lazy">
+  <div class="img-break-ov">
+    <div class="img-break-txt">
+      <h3 style="font-style:normal">A studio that moves at<br>the pace of your business.<br><em>Not against it.</em></h3>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="process-section sp" id="process">
+  <div class="ps1"></div><div class="ps2"></div>
+  <div class="si" style="position:relative;z-index:2">
+    <div class="section-hdr reveal" style="margin-bottom:64px">
+      <div class="eyebrow light center"><div class="eyebrow-bar" style="background:rgba(255,255,255,.35)"></div><span>How We Work</span></div>
+      <h2 class="display-h light" style="margin-top:12px;text-align:center">Strategy that drives<br><em>real social growth.</em></h2>
+      <p style="font-size:.92rem;color:rgba(255,255,255,.5);margin-top:14px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.8">Three steps. Zero guesswork. A content engine built to work.</p>
+    </div>
+    <div class="psteps reveal">
+      <div class="step"><span class="step-n">01</span><h3>We Learn Your Brand</h3><p>Deep-dive discovery where we study your audience, voice, niche, and goals. We don't guess — we build from your actual business, your actual market, your actual competitors.</p></div>
+      <div class="step"><span class="step-n">02</span><h3>We Build Your Custom Plan</h3><p>Hooks, carousels, scripts, and a full month of content — researched, written, and structured to convert. Every post has a purpose. Every caption has a strategy behind it.</p></div>
+      <div class="step"><span class="step-n">03</span><h3>We Execute or Hand It Off</h3><p>Depending on your plan, we hand you a ready-to-post system or handle everything from edit to publish. Your only job is to show up as the face of your brand.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="si">
+    <div class="section-hdr reveal" style="margin-bottom:64px">
+      <div class="eyebrow matcha center"><div class="eyebrow-bar" style="background:var(--matcha-dk)"></div><span>The Studio</span></div>
+      <h2 class="display-h matcha" style="margin-top:12px;text-align:center">The people behind<br><em>your growth.</em></h2>
+    </div>
+    <div class="tgrid-p">
+      <div class="tp reveal"><div class="tp-photo"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&fit=crop&crop=faces" alt="Felicia" loading="lazy"><div class="tp-photo-ov"></div></div><div class="tp-nm">Felicia</div><div class="tp-role">Founder &amp; CEO</div><p class="tp-bio">The visionary behind Brand Rehab. Felicia built this studio after watching too many talented business owners fall silent online — not because they lacked a story, but because they lacked a system.</p></div>
+      <div class="tp reveal r1"><div class="tp-photo"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop&crop=faces" alt="Austan" loading="lazy"><div class="tp-photo-ov"></div></div><div class="tp-nm">Austan</div><div class="tp-role">Business Strategist</div><p class="tp-bio">Austan connects content strategy to business outcomes. Every post we create serves a purpose — building audience, driving leads, and converting followers into paying customers.</p></div>
+      <div class="tp reveal r2"><div class="tp-photo"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80&fit=crop&crop=faces" alt="Ava" loading="lazy"><div class="tp-photo-ov"></div></div><div class="tp-nm">Ava</div><div class="tp-role">Technical Lead</div><p class="tp-bio">Ava runs the production engine. From carousel design to short-form video editing, she ensures every piece of content is polished, on-brand, and optimized to perform at the highest level.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section sp" id="pricing">
+  <div class="pr-bg-blob"></div>
+  <div class="si">
+    <div class="pr-hdr reveal">
+      <div class="eyebrow pink center"><div class="eyebrow-bar" style="background:var(--pink-dk)"></div><span>Plans &amp; Pricing</span></div>
+      <h2 class="display-h" style="margin-top:12px;text-align:center">Find your phase.<br><em>We'll build the rest.</em></h2>
+      <p class="sub">No long-term contracts. No retainers. Just the plan that fits where you are right now.</p>
+    </div>
+    <div class="pr-grid reveal">
+      <div class="pc"><div class="pc-nm">Content Planner</div><p class="pc-desc">For the business owner who wants the system and will run it themselves.</p><div class="pc-price"><span class="pc-amt">$37</span><span class="pc-per">one-time</span></div><ul class="pc-feats"><li>Notion content planner template</li><li>Built-in content calendar system</li><li>Hooks + caption frameworks</li><li>Batching workflow included</li><li>Instant digital download</li></ul><button class="pbtn outline" onclick="openCheckout('Content Planner Template','$37','one-time')">Get the Template</button></div>
+      <div class="pc"><div class="pc-nm">DIY Strategy</div><p class="pc-desc">You need a plan. We'll build it. Ready to show up — just need to know what, when, and why.</p><div class="pc-price"><span class="pc-amt">$249</span><span class="pc-per">/month</span></div><ul class="pc-feats"><li>8 posts planned monthly</li><li>Hooks written for each post</li><li>Profile optimization</li><li>DIY batching content system</li><li>Month-to-month, cancel anytime</li></ul><button class="pbtn matcha-btn" onclick="openCheckout('DIY Strategy Package','$249/month','monthly')">Get Started</button></div>
+      <div class="pc feat"><div class="pbadge">✦ Most Popular</div><div class="pc-nm">Done-With-You</div><p class="pc-desc">You need the plan AND the words. We'll write both — posts ready to go.</p><div class="pc-price"><span class="pc-amt">$495</span><span class="pc-per">/month</span></div><ul class="pc-feats"><li>Custom content strategy</li><li>Monthly 30-min strategy call</li><li>12 posts planned (hooks + outlines)</li><li>4 complete carousels designed + written</li><li>8 reel scripts</li><li>Client portal access</li><li>Industry research</li></ul><button class="pbtn primary" onclick="openCheckout('Done-With-You Strategy','$495/month','monthly')">Start Growing Now</button><p class="pslots">✦ Limited spots this month</p></div>
+      <div class="pc"><div class="pc-nm">Content Engine</div><p class="pc-desc">Busy owners who are done DIYing and want a real content team behind them.</p><div class="pc-price"><span class="pc-amt">$1,495</span><span class="pc-per">/month</span></div><ul class="pc-feats"><li>Custom brand &amp; content strategy</li><li>18 posts planned monthly</li><li>3 short-form videos (edit &amp; post)</li><li>3 carousels (designed + posted)</li><li>Monthly analytics review call</li><li>Full scripting + copywriting</li><li>SEO optimization</li><li>Client portal access</li></ul><button class="pbtn light-ol" onclick="openCheckout('The Content Engine','$1,495/month','monthly')">Apply Now</button><p class="pslots">⚡ Only 2 slots open</p></div>
+    </div>
+    <div class="ht-row reveal">
+      <div>
+        <div class="ht-lbl">High-Touch Content Strategy — Exclusive</div>
+        <h3 class="ht-ttl">You're ready to own your niche.<br><em>We'll build the machine.</em></h3>
+        <p class="ht-desc">A dedicated content team, custom growth strategy, and full marketing management — all under one roof. 40 pieces of content, ad management, A/B testing, unlimited copywriting, weekly analytics reviews, and a dedicated growth specialist who lives and breathes your brand.</p>
+        <p class="ht-price">Starting at <em>$2,995</em><span>/month</span></p>
+      </div>
+      <div style="text-align:center;flex-shrink:0">
+        <button class="btn btn-dark" onclick="openCheckout('High-Touch Content Strategy','Starting at $2,995/month','monthly')" style="white-space:nowrap;border:none">Apply for This Plan →</button>
+        <p style="font-size:.67rem;color:var(--latte);margin-top:10px">Exclusive. Very limited availability.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-bg"></div>
+  <div class="ctas1"></div><div class="ctas2"></div>
+  <div class="cta-in reveal">
+    <div class="eyebrow" style="justify-content:center;margin-bottom:16px"><div class="eyebrow-bar" style="background:rgba(255,255,255,.4)"></div><span style="font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65)">You've Spent Enough Time Figuring This Out Alone</span></div>
+    <h2 class="display-h light" style="text-align:center;margin-bottom:18px">A 15-minute call won't<br><em>lock you into anything.</em></h2>
+    <p>It will show you exactly what your content strategy should look like — and which plan fits where you are right now.</p>
+    <div class="cta-pills">
+      <span class="cpill">No commitment</span>
+      <span class="cpill">No pressure</span>
+      <span class="cpill">Just clarity</span>
+      <span class="cpill">Onboarded in 3–5 days</span>
+    </div>
+    <a href="https://calendly.com" target="_blank" class="btn" style="background:white;color:var(--pink-dk);font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.82rem;padding:16px 48px;border-radius:100px;box-shadow:0 8px 32px rgba(0,0,0,.2)">Book Your Free Discovery Call ✦</a>
+    <p style="margin-top:20px;font-size:.72rem;color:rgba(255,255,255,.3)">Month-to-month. Cancel anytime. No hidden fees.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-in">
+    <div class="faq-hdr reveal">
+      <div class="eyebrow pink center"><div class="eyebrow-bar" style="background:var(--pink-dk)"></div><span>FAQ</span></div>
+      <h2 class="display-h" style="margin-top:12px;text-align:center">Your questions,<br><em>answered.</em></h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)"><h4>What makes Brand Rehab different from buying a content template?</h4><button class="faq-tog">+</button></div><div class="faq-ans"><p>We research your niche and build a strategy around your business. A template is built for everyone. We're built for you. Every plan starts with a deep understanding of your audience, voice, and goals — then we build from there.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)"><h4>Do I have to post the content myself?</h4><button class="faq-tog">+</button></div><div class="faq-ans"><p>It depends on your plan. Plans 1 and 2 — yes, but everything is outlined or written and ready for you to create and post. Plans 3 and 4 — we handle editing, creating, and posting too. You stay in your zone of genius while we handle the rest.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)"><h4>How quickly can I get started?</h4><button class="faq-tog">+</button></div><div class="faq-ans"><p>Most clients are fully onboarded within 3–5 business days of their strategy call. We move fast — because you've already waited long enough.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)"><h4>What if I'm not on every platform?</h4><button class="faq-tog">+</button></div><div class="faq-ans"><p>We'll tell you which platform actually matters for your business and build there first. Our main focus is Instagram carousels and short-form video — the two highest-converting formats for most business owners right now.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)"><h4>Is there a contract?</h4><button class="faq-tog">+</button></div><div class="faq-ans"><p>No long-term contracts or retainers. Month-to-month means you're always in control. We keep clients because our work speaks for itself — not because we trap them.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)"><h4>How do I get started?</h4><button class="faq-tog">+</button></div><div class="faq-ans"><p>Book your free discovery call — 15 minutes, zero pressure. We'll look at your current content situation, tell you exactly what your strategy should look like, and recommend the right plan for where you are right now.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand"><a href="#">Brand<em>Rehab</em></a><p>A social content studio for busy business owners who are done figuring it out alone. Built by a female founder. Powered by strategy. Driven by results.</p></div>
+    <div class="ft-col"><h5>Services</h5><ul><li><a href="#pricing">Content Planner</a></li><li><a href="#pricing">DIY Strategy</a></li><li><a href="#pricing">Done-With-You</a></li><li><a href="#pricing">Content Engine</a></li><li><a href="#pricing">High-Touch Strategy</a></li></ul></div>
+    <div class="ft-col"><h5>Company</h5><ul><li><a href="#process">How It Works</a></li><li><a href="#results">Results</a></li><li><a href="https://calendly.com" target="_blank">Book a Call</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+    <div class="ft-col"><h5>Contact</h5><ul><li><a href="mailto:hello@brandrehab.co">hello@brandrehab.co</a></li><li><a href="#">@brandrehab</a></li><li><a href="#">TikTok</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+  </div>
+  <div class="ft-bot">
+    <p>© 2025 Brand Rehab. All rights reserved. Built for the bold. ✦</p>
+    <div class="soc"><a href="#" class="soc-a">📸</a><a href="#" class="soc-a">🎵</a><a href="#" class="soc-a">💼</a></div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-ov" id="checkoutModal">
+  <div class="modal">
+    <button class="modal-x" onclick="closeCheckout()">×</button>
+    <h3>Let's get you started. ✨</h3>
+    <span class="mplan" id="modalPlanName">Plan</span>
+    <div class="price-sum"><p>Investment</p><span class="amt" id="modalPrice">$0</span></div>
+    <div class="mfg"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
+    <div class="mfg"><label>Email Address</label><input type="email" placeholder="you@yourbusiness.com"></div>
+    <div class="mfg"><label>Business / Brand Name</label><input type="text" placeholder="Your business name"></div>
+    <div class="mfg"><label>Instagram Handle</label><input type="text" placeholder="@yourhandle"></div>
+    <div class="mfg"><label>Biggest Content Challenge</label><textarea placeholder="Tell us briefly what you're struggling with..."></textarea></div>
+    <button class="btn btn-primary" style="width:100%;display:flex;justify-content:center;font-size:.82rem;padding:15px;border-radius:100px" onclick="handleCheckout()">Continue to Secure Payment →</button>
+    <p class="stripe-note">Secured by Stripe. Encrypted. Safe.</p>
+  </div>
+</div>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx-6+'px'; cursor.style.top=my-6+'px'; ring.style.left=mx-18+'px'; ring.style.top=my-18+'px'; });
+document.querySelectorAll('a,button,.chk,.faq-q').forEach(el => {
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2)';cursor.style.background='var(--matcha-dk)';ring.style.opacity='0'});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';cursor.style.background='var(--pink-dk)';ring.style.opacity='.5'});
+});
+
+// Nav
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60));
+
+// Reveal
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.07});
+reveals.forEach(el=>obs.observe(el));
+
+// FAQ
+function toggleFAQ(el){const item=el.parentElement;const open=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open')}
+
+// Modal
+function openCheckout(name,price){document.getElementById('modalPlanName').textContent=name;document.getElementById('modalPrice').textContent=price;document.getElementById('checkoutModal').classList.add('active');document.body.style.overflow='hidden'}
+function closeCheckout(){document.getElementById('checkoutModal').classList.remove('active');document.body.style.overflow=''}
+document.getElementById('checkoutModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeCheckout()});
+function handleCheckout(){alert('Redirecting to secure checkout...');closeCheckout()}
+</script>
+</body>
+</html>
