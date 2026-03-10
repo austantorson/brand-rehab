@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Rehab — Admin Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=Cabinet+Grotesk:wght@400;500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FDF8F3; --blush: #F9EEE8; --rose: #F2D9D5;
+  --pink: #E8A0B0; --pink-dk: #C4607A; --pink-lt: #FCF0F3;
+  --matcha: #C8D9C0; --matcha-dk: #7A9E72; --matcha-lt: #E6EFE3;
+  --coffee: #2A1A14; --espresso: #1A0E09; --latte: #9B7060;
+  --sand: #E8DDD6; --mocha: #5C3828;
+  --grad-pink: linear-gradient(135deg,#E8A0B0,#C4607A);
+  --grad-matcha: linear-gradient(135deg,#C8D9C0,#7A9E72);
+  --grad-warm: linear-gradient(135deg,#F2D9D5,#E8A0B0 60%,#C8D9C0);
+  --sidebar: 260px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Instrument Sans',sans-serif;background:var(--blush);color:var(--coffee);overflow:hidden}
+
+/* ── LOGIN ── */
+#loginScreen{position:fixed;inset:0;background:var(--espresso);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:0}
+.login-blob1{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,176,.18) 0%,transparent 70%);top:-150px;right:-100px}
+.login-blob2{position:absolute;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(200,217,192,.14) 0%,transparent 70%);bottom:-100px;left:-50px}
+.login-box{background:white;border-radius:24px;padding:52px 48px;max-width:420px;width:90%;position:relative;z-index:1;box-shadow:0 32px 80px rgba(0,0,0,.35)}
+.login-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-pink);border-radius:24px 24px 0 0}
+.login-logo{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:var(--coffee);margin-bottom:4px}
+.login-logo em{color:var(--pink-dk);font-style:normal}
+.login-sub{font-size:.82rem;color:var(--latte);margin-bottom:32px}
+.login-label{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--latte);margin-bottom:7px}
+.login-input{width:100%;padding:13px 16px;border:1.5px solid var(--sand);border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:.9rem;color:var(--coffee);outline:none;transition:border-color .2s;background:white}
+.login-input:focus{border-color:var(--pink-dk)}
+.login-btn{width:100%;padding:14px;background:var(--grad-pink);color:white;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.84rem;font-weight:700;letter-spacing:.04em;cursor:pointer;margin-top:20px;transition:opacity .2s,transform .2s;box-shadow:0 8px 24px rgba(196,96,122,.3)}
+.login-btn:hover{opacity:.9;transform:translateY(-1px)}
+.login-err{color:var(--pink-dk);font-size:.8rem;margin-top:10px;display:none;font-weight:500}
+
+/* ── LAYOUT ── */
+#app{display:none;height:100vh;overflow:hidden}
+.layout{display:grid;grid-template-columns:var(--sidebar) 1fr;height:100vh}
+
+/* ── SIDEBAR ── */
+.sidebar{background:var(--espresso);display:flex;flex-direction:column;overflow-y:auto;border-right:1px solid rgba(255,255,255,.05)}
+.sidebar-top{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.06)}
+.sidebar-logo{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;color:var(--pink);text-decoration:none}
+.sidebar-logo em{color:white;font-style:normal}
+.sidebar-badge{display:inline-block;background:rgba(196,96,122,.2);color:var(--pink);font-family:'Cabinet Grotesk',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-top:6px;border:1px solid rgba(196,96,122,.3)}
+.sidebar-nav{padding:16px 12px;flex:1}
+.nav-section{margin-bottom:24px}
+.nav-section-label{font-family:'Cabinet Grotesk',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:0 8px;margin-bottom:8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:all .2s;color:rgba(255,255,255,.5);font-size:.84rem;font-weight:500;margin-bottom:2px;border:none;background:none;width:100%;text-align:left}
+.nav-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.85)}
+.nav-item.active{background:rgba(196,96,122,.15);color:var(--pink);border:1px solid rgba(196,96,122,.2)}
+.nav-item .icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
+.sidebar-bottom{padding:16px 12px;border-top:1px solid rgba(255,255,255,.06)}
+.save-all-btn{width:100%;padding:12px;background:var(--grad-pink);color:white;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(196,96,122,.3)}
+.save-all-btn:hover{opacity:.9;transform:translateY(-1px)}
+.save-all-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.view-site-btn{display:block;text-align:center;padding:10px;color:rgba(255,255,255,.4);font-size:.75rem;margin-top:8px;text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:600;letter-spacing:.06em;transition:color .2s}
+.view-site-btn:hover{color:var(--matcha)}
+.logout-btn{display:block;text-align:center;padding:8px;color:rgba(255,255,255,.25);font-size:.72rem;margin-top:4px;cursor:pointer;border:none;background:none;width:100%;font-family:'Instrument Sans',sans-serif;transition:color .2s}
+.logout-btn:hover{color:rgba(255,255,255,.6)}
+
+/* ── MAIN CONTENT ── */
+.main{overflow-y:auto;height:100vh;background:var(--blush)}
+.main-header{background:white;border-bottom:1px solid var(--sand);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.main-header h1{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:var(--coffee)}
+.main-header p{font-size:.8rem;color:var(--latte);margin-top:2px}
+.status-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.status-pill.saved{background:var(--matcha-lt);color:var(--matcha-dk);border:1px solid var(--matcha)}
+.status-pill.unsaved{background:var(--pink-lt);color:var(--pink-dk);border:1px solid var(--rose)}
+.status-pill.saving{background:#FFF9E6;color:#B07D20;border:1px solid #F0D080}
+.status-dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+.main-body{padding:32px}
+.panel{display:none}
+.panel.active{display:block}
+
+/* ── CARDS ── */
+.edit-card{background:white;border-radius:20px;border:1.5px solid var(--sand);margin-bottom:20px;overflow:hidden;transition:box-shadow .2s}
+.edit-card:hover{box-shadow:0 4px 20px rgba(196,96,122,.07)}
+.card-header{padding:20px 24px;border-bottom:1px solid var(--sand);display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.card-header-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.card-header-icon.pink{background:var(--pink-lt)}
+.card-header-icon.matcha{background:var(--matcha-lt)}
+.card-header-icon.sand{background:var(--blush)}
+.card-title{font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.9rem;color:var(--coffee)}
+.card-subtitle{font-size:.75rem;color:var(--latte);margin-top:1px}
+.card-chevron{margin-left:auto;color:var(--latte);transition:transform .3s;font-size:.8rem}
+.card-body{padding:24px;display:none}
+.card-body.open{display:block}
+
+/* ── FORM FIELDS ── */
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.field-row.single{grid-template-columns:1fr}
+.field-row.triple{grid-template-columns:1fr 1fr 1fr}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-family:'Cabinet Grotesk',sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--latte)}
+.field input,.field textarea,.field select{padding:10px 14px;border:1.5px solid var(--sand);border-radius:10px;font-family:'Instrument Sans',sans-serif;font-size:.86rem;color:var(--coffee);outline:none;transition:border-color .2s;background:white;width:100%}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pink-dk)}
+.field textarea{resize:vertical;min-height:80px;line-height:1.5}
+.field-hint{font-size:.72rem;color:var(--latte);margin-top:4px}
+
+/* ── IMAGE UPLOAD FIELD ── */
+.img-field{border:2px dashed var(--sand);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.img-field:hover{border-color:var(--pink);background:var(--pink-lt)}
+.img-field input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-field-preview{width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:10px;display:none}
+.img-field-icon{font-size:1.8rem;margin-bottom:8px}
+.img-field-label{font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:700;color:var(--latte)}
+.img-field-sub{font-size:.7rem;color:var(--latte);opacity:.7;margin-top:3px}
+.img-url-row{display:flex;gap:8px;margin-top:10px;align-items:center}
+.img-url-row input{flex:1;padding:8px 12px;border:1.5px solid var(--sand);border-radius:8px;font-size:.8rem;color:var(--coffee);outline:none;font-family:'Instrument Sans',sans-serif}
+.img-url-row input:focus{border-color:var(--pink-dk)}
+.img-url-row span{font-size:.72rem;color:var(--latte);white-space:nowrap}
+
+/* ── REPEATER (testimonials, faq, pricing features) ── */
+.repeater{margin-top:8px}
+.repeater-item{background:var(--blush);border:1.5px solid var(--sand);border-radius:14px;padding:18px;margin-bottom:12px;position:relative}
+.repeater-item-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.repeater-item-label{font-family:'Cabinet Grotesk',sans-serif;font-size:.75rem;font-weight:700;color:var(--latte);text-transform:uppercase;letter-spacing:.1em}
+.repeater-remove{background:none;border:none;color:var(--latte);cursor:pointer;font-size:.85rem;padding:4px 8px;border-radius:6px;transition:all .2s;font-family:'Cabinet Grotesk',sans-serif;font-weight:700}
+.repeater-remove:hover{background:var(--rose);color:var(--pink-dk)}
+.repeater-add{display:flex;align-items:center;gap:8px;padding:10px 16px;border:1.5px dashed var(--sand);border-radius:10px;background:none;color:var(--latte);font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s;width:100%}
+.repeater-add:hover{border-color:var(--pink);color:var(--pink-dk);background:var(--pink-lt)}
+
+/* ── COLOR PICKER ── */
+.color-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.color-swatch{width:32px;height:32px;border-radius:8px;border:2px solid transparent;cursor:pointer;transition:transform .15s,border-color .15s;flex-shrink:0}
+.color-swatch:hover{transform:scale(1.15)}
+.color-swatch.active{border-color:var(--coffee)}
+
+/* ── PREVIEW BANNER ── */
+.preview-bar{background:var(--coffee);border-radius:14px;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:16px}
+.preview-bar p{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.5}
+.preview-bar p strong{color:white}
+.preview-bar a{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--grad-pink);color:white;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.76rem;font-weight:700;text-decoration:none;white-space:nowrap;transition:opacity .2s;box-shadow:0 4px 12px rgba(196,96,122,.3);flex-shrink:0}
+.preview-bar a:hover{opacity:.9}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--coffee);color:white;padding:14px 22px;border-radius:12px;font-family:'Cabinet Grotesk',sans-serif;font-size:.82rem;font-weight:600;z-index:99999;transform:translateY(80px);opacity:0;transition:all .35s;box-shadow:0 8px 32px rgba(0,0,0,.25);display:flex;align-items:center;gap:10px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success::before{content:'✦';color:var(--matcha)}
+.toast.error::before{content:'✗';color:var(--pink)}
+
+/* ── FIREBASE SETUP CARD ── */
+.setup-card{background:var(--coffee);border-radius:20px;padding:32px;margin-bottom:24px;position:relative;overflow:hidden}
+.setup-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,176,.15) 0%,transparent 70%)}
+.setup-card h3{font-family:'Fraunces',serif;font-size:1.2rem;color:white;margin-bottom:6px}
+.setup-card p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:20px}
+.setup-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.setup-field label{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px}
+.setup-field input{width:100%;padding:10px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:white;font-family:'Instrument Sans',sans-serif;font-size:.84rem;outline:none;transition:border-color .2s}
+.setup-field input:focus{border-color:rgba(232,160,176,.5)}
+.setup-field input::placeholder{color:rgba(255,255,255,.2)}
+.connect-btn{margin-top:16px;padding:11px 24px;background:var(--grad-pink);color:white;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(196,96,122,.3)}
+.connect-btn:hover{opacity:.9;transform:translateY(-1px)}
+.connected-badge{display:inline-flex;align-items:center;gap:6px;background:var(--matcha-lt);color:var(--matcha-dk);padding:6px 14px;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.72rem;font-weight:700;border:1px solid var(--matcha);margin-top:12px}
+.connected-dot{width:7px;height:7px;border-radius:50%;background:var(--matcha-dk)}
+
+/* ── STATS EDITOR ── */
+.stats-grid-edit{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.stat-card-edit{background:var(--blush);border:1.5px solid var(--sand);border-radius:14px;padding:16px}
+.stat-card-edit .stat-num{font-family:'Cabinet Grotesk',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--latte);margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-blob1"></div>
+  <div class="login-blob2"></div>
+  <div class="login-box">
+    <div class="login-logo">Brand<em>Rehab</em></div>
+    <p class="login-sub">Admin Panel · Content Editor</p>
+    <label class="login-label">Password</label>
+    <input class="login-input" type="password" id="loginPassword" placeholder="Enter your admin password" onkeydown="if(event.key==='Enter')doLogin()">
+    <div class="login-err" id="loginErr">Incorrect password. Try again.</div>
+    <button class="login-btn" onclick="doLogin()">Sign In →</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-logo">Brand<em>Rehab</em></div>
+      <div class="sidebar-badge">Admin Panel</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-label">Site Sections</div>
+        <button class="nav-item active" onclick="showPanel('hero',this)"><span class="icon">✨</span> Hero</button>
+        <button class="nav-item" onclick="showPanel('pricing',this)"><span class="icon">💳</span> Pricing</button>
+        <button class="nav-item" onclick="showPanel('testimonials',this)"><span class="icon">⭐</span> Testimonials</button>
+        <button class="nav-item" onclick="showPanel('team',this)"><span class="icon">👥</span> Team</button>
+        <button class="nav-item" onclick="showPanel('faq',this)"><span class="icon">💬</span> FAQ</button>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">Settings</div>
+        <button class="nav-item" onclick="showPanel('settings',this)"><span class="icon">⚙️</span> Firebase Setup</button>
+        <button class="nav-item" onclick="showPanel('password',this)"><span class="icon">🔒</span> Change Password</button>
+      </div>
+    </nav>
+    <div class="sidebar-bottom">
+      <button class="save-all-btn" onclick="saveAll()" id="saveBtn">Save & Publish ✦</button>
+      <a href="index.html" target="_blank" class="view-site-btn">↗ View Live Site</a>
+      <button class="logout-btn" onclick="doLogout()">Log out</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-header">
+      <div>
+        <h1 id="panelTitle">Hero Section</h1>
+        <p id="panelDesc">Edit your homepage hero headline, subtext and stats</p>
+      </div>
+      <div class="status-pill saved" id="statusPill">
+        <div class="status-dot"></div>
+        <span id="statusText">All saved</span>
+      </div>
+    </div>
+
+    <div class="main-body">
+
+      <!-- PREVIEW BAR -->
+      <div class="preview-bar">
+        <p><strong>Live preview:</strong> Changes appear on your site the moment you hit Save & Publish. Your visitors always see the latest version.</p>
+        <a href="index.html" target="_blank">↗ Open Live Site</a>
+      </div>
+
+      <!-- ══ HERO PANEL ══ -->
+      <div class="panel active" id="panel-hero">
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon pink">✨</div>
+            <div><div class="card-title">Hero Headline</div><div class="card-subtitle">The first thing visitors read</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div class="field-row single">
+              <div class="field">
+                <label>Line 1 (plain text)</label>
+                <input type="text" id="hero_line1" value="Your brand." placeholder="Your brand.">
+              </div>
+            </div>
+            <div class="field-row single">
+              <div class="field">
+                <label>Line 2 (bold)</label>
+                <input type="text" id="hero_line2" value="Your content." placeholder="Your content.">
+              </div>
+            </div>
+            <div class="field-row single">
+              <div class="field">
+                <label>Line 3 (italic pink)</label>
+                <input type="text" id="hero_line3" value="Your audience." placeholder="Your audience.">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon pink">📝</div>
+            <div><div class="card-title">Hero Subtext</div><div class="card-subtitle">Supporting copy below the headline</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div class="field-row single">
+              <div class="field">
+                <label>Main subtext paragraph</label>
+                <textarea id="hero_sub">You already know you need to show up consistently. You just don't have the time — or the system — to make it happen every single week.</textarea>
+              </div>
+            </div>
+            <div class="field-row single">
+              <div class="field">
+                <label>Italic tagline (matcha color)</label>
+                <input type="text" id="hero_sub2" value="That ends here. ✨">
+              </div>
+            </div>
+            <div class="field-row single">
+              <div class="field">
+                <label>CTA Button Text</label>
+                <input type="text" id="hero_cta" value="Book Your Free Strategy Call ↗">
+              </div>
+            </div>
+            <div class="field-row single">
+              <div class="field">
+                <label>Calendly / CTA Link URL</label>
+                <input type="text" id="hero_cta_url" value="https://calendly.com" placeholder="https://calendly.com/yourlink">
+                <span class="field-hint">Replace with your actual Calendly booking link</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon matcha">📊</div>
+            <div><div class="card-title">Hero Stats Bar</div><div class="card-subtitle">4 numbers at the bottom of the hero</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div class="stats-grid-edit">
+              <div class="stat-card-edit"><div class="stat-num">Stat 1</div>
+                <div class="field-row single" style="margin-bottom:10px"><div class="field"><label>Number</label><input type="text" id="stat1_n" value="100+"></div></div>
+                <div class="field-row single"><div class="field"><label>Label</label><input type="text" id="stat1_l" value="Business owners served"></div></div>
+              </div>
+              <div class="stat-card-edit"><div class="stat-num">Stat 2</div>
+                <div class="field-row single" style="margin-bottom:10px"><div class="field"><label>Number</label><input type="text" id="stat2_n" value="2.3M"></div></div>
+                <div class="field-row single"><div class="field"><label>Label</label><input type="text" id="stat2_l" value="Top client followers"></div></div>
+              </div>
+              <div class="stat-card-edit"><div class="stat-num">Stat 3</div>
+                <div class="field-row single" style="margin-bottom:10px"><div class="field"><label>Number</label><input type="text" id="stat3_n" value="1 Wk"></div></div>
+                <div class="field-row single"><div class="field"><label>Label</label><input type="text" id="stat3_l" value="Average launch time"></div></div>
+              </div>
+              <div class="stat-card-edit"><div class="stat-num">Stat 4</div>
+                <div class="field-row single" style="margin-bottom:10px"><div class="field"><label>Number</label><input type="text" id="stat4_n" value="+100%"></div></div>
+                <div class="field-row single"><div class="field"><label>Label</label><input type="text" id="stat4_l" value="Avg. monthly growth"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PRICING PANEL ══ -->
+      <div class="panel" id="panel-pricing">
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon pink">💳</div>
+            <div><div class="card-title">Pricing Header</div><div class="card-subtitle">Section title and subtext</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div class="field-row single"><div class="field"><label>Headline Line 1</label><input type="text" id="pricing_h1" value="Find your phase."></div></div>
+            <div class="field-row single"><div class="field"><label>Headline Line 2 (italic pink)</label><input type="text" id="pricing_h2" value="We'll build the rest."></div></div>
+            <div class="field-row single"><div class="field"><label>Subtext</label><textarea id="pricing_sub">No long-term contracts. No retainers. Just the plan that fits where you are right now.</textarea></div></div>
+          </div>
+        </div>
+
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon matcha">📦</div>
+            <div><div class="card-title">Pricing Plans</div><div class="card-subtitle">Edit each plan's name, price and description</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div id="pricing-plans-editor"></div>
+          </div>
+        </div>
+
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon sand">💎</div>
+            <div><div class="card-title">High-Touch Plan</div><div class="card-subtitle">The exclusive bottom tier</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div class="field-row"><div class="field"><label>Title Line 1</label><input type="text" id="ht_t1" value="You're ready to own your niche."></div><div class="field"><label>Title Line 2 (italic matcha)</label><input type="text" id="ht_t2" value="We'll build the machine."></div></div>
+            <div class="field-row single"><div class="field"><label>Description</label><textarea id="ht_desc">A dedicated content team, custom growth strategy, and full marketing management — all under one roof. 40 pieces of content, ad management, A/B testing, unlimited copywriting, weekly analytics reviews, and a dedicated growth specialist who lives and breathes your brand.</textarea></div></div>
+            <div class="field-row"><div class="field"><label>Price</label><input type="text" id="ht_price" value="$2,995"></div><div class="field"><label>Period</label><input type="text" id="ht_period" value="/month"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TESTIMONIALS PANEL ══ -->
+      <div class="panel" id="panel-testimonials">
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon pink">💬</div>
+            <div><div class="card-title">Featured Pull Quote</div><div class="card-subtitle">Large centered quote at the top</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div class="field-row single"><div class="field"><label>Quote Text</label><textarea id="pq_text" style="min-height:100px">"I used to spend half my Sunday dreading Monday's posts. Now my entire month is planned before the week starts. I've got my weekends back — and my engagement has never been higher."</textarea></div></div>
+            <div class="field-row single"><div class="field"><label>Attribution (name, title, followers)</label><input type="text" id="pq_cite" value="— Shiraz Gidwani, CEO & National Strategist · 2.3M followers"></div></div>
+            <div class="field-row single"><div class="field"><label>Highlighted phrase (shown bold pink in quote)</label><input type="text" id="pq_highlight" value="I've got my weekends back"><span class="field-hint">This exact phrase inside the quote will be bolded and pink</span></div></div>
+          </div>
+        </div>
+
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon matcha">⭐</div>
+            <div><div class="card-title">Testimonial Cards</div><div class="card-subtitle">3 client review cards</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div id="testimonials-editor"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TEAM PANEL ══ -->
+      <div class="panel" id="panel-team">
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon matcha">👥</div>
+            <div><div class="card-title">Team Members</div><div class="card-subtitle">Names, roles, bios and photos</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div id="team-editor"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ FAQ PANEL ══ -->
+      <div class="panel" id="panel-faq">
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon pink">💬</div>
+            <div><div class="card-title">FAQ Items</div><div class="card-subtitle">Add, edit or remove questions and answers</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div id="faq-editor"></div>
+            <button class="repeater-add" onclick="addFAQ()">+ Add Question</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ SETTINGS PANEL ══ -->
+      <div class="panel" id="panel-settings">
+        <div class="setup-card">
+          <h3>Firebase Connection ✦</h3>
+          <p>Connect your Firebase project so all your edits save to the cloud and update your live site instantly. You only need to do this once.</p>
+          <div class="setup-fields">
+            <div class="setup-field"><label>API Key</label><input type="text" id="fb_apiKey" placeholder="AIzaSy..."></div>
+            <div class="setup-field"><label>Project ID</label><input type="text" id="fb_projectId" placeholder="brand-rehab-abc12"></div>
+            <div class="setup-field" style="grid-column:span 2"><label>Database URL</label><input type="text" id="fb_dbUrl" placeholder="https://brand-rehab-abc12-default-rtdb.firebaseio.com"></div>
+          </div>
+          <button class="connect-btn" onclick="saveFirebaseConfig()">Save Firebase Config →</button>
+          <div class="connected-badge" id="fbStatus" style="display:none"><div class="connected-dot"></div> Connected</div>
+        </div>
+
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon sand">📋</div>
+            <div><div class="card-title">How to set up Firebase (free)</div><div class="card-subtitle">Step by step — takes 5 minutes</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <ol style="padding-left:20px;color:var(--latte);font-size:.85rem;line-height:2">
+              <li>Go to <strong style="color:var(--coffee)">console.firebase.google.com</strong> and sign in with Google</li>
+              <li>Click <strong style="color:var(--coffee)">Add project</strong> → name it <em>brand-rehab</em> → click through the setup</li>
+              <li>In your project, click <strong style="color:var(--coffee)">Build → Realtime Database → Create database</strong></li>
+              <li>Choose <strong style="color:var(--coffee)">Start in test mode</strong> → click Enable</li>
+              <li>Go to <strong style="color:var(--coffee)">Project Settings</strong> (gear icon) → scroll to "Your apps" → click the web icon <strong style="color:var(--coffee)">&lt;/&gt;</strong></li>
+              <li>Register your app → copy the <strong style="color:var(--coffee)">apiKey</strong> and <strong style="color:var(--coffee)">projectId</strong> values</li>
+              <li>Your Database URL is in the Realtime Database section — looks like <em>https://yourproject-default-rtdb.firebaseio.com</em></li>
+              <li>Paste those values in the fields above → click Save</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PASSWORD PANEL ══ -->
+      <div class="panel" id="panel-password">
+        <div class="edit-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <div class="card-header-icon pink">🔒</div>
+            <div><div class="card-title">Change Admin Password</div><div class="card-subtitle">Update your login password</div></div>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body open">
+            <div class="field-row single"><div class="field"><label>Current Password</label><input type="password" id="pw_current" placeholder="Current password"></div></div>
+            <div class="field-row single"><div class="field"><label>New Password</label><input type="password" id="pw_new" placeholder="New password"></div></div>
+            <div class="field-row single"><div class="field"><label>Confirm New Password</label><input type="password" id="pw_confirm" placeholder="Confirm new password"></div></div>
+            <button onclick="changePassword()" style="margin-top:8px;padding:11px 24px;background:var(--grad-pink);color:white;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer">Update Password →</button>
+            <div id="pw_msg" style="font-size:.8rem;margin-top:10px;color:var(--matcha-dk);display:none"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /main-body -->
+  </main>
+</div>
+</div><!-- /app -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══ CONFIG ══
+const DEFAULT_PASSWORD = 'brandrehab2025';
+let ADMIN_PASSWORD = localStorage.getItem('br_password') || DEFAULT_PASSWORD;
+
+// ══ DEFAULT CONTENT ══
+const defaultContent = {
+  hero: {
+    line1:'Your brand.', line2:'Your content.', line3:'Your audience.',
+    sub:"You already know you need to show up consistently. You just don't have the time — or the system — to make it happen every single week.",
+    sub2:'That ends here. ✨', cta:'Book Your Free Strategy Call ↗',
+    cta_url:'https://calendly.com',
+    stat1_n:'100+', stat1_l:'Business owners served',
+    stat2_n:'2.3M', stat2_l:'Top client followers',
+    stat3_n:'1 Wk', stat3_l:'Average launch time',
+    stat4_n:'+100%', stat4_l:'Avg. monthly growth'
+  },
+  pricing: {
+    h1:'Find your phase.', h2:"We'll build the rest.",
+    sub:'No long-term contracts. No retainers. Just the plan that fits where you are right now.',
+    ht_t1:"You're ready to own your niche.", ht_t2:"We'll build the machine.",
+    ht_desc:'A dedicated content team, custom growth strategy, and full marketing management — all under one roof.',
+    ht_price:'$2,995', ht_period:'/month',
+    plans:[
+      {name:'Content Planner',desc:'For the business owner who wants the system and will run it themselves.',price:'$37',period:'one-time',featured:false,features:['Notion content planner template','Built-in content calendar system','Hooks + caption frameworks','Batching workflow included','Instant digital download']},
+      {name:'DIY Strategy',desc:"You need a plan. We'll build it. Ready to show up — just need to know what, when, and why.",price:'$249',period:'/month',featured:false,features:['8 posts planned monthly','Hooks written for each post','Profile optimization','DIY batching content system','Month-to-month, cancel anytime']},
+      {name:'Done-With-You',desc:"You need the plan AND the words. We'll write both — posts ready to go.",price:'$495',period:'/month',featured:true,badge:'✦ Most Popular',features:['Custom content strategy','Monthly 30-min strategy call','12 posts planned (hooks + outlines)','4 complete carousels designed + written','8 reel scripts','Client portal access','Industry research']},
+      {name:'Content Engine',desc:"Busy owners who are done DIYing and want a real content team behind them.",price:'$1,495',period:'/month',featured:false,features:['Custom brand & content strategy','18 posts planned monthly','3 short-form videos (edit & post)','3 carousels (designed + posted)','Monthly analytics review call','Full scripting + copywriting','SEO optimization','Client portal access']}
+    ]
+  },
+  testimonials: {
+    pq_text:'"I used to spend half my Sunday dreading Monday\'s posts. Now my entire month is planned before the week starts. I\'ve got my weekends back — and my engagement has never been higher."',
+    pq_cite:'— Shiraz Gidwani, CEO & National Strategist · 2.3M followers',
+    pq_highlight:"I've got my weekends back",
+    cards:[
+      {quote:'"Felicia and the team completely transformed how I show up online. I went from posting randomly to having a clear, consistent strategy that actually converts followers into paying clients."',name:'Alexis Monroe',role:'Founder, Monroe Wellness · 48K followers',initials:'AM',featured:true},
+      {quote:'"I was stuck at 3K followers for over a year. Within 60 days of working with Brand Rehab, I broke 25K. The strategy was built for my niche — and it shows in every single metric."',name:'Jasmine Liu',role:'Business Coach · 25K followers',initials:'JL',featured:false},
+      {quote:'"The Content Engine is worth every dollar. Dedicated team, weekly reviews, and I haven\'t had to think about what to post in 4 months. My business grew 40% this quarter."',name:'Kira Reyes',role:'E-commerce Founder · 112K followers',initials:'KR',featured:false}
+    ]
+  },
+  team: {
+    members:[
+      {name:'Felicia',role:'Founder & CEO',bio:"The visionary behind Brand Rehab. Felicia built this studio after watching too many talented business owners fall silent online — not because they lacked a story, but because they lacked a system.",photo:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&fit=crop&crop=faces'},
+      {name:'Austan',role:'Business Strategist',bio:'Austan connects content strategy to business outcomes. Every post we create serves a purpose — building audience, driving leads, and converting followers into paying customers.',photo:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop&crop=faces'},
+      {name:'Ava',role:'Technical Lead',bio:'Ava runs the production engine. From carousel design to short-form video editing, she ensures every piece of content is polished, on-brand, and optimized to perform.',photo:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80&fit=crop&crop=faces'}
+    ]
+  },
+  faq: {
+    items:[
+      {q:"What makes Brand Rehab different from buying a content template?",a:"We research your niche and build a strategy around your business. A template is built for everyone. We're built for you."},
+      {q:"Do I have to post the content myself?",a:"It depends on your plan. Plans 1 and 2 — yes, but everything is outlined or written. Plans 3 and 4 — we handle everything from edit to publish."},
+      {q:"How quickly can I get started?",a:"Most clients are fully onboarded within 3–5 business days of their strategy call. We move fast — because you've already waited long enough."},
+      {q:"What if I'm not on every platform?",a:"We'll tell you which platform actually matters for your business and build there first."},
+      {q:"Is there a contract?",a:"No long-term contracts or retainers. Month-to-month means you're always in control."},
+      {q:"How do I get started?",a:"Book your free discovery call — 15 minutes, zero pressure."}
+    ]
+  }
+};
+
+let content = JSON.parse(localStorage.getItem('br_content') || JSON.stringify(defaultContent));
+let unsaved = false;
+
+// ══ LOGIN ══
+function doLogin() {
+  const pw = document.getElementById('loginPassword').value;
+  if (pw === ADMIN_PASSWORD) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadAllEditors();
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+    document.getElementById('loginPassword').style.borderColor = 'var(--pink-dk)';
+  }
+}
+function doLogout() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginPassword').value = '';
+}
+
+// ══ NAVIGATION ══
+const panelInfo = {
+  hero:{title:'Hero Section',desc:'Edit your homepage hero headline, subtext and stats'},
+  pricing:{title:'Pricing Plans',desc:'Edit plan names, prices, features and descriptions'},
+  testimonials:{title:'Testimonials',desc:'Edit client quotes, names and featured pull quote'},
+  team:{title:'Team Members',desc:'Edit names, roles, bios and photos for your team'},
+  faq:{title:'FAQ',desc:'Add, edit or remove frequently asked questions'},
+  settings:{title:'Firebase Setup',desc:'Connect your database for live content saving'},
+  password:{title:'Change Password',desc:'Update your admin panel login password'}
+};
+function showPanel(id, btn) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('panelTitle').textContent = panelInfo[id].title;
+  document.getElementById('panelDesc').textContent = panelInfo[id].desc;
+}
+
+// ══ CARD TOGGLE ══
+function toggleCard(header) {
+  const body = header.nextElementSibling;
+  const chev = header.querySelector('.card-chevron');
+  body.classList.toggle('open');
+  chev.style.transform = body.classList.contains('open') ? 'rotate(180deg)' : '';
+}
+
+// ══ MARK UNSAVED ══
+function markUnsaved() {
+  unsaved = true;
+  const pill = document.getElementById('statusPill');
+  pill.className = 'status-pill unsaved';
+  document.getElementById('statusText').textContent = 'Unsaved changes';
+}
+document.addEventListener('input', markUnsaved);
+
+// ══ LOAD EDITORS ══
+function loadAllEditors() {
+  loadHero(); loadPricingEditor(); loadTestimonialsEditor(); loadTeamEditor(); loadFAQEditor(); loadFirebaseConfig();
+}
+
+function loadHero() {
+  const h = content.hero;
+  setValue('hero_line1',h.line1); setValue('hero_line2',h.line2); setValue('hero_line3',h.line3);
+  setValue('hero_sub',h.sub); setValue('hero_sub2',h.sub2); setValue('hero_cta',h.cta); setValue('hero_cta_url',h.cta_url);
+  setValue('stat1_n',h.stat1_n); setValue('stat1_l',h.stat1_l); setValue('stat2_n',h.stat2_n); setValue('stat2_l',h.stat2_l);
+  setValue('stat3_n',h.stat3_n); setValue('stat3_l',h.stat3_l); setValue('stat4_n',h.stat4_n); setValue('stat4_l',h.stat4_l);
+  setValue('pricing_h1',content.pricing.h1); setValue('pricing_h2',content.pricing.h2); setValue('pricing_sub',content.pricing.sub);
+  setValue('ht_t1',content.pricing.ht_t1); setValue('ht_t2',content.pricing.ht_t2); setValue('ht_desc',content.pricing.ht_desc);
+  setValue('ht_price',content.pricing.ht_price); setValue('ht_period',content.pricing.ht_period);
+  setValue('pq_text',content.testimonials.pq_text); setValue('pq_cite',content.testimonials.pq_cite); setValue('pq_highlight',content.testimonials.pq_highlight);
+}
+
+function setValue(id, val) { const el = document.getElementById(id); if(el) el.value = val||''; }
+function getValue(id) { const el = document.getElementById(id); return el ? el.value : ''; }
+
+// ══ PRICING EDITOR ══
+function loadPricingEditor() {
+  const container = document.getElementById('pricing-plans-editor');
+  container.innerHTML = '';
+  content.pricing.plans.forEach((plan, i) => {
+    container.innerHTML += `
+    <div class="repeater-item" id="plan-item-${i}">
+      <div class="repeater-item-header">
+        <span class="repeater-item-label">Plan ${i+1}${plan.featured?' · ✦ Featured':''}</span>
+      </div>
+      <div class="field-row"><div class="field"><label>Plan Name</label><input type="text" id="plan_${i}_name" value="${esc(plan.name)}"></div><div class="field"><label>Price</label><input type="text" id="plan_${i}_price" value="${esc(plan.price)}"></div></div>
+      <div class="field-row"><div class="field"><label>Period (e.g. /month or one-time)</label><input type="text" id="plan_${i}_period" value="${esc(plan.period)}"></div><div class="field"><label>Featured plan? (most popular)</label><select id="plan_${i}_featured"><option value="false" ${!plan.featured?'selected':''}>No</option><option value="true" ${plan.featured?'selected':''}>Yes — highlight this card</option></select></div></div>
+      <div class="field-row single"><div class="field"><label>Description</label><textarea id="plan_${i}_desc">${esc(plan.desc)}</textarea></div></div>
+      <div class="field-row single"><div class="field"><label>Features (one per line)</label><textarea id="plan_${i}_features" style="min-height:120px">${plan.features.join('\n')}</textarea></div></div>
+    </div>`;
+  });
+}
+
+// ══ TESTIMONIALS EDITOR ══
+function loadTestimonialsEditor() {
+  const container = document.getElementById('testimonials-editor');
+  container.innerHTML = '';
+  content.testimonials.cards.forEach((card, i) => {
+    container.innerHTML += `
+    <div class="repeater-item">
+      <div class="repeater-item-header"><span class="repeater-item-label">Testimonial ${i+1}${card.featured?' · ✦ Featured':''}</span></div>
+      <div class="field-row single"><div class="field"><label>Quote</label><textarea id="tc_${i}_quote">${esc(card.quote)}</textarea></div></div>
+      <div class="field-row"><div class="field"><label>Client Name</label><input type="text" id="tc_${i}_name" value="${esc(card.name)}"></div><div class="field"><label>Initials (shown in avatar)</label><input type="text" id="tc_${i}_initials" value="${esc(card.initials)}" maxlength="2"></div></div>
+      <div class="field-row single"><div class="field"><label>Role / Followers</label><input type="text" id="tc_${i}_role" value="${esc(card.role)}"></div></div>
+    </div>`;
+  });
+}
+
+// ══ TEAM EDITOR ══
+function loadTeamEditor() {
+  const container = document.getElementById('team-editor');
+  container.innerHTML = '';
+  content.team.members.forEach((member, i) => {
+    container.innerHTML += `
+    <div class="repeater-item">
+      <div class="repeater-item-header"><span class="repeater-item-label">Team Member ${i+1}</span></div>
+      <div class="field-row"><div class="field"><label>Name</label><input type="text" id="tm_${i}_name" value="${esc(member.name)}"></div><div class="field"><label>Role / Title</label><input type="text" id="tm_${i}_role" value="${esc(member.role)}"></div></div>
+      <div class="field-row single"><div class="field"><label>Bio</label><textarea id="tm_${i}_bio">${esc(member.bio)}</textarea></div></div>
+      <div class="field-row single"><div class="field"><label>Photo URL</label><input type="text" id="tm_${i}_photo" value="${esc(member.photo)}" placeholder="https://..."><span class="field-hint">Paste a direct image URL from Cloudinary, Unsplash, or anywhere</span></div></div>
+    </div>`;
+  });
+}
+
+// ══ FAQ EDITOR ══
+function loadFAQEditor() {
+  const container = document.getElementById('faq-editor');
+  container.innerHTML = '';
+  content.faq.items.forEach((item, i) => renderFAQItem(i, item));
+}
+function renderFAQItem(i, item) {
+  const container = document.getElementById('faq-editor');
+  const div = document.createElement('div');
+  div.className = 'repeater-item';
+  div.id = 'faq-item-'+i;
+  div.innerHTML = `
+    <div class="repeater-item-header">
+      <span class="repeater-item-label">Question ${i+1}</span>
+      <button class="repeater-remove" onclick="removeFAQ(${i})">✕ Remove</button>
+    </div>
+    <div class="field-row single"><div class="field"><label>Question</label><input type="text" id="faq_${i}_q" value="${esc(item.q)}"></div></div>
+    <div class="field-row single"><div class="field"><label>Answer</label><textarea id="faq_${i}_a">${esc(item.a)}</textarea></div></div>`;
+  container.appendChild(div);
+}
+function addFAQ() {
+  content.faq.items.push({q:'New question?',a:'Your answer here.'});
+  loadFAQEditor(); markUnsaved();
+}
+function removeFAQ(i) {
+  content.faq.items.splice(i,1); loadFAQEditor(); markUnsaved();
+}
+
+// ══ COLLECT CONTENT FROM FORM ══
+function collectContent() {
+  content.hero = {
+    line1:getValue('hero_line1'), line2:getValue('hero_line2'), line3:getValue('hero_line3'),
+    sub:getValue('hero_sub'), sub2:getValue('hero_sub2'), cta:getValue('hero_cta'), cta_url:getValue('hero_cta_url'),
+    stat1_n:getValue('stat1_n'), stat1_l:getValue('stat1_l'), stat2_n:getValue('stat2_n'), stat2_l:getValue('stat2_l'),
+    stat3_n:getValue('stat3_n'), stat3_l:getValue('stat3_l'), stat4_n:getValue('stat4_n'), stat4_l:getValue('stat4_l')
+  };
+  content.pricing.h1=getValue('pricing_h1'); content.pricing.h2=getValue('pricing_h2'); content.pricing.sub=getValue('pricing_sub');
+  content.pricing.ht_t1=getValue('ht_t1'); content.pricing.ht_t2=getValue('ht_t2'); content.pricing.ht_desc=getValue('ht_desc');
+  content.pricing.ht_price=getValue('ht_price'); content.pricing.ht_period=getValue('ht_period');
+  content.pricing.plans.forEach((_,i)=>{
+    content.pricing.plans[i].name=getValue(`plan_${i}_name`);
+    content.pricing.plans[i].price=getValue(`plan_${i}_price`);
+    content.pricing.plans[i].period=getValue(`plan_${i}_period`);
+    content.pricing.plans[i].desc=getValue(`plan_${i}_desc`);
+    content.pricing.plans[i].featured=getValue(`plan_${i}_featured`)==='true';
+    content.pricing.plans[i].features=getValue(`plan_${i}_features`).split('\n').filter(f=>f.trim());
+  });
+  content.testimonials.pq_text=getValue('pq_text'); content.testimonials.pq_cite=getValue('pq_cite'); content.testimonials.pq_highlight=getValue('pq_highlight');
+  content.testimonials.cards.forEach((_,i)=>{
+    content.testimonials.cards[i].quote=getValue(`tc_${i}_quote`);
+    content.testimonials.cards[i].name=getValue(`tc_${i}_name`);
+    content.testimonials.cards[i].initials=getValue(`tc_${i}_initials`);
+    content.testimonials.cards[i].role=getValue(`tc_${i}_role`);
+  });
+  content.team.members.forEach((_,i)=>{
+    content.team.members[i].name=getValue(`tm_${i}_name`);
+    content.team.members[i].role=getValue(`tm_${i}_role`);
+    content.team.members[i].bio=getValue(`tm_${i}_bio`);
+    content.team.members[i].photo=getValue(`tm_${i}_photo`);
+  });
+  content.faq.items.forEach((_,i)=>{
+    content.faq.items[i].q=getValue(`faq_${i}_q`);
+    content.faq.items[i].a=getValue(`faq_${i}_a`);
+  });
+}
+
+// ══ SAVE ══
+async function saveAll() {
+  const btn = document.getElementById('saveBtn');
+  btn.textContent = 'Saving...'; btn.disabled = true;
+  const pill = document.getElementById('statusPill');
+  pill.className = 'status-pill saving';
+  document.getElementById('statusText').textContent = 'Saving...';
+
+  collectContent();
+  localStorage.setItem('br_content', JSON.stringify(content));
+
+  // Try Firebase if configured
+  const fbConfig = JSON.parse(localStorage.getItem('br_firebase')||'{}');
+  if (fbConfig.dbUrl) {
+    try {
+      await fetch(`${fbConfig.dbUrl}/content.json`, {
+        method:'PUT', body:JSON.stringify(content), headers:{'Content-Type':'application/json'}
+      });
+    } catch(e) { console.warn('Firebase save failed, saved locally only'); }
+  }
+
+  await new Promise(r=>setTimeout(r,600));
+  btn.textContent='Save & Publish ✦'; btn.disabled=false;
+  pill.className='status-pill saved'; document.getElementById('statusText').textContent='All saved';
+  unsaved=false;
+  showToast('✦ Published! Your site is updated.','success');
+}
+
+// ══ FIREBASE CONFIG ══
+function saveFirebaseConfig() {
+  const cfg = {
+    apiKey:getValue('fb_apiKey'),
+    projectId:getValue('fb_projectId'),
+    dbUrl:getValue('fb_dbUrl')
+  };
+  localStorage.setItem('br_firebase',JSON.stringify(cfg));
+  document.getElementById('fbStatus').style.display='inline-flex';
+  showToast('Firebase connected!','success');
+}
+function loadFirebaseConfig() {
+  const cfg = JSON.parse(localStorage.getItem('br_firebase')||'{}');
+  if(cfg.apiKey) setValue('fb_apiKey',cfg.apiKey);
+  if(cfg.projectId) setValue('fb_projectId',cfg.projectId);
+  if(cfg.dbUrl) { setValue('fb_dbUrl',cfg.dbUrl); document.getElementById('fbStatus').style.display='inline-flex'; }
+}
+
+// ══ PASSWORD ══
+function changePassword() {
+  const cur=getValue('pw_current'), nw=getValue('pw_new'), conf=getValue('pw_confirm');
+  const msg=document.getElementById('pw_msg'); msg.style.display='block';
+  if(cur!==ADMIN_PASSWORD){msg.style.color='var(--pink-dk)';msg.textContent='Current password is incorrect.';return;}
+  if(nw.length<6){msg.style.color='var(--pink-dk)';msg.textContent='New password must be at least 6 characters.';return;}
+  if(nw!==conf){msg.style.color='var(--pink-dk)';msg.textContent='New passwords do not match.';return;}
+  ADMIN_PASSWORD=nw; localStorage.setItem('br_password',nw);
+  msg.style.color='var(--matcha-dk)'; msg.textContent='Password updated successfully! ✦';
+}
+
+// ══ TOAST ══
+function showToast(msg, type='success') {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className=`toast ${type} show`;
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ══ UTILS ══
+function esc(str) { return (str||'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+window.addEventListener('beforeunload', e => { if(unsaved){e.preventDefault();e.returnValue='';} });
+</script>
+</body>
+</html>
