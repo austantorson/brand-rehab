@@ -3,807 +3,801 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brand Rehab — Admin Panel</title>
+<title>Brand Rehab — Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=Cabinet+Grotesk:wght@400;500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=Cabinet+Grotesk:wght@400;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --cream: #FDF8F3; --blush: #F9EEE8; --rose: #F2D9D5;
-  --pink: #E8A0B0; --pink-dk: #C4607A; --pink-lt: #FCF0F3;
-  --matcha: #C8D9C0; --matcha-dk: #7A9E72; --matcha-lt: #E6EFE3;
-  --coffee: #2A1A14; --espresso: #1A0E09; --latte: #9B7060;
-  --sand: #E8DDD6; --mocha: #5C3828;
-  --grad-pink: linear-gradient(135deg,#E8A0B0,#C4607A);
-  --grad-matcha: linear-gradient(135deg,#C8D9C0,#7A9E72);
-  --grad-warm: linear-gradient(135deg,#F2D9D5,#E8A0B0 60%,#C8D9C0);
-  --sidebar: 260px;
+:root{
+  --cr:#FDF8F3;--bl:#F9EEE8;--ro:#F2D9D5;
+  --pk:#E8A0B0;--pkd:#C4607A;--pkl:#FCF0F3;
+  --mt:#C8D9C0;--mtd:#7A9E72;--mtl:#E6EFE3;
+  --cf:#2A1A14;--esp:#1A0E09;--lt:#9B7060;--sd:#E8DDD6;--mo:#5C3828;
+  --gp:linear-gradient(135deg,#E8A0B0,#C4607A);
+  --gm:linear-gradient(135deg,#C8D9C0,#7A9E72);
+  --sb:260px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font-family:'Instrument Sans',sans-serif;background:var(--blush);color:var(--coffee);overflow:hidden}
-
-/* ── LOGIN ── */
-#loginScreen{position:fixed;inset:0;background:var(--espresso);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:0}
-.login-blob1{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,176,.18) 0%,transparent 70%);top:-150px;right:-100px}
-.login-blob2{position:absolute;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(200,217,192,.14) 0%,transparent 70%);bottom:-100px;left:-50px}
-.login-box{background:white;border-radius:24px;padding:52px 48px;max-width:420px;width:90%;position:relative;z-index:1;box-shadow:0 32px 80px rgba(0,0,0,.35)}
-.login-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-pink);border-radius:24px 24px 0 0}
-.login-logo{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:var(--coffee);margin-bottom:4px}
-.login-logo em{color:var(--pink-dk);font-style:normal}
-.login-sub{font-size:.82rem;color:var(--latte);margin-bottom:32px}
-.login-label{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--latte);margin-bottom:7px}
-.login-input{width:100%;padding:13px 16px;border:1.5px solid var(--sand);border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:.9rem;color:var(--coffee);outline:none;transition:border-color .2s;background:white}
-.login-input:focus{border-color:var(--pink-dk)}
-.login-btn{width:100%;padding:14px;background:var(--grad-pink);color:white;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.84rem;font-weight:700;letter-spacing:.04em;cursor:pointer;margin-top:20px;transition:opacity .2s,transform .2s;box-shadow:0 8px 24px rgba(196,96,122,.3)}
-.login-btn:hover{opacity:.9;transform:translateY(-1px)}
-.login-err{color:var(--pink-dk);font-size:.8rem;margin-top:10px;display:none;font-weight:500}
-
-/* ── LAYOUT ── */
-#app{display:none;height:100vh;overflow:hidden}
-.layout{display:grid;grid-template-columns:var(--sidebar) 1fr;height:100vh}
-
-/* ── SIDEBAR ── */
-.sidebar{background:var(--espresso);display:flex;flex-direction:column;overflow-y:auto;border-right:1px solid rgba(255,255,255,.05)}
-.sidebar-top{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.06)}
-.sidebar-logo{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;color:var(--pink);text-decoration:none}
-.sidebar-logo em{color:white;font-style:normal}
-.sidebar-badge{display:inline-block;background:rgba(196,96,122,.2);color:var(--pink);font-family:'Cabinet Grotesk',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-top:6px;border:1px solid rgba(196,96,122,.3)}
-.sidebar-nav{padding:16px 12px;flex:1}
-.nav-section{margin-bottom:24px}
-.nav-section-label{font-family:'Cabinet Grotesk',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:0 8px;margin-bottom:8px}
-.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:all .2s;color:rgba(255,255,255,.5);font-size:.84rem;font-weight:500;margin-bottom:2px;border:none;background:none;width:100%;text-align:left}
-.nav-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.85)}
-.nav-item.active{background:rgba(196,96,122,.15);color:var(--pink);border:1px solid rgba(196,96,122,.2)}
-.nav-item .icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
-.sidebar-bottom{padding:16px 12px;border-top:1px solid rgba(255,255,255,.06)}
-.save-all-btn{width:100%;padding:12px;background:var(--grad-pink);color:white;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(196,96,122,.3)}
-.save-all-btn:hover{opacity:.9;transform:translateY(-1px)}
-.save-all-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.view-site-btn{display:block;text-align:center;padding:10px;color:rgba(255,255,255,.4);font-size:.75rem;margin-top:8px;text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:600;letter-spacing:.06em;transition:color .2s}
-.view-site-btn:hover{color:var(--matcha)}
-.logout-btn{display:block;text-align:center;padding:8px;color:rgba(255,255,255,.25);font-size:.72rem;margin-top:4px;cursor:pointer;border:none;background:none;width:100%;font-family:'Instrument Sans',sans-serif;transition:color .2s}
-.logout-btn:hover{color:rgba(255,255,255,.6)}
-
-/* ── MAIN CONTENT ── */
-.main{overflow-y:auto;height:100vh;background:var(--blush)}
-.main-header{background:white;border-bottom:1px solid var(--sand);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.main-header h1{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:var(--coffee)}
-.main-header p{font-size:.8rem;color:var(--latte);margin-top:2px}
-.status-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.status-pill.saved{background:var(--matcha-lt);color:var(--matcha-dk);border:1px solid var(--matcha)}
-.status-pill.unsaved{background:var(--pink-lt);color:var(--pink-dk);border:1px solid var(--rose)}
-.status-pill.saving{background:#FFF9E6;color:#B07D20;border:1px solid #F0D080}
-.status-dot{width:7px;height:7px;border-radius:50%;background:currentColor}
-
-.main-body{padding:32px}
-.panel{display:none}
-.panel.active{display:block}
-
-/* ── CARDS ── */
-.edit-card{background:white;border-radius:20px;border:1.5px solid var(--sand);margin-bottom:20px;overflow:hidden;transition:box-shadow .2s}
-.edit-card:hover{box-shadow:0 4px 20px rgba(196,96,122,.07)}
-.card-header{padding:20px 24px;border-bottom:1px solid var(--sand);display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
-.card-header-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
-.card-header-icon.pink{background:var(--pink-lt)}
-.card-header-icon.matcha{background:var(--matcha-lt)}
-.card-header-icon.sand{background:var(--blush)}
-.card-title{font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.9rem;color:var(--coffee)}
-.card-subtitle{font-size:.75rem;color:var(--latte);margin-top:1px}
-.card-chevron{margin-left:auto;color:var(--latte);transition:transform .3s;font-size:.8rem}
-.card-body{padding:24px;display:none}
-.card-body.open{display:block}
-
-/* ── FORM FIELDS ── */
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.field-row.single{grid-template-columns:1fr}
-.field-row.triple{grid-template-columns:1fr 1fr 1fr}
-.field{display:flex;flex-direction:column;gap:6px}
-.field label{font-family:'Cabinet Grotesk',sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--latte)}
-.field input,.field textarea,.field select{padding:10px 14px;border:1.5px solid var(--sand);border-radius:10px;font-family:'Instrument Sans',sans-serif;font-size:.86rem;color:var(--coffee);outline:none;transition:border-color .2s;background:white;width:100%}
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pink-dk)}
-.field textarea{resize:vertical;min-height:80px;line-height:1.5}
-.field-hint{font-size:.72rem;color:var(--latte);margin-top:4px}
-
-/* ── IMAGE UPLOAD FIELD ── */
-.img-field{border:2px dashed var(--sand);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
-.img-field:hover{border-color:var(--pink);background:var(--pink-lt)}
-.img-field input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.img-field-preview{width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:10px;display:none}
-.img-field-icon{font-size:1.8rem;margin-bottom:8px}
-.img-field-label{font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:700;color:var(--latte)}
-.img-field-sub{font-size:.7rem;color:var(--latte);opacity:.7;margin-top:3px}
-.img-url-row{display:flex;gap:8px;margin-top:10px;align-items:center}
-.img-url-row input{flex:1;padding:8px 12px;border:1.5px solid var(--sand);border-radius:8px;font-size:.8rem;color:var(--coffee);outline:none;font-family:'Instrument Sans',sans-serif}
-.img-url-row input:focus{border-color:var(--pink-dk)}
-.img-url-row span{font-size:.72rem;color:var(--latte);white-space:nowrap}
-
-/* ── REPEATER (testimonials, faq, pricing features) ── */
-.repeater{margin-top:8px}
-.repeater-item{background:var(--blush);border:1.5px solid var(--sand);border-radius:14px;padding:18px;margin-bottom:12px;position:relative}
-.repeater-item-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.repeater-item-label{font-family:'Cabinet Grotesk',sans-serif;font-size:.75rem;font-weight:700;color:var(--latte);text-transform:uppercase;letter-spacing:.1em}
-.repeater-remove{background:none;border:none;color:var(--latte);cursor:pointer;font-size:.85rem;padding:4px 8px;border-radius:6px;transition:all .2s;font-family:'Cabinet Grotesk',sans-serif;font-weight:700}
-.repeater-remove:hover{background:var(--rose);color:var(--pink-dk)}
-.repeater-add{display:flex;align-items:center;gap:8px;padding:10px 16px;border:1.5px dashed var(--sand);border-radius:10px;background:none;color:var(--latte);font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s;width:100%}
-.repeater-add:hover{border-color:var(--pink);color:var(--pink-dk);background:var(--pink-lt)}
-
-/* ── COLOR PICKER ── */
-.color-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-.color-swatch{width:32px;height:32px;border-radius:8px;border:2px solid transparent;cursor:pointer;transition:transform .15s,border-color .15s;flex-shrink:0}
-.color-swatch:hover{transform:scale(1.15)}
-.color-swatch.active{border-color:var(--coffee)}
-
-/* ── PREVIEW BANNER ── */
-.preview-bar{background:var(--coffee);border-radius:14px;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:16px}
-.preview-bar p{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.5}
-.preview-bar p strong{color:white}
-.preview-bar a{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--grad-pink);color:white;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.76rem;font-weight:700;text-decoration:none;white-space:nowrap;transition:opacity .2s;box-shadow:0 4px 12px rgba(196,96,122,.3);flex-shrink:0}
-.preview-bar a:hover{opacity:.9}
-
-/* ── TOAST ── */
-.toast{position:fixed;bottom:28px;right:28px;background:var(--coffee);color:white;padding:14px 22px;border-radius:12px;font-family:'Cabinet Grotesk',sans-serif;font-size:.82rem;font-weight:600;z-index:99999;transform:translateY(80px);opacity:0;transition:all .35s;box-shadow:0 8px 32px rgba(0,0,0,.25);display:flex;align-items:center;gap:10px}
+html,body{height:100%;font-family:'Instrument Sans',sans-serif;color:var(--cf)}
+body{background:var(--bl);overflow:hidden}
+/* LOGIN */
+#loginWrap{position:fixed;inset:0;background:var(--esp);display:flex;align-items:center;justify-content:center;z-index:9999}
+.lb{position:absolute;border-radius:50%;pointer-events:none}
+.lb1{width:520px;height:520px;background:radial-gradient(circle,rgba(232,160,176,.16) 0%,transparent 70%);top:-160px;right:-80px}
+.lb2{width:380px;height:380px;background:radial-gradient(circle,rgba(200,217,192,.12) 0%,transparent 70%);bottom:-120px;left:-60px}
+.lbox{background:#fff;border-radius:22px;padding:48px 44px;max-width:400px;width:92%;position:relative;z-index:1;box-shadow:0 28px 72px rgba(0,0,0,.38)}
+.lbox::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gp);border-radius:22px 22px 0 0}
+.llogo{font-family:'Fraunces',serif;font-size:1.75rem;font-weight:700;color:var(--cf);margin-bottom:4px}
+.llogo em{color:var(--pkd);font-style:normal}
+.lsub{font-size:.8rem;color:var(--lt);margin-bottom:28px}
+.flbl{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lt);margin-bottom:6px}
+.linp{width:100%;padding:12px 15px;border:1.5px solid var(--sd);border-radius:11px;font-family:'Instrument Sans',sans-serif;font-size:.9rem;color:var(--cf);outline:none;transition:border-color .2s}
+.linp:focus{border-color:var(--pkd)}
+.lbtn{width:100%;padding:13px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;margin-top:18px;transition:all .2s;box-shadow:0 6px 20px rgba(196,96,122,.3)}
+.lbtn:hover{opacity:.9;transform:translateY(-1px)}
+.lerr{color:var(--pkd);font-size:.78rem;margin-top:9px;display:none;font-weight:500}
+/* SHELL */
+#app{display:none;height:100vh}
+.shell{display:grid;grid-template-columns:var(--sb) 1fr;height:100vh}
+/* SIDEBAR */
+.sb{background:var(--esp);display:flex;flex-direction:column;overflow-y:auto;border-right:1px solid rgba(255,255,255,.04)}
+.sb-top{padding:24px 18px 16px;border-bottom:1px solid rgba(255,255,255,.05)}
+.sb-logo{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--pk);display:block;text-decoration:none}
+.sb-logo em{color:#fff;font-style:normal}
+.sb-tag{display:inline-block;background:rgba(196,96,122,.18);color:var(--pk);font-family:'Cabinet Grotesk',sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-top:5px;border:1px solid rgba(196,96,122,.22)}
+.sb-nav{padding:12px 10px;flex:1}
+.sb-sec{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.57rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:0 8px;margin:16px 0 6px}
+.sb-sec:first-child{margin-top:4px}
+.ni{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:9px;cursor:pointer;transition:all .18s;color:rgba(255,255,255,.45);font-size:.81rem;font-weight:500;margin-bottom:1px;border:none;background:none;width:100%;text-align:left;font-family:'Instrument Sans',sans-serif}
+.ni:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.8)}
+.ni.on{background:rgba(196,96,122,.13);color:var(--pk);border:1px solid rgba(196,96,122,.16)}
+.ni-ico{font-size:.9rem;width:18px;text-align:center;flex-shrink:0}
+.sb-foot{padding:12px 10px;border-top:1px solid rgba(255,255,255,.05)}
+.pub-btn{width:100%;padding:11px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(196,96,122,.28)}
+.pub-btn:hover{opacity:.9;transform:translateY(-1px)}
+.pub-btn:disabled{opacity:.42;cursor:not-allowed;transform:none}
+.sb-view{display:block;text-align:center;padding:8px;color:rgba(255,255,255,.3);font-size:.7rem;margin-top:5px;text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:600;letter-spacing:.05em;transition:color .2s}
+.sb-view:hover{color:var(--mtd)}
+.sb-out{display:block;width:100%;text-align:center;padding:6px;color:rgba(255,255,255,.2);font-size:.68rem;cursor:pointer;border:none;background:none;font-family:'Instrument Sans',sans-serif;transition:color .2s}
+.sb-out:hover{color:rgba(255,255,255,.5)}
+/* MAIN */
+.main{overflow-y:auto;height:100vh;background:var(--bl)}
+.mhdr{background:#fff;border-bottom:1px solid var(--sd);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:14px}
+.mhdr-txt h1{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--cf)}
+.mhdr-txt p{font-size:.76rem;color:var(--lt);margin-top:2px}
+.status{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;transition:all .3s}
+.status.saved{background:var(--mtl);color:var(--mtd);border:1px solid var(--mt)}
+.status.dirty{background:var(--pkl);color:var(--pkd);border:1px solid var(--ro)}
+.status.saving{background:#FFF9E6;color:#A06A10;border:1px solid #EDCC60}
+.sdot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
+.mbody{padding:26px 28px}
+.panel{display:none}.panel.active{display:block}
+/* PREVIEW BAR */
+.pvbar{background:var(--cf);border-radius:13px;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;gap:14px}
+.pvbar p{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.55}
+.pvbar p strong{color:#fff}
+.pvbar a{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:8px 16px;background:var(--gp);color:#fff;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.72rem;font-weight:700;text-decoration:none;transition:opacity .2s}
+.pvbar a:hover{opacity:.88}
+/* CARDS */
+.card{background:#fff;border-radius:16px;border:1.5px solid var(--sd);margin-bottom:16px;overflow:hidden;transition:box-shadow .2s}
+.card:hover{box-shadow:0 3px 16px rgba(196,96,122,.07)}
+.chdr{padding:16px 20px;border-bottom:1px solid var(--sd);display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none}
+.cico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.cico.pk{background:var(--pkl)}.cico.mt{background:var(--mtl)}.cico.sd{background:var(--bl)}
+.cttl{font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.86rem;color:var(--cf)}
+.csub{font-size:.71rem;color:var(--lt);margin-top:1px}
+.cchev{margin-left:auto;color:var(--lt);transition:transform .28s;font-size:.72rem}
+.cbody{padding:20px;display:none}.cbody.open{display:block}
+/* FORM FIELDS */
+.row{display:grid;gap:13px;margin-bottom:13px}
+.r1{grid-template-columns:1fr}.r2{grid-template-columns:1fr 1fr}.r3{grid-template-columns:1fr 1fr 1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-family:'Cabinet Grotesk',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--lt)}
+.field input,.field textarea,.field select{padding:9px 12px;border:1.5px solid var(--sd);border-radius:9px;font-family:'Instrument Sans',sans-serif;font-size:.84rem;color:var(--cf);outline:none;transition:border-color .2s;background:#fff;width:100%}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pkd)}
+.field textarea{resize:vertical;min-height:72px;line-height:1.55}
+.hint{font-size:.68rem;color:var(--lt);margin-top:3px;opacity:.8;line-height:1.4}
+/* REPEATER */
+.ri{background:var(--bl);border:1.5px solid var(--sd);border-radius:13px;padding:15px;margin-bottom:11px}
+.rihdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.rilbl{font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.1em}
+.ridel{background:none;border:none;color:var(--lt);cursor:pointer;font-size:.78rem;padding:3px 8px;border-radius:6px;transition:all .2s;font-family:'Cabinet Grotesk',sans-serif;font-weight:700}
+.ridel:hover{background:var(--ro);color:var(--pkd)}
+.radd{display:flex;align-items:center;gap:7px;padding:9px 14px;border:1.5px dashed var(--sd);border-radius:9px;background:none;color:var(--lt);font-family:'Cabinet Grotesk',sans-serif;font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;width:100%;margin-top:4px}
+.radd:hover{border-color:var(--pkd);color:var(--pkd);background:var(--pkl)}
+/* IMAGE ZONES */
+.img-zone{border:2px dashed var(--sd);border-radius:13px;overflow:hidden;background:var(--bl);transition:border-color .22s}
+.img-zone:hover{border-color:var(--pk)}
+.iz-inner{padding:16px}
+.iz-spec-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:11px}
+.spec-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:6px;font-family:'Cabinet Grotesk',sans-serif;font-size:.63rem;font-weight:700}
+.sp-dim{background:var(--pkl);color:var(--pkd);border:1px solid var(--ro)}
+.sp-shape{background:#fff;color:var(--lt);border:1px solid var(--sd)}
+.sp-auto{background:var(--mtl);color:var(--mtd);border:1px solid var(--mt)}
+.iz-pw{width:100%;border-radius:9px;overflow:hidden;background:#f0ede8;margin-bottom:10px;display:flex;align-items:center;justify-content:center}
+.iz-pw img{width:100%;height:100%;object-fit:cover;display:block}
+.iz-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;text-align:center;width:100%;height:100%}
+.iz-ph-ico{font-size:1.6rem;margin-bottom:6px;opacity:.35}
+.iz-ph-txt{font-family:'Cabinet Grotesk',sans-serif;font-size:.74rem;font-weight:700;color:var(--lt)}
+.iz-ph-sub{font-size:.66rem;color:var(--lt);opacity:.65;margin-top:2px}
+.iz-actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.iz-upload{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.iz-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:0}
+.iz-upload:hover{opacity:.88}
+.iz-url-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:#fff;color:var(--cf);border:1.5px solid var(--sd);border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s}
+.iz-url-btn:hover{border-color:var(--pkd);color:var(--pkd)}
+.iz-clear{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;background:none;color:var(--lt);border:1.5px solid var(--sd);border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s}
+.iz-clear:hover{border-color:var(--ro);color:var(--pkd);background:var(--pkl)}
+.iz-url-row{display:flex;gap:7px;margin-top:9px;align-items:center}
+.iz-url-inp{flex:1;padding:8px 12px;border:1.5px solid var(--sd);border-radius:9px;font-size:.8rem;color:var(--cf);outline:none;font-family:'Instrument Sans',sans-serif;transition:border-color .2s}
+.iz-url-inp:focus{border-color:var(--pkd)}
+.iz-url-apply{padding:8px 14px;background:var(--cf);color:#fff;border:none;border-radius:9px;font-family:'Cabinet Grotesk',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
+.iz-url-apply:hover{background:var(--mo)}
+/* SPEC TABLE */
+.stbl{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:6px}
+.stbl th{background:var(--bl);padding:9px 13px;text-align:left;font-family:'Cabinet Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lt);border-bottom:1px solid var(--sd)}
+.stbl td{padding:9px 13px;border-bottom:1px solid var(--sd);color:var(--cf);vertical-align:middle;line-height:1.5}
+.stbl tr:last-child td{border-bottom:none}
+.sp-wide{background:#FFF9E6;color:#9A6010;border:1px solid #F0D080}
+.sp-port{background:var(--bl);color:var(--mo);border:1px solid var(--sd)}
+.sp-sq{background:var(--mtl);color:var(--mtd);border:1px solid var(--mt)}
+/* LINKS */
+.lg{margin-bottom:22px}
+.lg-title{font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--lt);margin-bottom:9px;display:flex;align-items:center;gap:8px}
+.lg-title::after{content:'';flex:1;height:1px;background:var(--sd)}
+.lrow{display:grid;grid-template-columns:190px 1fr auto;gap:9px;align-items:center;background:#fff;border:1.5px solid var(--sd);border-radius:11px;padding:11px 14px;margin-bottom:7px;transition:border-color .2s}
+.lrow:hover{border-color:var(--ro)}
+.lname span{font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:700;color:var(--cf);display:block}
+.lname small{font-size:.65rem;color:var(--lt);display:block;margin-top:1px}
+.linput{padding:8px 12px;border:1.5px solid var(--sd);border-radius:9px;font-family:'Instrument Sans',sans-serif;font-size:.8rem;color:var(--cf);outline:none;transition:border-color .2s;background:#fff;width:100%}
+.linput:focus{border-color:var(--pkd)}
+.ltest{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;background:var(--bl);color:var(--lt);border:1.5px solid var(--sd);border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.66rem;font-weight:700;text-decoration:none;transition:all .2s;white-space:nowrap}
+.ltest:hover{border-color:var(--pk);color:var(--pkd);background:var(--pkl)}
+/* STATS EDIT */
+.sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.scard{background:var(--bl);border:1.5px solid var(--sd);border-radius:11px;padding:13px}
+.scard-lbl{font-family:'Cabinet Grotesk',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lt);margin-bottom:9px}
+/* FIREBASE */
+.fbcard{background:var(--cf);border-radius:16px;padding:26px;margin-bottom:18px;position:relative;overflow:hidden}
+.fbcard::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,176,.13) 0%,transparent 70%)}
+.fbcard h3{font-family:'Fraunces',serif;font-size:1.1rem;color:#fff;margin-bottom:5px}
+.fbcard p{font-size:.78rem;color:rgba(255,255,255,.44);line-height:1.7;margin-bottom:16px}
+.fbfields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fbf label{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:5px}
+.fbf input{width:100%;padding:9px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:9px;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:.8rem;outline:none;transition:border-color .2s}
+.fbf input:focus{border-color:rgba(232,160,176,.42)}
+.fbf input::placeholder{color:rgba(255,255,255,.16)}
+.fb-btn{margin-top:13px;padding:9px 20px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;transition:all .2s}
+.fb-btn:hover{opacity:.88;transform:translateY(-1px)}
+.fb-ok{display:none;align-items:center;gap:5px;background:var(--mtl);color:var(--mtd);padding:5px 13px;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:700;border:1px solid var(--mt);margin-top:10px;width:fit-content}
+.fb-dot{width:6px;height:6px;border-radius:50%;background:var(--mtd)}
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--cf);color:#fff;padding:12px 18px;border-radius:11px;font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:700;z-index:99999;transform:translateY(70px);opacity:0;transition:all .32s;box-shadow:0 8px 28px rgba(0,0,0,.22);display:flex;align-items:center;gap:8px;max-width:300px}
 .toast.show{transform:translateY(0);opacity:1}
-.toast.success::before{content:'✦';color:var(--matcha)}
-.toast.error::before{content:'✗';color:var(--pink)}
-
-/* ── FIREBASE SETUP CARD ── */
-.setup-card{background:var(--coffee);border-radius:20px;padding:32px;margin-bottom:24px;position:relative;overflow:hidden}
-.setup-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,176,.15) 0%,transparent 70%)}
-.setup-card h3{font-family:'Fraunces',serif;font-size:1.2rem;color:white;margin-bottom:6px}
-.setup-card p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:20px}
-.setup-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.setup-field label{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px}
-.setup-field input{width:100%;padding:10px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:white;font-family:'Instrument Sans',sans-serif;font-size:.84rem;outline:none;transition:border-color .2s}
-.setup-field input:focus{border-color:rgba(232,160,176,.5)}
-.setup-field input::placeholder{color:rgba(255,255,255,.2)}
-.connect-btn{margin-top:16px;padding:11px 24px;background:var(--grad-pink);color:white;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(196,96,122,.3)}
-.connect-btn:hover{opacity:.9;transform:translateY(-1px)}
-.connected-badge{display:inline-flex;align-items:center;gap:6px;background:var(--matcha-lt);color:var(--matcha-dk);padding:6px 14px;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.72rem;font-weight:700;border:1px solid var(--matcha);margin-top:12px}
-.connected-dot{width:7px;height:7px;border-radius:50%;background:var(--matcha-dk)}
-
-/* ── STATS EDITOR ── */
-.stats-grid-edit{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.stat-card-edit{background:var(--blush);border:1.5px solid var(--sand);border-radius:14px;padding:16px}
-.stat-card-edit .stat-num{font-family:'Cabinet Grotesk',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--latte);margin-bottom:10px}
+.toast.ok::before{content:'✦';color:var(--mtd)}
+.toast.err::before{content:'✗';color:var(--pk)}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="loginScreen">
-  <div class="login-blob1"></div>
-  <div class="login-blob2"></div>
-  <div class="login-box">
-    <div class="login-logo">Brand<em>Rehab</em></div>
-    <p class="login-sub">Admin Panel · Content Editor</p>
-    <label class="login-label">Password</label>
-    <input class="login-input" type="password" id="loginPassword" placeholder="Enter your admin password" onkeydown="if(event.key==='Enter')doLogin()">
-    <div class="login-err" id="loginErr">Incorrect password. Try again.</div>
-    <button class="login-btn" onclick="doLogin()">Sign In →</button>
+<div id="loginWrap">
+  <div class="lb lb1"></div><div class="lb lb2"></div>
+  <div class="lbox">
+    <div class="llogo">Brand<em>Rehab</em></div>
+    <p class="lsub">Admin Panel · Content Manager</p>
+    <label class="flbl">Password</label>
+    <input class="linp" type="password" id="lpw" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')login()">
+    <div class="lerr" id="lerr">Incorrect password — try again.</div>
+    <button class="lbtn" onclick="login()">Sign In →</button>
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
-<div class="layout">
+<div class="shell">
+<aside class="sb">
+  <div class="sb-top">
+    <a class="sb-logo" href="#">Brand<em>Rehab</em></a>
+    <div class="sb-tag">Admin Panel</div>
+  </div>
+  <nav class="sb-nav">
+    <span class="sb-sec">Content</span>
+    <button class="ni on" onclick="go('hero',this)"><span class="ni-ico">✨</span>Hero</button>
+    <button class="ni" onclick="go('pricing',this)"><span class="ni-ico">💳</span>Pricing</button>
+    <button class="ni" onclick="go('testimonials',this)"><span class="ni-ico">⭐</span>Testimonials</button>
+    <button class="ni" onclick="go('team',this)"><span class="ni-ico">👥</span>Team</button>
+    <button class="ni" onclick="go('faq',this)"><span class="ni-ico">💬</span>FAQ</button>
+    <span class="sb-sec">Media & Links</span>
+    <button class="ni" onclick="go('images',this)"><span class="ni-ico">🖼️</span>Images</button>
+    <button class="ni" onclick="go('links',this)"><span class="ni-ico">🔗</span>Links & Buttons</button>
+    <span class="sb-sec">Settings</span>
+    <button class="ni" onclick="go('firebase',this)"><span class="ni-ico">⚙️</span>Firebase Setup</button>
+    <button class="ni" onclick="go('password',this)"><span class="ni-ico">🔒</span>Change Password</button>
+  </nav>
+  <div class="sb-foot">
+    <button class="pub-btn" id="pubBtn" onclick="saveAll()">Save & Publish ✦</button>
+    <a href="index.html" target="_blank" class="sb-view">↗ View Live Site</a>
+    <button class="sb-out" onclick="logout()">Log out</button>
+  </div>
+</aside>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-top">
-      <div class="sidebar-logo">Brand<em>Rehab</em></div>
-      <div class="sidebar-badge">Admin Panel</div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-section">
-        <div class="nav-section-label">Site Sections</div>
-        <button class="nav-item active" onclick="showPanel('hero',this)"><span class="icon">✨</span> Hero</button>
-        <button class="nav-item" onclick="showPanel('pricing',this)"><span class="icon">💳</span> Pricing</button>
-        <button class="nav-item" onclick="showPanel('testimonials',this)"><span class="icon">⭐</span> Testimonials</button>
-        <button class="nav-item" onclick="showPanel('team',this)"><span class="icon">👥</span> Team</button>
-        <button class="nav-item" onclick="showPanel('faq',this)"><span class="icon">💬</span> FAQ</button>
-      </div>
-      <div class="nav-section">
-        <div class="nav-section-label">Settings</div>
-        <button class="nav-item" onclick="showPanel('settings',this)"><span class="icon">⚙️</span> Firebase Setup</button>
-        <button class="nav-item" onclick="showPanel('password',this)"><span class="icon">🔒</span> Change Password</button>
-      </div>
-    </nav>
-    <div class="sidebar-bottom">
-      <button class="save-all-btn" onclick="saveAll()" id="saveBtn">Save & Publish ✦</button>
-      <a href="index.html" target="_blank" class="view-site-btn">↗ View Live Site</a>
-      <button class="logout-btn" onclick="doLogout()">Log out</button>
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-    <div class="main-header">
-      <div>
-        <h1 id="panelTitle">Hero Section</h1>
-        <p id="panelDesc">Edit your homepage hero headline, subtext and stats</p>
-      </div>
-      <div class="status-pill saved" id="statusPill">
-        <div class="status-dot"></div>
-        <span id="statusText">All saved</span>
-      </div>
+<main class="main">
+  <div class="mhdr">
+    <div class="mhdr-txt"><h1 id="ptitle">Hero Section</h1><p id="pdesc">Edit headline, subtext, stats and CTA</p></div>
+    <div class="status saved" id="statusBadge"><div class="sdot"></div><span id="statusTxt">All saved</span></div>
+  </div>
+  <div class="mbody">
+    <div class="pvbar">
+      <p><strong>Live publishing:</strong> Hit Save & Publish and your site updates instantly — no code, no deploys needed.</p>
+      <a href="index.html" target="_blank">↗ Open Live Site</a>
     </div>
 
-    <div class="main-body">
-
-      <!-- PREVIEW BAR -->
-      <div class="preview-bar">
-        <p><strong>Live preview:</strong> Changes appear on your site the moment you hit Save & Publish. Your visitors always see the latest version.</p>
-        <a href="index.html" target="_blank">↗ Open Live Site</a>
+    <!-- HERO -->
+    <div class="panel active" id="panel-hero">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">✨</div><div><div class="cttl">Headline</div><div class="csub">3 lines at the top of the page</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Line 1 — plain text</label><input type="text" id="h_line1" value="Your brand."></div></div>
+          <div class="row r1"><div class="field"><label>Line 2 — bold</label><input type="text" id="h_line2" value="Your content."></div></div>
+          <div class="row r1"><div class="field"><label>Line 3 — italic pink</label><input type="text" id="h_line3" value="Your audience."></div></div>
+        </div>
       </div>
-
-      <!-- ══ HERO PANEL ══ -->
-      <div class="panel active" id="panel-hero">
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon pink">✨</div>
-            <div><div class="card-title">Hero Headline</div><div class="card-subtitle">The first thing visitors read</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body open">
-            <div class="field-row single">
-              <div class="field">
-                <label>Line 1 (plain text)</label>
-                <input type="text" id="hero_line1" value="Your brand." placeholder="Your brand.">
-              </div>
-            </div>
-            <div class="field-row single">
-              <div class="field">
-                <label>Line 2 (bold)</label>
-                <input type="text" id="hero_line2" value="Your content." placeholder="Your content.">
-              </div>
-            </div>
-            <div class="field-row single">
-              <div class="field">
-                <label>Line 3 (italic pink)</label>
-                <input type="text" id="hero_line3" value="Your audience." placeholder="Your audience.">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon pink">📝</div>
-            <div><div class="card-title">Hero Subtext</div><div class="card-subtitle">Supporting copy below the headline</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body open">
-            <div class="field-row single">
-              <div class="field">
-                <label>Main subtext paragraph</label>
-                <textarea id="hero_sub">You already know you need to show up consistently. You just don't have the time — or the system — to make it happen every single week.</textarea>
-              </div>
-            </div>
-            <div class="field-row single">
-              <div class="field">
-                <label>Italic tagline (matcha color)</label>
-                <input type="text" id="hero_sub2" value="That ends here. ✨">
-              </div>
-            </div>
-            <div class="field-row single">
-              <div class="field">
-                <label>CTA Button Text</label>
-                <input type="text" id="hero_cta" value="Book Your Free Strategy Call ↗">
-              </div>
-            </div>
-            <div class="field-row single">
-              <div class="field">
-                <label>Calendly / CTA Link URL</label>
-                <input type="text" id="hero_cta_url" value="https://calendly.com" placeholder="https://calendly.com/yourlink">
-                <span class="field-hint">Replace with your actual Calendly booking link</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon matcha">📊</div>
-            <div><div class="card-title">Hero Stats Bar</div><div class="card-subtitle">4 numbers at the bottom of the hero</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body open">
-            <div class="stats-grid-edit">
-              <div class="stat-card-edit"><div class="stat-num">Stat 1</div>
-                <div class="field-row single" style="margin-bottom:10px"><div class="field"><label>Number</label><input type="text" id="stat1_n" value="100+"></div></div>
-                <div class="field-row single"><div class="field"><label>Label</label><input type="text" id="stat1_l" value="Business owners served"></div></div>
-              </div>
-              <div class="stat-card-edit"><div class="stat-num">Stat 2</div>
-                <div class="field-row single" style="margin-bottom:10px"><div class="field"><label>Number</label><input type="text" id="stat2_n" value="2.3M"></div></div>
-                <div class="field-row single"><div class="field"><label>Label</label><input type="text" id="stat2_l" value="Top client followers"></div></div>
-              </div>
-              <div class="stat-card-edit"><div class="stat-num">Stat 3</div>
-                <div class="field-row single" style="margin-bottom:10px"><div class="field"><label>Number</label><input type="text" id="stat3_n" value="1 Wk"></div></div>
-                <div class="field-row single"><div class="field"><label>Label</label><input type="text" id="stat3_l" value="Average launch time"></div></div>
-              </div>
-              <div class="stat-card-edit"><div class="stat-num">Stat 4</div>
-                <div class="field-row single" style="margin-bottom:10px"><div class="field"><label>Number</label><input type="text" id="stat4_n" value="+100%"></div></div>
-                <div class="field-row single"><div class="field"><label>Label</label><input type="text" id="stat4_l" value="Avg. monthly growth"></div></div>
-              </div>
-            </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">📝</div><div><div class="cttl">Subtext & CTA</div><div class="csub">Supporting copy and call-to-action button</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Tag line above headline</label><input type="text" id="h_tag" value="Social Content Studio · Built for Business Owners"></div></div>
+          <div class="row r1"><div class="field"><label>Main paragraph</label><textarea id="h_sub">You already know you need to show up consistently. You just don't have the time — or the system — to make it happen every single week.</textarea></div></div>
+          <div class="row r2">
+            <div class="field"><label>Italic tagline (matcha)</label><input type="text" id="h_sub2" value="That ends here. ✨"></div>
+            <div class="field"><label>CTA button text</label><input type="text" id="h_cta" value="Book Your Free Strategy Call ↗"></div>
           </div>
         </div>
       </div>
-
-      <!-- ══ PRICING PANEL ══ -->
-      <div class="panel" id="panel-pricing">
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon pink">💳</div>
-            <div><div class="card-title">Pricing Header</div><div class="card-subtitle">Section title and subtext</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body open">
-            <div class="field-row single"><div class="field"><label>Headline Line 1</label><input type="text" id="pricing_h1" value="Find your phase."></div></div>
-            <div class="field-row single"><div class="field"><label>Headline Line 2 (italic pink)</label><input type="text" id="pricing_h2" value="We'll build the rest."></div></div>
-            <div class="field-row single"><div class="field"><label>Subtext</label><textarea id="pricing_sub">No long-term contracts. No retainers. Just the plan that fits where you are right now.</textarea></div></div>
-          </div>
-        </div>
-
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon matcha">📦</div>
-            <div><div class="card-title">Pricing Plans</div><div class="card-subtitle">Edit each plan's name, price and description</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body open">
-            <div id="pricing-plans-editor"></div>
-          </div>
-        </div>
-
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon sand">💎</div>
-            <div><div class="card-title">High-Touch Plan</div><div class="card-subtitle">The exclusive bottom tier</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body open">
-            <div class="field-row"><div class="field"><label>Title Line 1</label><input type="text" id="ht_t1" value="You're ready to own your niche."></div><div class="field"><label>Title Line 2 (italic matcha)</label><input type="text" id="ht_t2" value="We'll build the machine."></div></div>
-            <div class="field-row single"><div class="field"><label>Description</label><textarea id="ht_desc">A dedicated content team, custom growth strategy, and full marketing management — all under one roof. 40 pieces of content, ad management, A/B testing, unlimited copywriting, weekly analytics reviews, and a dedicated growth specialist who lives and breathes your brand.</textarea></div></div>
-            <div class="field-row"><div class="field"><label>Price</label><input type="text" id="ht_price" value="$2,995"></div><div class="field"><label>Period</label><input type="text" id="ht_period" value="/month"></div></div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">📊</div><div><div class="cttl">Stats Bar</div><div class="csub">4 numbers at the bottom of the hero</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="sgrid2">
+            <div class="scard"><div class="scard-lbl">Stat 1</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s1n" value="100+"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s1l" value="Business owners served"></div></div></div>
+            <div class="scard"><div class="scard-lbl">Stat 2</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s2n" value="2.3M"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s2l" value="Top client followers"></div></div></div>
+            <div class="scard"><div class="scard-lbl">Stat 3</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s3n" value="1 Wk"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s3l" value="Average launch time"></div></div></div>
+            <div class="scard"><div class="scard-lbl">Stat 4</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s4n" value="+100%"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s4l" value="Avg. monthly growth"></div></div></div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- ══ TESTIMONIALS PANEL ══ -->
-      <div class="panel" id="panel-testimonials">
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon pink">💬</div>
-            <div><div class="card-title">Featured Pull Quote</div><div class="card-subtitle">Large centered quote at the top</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body open">
-            <div class="field-row single"><div class="field"><label>Quote Text</label><textarea id="pq_text" style="min-height:100px">"I used to spend half my Sunday dreading Monday's posts. Now my entire month is planned before the week starts. I've got my weekends back — and my engagement has never been higher."</textarea></div></div>
-            <div class="field-row single"><div class="field"><label>Attribution (name, title, followers)</label><input type="text" id="pq_cite" value="— Shiraz Gidwani, CEO & National Strategist · 2.3M followers"></div></div>
-            <div class="field-row single"><div class="field"><label>Highlighted phrase (shown bold pink in quote)</label><input type="text" id="pq_highlight" value="I've got my weekends back"><span class="field-hint">This exact phrase inside the quote will be bolded and pink</span></div></div>
-          </div>
+    <!-- PRICING -->
+    <div class="panel" id="panel-pricing">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">📌</div><div><div class="cttl">Section Header</div><div class="csub">Title and intro text above pricing cards</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r2"><div class="field"><label>Headline line 1</label><input type="text" id="pr_h1" value="Find your phase."></div><div class="field"><label>Headline line 2 (italic pink)</label><input type="text" id="pr_h2" value="We'll build the rest."></div></div>
+          <div class="row r1"><div class="field"><label>Subtext</label><textarea id="pr_sub">No long-term contracts. No retainers. Just the plan that fits where you are right now.</textarea></div></div>
         </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">📦</div><div><div class="cttl">Pricing Plans</div><div class="csub">Name, price, description and features for each plan</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open" id="plans-editor"></div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">💎</div><div><div class="cttl">High-Touch Exclusive Plan</div><div class="csub">Full-width bottom row plan</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r2"><div class="field"><label>Title line 1</label><input type="text" id="ht_t1" value="You're ready to own your niche."></div><div class="field"><label>Title line 2 (italic matcha)</label><input type="text" id="ht_t2" value="We'll build the machine."></div></div>
+          <div class="row r1"><div class="field"><label>Description</label><textarea id="ht_desc">A dedicated content team, custom growth strategy, and full marketing management — all under one roof. 40 pieces of content, ad management, A/B testing, unlimited copywriting, weekly analytics reviews, and a dedicated growth specialist who lives and breathes your brand.</textarea></div></div>
+          <div class="row r2"><div class="field"><label>Price</label><input type="text" id="ht_price" value="$2,995"></div><div class="field"><label>Period</label><input type="text" id="ht_period" value="/month"></div></div>
+        </div>
+      </div>
+    </div>
 
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon matcha">⭐</div>
-            <div><div class="card-title">Testimonial Cards</div><div class="card-subtitle">3 client review cards</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body open">
-            <div id="testimonials-editor"></div>
+    <!-- TESTIMONIALS -->
+    <div class="panel" id="panel-testimonials">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">💬</div><div><div class="cttl">Featured Pull Quote</div><div class="csub">Large centred quote at top of section</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Quote text</label><textarea id="pq_txt" style="min-height:96px">"I used to spend half my Sunday dreading Monday's posts. Now my entire month is planned before the week starts. I've got my weekends back — and my engagement has never been higher."</textarea></div></div>
+          <div class="row r2">
+            <div class="field"><label>Attribution / name</label><input type="text" id="pq_cite" value="— Shiraz Gidwani, CEO & National Strategist · 2.3M followers"></div>
+            <div class="field"><label>Bold-pink highlight phrase</label><input type="text" id="pq_hi" value="I've got my weekends back"><span class="hint">Exact text inside the quote that shows bold pink</span></div>
           </div>
         </div>
       </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">⭐</div><div><div class="cttl">Testimonial Cards</div><div class="csub">3 client review cards</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open" id="testi-editor"></div>
+      </div>
+    </div>
 
-      <!-- ══ TEAM PANEL ══ -->
-      <div class="panel" id="panel-team">
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon matcha">👥</div>
-            <div><div class="card-title">Team Members</div><div class="card-subtitle">Names, roles, bios and photos</div></div>
-            <span class="card-chevron">▼</span>
+    <!-- TEAM -->
+    <div class="panel" id="panel-team">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">👥</div><div><div class="cttl">Team Members</div><div class="csub">Names, roles and bios — photos managed in the Images tab</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open" id="team-editor"></div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="panel" id="panel-faq">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">💬</div><div><div class="cttl">FAQ Items</div><div class="csub">Add, edit or remove questions and answers</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open"><div id="faq-editor"></div><button class="radd" onclick="addFaq()">+ Add Question</button></div>
+      </div>
+    </div>
+
+    <!-- IMAGES -->
+    <div class="panel" id="panel-images">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">📐</div><div><div class="cttl">Image Size Guide</div><div class="csub">Exact pixel dimensions for every image on the site</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <p style="font-size:.81rem;color:var(--lt);margin-bottom:13px;line-height:1.7">All images are <strong style="color:var(--cf)">auto-scaled and cropped</strong> when you upload. Design to these sizes for the sharpest result.</p>
+          <table class="stbl">
+            <thead><tr><th>Image</th><th>Ideal Size</th><th>Shape</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Hero Background</strong></td><td>1800 × 900 px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Full screen. Keep subject centred.</td></tr>
+              <tr><td><strong>Image Break 1</strong></td><td>1800 × 600 px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Cinematic strip. Centre your subject.</td></tr>
+              <tr><td><strong>Image Break 2</strong></td><td>1800 × 600 px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Cinematic strip. Centre your subject.</td></tr>
+              <tr><td><strong>Team Photos ×3</strong></td><td>600 × 800 px</td><td><span class="spec-pill sp-port">Portrait</span></td><td>3:4 ratio. Face centred, space above head.</td></tr>
+              <tr><td><strong>IG Posts ×5</strong></td><td>400 × 500 px</td><td><span class="spec-pill sp-sq">Square+</span></td><td>Social proof mock-ups. Cropped 9:16 in phone frame.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">🌅</div><div><div class="cttl">Hero Background</div><div class="csub">1800 × 900 px — full-screen behind the headline</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open"><div id="iz-hero_bg"></div></div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">🎞️</div><div><div class="cttl">Image Break 1</div><div class="csub">1800 × 600 px — "Stop guessing. Start owning."</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open"><div id="iz-break1"></div></div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">🎞️</div><div><div class="cttl">Image Break 2</div><div class="csub">1800 × 600 px — "A studio that moves at your pace."</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open"><div id="iz-break2"></div></div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">👩</div><div><div class="cttl">Team Photos</div><div class="csub">600 × 800 px portrait for each team member</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" id="team-photos-grid"></div></div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">📱</div><div><div class="cttl">Instagram Post Images</div><div class="csub">400 × 500 px — 5 posts in the social proof section</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open"><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:11px" id="ig-photos-grid"></div></div>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="panel" id="panel-links">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">🔗</div><div><div class="cttl">All Links & Buttons</div><div class="csub">Update every link destination on your site</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="lg">
+            <div class="lg-title">📅 Booking / CTA Buttons</div>
+            <div class="lrow"><div class="lname"><span>Hero "Book Call" Button</span><small>Primary CTA — hero section</small></div><input class="linput" id="lnk_hero_cta" type="url" value="https://calendly.com"><a class="ltest" id="lt_hero_cta" href="https://calendly.com" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Nav "Book Free Call"</span><small>Top navigation booking link</small></div><input class="linput" id="lnk_nav_cta" type="url" value="https://calendly.com"><a class="ltest" id="lt_nav_cta" href="https://calendly.com" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>"Let's Build Yours →"</span><small>Checklist section CTA</small></div><input class="linput" id="lnk_checklist" type="url" value="https://calendly.com"><a class="ltest" id="lt_checklist" href="https://calendly.com" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>"Start Growing →"</span><small>Social proof section button</small></div><input class="linput" id="lnk_sproof" type="url" value="https://calendly.com"><a class="ltest" id="lt_sproof" href="https://calendly.com" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>"Book Free Discovery Call"</span><small>Bottom CTA banner button</small></div><input class="linput" id="lnk_ctabanner" type="url" value="https://calendly.com"><a class="ltest" id="lt_ctabanner" href="https://calendly.com" target="_blank">Test ↗</a></div>
           </div>
-          <div class="card-body open">
-            <div id="team-editor"></div>
+          <div class="lg">
+            <div class="lg-title">📧 Contact & Social</div>
+            <div class="lrow"><div class="lname"><span>Email Address</span><small>Footer contact link</small></div><input class="linput" id="lnk_email" type="email" value="hello@brandrehab.co"><a class="ltest" id="lt_email" href="mailto:hello@brandrehab.co" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Instagram</span><small>Footer @brandrehab</small></div><input class="linput" id="lnk_ig" type="url" value="https://instagram.com/brandrehab"><a class="ltest" id="lt_ig" href="https://instagram.com/brandrehab" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>TikTok</span><small>Footer TikTok link</small></div><input class="linput" id="lnk_tt" type="url" value="https://tiktok.com/@brandrehab"><a class="ltest" id="lt_tt" href="https://tiktok.com/@brandrehab" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>LinkedIn</span><small>Footer LinkedIn link</small></div><input class="linput" id="lnk_li" type="url" value="https://linkedin.com/company/brandrehab"><a class="ltest" id="lt_li" href="https://linkedin.com/company/brandrehab" target="_blank">Test ↗</a></div>
+          </div>
+          <div class="lg">
+            <div class="lg-title">🧭 Navigation Menu</div>
+            <div class="lrow"><div class="lname"><span>Process</span><small>Nav anchor link</small></div><input class="linput" id="lnk_nav_process" value="#process"><a class="ltest" href="#process">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Results</span><small>Nav anchor link</small></div><input class="linput" id="lnk_nav_results" value="#results"><a class="ltest" href="#results">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Pricing</span><small>Nav anchor link</small></div><input class="linput" id="lnk_nav_pricing" value="#pricing"><a class="ltest" href="#pricing">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>FAQ</span><small>Nav anchor link</small></div><input class="linput" id="lnk_nav_faq" value="#faq"><a class="ltest" href="#faq">Test ↗</a></div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- ══ FAQ PANEL ══ -->
-      <div class="panel" id="panel-faq">
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon pink">💬</div>
-            <div><div class="card-title">FAQ Items</div><div class="card-subtitle">Add, edit or remove questions and answers</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body open">
-            <div id="faq-editor"></div>
-            <button class="repeater-add" onclick="addFAQ()">+ Add Question</button>
-          </div>
+    <!-- FIREBASE -->
+    <div class="panel" id="panel-firebase">
+      <div class="fbcard">
+        <h3>Firebase Connection ✦</h3>
+        <p>Connect your Firebase Realtime Database so edits save to the cloud and update your live site from any device. One-time setup — about 5 minutes.</p>
+        <div class="fbfields">
+          <div class="fbf"><label>API Key</label><input type="text" id="fb_key" placeholder="AIzaSy..."></div>
+          <div class="fbf"><label>Project ID</label><input type="text" id="fb_pid" placeholder="brand-rehab-abc12"></div>
+          <div class="fbf" style="grid-column:span 2"><label>Database URL</label><input type="text" id="fb_url" placeholder="https://brand-rehab-abc12-default-rtdb.firebaseio.com"></div>
+        </div>
+        <button class="fb-btn" onclick="saveFb()">Save & Connect →</button>
+        <div class="fb-ok" id="fbOk"><div class="fb-dot"></div>Connected</div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">📋</div><div><div class="cttl">Setup Guide</div><div class="csub">How to create your free Firebase project</div></div><span class="cchev">▼</span></div>
+        <div class="cbody">
+          <ol style="padding-left:18px;color:var(--lt);font-size:.83rem;line-height:2.1">
+            <li>Go to <strong style="color:var(--cf)">console.firebase.google.com</strong> → sign in with Google</li>
+            <li>Click <strong style="color:var(--cf)">Add project</strong> → name it <em>brand-rehab</em></li>
+            <li><strong style="color:var(--cf)">Build → Realtime Database → Create database → Start in test mode</strong></li>
+            <li>Go to <strong style="color:var(--cf)">Project Settings</strong> (gear icon) → scroll to "Your apps" → click <strong style="color:var(--cf)">&lt;/&gt;</strong></li>
+            <li>Register your app → copy <strong style="color:var(--cf)">apiKey</strong> and <strong style="color:var(--cf)">projectId</strong></li>
+            <li>Your Database URL is in the Realtime Database panel — format: <em>https://yourproject-default-rtdb.firebaseio.com</em></li>
+            <li>Paste all three values above → Save & Connect</li>
+          </ol>
         </div>
       </div>
+    </div>
 
-      <!-- ══ SETTINGS PANEL ══ -->
-      <div class="panel" id="panel-settings">
-        <div class="setup-card">
-          <h3>Firebase Connection ✦</h3>
-          <p>Connect your Firebase project so all your edits save to the cloud and update your live site instantly. You only need to do this once.</p>
-          <div class="setup-fields">
-            <div class="setup-field"><label>API Key</label><input type="text" id="fb_apiKey" placeholder="AIzaSy..."></div>
-            <div class="setup-field"><label>Project ID</label><input type="text" id="fb_projectId" placeholder="brand-rehab-abc12"></div>
-            <div class="setup-field" style="grid-column:span 2"><label>Database URL</label><input type="text" id="fb_dbUrl" placeholder="https://brand-rehab-abc12-default-rtdb.firebaseio.com"></div>
+    <!-- PASSWORD -->
+    <div class="panel" id="panel-password">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">🔒</div><div><div class="cttl">Change Admin Password</div><div class="csub">Update your login password</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Current Password</label><input type="password" id="pw_cur" placeholder="Current password"></div></div>
+          <div class="row r2">
+            <div class="field"><label>New Password</label><input type="password" id="pw_new" placeholder="New password (min 6 chars)"></div>
+            <div class="field"><label>Confirm</label><input type="password" id="pw_conf" placeholder="Confirm new password"></div>
           </div>
-          <button class="connect-btn" onclick="saveFirebaseConfig()">Save Firebase Config →</button>
-          <div class="connected-badge" id="fbStatus" style="display:none"><div class="connected-dot"></div> Connected</div>
-        </div>
-
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon sand">📋</div>
-            <div><div class="card-title">How to set up Firebase (free)</div><div class="card-subtitle">Step by step — takes 5 minutes</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <ol style="padding-left:20px;color:var(--latte);font-size:.85rem;line-height:2">
-              <li>Go to <strong style="color:var(--coffee)">console.firebase.google.com</strong> and sign in with Google</li>
-              <li>Click <strong style="color:var(--coffee)">Add project</strong> → name it <em>brand-rehab</em> → click through the setup</li>
-              <li>In your project, click <strong style="color:var(--coffee)">Build → Realtime Database → Create database</strong></li>
-              <li>Choose <strong style="color:var(--coffee)">Start in test mode</strong> → click Enable</li>
-              <li>Go to <strong style="color:var(--coffee)">Project Settings</strong> (gear icon) → scroll to "Your apps" → click the web icon <strong style="color:var(--coffee)">&lt;/&gt;</strong></li>
-              <li>Register your app → copy the <strong style="color:var(--coffee)">apiKey</strong> and <strong style="color:var(--coffee)">projectId</strong> values</li>
-              <li>Your Database URL is in the Realtime Database section — looks like <em>https://yourproject-default-rtdb.firebaseio.com</em></li>
-              <li>Paste those values in the fields above → click Save</li>
-            </ol>
-          </div>
+          <button onclick="changePw()" style="padding:10px 22px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;margin-top:4px">Update Password →</button>
+          <div id="pw_msg" style="font-size:.78rem;margin-top:9px;display:none;font-weight:600"></div>
         </div>
       </div>
+    </div>
 
-      <!-- ══ PASSWORD PANEL ══ -->
-      <div class="panel" id="panel-password">
-        <div class="edit-card">
-          <div class="card-header" onclick="toggleCard(this)">
-            <div class="card-header-icon pink">🔒</div>
-            <div><div class="card-title">Change Admin Password</div><div class="card-subtitle">Update your login password</div></div>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body open">
-            <div class="field-row single"><div class="field"><label>Current Password</label><input type="password" id="pw_current" placeholder="Current password"></div></div>
-            <div class="field-row single"><div class="field"><label>New Password</label><input type="password" id="pw_new" placeholder="New password"></div></div>
-            <div class="field-row single"><div class="field"><label>Confirm New Password</label><input type="password" id="pw_confirm" placeholder="Confirm new password"></div></div>
-            <button onclick="changePassword()" style="margin-top:8px;padding:11px 24px;background:var(--grad-pink);color:white;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer">Update Password →</button>
-            <div id="pw_msg" style="font-size:.8rem;margin-top:10px;color:var(--matcha-dk);display:none"></div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /main-body -->
-  </main>
+  </div>
+</main>
 </div>
-</div><!-- /app -->
+</div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ══ CONFIG ══
-const DEFAULT_PASSWORD = 'brandrehab2025';
-let ADMIN_PASSWORD = localStorage.getItem('br_password') || DEFAULT_PASSWORD;
+// ─── PASSWORD ───
+let PW = localStorage.getItem('br_pw') || 'brandrehab2025';
 
-// ══ DEFAULT CONTENT ══
-const defaultContent = {
-  hero: {
-    line1:'Your brand.', line2:'Your content.', line3:'Your audience.',
-    sub:"You already know you need to show up consistently. You just don't have the time — or the system — to make it happen every single week.",
-    sub2:'That ends here. ✨', cta:'Book Your Free Strategy Call ↗',
-    cta_url:'https://calendly.com',
-    stat1_n:'100+', stat1_l:'Business owners served',
-    stat2_n:'2.3M', stat2_l:'Top client followers',
-    stat3_n:'1 Wk', stat3_l:'Average launch time',
-    stat4_n:'+100%', stat4_l:'Avg. monthly growth'
-  },
-  pricing: {
-    h1:'Find your phase.', h2:"We'll build the rest.",
-    sub:'No long-term contracts. No retainers. Just the plan that fits where you are right now.',
-    ht_t1:"You're ready to own your niche.", ht_t2:"We'll build the machine.",
-    ht_desc:'A dedicated content team, custom growth strategy, and full marketing management — all under one roof.',
-    ht_price:'$2,995', ht_period:'/month',
+// ─── DEFAULTS ───
+const DEFS = {
+  hero:{line1:'Your brand.',line2:'Your content.',line3:'Your audience.',sub:"You already know you need to show up consistently. You just don't have the time — or the system — to make it happen every single week.",sub2:'That ends here. ✨',cta:'Book Your Free Strategy Call ↗',cta_url:'https://calendly.com',tag:'Social Content Studio · Built for Business Owners',s1n:'100+',s1l:'Business owners served',s2n:'2.3M',s2l:'Top client followers',s3n:'1 Wk',s3l:'Average launch time',s4n:'+100%',s4l:'Avg. monthly growth'},
+  pricing:{h1:'Find your phase.',h2:"We'll build the rest.",sub:'No long-term contracts. No retainers. Just the plan that fits where you are right now.',ht_t1:"You're ready to own your niche.",ht_t2:"We'll build the machine.",ht_desc:'A dedicated content team, custom growth strategy, and full marketing management — all under one roof. 40 pieces of content, ad management, A/B testing, unlimited copywriting, weekly analytics reviews, and a dedicated growth specialist who lives and breathes your brand.',ht_price:'$2,995',ht_period:'/month',
     plans:[
-      {name:'Content Planner',desc:'For the business owner who wants the system and will run it themselves.',price:'$37',period:'one-time',featured:false,features:['Notion content planner template','Built-in content calendar system','Hooks + caption frameworks','Batching workflow included','Instant digital download']},
-      {name:'DIY Strategy',desc:"You need a plan. We'll build it. Ready to show up — just need to know what, when, and why.",price:'$249',period:'/month',featured:false,features:['8 posts planned monthly','Hooks written for each post','Profile optimization','DIY batching content system','Month-to-month, cancel anytime']},
+      {name:'Content Planner',desc:'For the business owner who wants the system and will run it themselves.',price:'$37',period:'one-time',featured:false,badge:'',features:['Notion content planner template','Built-in content calendar system','Hooks + caption frameworks','Batching workflow included','Instant digital download']},
+      {name:'DIY Strategy',desc:"You need a plan. We'll build it. Ready to show up — just need to know what, when, and why.",price:'$249',period:'/month',featured:false,badge:'',features:['8 posts planned monthly','Hooks written for each post','Profile optimization','DIY batching content system','Month-to-month, cancel anytime']},
       {name:'Done-With-You',desc:"You need the plan AND the words. We'll write both — posts ready to go.",price:'$495',period:'/month',featured:true,badge:'✦ Most Popular',features:['Custom content strategy','Monthly 30-min strategy call','12 posts planned (hooks + outlines)','4 complete carousels designed + written','8 reel scripts','Client portal access','Industry research']},
-      {name:'Content Engine',desc:"Busy owners who are done DIYing and want a real content team behind them.",price:'$1,495',period:'/month',featured:false,features:['Custom brand & content strategy','18 posts planned monthly','3 short-form videos (edit & post)','3 carousels (designed + posted)','Monthly analytics review call','Full scripting + copywriting','SEO optimization','Client portal access']}
+      {name:'Content Engine',desc:"Busy owners who are done DIYing and want a real content team behind them.",price:'$1,495',period:'/month',featured:false,badge:'',features:['Custom brand & content strategy','18 posts planned monthly','3 short-form videos (edit & post)','3 carousels (designed + posted)','Monthly analytics review call','Full scripting + copywriting','SEO optimization','Client portal access']}
     ]
   },
-  testimonials: {
-    pq_text:'"I used to spend half my Sunday dreading Monday\'s posts. Now my entire month is planned before the week starts. I\'ve got my weekends back — and my engagement has never been higher."',
-    pq_cite:'— Shiraz Gidwani, CEO & National Strategist · 2.3M followers',
-    pq_highlight:"I've got my weekends back",
+  testimonials:{pq_txt:'"I used to spend half my Sunday dreading Monday\'s posts. Now my entire month is planned before the week starts. I\'ve got my weekends back — and my engagement has never been higher."',pq_cite:'— Shiraz Gidwani, CEO & National Strategist · 2.3M followers',pq_hi:"I've got my weekends back",
     cards:[
       {quote:'"Felicia and the team completely transformed how I show up online. I went from posting randomly to having a clear, consistent strategy that actually converts followers into paying clients."',name:'Alexis Monroe',role:'Founder, Monroe Wellness · 48K followers',initials:'AM',featured:true},
       {quote:'"I was stuck at 3K followers for over a year. Within 60 days of working with Brand Rehab, I broke 25K. The strategy was built for my niche — and it shows in every single metric."',name:'Jasmine Liu',role:'Business Coach · 25K followers',initials:'JL',featured:false},
       {quote:'"The Content Engine is worth every dollar. Dedicated team, weekly reviews, and I haven\'t had to think about what to post in 4 months. My business grew 40% this quarter."',name:'Kira Reyes',role:'E-commerce Founder · 112K followers',initials:'KR',featured:false}
     ]
   },
-  team: {
-    members:[
-      {name:'Felicia',role:'Founder & CEO',bio:"The visionary behind Brand Rehab. Felicia built this studio after watching too many talented business owners fall silent online — not because they lacked a story, but because they lacked a system.",photo:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&fit=crop&crop=faces'},
-      {name:'Austan',role:'Business Strategist',bio:'Austan connects content strategy to business outcomes. Every post we create serves a purpose — building audience, driving leads, and converting followers into paying customers.',photo:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop&crop=faces'},
-      {name:'Ava',role:'Technical Lead',bio:'Ava runs the production engine. From carousel design to short-form video editing, she ensures every piece of content is polished, on-brand, and optimized to perform.',photo:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80&fit=crop&crop=faces'}
-    ]
+  team:{members:[
+    {name:'Felicia',role:'Founder & CEO',bio:"The visionary behind Brand Rehab. Felicia built this studio after watching too many talented business owners fall silent online — not because they lacked a story, but because they lacked a system."},
+    {name:'Austan',role:'Business Strategist',bio:'Austan connects content strategy to business outcomes. Every post we create serves a purpose — building audience, driving leads, and converting followers into paying customers.'},
+    {name:'Ava',role:'Technical Lead',bio:'Ava runs the production engine. From carousel design to short-form video editing, she ensures every piece of content is polished, on-brand, and optimized to perform.'}
+  ]},
+  faq:{items:[
+    {q:"What makes Brand Rehab different from buying a content template?",a:"We research your niche and build a strategy around your business. A template is built for everyone. We're built for you."},
+    {q:"Do I have to post the content myself?",a:"It depends on your plan. Plans 1 and 2 — yes, but everything is outlined or written. Plans 3 and 4 — we handle everything."},
+    {q:"How quickly can I get started?",a:"Most clients are fully onboarded within 3–5 business days. We move fast — because you've already waited long enough."},
+    {q:"What if I'm not on every platform?",a:"We'll tell you which platform actually matters for your business and build there first."},
+    {q:"Is there a contract?",a:"No long-term contracts or retainers. Month-to-month means you're always in control."},
+    {q:"How do I get started?",a:"Book your free discovery call — 15 minutes, zero pressure."}
+  ]},
+  images:{
+    hero_bg:'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1800&q=80&fit=crop',
+    break1:'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1800&q=80&fit=crop',
+    break2:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1800&q=80&fit=crop',
+    team_0:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&fit=crop&crop=faces',
+    team_1:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop&crop=faces',
+    team_2:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80&fit=crop&crop=faces',
+    ig_0:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80&fit=crop',
+    ig_1:'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&q=80&fit=crop',
+    ig_2:'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80&fit=crop',
+    ig_3:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80&fit=crop',
+    ig_4:'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=80&fit=crop'
   },
-  faq: {
-    items:[
-      {q:"What makes Brand Rehab different from buying a content template?",a:"We research your niche and build a strategy around your business. A template is built for everyone. We're built for you."},
-      {q:"Do I have to post the content myself?",a:"It depends on your plan. Plans 1 and 2 — yes, but everything is outlined or written. Plans 3 and 4 — we handle everything from edit to publish."},
-      {q:"How quickly can I get started?",a:"Most clients are fully onboarded within 3–5 business days of their strategy call. We move fast — because you've already waited long enough."},
-      {q:"What if I'm not on every platform?",a:"We'll tell you which platform actually matters for your business and build there first."},
-      {q:"Is there a contract?",a:"No long-term contracts or retainers. Month-to-month means you're always in control."},
-      {q:"How do I get started?",a:"Book your free discovery call — 15 minutes, zero pressure."}
-    ]
-  }
+  links:{hero_cta:'https://calendly.com',nav_cta:'https://calendly.com',checklist:'https://calendly.com',sproof:'https://calendly.com',ctabanner:'https://calendly.com',email:'hello@brandrehab.co',ig:'https://instagram.com/brandrehab',tt:'https://tiktok.com/@brandrehab',li:'https://linkedin.com/company/brandrehab',nav_process:'#process',nav_results:'#results',nav_pricing:'#pricing',nav_faq:'#faq'}
 };
 
-let content = JSON.parse(localStorage.getItem('br_content') || JSON.stringify(defaultContent));
-let unsaved = false;
+function mergeDeep(t,s){for(const k in s){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k])){if(!t[k])t[k]={};mergeDeep(t[k],s[k]);}else if(!(k in t)){t[k]=s[k];}}return t;}
+let C = mergeDeep(JSON.parse(localStorage.getItem('br_content')||'{}'), JSON.parse(JSON.stringify(DEFS)));
+let dirty = false;
 
-// ══ LOGIN ══
-function doLogin() {
-  const pw = document.getElementById('loginPassword').value;
-  if (pw === ADMIN_PASSWORD) {
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    loadAllEditors();
-  } else {
-    document.getElementById('loginErr').style.display = 'block';
-    document.getElementById('loginPassword').style.borderColor = 'var(--pink-dk)';
+// ─── LOGIN ───
+function login(){
+  if(document.getElementById('lpw').value===PW){
+    document.getElementById('loginWrap').style.display='none';
+    document.getElementById('app').style.display='block';
+    initAll();
+  }else{
+    document.getElementById('lerr').style.display='block';
+    document.getElementById('lpw').style.borderColor='var(--pkd)';
   }
 }
-function doLogout() {
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('loginPassword').value = '';
+function logout(){
+  document.getElementById('loginWrap').style.display='flex';
+  document.getElementById('app').style.display='none';
+  document.getElementById('lpw').value='';
+  document.getElementById('lerr').style.display='none';
 }
 
-// ══ NAVIGATION ══
-const panelInfo = {
-  hero:{title:'Hero Section',desc:'Edit your homepage hero headline, subtext and stats'},
-  pricing:{title:'Pricing Plans',desc:'Edit plan names, prices, features and descriptions'},
-  testimonials:{title:'Testimonials',desc:'Edit client quotes, names and featured pull quote'},
-  team:{title:'Team Members',desc:'Edit names, roles, bios and photos for your team'},
-  faq:{title:'FAQ',desc:'Add, edit or remove frequently asked questions'},
-  settings:{title:'Firebase Setup',desc:'Connect your database for live content saving'},
-  password:{title:'Change Password',desc:'Update your admin panel login password'}
-};
-function showPanel(id, btn) {
+// ─── NAVIGATION ───
+const META={hero:{t:'Hero Section',d:'Edit headline, subtext, stats and CTA'},pricing:{t:'Pricing Plans',d:'Edit plan names, prices and features'},testimonials:{t:'Testimonials',d:'Edit pull quote and client review cards'},team:{t:'Team Members',d:'Edit names, roles and bios'},faq:{t:'FAQ',d:'Add, edit or remove questions and answers'},images:{t:'Images',d:'Upload and manage every image with auto-scaling'},links:{t:'Links & Buttons',d:'Update every link and button on the site'},firebase:{t:'Firebase Setup',d:'Connect cloud database for live saving'},password:{t:'Change Password',d:'Update your admin login password'}};
+function go(id,btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(b=>b.classList.remove('on'));
   document.getElementById('panel-'+id).classList.add('active');
-  btn.classList.add('active');
-  document.getElementById('panelTitle').textContent = panelInfo[id].title;
-  document.getElementById('panelDesc').textContent = panelInfo[id].desc;
+  btn.classList.add('on');
+  document.getElementById('ptitle').textContent=META[id].t;
+  document.getElementById('pdesc').textContent=META[id].d;
 }
 
-// ══ CARD TOGGLE ══
-function toggleCard(header) {
-  const body = header.nextElementSibling;
-  const chev = header.querySelector('.card-chevron');
-  body.classList.toggle('open');
-  chev.style.transform = body.classList.contains('open') ? 'rotate(180deg)' : '';
+// ─── ACCORDION ───
+function tog(hdr){
+  const b=hdr.nextElementSibling,c=hdr.querySelector('.cchev');
+  b.classList.toggle('open');
+  c.style.transform=b.classList.contains('open')?'rotate(180deg)':'';
 }
 
-// ══ MARK UNSAVED ══
-function markUnsaved() {
-  unsaved = true;
-  const pill = document.getElementById('statusPill');
-  pill.className = 'status-pill unsaved';
-  document.getElementById('statusText').textContent = 'Unsaved changes';
-}
-document.addEventListener('input', markUnsaved);
+// ─── DIRTY ───
+function markDirty(){dirty=true;const b=document.getElementById('statusBadge');b.className='status dirty';document.getElementById('statusTxt').textContent='Unsaved changes';}
+document.addEventListener('input',markDirty);
 
-// ══ LOAD EDITORS ══
-function loadAllEditors() {
-  loadHero(); loadPricingEditor(); loadTestimonialsEditor(); loadTeamEditor(); loadFAQEditor(); loadFirebaseConfig();
-}
+// ─── HELPERS ───
+function gv(id){const e=document.getElementById(id);return e?e.value:'';}
+function sv(id,val){const e=document.getElementById(id);if(e)e.value=val||'';}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-function loadHero() {
-  const h = content.hero;
-  setValue('hero_line1',h.line1); setValue('hero_line2',h.line2); setValue('hero_line3',h.line3);
-  setValue('hero_sub',h.sub); setValue('hero_sub2',h.sub2); setValue('hero_cta',h.cta); setValue('hero_cta_url',h.cta_url);
-  setValue('stat1_n',h.stat1_n); setValue('stat1_l',h.stat1_l); setValue('stat2_n',h.stat2_n); setValue('stat2_l',h.stat2_l);
-  setValue('stat3_n',h.stat3_n); setValue('stat3_l',h.stat3_l); setValue('stat4_n',h.stat4_n); setValue('stat4_l',h.stat4_l);
-  setValue('pricing_h1',content.pricing.h1); setValue('pricing_h2',content.pricing.h2); setValue('pricing_sub',content.pricing.sub);
-  setValue('ht_t1',content.pricing.ht_t1); setValue('ht_t2',content.pricing.ht_t2); setValue('ht_desc',content.pricing.ht_desc);
-  setValue('ht_price',content.pricing.ht_price); setValue('ht_period',content.pricing.ht_period);
-  setValue('pq_text',content.testimonials.pq_text); setValue('pq_cite',content.testimonials.pq_cite); setValue('pq_highlight',content.testimonials.pq_highlight);
+// ─── INIT ───
+function initAll(){loadHero();loadPricing();loadTestimonials();loadTeam();loadFaq();buildImageZones();loadLinks();loadFbConfig();}
+
+function loadHero(){
+  const h=C.hero;
+  sv('h_line1',h.line1);sv('h_line2',h.line2);sv('h_line3',h.line3);
+  sv('h_sub',h.sub);sv('h_sub2',h.sub2);sv('h_cta',h.cta);sv('h_tag',h.tag);
+  sv('s1n',h.s1n);sv('s1l',h.s1l);sv('s2n',h.s2n);sv('s2l',h.s2l);
+  sv('s3n',h.s3n);sv('s3l',h.s3l);sv('s4n',h.s4n);sv('s4l',h.s4l);
 }
 
-function setValue(id, val) { const el = document.getElementById(id); if(el) el.value = val||''; }
-function getValue(id) { const el = document.getElementById(id); return el ? el.value : ''; }
-
-// ══ PRICING EDITOR ══
-function loadPricingEditor() {
-  const container = document.getElementById('pricing-plans-editor');
-  container.innerHTML = '';
-  content.pricing.plans.forEach((plan, i) => {
-    container.innerHTML += `
-    <div class="repeater-item" id="plan-item-${i}">
-      <div class="repeater-item-header">
-        <span class="repeater-item-label">Plan ${i+1}${plan.featured?' · ✦ Featured':''}</span>
-      </div>
-      <div class="field-row"><div class="field"><label>Plan Name</label><input type="text" id="plan_${i}_name" value="${esc(plan.name)}"></div><div class="field"><label>Price</label><input type="text" id="plan_${i}_price" value="${esc(plan.price)}"></div></div>
-      <div class="field-row"><div class="field"><label>Period (e.g. /month or one-time)</label><input type="text" id="plan_${i}_period" value="${esc(plan.period)}"></div><div class="field"><label>Featured plan? (most popular)</label><select id="plan_${i}_featured"><option value="false" ${!plan.featured?'selected':''}>No</option><option value="true" ${plan.featured?'selected':''}>Yes — highlight this card</option></select></div></div>
-      <div class="field-row single"><div class="field"><label>Description</label><textarea id="plan_${i}_desc">${esc(plan.desc)}</textarea></div></div>
-      <div class="field-row single"><div class="field"><label>Features (one per line)</label><textarea id="plan_${i}_features" style="min-height:120px">${plan.features.join('\n')}</textarea></div></div>
-    </div>`;
+function loadPricing(){
+  const p=C.pricing;
+  sv('pr_h1',p.h1);sv('pr_h2',p.h2);sv('pr_sub',p.sub);
+  sv('ht_t1',p.ht_t1);sv('ht_t2',p.ht_t2);sv('ht_desc',p.ht_desc);
+  sv('ht_price',p.ht_price);sv('ht_period',p.ht_period);
+  const el=document.getElementById('plans-editor');el.innerHTML='';
+  p.plans.forEach((plan,i)=>{
+    const d=document.createElement('div');d.className='ri';
+    d.innerHTML=`<div class="rihdr"><span class="rilbl">Plan ${i+1}${plan.featured?' · ✦ Featured':''}</span></div>
+      <div class="row r2"><div class="field"><label>Plan Name</label><input type="text" id="pl_${i}_name" value="${esc(plan.name)}"></div><div class="field"><label>Price</label><input type="text" id="pl_${i}_price" value="${esc(plan.price)}"></div></div>
+      <div class="row r3"><div class="field"><label>Period (e.g. /month)</label><input type="text" id="pl_${i}_period" value="${esc(plan.period)}"></div><div class="field"><label>Badge text</label><input type="text" id="pl_${i}_badge" value="${esc(plan.badge)}" placeholder="✦ Most Popular"></div><div class="field"><label>Featured card?</label><select id="pl_${i}_feat"><option value="false"${!plan.featured?' selected':''}>No</option><option value="true"${plan.featured?' selected':''}>Yes</option></select></div></div>
+      <div class="row r1"><div class="field"><label>Description</label><textarea id="pl_${i}_desc">${esc(plan.desc)}</textarea></div></div>
+      <div class="row r1"><div class="field"><label>Features — one per line</label><textarea id="pl_${i}_feats" style="min-height:110px">${plan.features.join('\n')}</textarea></div></div>`;
+    el.appendChild(d);
   });
 }
 
-// ══ TESTIMONIALS EDITOR ══
-function loadTestimonialsEditor() {
-  const container = document.getElementById('testimonials-editor');
-  container.innerHTML = '';
-  content.testimonials.cards.forEach((card, i) => {
-    container.innerHTML += `
-    <div class="repeater-item">
-      <div class="repeater-item-header"><span class="repeater-item-label">Testimonial ${i+1}${card.featured?' · ✦ Featured':''}</span></div>
-      <div class="field-row single"><div class="field"><label>Quote</label><textarea id="tc_${i}_quote">${esc(card.quote)}</textarea></div></div>
-      <div class="field-row"><div class="field"><label>Client Name</label><input type="text" id="tc_${i}_name" value="${esc(card.name)}"></div><div class="field"><label>Initials (shown in avatar)</label><input type="text" id="tc_${i}_initials" value="${esc(card.initials)}" maxlength="2"></div></div>
-      <div class="field-row single"><div class="field"><label>Role / Followers</label><input type="text" id="tc_${i}_role" value="${esc(card.role)}"></div></div>
-    </div>`;
+function loadTestimonials(){
+  const t=C.testimonials;
+  sv('pq_txt',t.pq_txt);sv('pq_cite',t.pq_cite);sv('pq_hi',t.pq_hi);
+  const el=document.getElementById('testi-editor');el.innerHTML='';
+  t.cards.forEach((card,i)=>{
+    el.innerHTML+=`<div class="ri"><div class="rihdr"><span class="rilbl">Testimonial ${i+1}${card.featured?' · ✦ Featured':''}</span></div>
+      <div class="row r1"><div class="field"><label>Quote</label><textarea id="tc_${i}_q">${esc(card.quote)}</textarea></div></div>
+      <div class="row r3"><div class="field"><label>Client Name</label><input type="text" id="tc_${i}_name" value="${esc(card.name)}"></div><div class="field"><label>Initials</label><input type="text" id="tc_${i}_init" value="${esc(card.initials)}" maxlength="2"></div><div class="field"><label>Role / Followers</label><input type="text" id="tc_${i}_role" value="${esc(card.role)}"></div></div>
+      <div class="row r1"><div class="field"><label>Featured (dark card)?</label><select id="tc_${i}_feat"><option value="false"${!card.featured?' selected':''}>No</option><option value="true"${card.featured?' selected':''}>Yes</option></select></div></div></div>`;
   });
 }
 
-// ══ TEAM EDITOR ══
-function loadTeamEditor() {
-  const container = document.getElementById('team-editor');
-  container.innerHTML = '';
-  content.team.members.forEach((member, i) => {
-    container.innerHTML += `
-    <div class="repeater-item">
-      <div class="repeater-item-header"><span class="repeater-item-label">Team Member ${i+1}</span></div>
-      <div class="field-row"><div class="field"><label>Name</label><input type="text" id="tm_${i}_name" value="${esc(member.name)}"></div><div class="field"><label>Role / Title</label><input type="text" id="tm_${i}_role" value="${esc(member.role)}"></div></div>
-      <div class="field-row single"><div class="field"><label>Bio</label><textarea id="tm_${i}_bio">${esc(member.bio)}</textarea></div></div>
-      <div class="field-row single"><div class="field"><label>Photo URL</label><input type="text" id="tm_${i}_photo" value="${esc(member.photo)}" placeholder="https://..."><span class="field-hint">Paste a direct image URL from Cloudinary, Unsplash, or anywhere</span></div></div>
-    </div>`;
+function loadTeam(){
+  const el=document.getElementById('team-editor');el.innerHTML='';
+  C.team.members.forEach((m,i)=>{
+    el.innerHTML+=`<div class="ri"><div class="rihdr"><span class="rilbl">Member ${i+1}</span></div>
+      <div class="row r2"><div class="field"><label>Name</label><input type="text" id="tm_${i}_name" value="${esc(m.name)}"></div><div class="field"><label>Role / Title</label><input type="text" id="tm_${i}_role" value="${esc(m.role)}"></div></div>
+      <div class="row r1"><div class="field"><label>Bio</label><textarea id="tm_${i}_bio">${esc(m.bio)}</textarea></div></div>
+      <p class="hint">📷 Update this person's photo in the <strong>Images</strong> tab</p></div>`;
   });
 }
 
-// ══ FAQ EDITOR ══
-function loadFAQEditor() {
-  const container = document.getElementById('faq-editor');
-  container.innerHTML = '';
-  content.faq.items.forEach((item, i) => renderFAQItem(i, item));
-}
-function renderFAQItem(i, item) {
-  const container = document.getElementById('faq-editor');
-  const div = document.createElement('div');
-  div.className = 'repeater-item';
-  div.id = 'faq-item-'+i;
-  div.innerHTML = `
-    <div class="repeater-item-header">
-      <span class="repeater-item-label">Question ${i+1}</span>
-      <button class="repeater-remove" onclick="removeFAQ(${i})">✕ Remove</button>
-    </div>
-    <div class="field-row single"><div class="field"><label>Question</label><input type="text" id="faq_${i}_q" value="${esc(item.q)}"></div></div>
-    <div class="field-row single"><div class="field"><label>Answer</label><textarea id="faq_${i}_a">${esc(item.a)}</textarea></div></div>`;
-  container.appendChild(div);
-}
-function addFAQ() {
-  content.faq.items.push({q:'New question?',a:'Your answer here.'});
-  loadFAQEditor(); markUnsaved();
-}
-function removeFAQ(i) {
-  content.faq.items.splice(i,1); loadFAQEditor(); markUnsaved();
-}
-
-// ══ COLLECT CONTENT FROM FORM ══
-function collectContent() {
-  content.hero = {
-    line1:getValue('hero_line1'), line2:getValue('hero_line2'), line3:getValue('hero_line3'),
-    sub:getValue('hero_sub'), sub2:getValue('hero_sub2'), cta:getValue('hero_cta'), cta_url:getValue('hero_cta_url'),
-    stat1_n:getValue('stat1_n'), stat1_l:getValue('stat1_l'), stat2_n:getValue('stat2_n'), stat2_l:getValue('stat2_l'),
-    stat3_n:getValue('stat3_n'), stat3_l:getValue('stat3_l'), stat4_n:getValue('stat4_n'), stat4_l:getValue('stat4_l')
-  };
-  content.pricing.h1=getValue('pricing_h1'); content.pricing.h2=getValue('pricing_h2'); content.pricing.sub=getValue('pricing_sub');
-  content.pricing.ht_t1=getValue('ht_t1'); content.pricing.ht_t2=getValue('ht_t2'); content.pricing.ht_desc=getValue('ht_desc');
-  content.pricing.ht_price=getValue('ht_price'); content.pricing.ht_period=getValue('ht_period');
-  content.pricing.plans.forEach((_,i)=>{
-    content.pricing.plans[i].name=getValue(`plan_${i}_name`);
-    content.pricing.plans[i].price=getValue(`plan_${i}_price`);
-    content.pricing.plans[i].period=getValue(`plan_${i}_period`);
-    content.pricing.plans[i].desc=getValue(`plan_${i}_desc`);
-    content.pricing.plans[i].featured=getValue(`plan_${i}_featured`)==='true';
-    content.pricing.plans[i].features=getValue(`plan_${i}_features`).split('\n').filter(f=>f.trim());
-  });
-  content.testimonials.pq_text=getValue('pq_text'); content.testimonials.pq_cite=getValue('pq_cite'); content.testimonials.pq_highlight=getValue('pq_highlight');
-  content.testimonials.cards.forEach((_,i)=>{
-    content.testimonials.cards[i].quote=getValue(`tc_${i}_quote`);
-    content.testimonials.cards[i].name=getValue(`tc_${i}_name`);
-    content.testimonials.cards[i].initials=getValue(`tc_${i}_initials`);
-    content.testimonials.cards[i].role=getValue(`tc_${i}_role`);
-  });
-  content.team.members.forEach((_,i)=>{
-    content.team.members[i].name=getValue(`tm_${i}_name`);
-    content.team.members[i].role=getValue(`tm_${i}_role`);
-    content.team.members[i].bio=getValue(`tm_${i}_bio`);
-    content.team.members[i].photo=getValue(`tm_${i}_photo`);
-  });
-  content.faq.items.forEach((_,i)=>{
-    content.faq.items[i].q=getValue(`faq_${i}_q`);
-    content.faq.items[i].a=getValue(`faq_${i}_a`);
+function loadFaq(){
+  const el=document.getElementById('faq-editor');el.innerHTML='';
+  C.faq.items.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='ri';d.id='faq-'+i;
+    d.innerHTML=`<div class="rihdr"><span class="rilbl">Q${i+1}</span><button class="ridel" onclick="delFaq(${i})">✕ Remove</button></div>
+      <div class="row r1"><div class="field"><label>Question</label><input type="text" id="fq_${i}_q" value="${esc(item.q)}"></div></div>
+      <div class="row r1"><div class="field"><label>Answer</label><textarea id="fq_${i}_a">${esc(item.a)}</textarea></div></div>`;
+    document.getElementById('faq-editor').appendChild(d);
   });
 }
+function addFaq(){C.faq.items.push({q:'New question?',a:'Your answer here.'});loadFaq();markDirty();}
+function delFaq(i){C.faq.items.splice(i,1);loadFaq();markDirty();}
 
-// ══ SAVE ══
-async function saveAll() {
-  const btn = document.getElementById('saveBtn');
-  btn.textContent = 'Saving...'; btn.disabled = true;
-  const pill = document.getElementById('statusPill');
-  pill.className = 'status-pill saving';
-  document.getElementById('statusText').textContent = 'Saving...';
+// ─── IMAGE ZONES ───
+const IMG_SPECS={
+  hero_bg:{w:1800,h:900,shape:'Wide',ar:'16/9'},
+  break1:{w:1800,h:600,shape:'Wide',ar:'3/1'},
+  break2:{w:1800,h:600,shape:'Wide',ar:'3/1'},
+  team_0:{w:600,h:800,shape:'Portrait',ar:'3/4'},
+  team_1:{w:600,h:800,shape:'Portrait',ar:'3/4'},
+  team_2:{w:600,h:800,shape:'Portrait',ar:'3/4'},
+  ig_0:{w:400,h:500,shape:'Square+',ar:'4/5'},
+  ig_1:{w:400,h:500,shape:'Square+',ar:'4/5'},
+  ig_2:{w:400,h:500,shape:'Square+',ar:'4/5'},
+  ig_3:{w:400,h:500,shape:'Square+',ar:'4/5'},
+  ig_4:{w:400,h:500,shape:'Square+',ar:'4/5'}
+};
 
-  collectContent();
-  localStorage.setItem('br_content', JSON.stringify(content));
-
-  // Try Firebase if configured
-  const fbConfig = JSON.parse(localStorage.getItem('br_firebase')||'{}');
-  if (fbConfig.dbUrl) {
-    try {
-      await fetch(`${fbConfig.dbUrl}/content.json`, {
-        method:'PUT', body:JSON.stringify(content), headers:{'Content-Type':'application/json'}
-      });
-    } catch(e) { console.warn('Firebase save failed, saved locally only'); }
+function buildImageZones(){
+  ['hero_bg','break1','break2'].forEach(k=>{
+    const el=document.getElementById('iz-'+k);
+    if(el)el.innerHTML=makeZone(k);
+  });
+  const tg=document.getElementById('team-photos-grid');
+  if(tg){
+    tg.innerHTML='';
+    [0,1,2].forEach(i=>{
+      const k='team_'+i,nm=C.team.members[i]?C.team.members[i].name:'Member '+(i+1);
+      tg.innerHTML+=`<div><p style="font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">${nm}</p><div id="iz-${k}"></div></div>`;
+    });
+    [0,1,2].forEach(i=>{const el=document.getElementById('iz-team_'+i);if(el)el.innerHTML=makeZone('team_'+i);});
   }
-
-  await new Promise(r=>setTimeout(r,600));
-  btn.textContent='Save & Publish ✦'; btn.disabled=false;
-  pill.className='status-pill saved'; document.getElementById('statusText').textContent='All saved';
-  unsaved=false;
-  showToast('✦ Published! Your site is updated.','success');
+  const ig=document.getElementById('ig-photos-grid');
+  if(ig){
+    ig.innerHTML='';
+    [0,1,2,3,4].forEach(i=>{
+      ig.innerHTML+=`<div><p style="font-family:'Cabinet Grotesk',sans-serif;font-size:.66rem;font-weight:700;color:var(--lt);margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">Post ${i+1}</p><div id="iz-ig_${i}"></div></div>`;
+    });
+    [0,1,2,3,4].forEach(i=>{const el=document.getElementById('iz-ig_'+i);if(el)el.innerHTML=makeZone('ig_'+i);});
+  }
 }
 
-// ══ FIREBASE CONFIG ══
-function saveFirebaseConfig() {
-  const cfg = {
-    apiKey:getValue('fb_apiKey'),
-    projectId:getValue('fb_projectId'),
-    dbUrl:getValue('fb_dbUrl')
+function makeZone(key){
+  const spec=IMG_SPECS[key],url=C.images[key]||'',has=!!url;
+  return `<div class="img-zone">
+    <div class="iz-inner">
+      <div class="iz-spec-row">
+        <span class="spec-pill sp-dim">📐 ${spec.w} × ${spec.h} px</span>
+        <span class="spec-pill sp-shape">${spec.shape}</span>
+        <span class="spec-pill sp-auto">✦ Auto-scaled</span>
+      </div>
+      <div class="iz-pw" style="aspect-ratio:${spec.ar};position:relative">
+        <img id="izimg-${key}" src="${has?url:''}" alt="" style="width:100%;height:100%;object-fit:cover;display:${has?'block':'none'}" onerror="this.style.display='none';document.getElementById('izph-${key}').style.display='flex'">
+        <div id="izph-${key}" class="iz-ph" style="display:${has?'none':'flex'}">
+          <div class="iz-ph-ico">🖼️</div>
+          <div class="iz-ph-txt">No image set</div>
+          <div class="iz-ph-sub">Upload a file or paste a URL</div>
+        </div>
+      </div>
+      <div class="iz-actions">
+        <label class="iz-upload">📁 Upload<input type="file" accept="image/*" onchange="handleUpload(event,'${key}')"></label>
+        <button class="iz-url-btn" onclick="toggleUrl('${key}')">🔗 Use URL</button>
+        ${has?`<button class="iz-clear" onclick="clearImg('${key}')">✕ Clear</button>`:''}
+      </div>
+      <div class="iz-url-row" id="urlrow-${key}" style="display:none">
+        <input class="iz-url-inp" id="urlval-${key}" type="url" placeholder="https://..." value="${esc(url)}">
+        <button class="iz-url-apply" onclick="applyUrl('${key}')">Apply</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function toggleUrl(key){
+  const r=document.getElementById('urlrow-'+key);
+  if(r)r.style.display=r.style.display==='none'?'flex':'none';
+}
+function applyUrl(key){
+  const v=(document.getElementById('urlval-'+key)||{}).value||'';
+  if(v.trim())setZoneImg(key,v.trim());
+}
+function handleUpload(event,key){
+  const file=event.target.files[0];if(!file)return;
+  const spec=IMG_SPECS[key];
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      const canvas=document.createElement('canvas');
+      canvas.width=spec.w;canvas.height=spec.h;
+      const ctx=canvas.getContext('2d');
+      const scale=Math.max(spec.w/img.width,spec.h/img.height);
+      const sw=img.width*scale,sh=img.height*scale;
+      ctx.drawImage(img,(spec.w-sw)/2,(spec.h-sh)/2,sw,sh);
+      setZoneImg(key,canvas.toDataURL('image/jpeg',.9));
+      showToast('Image auto-scaled to '+spec.w+'×'+spec.h+'px ✦','ok');
+    };
+    img.src=e.target.result;
   };
-  localStorage.setItem('br_firebase',JSON.stringify(cfg));
-  document.getElementById('fbStatus').style.display='inline-flex';
-  showToast('Firebase connected!','success');
+  reader.readAsDataURL(file);
 }
-function loadFirebaseConfig() {
-  const cfg = JSON.parse(localStorage.getItem('br_firebase')||'{}');
-  if(cfg.apiKey) setValue('fb_apiKey',cfg.apiKey);
-  if(cfg.projectId) setValue('fb_projectId',cfg.projectId);
-  if(cfg.dbUrl) { setValue('fb_dbUrl',cfg.dbUrl); document.getElementById('fbStatus').style.display='inline-flex'; }
+function setZoneImg(key,url){
+  C.images[key]=url;
+  const img=document.getElementById('izimg-'+key);
+  const ph=document.getElementById('izph-'+key);
+  if(img){img.src=url;img.style.display='block';}
+  if(ph)ph.style.display='none';
+  markDirty();
+  // rebuild zone to show clear button
+  const iz=document.getElementById('iz-'+key);
+  if(iz){iz.innerHTML=makeZone(key);}
 }
-
-// ══ PASSWORD ══
-function changePassword() {
-  const cur=getValue('pw_current'), nw=getValue('pw_new'), conf=getValue('pw_confirm');
-  const msg=document.getElementById('pw_msg'); msg.style.display='block';
-  if(cur!==ADMIN_PASSWORD){msg.style.color='var(--pink-dk)';msg.textContent='Current password is incorrect.';return;}
-  if(nw.length<6){msg.style.color='var(--pink-dk)';msg.textContent='New password must be at least 6 characters.';return;}
-  if(nw!==conf){msg.style.color='var(--pink-dk)';msg.textContent='New passwords do not match.';return;}
-  ADMIN_PASSWORD=nw; localStorage.setItem('br_password',nw);
-  msg.style.color='var(--matcha-dk)'; msg.textContent='Password updated successfully! ✦';
+function clearImg(key){
+  C.images[key]='';
+  const iz=document.getElementById('iz-'+key);
+  if(iz)iz.innerHTML=makeZone(key);
+  markDirty();
 }
 
-// ══ TOAST ══
-function showToast(msg, type='success') {
+// ─── LINKS ───
+function loadLinks(){
+  const l=C.links;
+  const MAP={lnk_hero_cta:'hero_cta',lnk_nav_cta:'nav_cta',lnk_checklist:'checklist',lnk_sproof:'sproof',lnk_ctabanner:'ctabanner',lnk_email:'email',lnk_ig:'ig',lnk_tt:'tt',lnk_li:'li',lnk_nav_process:'nav_process',lnk_nav_results:'nav_results',lnk_nav_pricing:'nav_pricing',lnk_nav_faq:'nav_faq'};
+  Object.entries(MAP).forEach(([elId,key])=>sv(elId,l[key]));
+  document.querySelectorAll('.linput').forEach(inp=>{
+    inp.addEventListener('input',e=>{
+      const a=document.getElementById(e.target.id.replace('lnk_','lt_'));
+      if(a)a.href=e.target.value||'#';
+    });
+  });
+}
+
+// ─── COLLECT ───
+function collect(){
+  C.hero={line1:gv('h_line1'),line2:gv('h_line2'),line3:gv('h_line3'),sub:gv('h_sub'),sub2:gv('h_sub2'),cta:gv('h_cta'),cta_url:gv('lnk_hero_cta')||C.hero.cta_url,tag:gv('h_tag'),s1n:gv('s1n'),s1l:gv('s1l'),s2n:gv('s2n'),s2l:gv('s2l'),s3n:gv('s3n'),s3l:gv('s3l'),s4n:gv('s4n'),s4l:gv('s4l')};
+  C.pricing.h1=gv('pr_h1');C.pricing.h2=gv('pr_h2');C.pricing.sub=gv('pr_sub');
+  C.pricing.ht_t1=gv('ht_t1');C.pricing.ht_t2=gv('ht_t2');C.pricing.ht_desc=gv('ht_desc');C.pricing.ht_price=gv('ht_price');C.pricing.ht_period=gv('ht_period');
+  C.pricing.plans.forEach((_,i)=>{C.pricing.plans[i]={name:gv(`pl_${i}_name`),price:gv(`pl_${i}_price`),period:gv(`pl_${i}_period`),badge:gv(`pl_${i}_badge`),featured:gv(`pl_${i}_feat`)==='true',desc:gv(`pl_${i}_desc`),features:gv(`pl_${i}_feats`).split('\n').map(f=>f.trim()).filter(Boolean)};});
+  C.testimonials.pq_txt=gv('pq_txt');C.testimonials.pq_cite=gv('pq_cite');C.testimonials.pq_hi=gv('pq_hi');
+  C.testimonials.cards.forEach((_,i)=>{C.testimonials.cards[i]={quote:gv(`tc_${i}_q`),name:gv(`tc_${i}_name`),initials:gv(`tc_${i}_init`),role:gv(`tc_${i}_role`),featured:gv(`tc_${i}_feat`)==='true'};});
+  C.team.members.forEach((_,i)=>{C.team.members[i].name=gv(`tm_${i}_name`);C.team.members[i].role=gv(`tm_${i}_role`);C.team.members[i].bio=gv(`tm_${i}_bio`);});
+  C.faq.items.forEach((_,i)=>{C.faq.items[i]={q:gv(`fq_${i}_q`),a:gv(`fq_${i}_a`)};});
+  C.links={hero_cta:gv('lnk_hero_cta'),nav_cta:gv('lnk_nav_cta'),checklist:gv('lnk_checklist'),sproof:gv('lnk_sproof'),ctabanner:gv('lnk_ctabanner'),email:gv('lnk_email'),ig:gv('lnk_ig'),tt:gv('lnk_tt'),li:gv('lnk_li'),nav_process:gv('lnk_nav_process'),nav_results:gv('lnk_nav_results'),nav_pricing:gv('lnk_nav_pricing'),nav_faq:gv('lnk_nav_faq')};
+}
+
+// ─── SAVE ───
+async function saveAll(){
+  const btn=document.getElementById('pubBtn');
+  btn.textContent='Saving…';btn.disabled=true;
+  const badge=document.getElementById('statusBadge');
+  badge.className='status saving';document.getElementById('statusTxt').textContent='Saving…';
+  collect();
+  localStorage.setItem('br_content',JSON.stringify(C));
+  const fb=JSON.parse(localStorage.getItem('br_firebase')||'{}');
+  if(fb.dbUrl){try{await fetch(fb.dbUrl+'/content.json',{method:'PUT',body:JSON.stringify(C),headers:{'Content-Type':'application/json'}});}catch(e){console.warn('Firebase sync failed');}}
+  await new Promise(r=>setTimeout(r,500));
+  btn.textContent='Save & Publish ✦';btn.disabled=false;
+  badge.className='status saved';document.getElementById('statusTxt').textContent='All saved';
+  dirty=false;
+  showToast('Published! Site updated ✦','ok');
+}
+
+// ─── FIREBASE ───
+function saveFb(){
+  localStorage.setItem('br_firebase',JSON.stringify({apiKey:gv('fb_key'),projectId:gv('fb_pid'),dbUrl:gv('fb_url')}));
+  document.getElementById('fbOk').style.display='inline-flex';
+  showToast('Firebase connected!','ok');
+}
+function loadFbConfig(){
+  const cfg=JSON.parse(localStorage.getItem('br_firebase')||'{}');
+  if(cfg.apiKey)sv('fb_key',cfg.apiKey);
+  if(cfg.projectId)sv('fb_pid',cfg.projectId);
+  if(cfg.dbUrl){sv('fb_url',cfg.dbUrl);document.getElementById('fbOk').style.display='inline-flex';}
+}
+
+// ─── PASSWORD ───
+function changePw(){
+  const cur=gv('pw_cur'),nw=gv('pw_new'),conf=gv('pw_conf');
+  const msg=document.getElementById('pw_msg');msg.style.display='block';
+  if(cur!==PW){msg.style.color='var(--pkd)';msg.textContent='Current password is incorrect.';return;}
+  if(nw.length<6){msg.style.color='var(--pkd)';msg.textContent='New password must be at least 6 characters.';return;}
+  if(nw!==conf){msg.style.color='var(--pkd)';msg.textContent='Passwords do not match.';return;}
+  PW=nw;localStorage.setItem('br_pw',nw);
+  msg.style.color='var(--mtd)';msg.textContent='Password updated ✦';
+  ['pw_cur','pw_new','pw_conf'].forEach(id=>sv(id,''));
+}
+
+// ─── TOAST ───
+function showToast(msg,type='ok'){
   const t=document.getElementById('toast');
-  t.textContent=msg; t.className=`toast ${type} show`;
-  setTimeout(()=>t.classList.remove('show'),3000);
+  t.textContent=msg;t.className=`toast ${type} show`;
+  setTimeout(()=>t.classList.remove('show'),3200);
 }
 
-// ══ UTILS ══
-function esc(str) { return (str||'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-window.addEventListener('beforeunload', e => { if(unsaved){e.preventDefault();e.returnValue='';} });
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
 </script>
 </body>
 </html>
