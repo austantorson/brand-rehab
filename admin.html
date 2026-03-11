@@ -376,7 +376,7 @@ body{background:var(--bl);overflow:hidden}
           </div>
           <div class="lg">
             <div class="lg-title">📧 Contact & Social</div>
-            <div class="lrow"><div class="lname"><span>Email Address</span><small>Footer contact link</small></div><input class="linput" id="lnk_email" type="email" value="hello@brandrehab.co"><a class="ltest" id="lt_email" href="mailto:hello@brandrehab.co" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Email Address</span><small>Footer contact link</small></div><input class="linput" id="lnk_email" type="email" value="hello@brandrehab.co"><a class="ltest" id="lt_email" href="/cdn-cgi/l/email-protection#7e161b1212113e1c0c1f101a0c1b161f1c501d11" target="_blank">Test ↗</a></div>
             <div class="lrow"><div class="lname"><span>Instagram</span><small>Footer @brandrehab</small></div><input class="linput" id="lnk_ig" type="url" value="https://instagram.com/brandrehab"><a class="ltest" id="lt_ig" href="https://instagram.com/brandrehab" target="_blank">Test ↗</a></div>
             <div class="lrow"><div class="lname"><span>TikTok</span><small>Footer TikTok link</small></div><input class="linput" id="lnk_tt" type="url" value="https://tiktok.com/@brandrehab"><a class="ltest" id="lt_tt" href="https://tiktok.com/@brandrehab" target="_blank">Test ↗</a></div>
             <div class="lrow"><div class="lname"><span>LinkedIn</span><small>Footer LinkedIn link</small></div><input class="linput" id="lnk_li" type="url" value="https://linkedin.com/company/brandrehab"><a class="ltest" id="lt_li" href="https://linkedin.com/company/brandrehab" target="_blank">Test ↗</a></div>
@@ -444,7 +444,7 @@ body{background:var(--bl);overflow:hidden}
 
 <div class="toast" id="toast"></div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ─── PASSWORD ───
 let PW = localStorage.getItem('br_pw') || 'brandrehab2025';
 
@@ -756,8 +756,13 @@ async function saveAll(){
   badge.className='status saving';document.getElementById('statusTxt').textContent='Saving…';
   collect();
   localStorage.setItem('br_content',JSON.stringify(C));
-  const fb=JSON.parse(localStorage.getItem('br_firebase')||'{}');
-  if(fb.dbUrl){try{await fetch(fb.dbUrl+'/content.json',{method:'PUT',body:JSON.stringify(C),headers:{'Content-Type':'application/json'}});}catch(e){console.warn('Firebase sync failed');}}
+  const fb=JSON.parse(localStorage.getItem("br_firebase")||"{}");
+  if(fb.dbUrl&&fb.dbUrl.startsWith("https://")&&fb.dbUrl.includes("firebaseio.com")){
+    try{
+      const r=await fetch(fb.dbUrl+"/content.json",{method:"PUT",body:JSON.stringify(C),headers:{"Content-Type":"application/json"}});
+      if(!r.ok)console.error("Firebase error:",r.status,await r.text());
+    }catch(e){console.error("Firebase fetch failed:",e);}
+  }
   await new Promise(r=>setTimeout(r,500));
   btn.textContent='Save & Publish ✦';btn.disabled=false;
   badge.className='status saved';document.getElementById('statusTxt').textContent='All saved';
@@ -767,9 +772,11 @@ async function saveAll(){
 
 // ─── FIREBASE ───
 function saveFb(){
-  localStorage.setItem('br_firebase',JSON.stringify({apiKey:gv('fb_key'),projectId:gv('fb_pid'),dbUrl:gv('fb_url')}));
-  document.getElementById('fbOk').style.display='inline-flex';
-  showToast('Firebase connected!','ok');
+  let dbUrl=gv("fb_url").trim().replace(//+$/,"");
+  if(!dbUrl.startsWith("https://")||!dbUrl.includes("firebaseio.com")){showToast("Database URL must be https://your-project-default-rtdb.firebaseio.com","err");return;}
+  localStorage.setItem("br_firebase",JSON.stringify({apiKey:gv("fb_key"),projectId:gv("fb_pid"),dbUrl:dbUrl}));
+  document.getElementById("fbOk").style.display="inline-flex";
+  showToast("Firebase connected!","ok");
 }
 function loadFbConfig(){
   const cfg=JSON.parse(localStorage.getItem('br_firebase')||'{}');
@@ -794,10 +801,4 @@ function changePw(){
 function showToast(msg,type='ok'){
   const t=document.getElementById('toast');
   t.textContent=msg;t.className=`toast ${type} show`;
-  setTimeout(()=>t.classList.remove('show'),3200);
-}
-
-window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
-</script>
-</body>
-</html>
+  setTimeout(()=>t.class

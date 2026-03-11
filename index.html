@@ -791,13 +791,13 @@ function mergeDeep(t,s){for(const k in s){if(s[k]&&typeof s[k]==='object'&&!Arra
 async function loadContent() {
   let stored = JSON.parse(localStorage.getItem('br_content') || 'null');
   // Firebase override if configured
-  const fb = JSON.parse(localStorage.getItem('br_firebase') || '{}');
-  if (fb.dbUrl) {
+  const fb = JSON.parse(localStorage.getItem("br_firebase") || "{}");
+  if (fb.dbUrl && fb.dbUrl.startsWith("https://") && fb.dbUrl.includes("firebaseio.com")) {
     try {
-      const res = await fetch(fb.dbUrl + '/content.json');
+      const res = await fetch(fb.dbUrl + "/content.json");
       const fbData = await res.json();
       if (fbData) stored = fbData;
-    } catch(e) {}
+    } catch(e) { console.warn("Firebase read failed:", e); }
   }
   // Merge stored data with defaults so missing keys always have fallbacks
   return stored ? mergeDeep(stored, JSON.parse(JSON.stringify(defaultContent))) : defaultContent;
