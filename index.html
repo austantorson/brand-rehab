@@ -789,17 +789,23 @@ const defaultContent = {
 function mergeDeep(t,s){for(const k in s){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k])){if(!t[k])t[k]={};mergeDeep(t[k],s[k]);}else if(!(k in t)){t[k]=s[k];}}return t;}
 
 async function loadContent() {
-  let stored = JSON.parse(localStorage.getItem('br_content') || 'null');
-  // Firebase override if configured
-  const fb = JSON.parse(localStorage.getItem("br_firebase") || "{}");
-  if (fb.dbUrl && fb.dbUrl.startsWith("https://") && fb.dbUrl.includes("firebaseio.com")) {
-    try {
-      const res = await fetch(fb.dbUrl + "/content.json");
+  // HARDCODED Firebase URL — always reads from cloud on every device
+  const FIREBASE_URL = "https://brand-rehab-default-rtdb.firebaseio.com";
+  let stored = null;
+  try {
+    const res = await fetch(FIREBASE_URL + "/content.json");
+    if (res.ok) {
       const fbData = await res.json();
       if (fbData) stored = fbData;
-    } catch(e) { console.warn("Firebase read failed:", e); }
+    }
+  } catch(e) {
+    // Firebase unavailable — fall back to localStorage
+    console.warn("Firebase read failed, using local:", e);
+    stored = JSON.parse(localStorage.getItem('br_content') || 'null');
   }
-  // Merge stored data with defaults so missing keys always have fallbacks
+  // Also update localStorage as cache
+  if (stored) localStorage.setItem('br_content', JSON.stringify(stored));
+  // Merge with defaults so missing keys always have fallbacks
   return stored ? mergeDeep(stored, JSON.parse(JSON.stringify(defaultContent))) : defaultContent;
 }
 

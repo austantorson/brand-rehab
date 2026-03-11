@@ -17,164 +17,184 @@
   --sb:260px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:'Instrument Sans',sans-serif;color:var(--cf)}
+html,body{height:100%;font-family:"Instrument Sans",sans-serif;color:var(--cf)}
 body{background:var(--bl);overflow:hidden}
+
 /* LOGIN */
 #loginWrap{position:fixed;inset:0;background:var(--esp);display:flex;align-items:center;justify-content:center;z-index:9999}
 .lb{position:absolute;border-radius:50%;pointer-events:none}
 .lb1{width:520px;height:520px;background:radial-gradient(circle,rgba(232,160,176,.16) 0%,transparent 70%);top:-160px;right:-80px}
 .lb2{width:380px;height:380px;background:radial-gradient(circle,rgba(200,217,192,.12) 0%,transparent 70%);bottom:-120px;left:-60px}
 .lbox{background:#fff;border-radius:22px;padding:48px 44px;max-width:400px;width:92%;position:relative;z-index:1;box-shadow:0 28px 72px rgba(0,0,0,.38)}
-.lbox::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gp);border-radius:22px 22px 0 0}
-.llogo{font-family:'Fraunces',serif;font-size:1.75rem;font-weight:700;color:var(--cf);margin-bottom:4px}
+.lbox::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gp);border-radius:22px 22px 0 0}
+.llogo{font-family:"Fraunces",serif;font-size:1.75rem;font-weight:700;color:var(--cf);margin-bottom:4px}
 .llogo em{color:var(--pkd);font-style:normal}
 .lsub{font-size:.8rem;color:var(--lt);margin-bottom:28px}
-.flbl{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lt);margin-bottom:6px}
-.linp{width:100%;padding:12px 15px;border:1.5px solid var(--sd);border-radius:11px;font-family:'Instrument Sans',sans-serif;font-size:.9rem;color:var(--cf);outline:none;transition:border-color .2s}
+.flbl{display:block;font-family:"Cabinet Grotesk",sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lt);margin-bottom:6px}
+.linp{width:100%;padding:12px 15px;border:1.5px solid var(--sd);border-radius:11px;font-family:"Instrument Sans",sans-serif;font-size:.9rem;color:var(--cf);outline:none;transition:border-color .2s}
 .linp:focus{border-color:var(--pkd)}
-.lbtn{width:100%;padding:13px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;margin-top:18px;transition:all .2s;box-shadow:0 6px 20px rgba(196,96,122,.3)}
+.lbtn{width:100%;padding:13px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;margin-top:18px;transition:all .2s;box-shadow:0 6px 20px rgba(196,96,122,.3)}
 .lbtn:hover{opacity:.9;transform:translateY(-1px)}
 .lerr{color:var(--pkd);font-size:.78rem;margin-top:9px;display:none;font-weight:500}
+
 /* SHELL */
 #app{display:none;height:100vh}
 .shell{display:grid;grid-template-columns:var(--sb) 1fr;height:100vh}
+
 /* SIDEBAR */
 .sb{background:var(--esp);display:flex;flex-direction:column;overflow-y:auto;border-right:1px solid rgba(255,255,255,.04)}
 .sb-top{padding:24px 18px 16px;border-bottom:1px solid rgba(255,255,255,.05)}
-.sb-logo{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--pk);display:block;text-decoration:none}
+.sb-logo{font-family:"Fraunces",serif;font-size:1.2rem;font-weight:700;color:var(--pk);display:block;text-decoration:none}
 .sb-logo em{color:#fff;font-style:normal}
-.sb-tag{display:inline-block;background:rgba(196,96,122,.18);color:var(--pk);font-family:'Cabinet Grotesk',sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-top:5px;border:1px solid rgba(196,96,122,.22)}
+.sb-tag{display:inline-block;background:rgba(196,96,122,.18);color:var(--pk);font-family:"Cabinet Grotesk",sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-top:5px;border:1px solid rgba(196,96,122,.22)}
 .sb-nav{padding:12px 10px;flex:1}
-.sb-sec{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.57rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:0 8px;margin:16px 0 6px}
-.sb-sec:first-child{margin-top:4px}
-.ni{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:9px;cursor:pointer;transition:all .18s;color:rgba(255,255,255,.45);font-size:.81rem;font-weight:500;margin-bottom:1px;border:none;background:none;width:100%;text-align:left;font-family:'Instrument Sans',sans-serif}
+.sb-sec{display:block;font-family:"Cabinet Grotesk",sans-serif;font-size:.57rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:0 8px;margin:16px 0 6px}
+.ni{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:9px;cursor:pointer;transition:all .18s;color:rgba(255,255,255,.45);font-size:.81rem;font-weight:500;margin-bottom:1px;border:none;background:none;width:100%;text-align:left;font-family:"Instrument Sans",sans-serif}
 .ni:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.8)}
 .ni.on{background:rgba(196,96,122,.13);color:var(--pk);border:1px solid rgba(196,96,122,.16)}
 .ni-ico{font-size:.9rem;width:18px;text-align:center;flex-shrink:0}
 .sb-foot{padding:12px 10px;border-top:1px solid rgba(255,255,255,.05)}
-.pub-btn{width:100%;padding:11px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(196,96,122,.28)}
+.pub-btn{width:100%;padding:11px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(196,96,122,.28)}
 .pub-btn:hover{opacity:.9;transform:translateY(-1px)}
 .pub-btn:disabled{opacity:.42;cursor:not-allowed;transform:none}
-.sb-view{display:block;text-align:center;padding:8px;color:rgba(255,255,255,.3);font-size:.7rem;margin-top:5px;text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:600;letter-spacing:.05em;transition:color .2s}
+.sb-view{display:block;text-align:center;padding:8px;color:rgba(255,255,255,.3);font-size:.7rem;margin-top:5px;text-decoration:none;font-family:"Cabinet Grotesk",sans-serif;font-weight:600;letter-spacing:.05em;transition:color .2s}
 .sb-view:hover{color:var(--mtd)}
-.sb-out{display:block;width:100%;text-align:center;padding:6px;color:rgba(255,255,255,.2);font-size:.68rem;cursor:pointer;border:none;background:none;font-family:'Instrument Sans',sans-serif;transition:color .2s}
+.sb-out{display:block;width:100%;text-align:center;padding:6px;color:rgba(255,255,255,.2);font-size:.68rem;cursor:pointer;border:none;background:none;font-family:"Instrument Sans",sans-serif;transition:color .2s}
 .sb-out:hover{color:rgba(255,255,255,.5)}
+
 /* MAIN */
 .main{overflow-y:auto;height:100vh;background:var(--bl)}
 .mhdr{background:#fff;border-bottom:1px solid var(--sd);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:14px}
-.mhdr-txt h1{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--cf)}
+.mhdr-txt h1{font-family:"Fraunces",serif;font-size:1.3rem;font-weight:700;color:var(--cf)}
 .mhdr-txt p{font-size:.76rem;color:var(--lt);margin-top:2px}
-.status{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;transition:all .3s}
+.status{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;transition:all .3s}
 .status.saved{background:var(--mtl);color:var(--mtd);border:1px solid var(--mt)}
 .status.dirty{background:var(--pkl);color:var(--pkd);border:1px solid var(--ro)}
 .status.saving{background:#FFF9E6;color:#A06A10;border:1px solid #EDCC60}
 .sdot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
 .mbody{padding:26px 28px}
 .panel{display:none}.panel.active{display:block}
+
 /* PREVIEW BAR */
 .pvbar{background:var(--cf);border-radius:13px;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;gap:14px}
 .pvbar p{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.55}
 .pvbar p strong{color:#fff}
-.pvbar a{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:8px 16px;background:var(--gp);color:#fff;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.72rem;font-weight:700;text-decoration:none;transition:opacity .2s}
-.pvbar a:hover{opacity:.88}
+.pvbar a{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:8px 16px;background:var(--gp);color:#fff;border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.72rem;font-weight:700;text-decoration:none}
+
 /* CARDS */
-.card{background:#fff;border-radius:16px;border:1.5px solid var(--sd);margin-bottom:16px;overflow:hidden;transition:box-shadow .2s}
-.card:hover{box-shadow:0 3px 16px rgba(196,96,122,.07)}
+.card{background:#fff;border-radius:16px;border:1.5px solid var(--sd);margin-bottom:16px;overflow:hidden}
 .chdr{padding:16px 20px;border-bottom:1px solid var(--sd);display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none}
 .cico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
 .cico.pk{background:var(--pkl)}.cico.mt{background:var(--mtl)}.cico.sd{background:var(--bl)}
-.cttl{font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.86rem;color:var(--cf)}
+.cttl{font-family:"Cabinet Grotesk",sans-serif;font-weight:700;font-size:.86rem;color:var(--cf)}
 .csub{font-size:.71rem;color:var(--lt);margin-top:1px}
 .cchev{margin-left:auto;color:var(--lt);transition:transform .28s;font-size:.72rem}
 .cbody{padding:20px;display:none}.cbody.open{display:block}
-/* FORM FIELDS */
+
+/* FIELDS */
 .row{display:grid;gap:13px;margin-bottom:13px}
 .r1{grid-template-columns:1fr}.r2{grid-template-columns:1fr 1fr}.r3{grid-template-columns:1fr 1fr 1fr}
 .field{display:flex;flex-direction:column;gap:5px}
-.field label{font-family:'Cabinet Grotesk',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--lt)}
-.field input,.field textarea,.field select{padding:9px 12px;border:1.5px solid var(--sd);border-radius:9px;font-family:'Instrument Sans',sans-serif;font-size:.84rem;color:var(--cf);outline:none;transition:border-color .2s;background:#fff;width:100%}
+.field label{font-family:"Cabinet Grotesk",sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--lt)}
+.field input,.field textarea,.field select{padding:9px 12px;border:1.5px solid var(--sd);border-radius:9px;font-family:"Instrument Sans",sans-serif;font-size:.84rem;color:var(--cf);outline:none;transition:border-color .2s;background:#fff;width:100%}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--pkd)}
 .field textarea{resize:vertical;min-height:72px;line-height:1.55}
-.hint{font-size:.68rem;color:var(--lt);margin-top:3px;opacity:.8;line-height:1.4}
+.hint{font-size:.68rem;color:var(--lt);margin-top:3px;line-height:1.4}
+
 /* REPEATER */
 .ri{background:var(--bl);border:1.5px solid var(--sd);border-radius:13px;padding:15px;margin-bottom:11px}
 .rihdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.rilbl{font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.1em}
-.ridel{background:none;border:none;color:var(--lt);cursor:pointer;font-size:.78rem;padding:3px 8px;border-radius:6px;transition:all .2s;font-family:'Cabinet Grotesk',sans-serif;font-weight:700}
+.rilbl{font-family:"Cabinet Grotesk",sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.1em}
+.ridel{background:none;border:none;color:var(--lt);cursor:pointer;font-size:.78rem;padding:3px 8px;border-radius:6px;transition:all .2s;font-family:"Cabinet Grotesk",sans-serif;font-weight:700}
 .ridel:hover{background:var(--ro);color:var(--pkd)}
-.radd{display:flex;align-items:center;gap:7px;padding:9px 14px;border:1.5px dashed var(--sd);border-radius:9px;background:none;color:var(--lt);font-family:'Cabinet Grotesk',sans-serif;font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;width:100%;margin-top:4px}
+.radd{display:flex;align-items:center;gap:7px;padding:9px 14px;border:1.5px dashed var(--sd);border-radius:9px;background:none;color:var(--lt);font-family:"Cabinet Grotesk",sans-serif;font-size:.74rem;font-weight:700;cursor:pointer;transition:all .2s;width:100%;margin-top:4px}
 .radd:hover{border-color:var(--pkd);color:var(--pkd);background:var(--pkl)}
+
 /* IMAGE ZONES */
-.img-zone{border:2px dashed var(--sd);border-radius:13px;overflow:hidden;background:var(--bl);transition:border-color .22s}
-.img-zone:hover{border-color:var(--pk)}
+.img-zone{border:2px dashed var(--sd);border-radius:13px;overflow:hidden;background:var(--bl)}
 .iz-inner{padding:16px}
 .iz-spec-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:11px}
-.spec-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:6px;font-family:'Cabinet Grotesk',sans-serif;font-size:.63rem;font-weight:700}
+.spec-pill{display:inline-flex;align-items:center;padding:3px 10px;border-radius:6px;font-family:"Cabinet Grotesk",sans-serif;font-size:.63rem;font-weight:700}
 .sp-dim{background:var(--pkl);color:var(--pkd);border:1px solid var(--ro)}
 .sp-shape{background:#fff;color:var(--lt);border:1px solid var(--sd)}
 .sp-auto{background:var(--mtl);color:var(--mtd);border:1px solid var(--mt)}
-.iz-pw{width:100%;border-radius:9px;overflow:hidden;background:#f0ede8;margin-bottom:10px;display:flex;align-items:center;justify-content:center}
-.iz-pw img{width:100%;height:100%;object-fit:cover;display:block}
-.iz-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;text-align:center;width:100%;height:100%}
-.iz-ph-ico{font-size:1.6rem;margin-bottom:6px;opacity:.35}
-.iz-ph-txt{font-family:'Cabinet Grotesk',sans-serif;font-size:.74rem;font-weight:700;color:var(--lt)}
-.iz-ph-sub{font-size:.66rem;color:var(--lt);opacity:.65;margin-top:2px}
-.iz-actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
-.iz-upload{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.iz-pw{width:100%;border-radius:9px;overflow:hidden;background:#f0ede8;margin-bottom:10px;display:flex;align-items:center;justify-content:center;min-height:80px}
+.iz-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center;width:100%}
+.iz-ph-ico{font-size:1.4rem;margin-bottom:5px;opacity:.3}
+.iz-ph-txt{font-family:"Cabinet Grotesk",sans-serif;font-size:.74rem;font-weight:700;color:var(--lt)}
+.iz-ph-sub{font-size:.65rem;color:var(--lt);opacity:.6;margin-top:2px}
+.iz-actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.iz-upload{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;position:relative;overflow:hidden}
 .iz-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:0}
-.iz-upload:hover{opacity:.88}
-.iz-url-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:#fff;color:var(--cf);border:1.5px solid var(--sd);border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s}
+.iz-url-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:#fff;color:var(--cf);border:1.5px solid var(--sd);border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.7rem;font-weight:700;cursor:pointer}
 .iz-url-btn:hover{border-color:var(--pkd);color:var(--pkd)}
-.iz-clear{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;background:none;color:var(--lt);border:1.5px solid var(--sd);border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s}
+.iz-clear{padding:7px 12px;background:none;color:var(--lt);border:1.5px solid var(--sd);border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.7rem;font-weight:700;cursor:pointer}
 .iz-clear:hover{border-color:var(--ro);color:var(--pkd);background:var(--pkl)}
-.iz-url-row{display:flex;gap:7px;margin-top:9px;align-items:center}
-.iz-url-inp{flex:1;padding:8px 12px;border:1.5px solid var(--sd);border-radius:9px;font-size:.8rem;color:var(--cf);outline:none;font-family:'Instrument Sans',sans-serif;transition:border-color .2s}
+.iz-url-row{display:none;gap:7px;align-items:center;margin-top:4px}
+.iz-url-row.open{display:flex}
+.iz-url-inp{flex:1;padding:8px 12px;border:1.5px solid var(--sd);border-radius:9px;font-size:.8rem;color:var(--cf);outline:none;font-family:"Instrument Sans",sans-serif}
 .iz-url-inp:focus{border-color:var(--pkd)}
-.iz-url-apply{padding:8px 14px;background:var(--cf);color:#fff;border:none;border-radius:9px;font-family:'Cabinet Grotesk',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
+.iz-url-apply{padding:8px 14px;background:var(--cf);color:#fff;border:none;border-radius:9px;font-family:"Cabinet Grotesk",sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;white-space:nowrap}
 .iz-url-apply:hover{background:var(--mo)}
+
+/* OVERLAY TEXT FIELDS */
+.ov-fields{background:rgba(196,96,122,.04);border:1.5px solid var(--ro);border-radius:11px;padding:14px;margin-top:12px}
+.ov-lbl{font-family:"Cabinet Grotesk",sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pkd);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+
 /* SPEC TABLE */
-.stbl{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:6px}
-.stbl th{background:var(--bl);padding:9px 13px;text-align:left;font-family:'Cabinet Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lt);border-bottom:1px solid var(--sd)}
+.stbl{width:100%;border-collapse:collapse;font-size:.8rem}
+.stbl th{background:var(--bl);padding:9px 13px;text-align:left;font-family:"Cabinet Grotesk",sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lt);border-bottom:1px solid var(--sd)}
 .stbl td{padding:9px 13px;border-bottom:1px solid var(--sd);color:var(--cf);vertical-align:middle;line-height:1.5}
 .stbl tr:last-child td{border-bottom:none}
 .sp-wide{background:#FFF9E6;color:#9A6010;border:1px solid #F0D080}
 .sp-port{background:var(--bl);color:var(--mo);border:1px solid var(--sd)}
 .sp-sq{background:var(--mtl);color:var(--mtd);border:1px solid var(--mt)}
+
 /* LINKS */
 .lg{margin-bottom:22px}
-.lg-title{font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--lt);margin-bottom:9px;display:flex;align-items:center;gap:8px}
-.lg-title::after{content:'';flex:1;height:1px;background:var(--sd)}
-.lrow{display:grid;grid-template-columns:190px 1fr auto;gap:9px;align-items:center;background:#fff;border:1.5px solid var(--sd);border-radius:11px;padding:11px 14px;margin-bottom:7px;transition:border-color .2s}
+.lg-title{font-family:"Cabinet Grotesk",sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--lt);margin-bottom:9px;display:flex;align-items:center;gap:8px}
+.lg-title::after{content:"";flex:1;height:1px;background:var(--sd)}
+.lrow{display:grid;grid-template-columns:190px 1fr auto;gap:9px;align-items:center;background:#fff;border:1.5px solid var(--sd);border-radius:11px;padding:11px 14px;margin-bottom:7px}
 .lrow:hover{border-color:var(--ro)}
-.lname span{font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:700;color:var(--cf);display:block}
+.lname span{font-family:"Cabinet Grotesk",sans-serif;font-size:.78rem;font-weight:700;color:var(--cf);display:block}
 .lname small{font-size:.65rem;color:var(--lt);display:block;margin-top:1px}
-.linput{padding:8px 12px;border:1.5px solid var(--sd);border-radius:9px;font-family:'Instrument Sans',sans-serif;font-size:.8rem;color:var(--cf);outline:none;transition:border-color .2s;background:#fff;width:100%}
+.linput{padding:8px 12px;border:1.5px solid var(--sd);border-radius:9px;font-family:"Instrument Sans",sans-serif;font-size:.8rem;color:var(--cf);outline:none;transition:border-color .2s;background:#fff;width:100%}
 .linput:focus{border-color:var(--pkd)}
-.ltest{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;background:var(--bl);color:var(--lt);border:1.5px solid var(--sd);border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.66rem;font-weight:700;text-decoration:none;transition:all .2s;white-space:nowrap}
+.ltest{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;background:var(--bl);color:var(--lt);border:1.5px solid var(--sd);border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.66rem;font-weight:700;text-decoration:none;white-space:nowrap}
 .ltest:hover{border-color:var(--pk);color:var(--pkd);background:var(--pkl)}
-/* STATS EDIT */
+
+/* STATS GRID */
 .sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .scard{background:var(--bl);border:1.5px solid var(--sd);border-radius:11px;padding:13px}
-.scard-lbl{font-family:'Cabinet Grotesk',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lt);margin-bottom:9px}
+.scard-lbl{font-family:"Cabinet Grotesk",sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lt);margin-bottom:9px}
+
 /* FIREBASE */
 .fbcard{background:var(--cf);border-radius:16px;padding:26px;margin-bottom:18px;position:relative;overflow:hidden}
-.fbcard::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,176,.13) 0%,transparent 70%)}
-.fbcard h3{font-family:'Fraunces',serif;font-size:1.1rem;color:#fff;margin-bottom:5px}
+.fbcard::before{content:"";position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,176,.13) 0%,transparent 70%)}
+.fbcard h3{font-family:"Fraunces",serif;font-size:1.1rem;color:#fff;margin-bottom:5px}
 .fbcard p{font-size:.78rem;color:rgba(255,255,255,.44);line-height:1.7;margin-bottom:16px}
 .fbfields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fbf label{display:block;font-family:'Cabinet Grotesk',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:5px}
-.fbf input{width:100%;padding:9px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:9px;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:.8rem;outline:none;transition:border-color .2s}
-.fbf input:focus{border-color:rgba(232,160,176,.42)}
+.fbf label{display:block;font-family:"Cabinet Grotesk",sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:5px}
+.fbf input{width:100%;padding:9px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:9px;color:#fff;font-family:"Instrument Sans",sans-serif;font-size:.8rem;outline:none}
 .fbf input::placeholder{color:rgba(255,255,255,.16)}
-.fb-btn{margin-top:13px;padding:9px 20px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;transition:all .2s}
-.fb-btn:hover{opacity:.88;transform:translateY(-1px)}
-.fb-ok{display:none;align-items:center;gap:5px;background:var(--mtl);color:var(--mtd);padding:5px 13px;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:700;border:1px solid var(--mt);margin-top:10px;width:fit-content}
+.fb-btn{margin-top:13px;padding:9px 20px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.76rem;font-weight:700;cursor:pointer}
+.fb-ok{display:none;align-items:center;gap:5px;background:var(--mtl);color:var(--mtd);padding:5px 13px;border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.68rem;font-weight:700;border:1px solid var(--mt);margin-top:10px;width:fit-content}
 .fb-dot{width:6px;height:6px;border-radius:50%;background:var(--mtd)}
+.fb-err{display:none;align-items:center;gap:5px;background:var(--pkl);color:var(--pkd);padding:5px 13px;border-radius:100px;font-family:"Cabinet Grotesk",sans-serif;font-size:.68rem;font-weight:700;border:1px solid var(--ro);margin-top:10px;width:fit-content}
+
 /* TOAST */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--cf);color:#fff;padding:12px 18px;border-radius:11px;font-family:'Cabinet Grotesk',sans-serif;font-size:.78rem;font-weight:700;z-index:99999;transform:translateY(70px);opacity:0;transition:all .32s;box-shadow:0 8px 28px rgba(0,0,0,.22);display:flex;align-items:center;gap:8px;max-width:300px}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--cf);color:#fff;padding:12px 18px;border-radius:11px;font-family:"Cabinet Grotesk",sans-serif;font-size:.78rem;font-weight:700;z-index:99999;transform:translateY(70px);opacity:0;transition:all .32s;box-shadow:0 8px 28px rgba(0,0,0,.22);display:flex;align-items:center;gap:8px;max-width:320px}
 .toast.show{transform:translateY(0);opacity:1}
-.toast.ok::before{content:'✦';color:var(--mtd)}
-.toast.err::before{content:'✗';color:var(--pk)}
+.toast.ok::before{content:"✦";color:var(--mtd)}
+.toast.err::before{content:"✗";color:var(--pk)}
+
+@media(max-width:768px){
+  :root{--sb:0px}
+  .shell{grid-template-columns:1fr}
+  .sb{display:none}
+  body{overflow:auto}
+  .main{height:auto}
+}
 </style>
 </head>
 <body>
@@ -183,11 +203,11 @@ body{background:var(--bl);overflow:hidden}
   <div class="lb lb1"></div><div class="lb lb2"></div>
   <div class="lbox">
     <div class="llogo">Brand<em>Rehab</em></div>
-    <p class="lsub">Admin Panel · Content Manager</p>
+    <p class="lsub">Admin Panel</p>
     <label class="flbl">Password</label>
-    <input class="linp" type="password" id="lpw" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')login()">
-    <div class="lerr" id="lerr">Incorrect password — try again.</div>
-    <button class="lbtn" onclick="login()">Sign In →</button>
+    <input class="linp" type="password" id="lpw" placeholder="Enter admin password">
+    <div class="lerr" id="lerr">Incorrect password</div>
+    <button class="lbtn" id="lbtn">Sign In</button>
   </div>
 </div>
 
@@ -195,38 +215,43 @@ body{background:var(--bl);overflow:hidden}
 <div class="shell">
 <aside class="sb">
   <div class="sb-top">
-    <a class="sb-logo" href="#">Brand<em>Rehab</em></a>
+    <span class="sb-logo">Brand<em>Rehab</em></span>
     <div class="sb-tag">Admin Panel</div>
   </div>
   <nav class="sb-nav">
     <span class="sb-sec">Content</span>
-    <button class="ni on" onclick="go('hero',this)"><span class="ni-ico">✨</span>Hero</button>
-    <button class="ni" onclick="go('pricing',this)"><span class="ni-ico">💳</span>Pricing</button>
-    <button class="ni" onclick="go('testimonials',this)"><span class="ni-ico">⭐</span>Testimonials</button>
-    <button class="ni" onclick="go('team',this)"><span class="ni-ico">👥</span>Team</button>
-    <button class="ni" onclick="go('faq',this)"><span class="ni-ico">💬</span>FAQ</button>
-    <span class="sb-sec">Media & Links</span>
-    <button class="ni" onclick="go('images',this)"><span class="ni-ico">🖼️</span>Images</button>
-    <button class="ni" onclick="go('links',this)"><span class="ni-ico">🔗</span>Links & Buttons</button>
+    <button class="ni on" id="nav-hero"><span class="ni-ico">✨</span>Hero</button>
+    <button class="ni" id="nav-pain"><span class="ni-ico">💡</span>Pain Section</button>
+    <button class="ni" id="nav-checklist"><span class="ni-ico">✅</span>Checklist</button>
+    <button class="ni" id="nav-process"><span class="ni-ico">⚙️</span>Process Steps</button>
+    <button class="ni" id="nav-pricing"><span class="ni-ico">💳</span>Pricing</button>
+    <button class="ni" id="nav-testimonials"><span class="ni-ico">⭐</span>Testimonials</button>
+    <button class="ni" id="nav-team"><span class="ni-ico">👥</span>Team</button>
+    <button class="ni" id="nav-faq"><span class="ni-ico">💬</span>FAQ</button>
+    <button class="ni" id="nav-footer"><span class="ni-ico">📄</span>Footer</button>
+    <span class="sb-sec">Media</span>
+    <button class="ni" id="nav-images"><span class="ni-ico">🖼️</span>Images & Overlays</button>
+    <span class="sb-sec">Links</span>
+    <button class="ni" id="nav-links"><span class="ni-ico">🔗</span>Links & Buttons</button>
     <span class="sb-sec">Settings</span>
-    <button class="ni" onclick="go('firebase',this)"><span class="ni-ico">⚙️</span>Firebase Setup</button>
-    <button class="ni" onclick="go('password',this)"><span class="ni-ico">🔒</span>Change Password</button>
+    <button class="ni" id="nav-firebase"><span class="ni-ico">⚙️</span>Firebase Setup</button>
+    <button class="ni" id="nav-password"><span class="ni-ico">🔒</span>Change Password</button>
   </nav>
   <div class="sb-foot">
-    <button class="pub-btn" id="pubBtn" onclick="saveAll()">Save & Publish ✦</button>
+    <button class="pub-btn" id="pubBtn">Save &amp; Publish ✦</button>
     <a href="index.html" target="_blank" class="sb-view">↗ View Live Site</a>
-    <button class="sb-out" onclick="logout()">Log out</button>
+    <button class="sb-out" id="logoutBtn">Log out</button>
   </div>
 </aside>
 
 <main class="main">
   <div class="mhdr">
-    <div class="mhdr-txt"><h1 id="ptitle">Hero Section</h1><p id="pdesc">Edit headline, subtext, stats and CTA</p></div>
+    <div class="mhdr-txt"><h1 id="ptitle">Hero</h1><p id="pdesc">Edit headline, subtext and stats</p></div>
     <div class="status saved" id="statusBadge"><div class="sdot"></div><span id="statusTxt">All saved</span></div>
   </div>
   <div class="mbody">
     <div class="pvbar">
-      <p><strong>Live publishing:</strong> Hit Save & Publish and your site updates instantly — no code, no deploys needed.</p>
+      <p><strong>Save &amp; Publish</strong> updates desktop and mobile instantly.</p>
       <a href="index.html" target="_blank">↗ Open Live Site</a>
     </div>
 
@@ -235,31 +260,117 @@ body{background:var(--bl);overflow:hidden}
       <div class="card">
         <div class="chdr" onclick="tog(this)"><div class="cico pk">✨</div><div><div class="cttl">Headline</div><div class="csub">3 lines at the top of the page</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
-          <div class="row r1"><div class="field"><label>Line 1 — plain text</label><input type="text" id="h_line1" value="Your brand."></div></div>
-          <div class="row r1"><div class="field"><label>Line 2 — bold</label><input type="text" id="h_line2" value="Your content."></div></div>
-          <div class="row r1"><div class="field"><label>Line 3 — italic pink</label><input type="text" id="h_line3" value="Your audience."></div></div>
+          <div class="row r1"><div class="field"><label>Tag pill text (above headline)</label><input type="text" id="h_tag"></div></div>
+          <div class="row r1"><div class="field"><label>Line 1 — plain</label><input type="text" id="h_line1"></div></div>
+          <div class="row r1"><div class="field"><label>Line 2 — bold</label><input type="text" id="h_line2"></div></div>
+          <div class="row r1"><div class="field"><label>Line 3 — italic pink</label><input type="text" id="h_line3"></div></div>
         </div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico pk">📝</div><div><div class="cttl">Subtext & CTA</div><div class="csub">Supporting copy and call-to-action button</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">📝</div><div><div class="cttl">Subtext &amp; CTA Button</div><div class="csub">Supporting copy and primary button</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
-          <div class="row r1"><div class="field"><label>Tag line above headline</label><input type="text" id="h_tag" value="Social Content Studio · Built for Business Owners"></div></div>
-          <div class="row r1"><div class="field"><label>Main paragraph</label><textarea id="h_sub">You already know you need to show up consistently. You just don't have the time — or the system — to make it happen every single week.</textarea></div></div>
+          <div class="row r1"><div class="field"><label>Main paragraph</label><textarea id="h_sub"></textarea></div></div>
           <div class="row r2">
-            <div class="field"><label>Italic tagline (matcha)</label><input type="text" id="h_sub2" value="That ends here. ✨"></div>
-            <div class="field"><label>CTA button text</label><input type="text" id="h_cta" value="Book Your Free Strategy Call ↗"></div>
+            <div class="field"><label>Italic tagline (matcha)</label><input type="text" id="h_sub2"></div>
+            <div class="field"><label>CTA button text</label><input type="text" id="h_cta"></div>
           </div>
+          <div class="row r1"><div class="field"><label>"See Plans" ghost button text</label><input type="text" id="h_ghost"></div></div>
         </div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico mt">📊</div><div><div class="cttl">Stats Bar</div><div class="csub">4 numbers at the bottom of the hero</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">📊</div><div><div class="cttl">Stats Bar</div><div class="csub">4 numbers along the bottom of the hero</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
           <div class="sgrid2">
-            <div class="scard"><div class="scard-lbl">Stat 1</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s1n" value="100+"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s1l" value="Business owners served"></div></div></div>
-            <div class="scard"><div class="scard-lbl">Stat 2</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s2n" value="2.3M"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s2l" value="Top client followers"></div></div></div>
-            <div class="scard"><div class="scard-lbl">Stat 3</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s3n" value="1 Wk"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s3l" value="Average launch time"></div></div></div>
-            <div class="scard"><div class="scard-lbl">Stat 4</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s4n" value="+100%"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s4l" value="Avg. monthly growth"></div></div></div>
+            <div class="scard"><div class="scard-lbl">Stat 1</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s1n"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s1l"></div></div></div>
+            <div class="scard"><div class="scard-lbl">Stat 2</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s2n"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s2l"></div></div></div>
+            <div class="scard"><div class="scard-lbl">Stat 3</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s3n"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s3l"></div></div></div>
+            <div class="scard"><div class="scard-lbl">Stat 4</div><div class="row r1" style="margin-bottom:9px"><div class="field"><label>Number</label><input type="text" id="s4n"></div></div><div class="row r1"><div class="field"><label>Label</label><input type="text" id="s4l"></div></div></div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAIN -->
+    <div class="panel" id="panel-pain">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">💡</div><div><div class="cttl">Left Column</div><div class="csub">Headline and subtext</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Section label</label><input type="text" id="pain_label"></div></div>
+          <div class="row r1"><div class="field"><label>Headline (use | for line breaks)</label><textarea id="pain_h"></textarea></div></div>
+          <div class="row r1"><div class="field"><label>Subtext paragraph</label><textarea id="pain_sub"></textarea></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">💬</div><div><div class="cttl">Quote Cards</div><div class="csub">3 client pain point quotes</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Quote 1</label><textarea id="pain_q1"></textarea></div></div>
+          <div class="row r1"><div class="field"><label>Quote 2</label><textarea id="pain_q2"></textarea></div></div>
+          <div class="row r1"><div class="field"><label>Quote 3</label><textarea id="pain_q3"></textarea></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHECKLIST -->
+    <div class="panel" id="panel-checklist">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">✅</div><div><div class="cttl">Section Header</div><div class="csub">Title and intro</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Eyebrow label</label><input type="text" id="chk_label"></div></div>
+          <div class="row r1"><div class="field"><label>Headline</label><input type="text" id="chk_h"></div></div>
+          <div class="row r1"><div class="field"><label>Subtext</label><textarea id="chk_sub"></textarea></div></div>
+          <div class="row r1"><div class="field"><label>Watermark word (background)</label><input type="text" id="chk_wm"></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">☑️</div><div><div class="cttl">Checklist Items</div><div class="csub">6 checkboxes</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Item 1</label><input type="text" id="chk_i1"></div></div>
+          <div class="row r1"><div class="field"><label>Item 2</label><input type="text" id="chk_i2"></div></div>
+          <div class="row r1"><div class="field"><label>Item 3</label><input type="text" id="chk_i3"></div></div>
+          <div class="row r1"><div class="field"><label>Item 4</label><input type="text" id="chk_i4"></div></div>
+          <div class="row r1"><div class="field"><label>Item 5</label><input type="text" id="chk_i5"></div></div>
+          <div class="row r1"><div class="field"><label>Item 6</label><input type="text" id="chk_i6"></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">📣</div><div><div class="cttl">CTA Block</div><div class="csub">Bottom box text and button</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Main text (use | for line breaks)</label><textarea id="chk_cta_txt"></textarea></div></div>
+          <div class="row r1"><div class="field"><label>Subtext below</label><input type="text" id="chk_cta_sub"></div></div>
+          <div class="row r1"><div class="field"><label>Button text</label><input type="text" id="chk_cta_btn"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="panel" id="panel-process">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">⚙️</div><div><div class="cttl">Section Header</div><div class="csub">Title above the 3 steps</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Eyebrow label</label><input type="text" id="proc_label"></div></div>
+          <div class="row r2"><div class="field"><label>Headline line 1</label><input type="text" id="proc_h1"></div><div class="field"><label>Headline line 2 (italic)</label><input type="text" id="proc_h2"></div></div>
+          <div class="row r1"><div class="field"><label>Subtext</label><input type="text" id="proc_sub"></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">1️⃣</div><div><div class="cttl">Step 1</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Title</label><input type="text" id="proc_s1t"></div></div>
+          <div class="row r1"><div class="field"><label>Description</label><textarea id="proc_s1d"></textarea></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">2️⃣</div><div><div class="cttl">Step 2</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Title</label><input type="text" id="proc_s2t"></div></div>
+          <div class="row r1"><div class="field"><label>Description</label><textarea id="proc_s2d"></textarea></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">3️⃣</div><div><div class="cttl">Step 3</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Title</label><input type="text" id="proc_s3t"></div></div>
+          <div class="row r1"><div class="field"><label>Description</label><textarea id="proc_s3d"></textarea></div></div>
         </div>
       </div>
     </div>
@@ -267,22 +378,22 @@ body{background:var(--bl);overflow:hidden}
     <!-- PRICING -->
     <div class="panel" id="panel-pricing">
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico pk">📌</div><div><div class="cttl">Section Header</div><div class="csub">Title and intro text above pricing cards</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">📌</div><div><div class="cttl">Section Header</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
-          <div class="row r2"><div class="field"><label>Headline line 1</label><input type="text" id="pr_h1" value="Find your phase."></div><div class="field"><label>Headline line 2 (italic pink)</label><input type="text" id="pr_h2" value="We'll build the rest."></div></div>
-          <div class="row r1"><div class="field"><label>Subtext</label><textarea id="pr_sub">No long-term contracts. No retainers. Just the plan that fits where you are right now.</textarea></div></div>
+          <div class="row r2"><div class="field"><label>Headline line 1</label><input type="text" id="pr_h1"></div><div class="field"><label>Headline line 2 (italic pink)</label><input type="text" id="pr_h2"></div></div>
+          <div class="row r1"><div class="field"><label>Subtext</label><textarea id="pr_sub"></textarea></div></div>
         </div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico mt">📦</div><div><div class="cttl">Pricing Plans</div><div class="csub">Name, price, description and features for each plan</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">📦</div><div><div class="cttl">Pricing Plans</div><div class="csub">Name, price, features for each plan</div></div><span class="cchev">▼</span></div>
         <div class="cbody open" id="plans-editor"></div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico sd">💎</div><div><div class="cttl">High-Touch Exclusive Plan</div><div class="csub">Full-width bottom row plan</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">💎</div><div><div class="cttl">High-Touch Exclusive Plan</div><div class="csub">Full-width bottom row</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
-          <div class="row r2"><div class="field"><label>Title line 1</label><input type="text" id="ht_t1" value="You're ready to own your niche."></div><div class="field"><label>Title line 2 (italic matcha)</label><input type="text" id="ht_t2" value="We'll build the machine."></div></div>
-          <div class="row r1"><div class="field"><label>Description</label><textarea id="ht_desc">A dedicated content team, custom growth strategy, and full marketing management — all under one roof. 40 pieces of content, ad management, A/B testing, unlimited copywriting, weekly analytics reviews, and a dedicated growth specialist who lives and breathes your brand.</textarea></div></div>
-          <div class="row r2"><div class="field"><label>Price</label><input type="text" id="ht_price" value="$2,995"></div><div class="field"><label>Period</label><input type="text" id="ht_period" value="/month"></div></div>
+          <div class="row r2"><div class="field"><label>Title line 1</label><input type="text" id="ht_t1"></div><div class="field"><label>Title line 2 (italic)</label><input type="text" id="ht_t2"></div></div>
+          <div class="row r1"><div class="field"><label>Description</label><textarea id="ht_desc"></textarea></div></div>
+          <div class="row r2"><div class="field"><label>Price</label><input type="text" id="ht_price"></div><div class="field"><label>Period</label><input type="text" id="ht_period"></div></div>
         </div>
       </div>
     </div>
@@ -290,12 +401,12 @@ body{background:var(--bl);overflow:hidden}
     <!-- TESTIMONIALS -->
     <div class="panel" id="panel-testimonials">
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico pk">💬</div><div><div class="cttl">Featured Pull Quote</div><div class="csub">Large centred quote at top of section</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">💬</div><div><div class="cttl">Featured Pull Quote</div><div class="csub">Large centred quote</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
-          <div class="row r1"><div class="field"><label>Quote text</label><textarea id="pq_txt" style="min-height:96px">"I used to spend half my Sunday dreading Monday's posts. Now my entire month is planned before the week starts. I've got my weekends back — and my engagement has never been higher."</textarea></div></div>
+          <div class="row r1"><div class="field"><label>Quote text</label><textarea id="pq_txt" style="min-height:96px"></textarea></div></div>
           <div class="row r2">
-            <div class="field"><label>Attribution / name</label><input type="text" id="pq_cite" value="— Shiraz Gidwani, CEO & National Strategist · 2.3M followers"></div>
-            <div class="field"><label>Bold-pink highlight phrase</label><input type="text" id="pq_hi" value="I've got my weekends back"><span class="hint">Exact text inside the quote that shows bold pink</span></div>
+            <div class="field"><label>Attribution</label><input type="text" id="pq_cite"></div>
+            <div class="field"><label>Bold-pink highlight phrase</label><input type="text" id="pq_hi"><span class="hint">Exact phrase inside the quote that turns bold pink</span></div>
           </div>
         </div>
       </div>
@@ -308,7 +419,7 @@ body{background:var(--bl);overflow:hidden}
     <!-- TEAM -->
     <div class="panel" id="panel-team">
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico mt">👥</div><div><div class="cttl">Team Members</div><div class="csub">Names, roles and bios — photos managed in the Images tab</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">👥</div><div><div class="cttl">Team Members</div><div class="csub">Names, roles, bios — photos in Images tab</div></div><span class="cchev">▼</span></div>
         <div class="cbody open" id="team-editor"></div>
       </div>
     </div>
@@ -316,77 +427,96 @@ body{background:var(--bl);overflow:hidden}
     <!-- FAQ -->
     <div class="panel" id="panel-faq">
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico pk">💬</div><div><div class="cttl">FAQ Items</div><div class="csub">Add, edit or remove questions and answers</div></div><span class="cchev">▼</span></div>
-        <div class="cbody open"><div id="faq-editor"></div><button class="radd" onclick="addFaq()">+ Add Question</button></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">💬</div><div><div class="cttl">FAQ Items</div><div class="csub">Add, edit or remove questions</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open"><div id="faq-editor"></div><button class="radd" id="addFaqBtn">+ Add Question</button></div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="panel" id="panel-footer">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">📄</div><div><div class="cttl">Footer Text</div><div class="csub">Brand description and copyright</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Brand description</label><textarea id="ft_desc"></textarea></div></div>
+          <div class="row r1"><div class="field"><label>Copyright line</label><input type="text" id="ft_copy"></div></div>
+        </div>
       </div>
     </div>
 
     <!-- IMAGES -->
     <div class="panel" id="panel-images">
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico pk">📐</div><div><div class="cttl">Image Size Guide</div><div class="csub">Exact pixel dimensions for every image on the site</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">📐</div><div><div class="cttl">Image Size Guide</div><div class="csub">Exact dimensions for every image</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
-          <p style="font-size:.81rem;color:var(--lt);margin-bottom:13px;line-height:1.7">All images are <strong style="color:var(--cf)">auto-scaled and cropped</strong> when you upload. Design to these sizes for the sharpest result.</p>
           <table class="stbl">
-            <thead><tr><th>Image</th><th>Ideal Size</th><th>Shape</th><th>Notes</th></tr></thead>
+            <thead><tr><th>Image</th><th>Size</th><th>Shape</th><th>Notes</th></tr></thead>
             <tbody>
-              <tr><td><strong>Hero Background</strong></td><td>1800 × 900 px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Full screen. Keep subject centred.</td></tr>
-              <tr><td><strong>Image Break 1</strong></td><td>1800 × 600 px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Cinematic strip. Centre your subject.</td></tr>
-              <tr><td><strong>Image Break 2</strong></td><td>1800 × 600 px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Cinematic strip. Centre your subject.</td></tr>
-              <tr><td><strong>Team Photos ×3</strong></td><td>600 × 800 px</td><td><span class="spec-pill sp-port">Portrait</span></td><td>3:4 ratio. Face centred, space above head.</td></tr>
-              <tr><td><strong>IG Posts ×5</strong></td><td>400 × 500 px</td><td><span class="spec-pill sp-sq">Square+</span></td><td>Social proof mock-ups. Cropped 9:16 in phone frame.</td></tr>
+              <tr><td><strong>Hero Background</strong></td><td>1800×900px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Full screen. Keep subject centred.</td></tr>
+              <tr><td><strong>Image Break 1 &amp; 2</strong></td><td>1800×600px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Cinematic strip. Centre your subject.</td></tr>
+              <tr><td><strong>Team Photos ×3</strong></td><td>600×800px</td><td><span class="spec-pill sp-port">Portrait</span></td><td>Face centred, space above head.</td></tr>
+              <tr><td><strong>IG Posts ×5</strong></td><td>400×500px</td><td><span class="spec-pill sp-sq">Square+</span></td><td>Social proof mock-ups.</td></tr>
             </tbody>
           </table>
         </div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico pk">🌅</div><div><div class="cttl">Hero Background</div><div class="csub">1800 × 900 px — full-screen behind the headline</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">🌅</div><div><div class="cttl">Hero Background</div><div class="csub">1800×900px + overlay text on top</div></div><span class="cchev">▼</span></div>
         <div class="cbody open"><div id="iz-hero_bg"></div></div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico sd">🎞️</div><div><div class="cttl">Image Break 1</div><div class="csub">1800 × 600 px — "Stop guessing. Start owning."</div></div><span class="cchev">▼</span></div>
-        <div class="cbody open"><div id="iz-break1"></div></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">🎞️</div><div><div class="cttl">Image Break 1</div><div class="csub">1800×600px + editable overlay text</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div id="iz-break1"></div>
+          <div class="ov-fields">
+            <div class="ov-lbl">📝 Overlay Text on this image</div>
+            <div class="row r1"><div class="field"><label>Headline (use | for line break + italic)</label><input type="text" id="ib1_h"></div></div>
+            <div class="row r1"><div class="field"><label>Subtext</label><input type="text" id="ib1_sub"></div></div>
+          </div>
+        </div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico sd">🎞️</div><div><div class="cttl">Image Break 2</div><div class="csub">1800 × 600 px — "A studio that moves at your pace."</div></div><span class="cchev">▼</span></div>
-        <div class="cbody open"><div id="iz-break2"></div></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">🎞️</div><div><div class="cttl">Image Break 2</div><div class="csub">1800×600px + editable overlay text</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div id="iz-break2"></div>
+          <div class="ov-fields">
+            <div class="ov-lbl">📝 Overlay Text on this image</div>
+            <div class="row r1"><div class="field"><label>Headline (use | for line break + italic)</label><input type="text" id="ib2_h"></div></div>
+          </div>
+        </div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico mt">👩</div><div><div class="cttl">Team Photos</div><div class="csub">600 × 800 px portrait for each team member</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">👩</div><div><div class="cttl">Team Photos</div><div class="csub">600×800px portrait for each member</div></div><span class="cchev">▼</span></div>
         <div class="cbody open"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" id="team-photos-grid"></div></div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico mt">📱</div><div><div class="cttl">Instagram Post Images</div><div class="csub">400 × 500 px — 5 posts in the social proof section</div></div><span class="cchev">▼</span></div>
-        <div class="cbody open"><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:11px" id="ig-photos-grid"></div></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">📱</div><div><div class="cttl">Instagram Post Images</div><div class="csub">400×500px — 5 posts with editable captions</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open"><div id="ig-photos-grid"></div></div>
       </div>
     </div>
 
     <!-- LINKS -->
     <div class="panel" id="panel-links">
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico pk">🔗</div><div><div class="cttl">All Links & Buttons</div><div class="csub">Update every link destination on your site</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">🔗</div><div><div class="cttl">All Links &amp; Buttons</div><div class="csub">Update every URL on the site</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
-          <div class="lg">
-            <div class="lg-title">📅 Booking / CTA Buttons</div>
-            <div class="lrow"><div class="lname"><span>Hero "Book Call" Button</span><small>Primary CTA — hero section</small></div><input class="linput" id="lnk_hero_cta" type="url" value="https://calendly.com"><a class="ltest" id="lt_hero_cta" href="https://calendly.com" target="_blank">Test ↗</a></div>
-            <div class="lrow"><div class="lname"><span>Nav "Book Free Call"</span><small>Top navigation booking link</small></div><input class="linput" id="lnk_nav_cta" type="url" value="https://calendly.com"><a class="ltest" id="lt_nav_cta" href="https://calendly.com" target="_blank">Test ↗</a></div>
-            <div class="lrow"><div class="lname"><span>"Let's Build Yours →"</span><small>Checklist section CTA</small></div><input class="linput" id="lnk_checklist" type="url" value="https://calendly.com"><a class="ltest" id="lt_checklist" href="https://calendly.com" target="_blank">Test ↗</a></div>
-            <div class="lrow"><div class="lname"><span>"Start Growing →"</span><small>Social proof section button</small></div><input class="linput" id="lnk_sproof" type="url" value="https://calendly.com"><a class="ltest" id="lt_sproof" href="https://calendly.com" target="_blank">Test ↗</a></div>
-            <div class="lrow"><div class="lname"><span>"Book Free Discovery Call"</span><small>Bottom CTA banner button</small></div><input class="linput" id="lnk_ctabanner" type="url" value="https://calendly.com"><a class="ltest" id="lt_ctabanner" href="https://calendly.com" target="_blank">Test ↗</a></div>
+          <div class="lg"><div class="lg-title">📅 Booking / CTA</div>
+            <div class="lrow"><div class="lname"><span>Hero CTA Button</span><small>Primary button — hero section</small></div><input class="linput" id="lnk_hero_cta" type="url"><a class="ltest" id="lt_hero_cta" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Nav "Book Free Call"</span><small>Top right nav button</small></div><input class="linput" id="lnk_nav_cta" type="url"><a class="ltest" id="lt_nav_cta" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Checklist CTA</span><small>"Let's Build Yours" button</small></div><input class="linput" id="lnk_checklist" type="url"><a class="ltest" id="lt_checklist" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Social Proof CTA</span><small>"Start Growing" button</small></div><input class="linput" id="lnk_sproof" type="url"><a class="ltest" id="lt_sproof" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Bottom CTA Banner</span><small>"Book Free Discovery Call"</small></div><input class="linput" id="lnk_ctabanner" type="url"><a class="ltest" id="lt_ctabanner" href="#" target="_blank">Test ↗</a></div>
           </div>
-          <div class="lg">
-            <div class="lg-title">📧 Contact & Social</div>
-            <div class="lrow"><div class="lname"><span>Email Address</span><small>Footer contact link</small></div><input class="linput" id="lnk_email" type="email" value="hello@brandrehab.co"><a class="ltest" id="lt_email" href="/cdn-cgi/l/email-protection#7e161b1212113e1c0c1f101a0c1b161f1c501d11" target="_blank">Test ↗</a></div>
-            <div class="lrow"><div class="lname"><span>Instagram</span><small>Footer @brandrehab</small></div><input class="linput" id="lnk_ig" type="url" value="https://instagram.com/brandrehab"><a class="ltest" id="lt_ig" href="https://instagram.com/brandrehab" target="_blank">Test ↗</a></div>
-            <div class="lrow"><div class="lname"><span>TikTok</span><small>Footer TikTok link</small></div><input class="linput" id="lnk_tt" type="url" value="https://tiktok.com/@brandrehab"><a class="ltest" id="lt_tt" href="https://tiktok.com/@brandrehab" target="_blank">Test ↗</a></div>
-            <div class="lrow"><div class="lname"><span>LinkedIn</span><small>Footer LinkedIn link</small></div><input class="linput" id="lnk_li" type="url" value="https://linkedin.com/company/brandrehab"><a class="ltest" id="lt_li" href="https://linkedin.com/company/brandrehab" target="_blank">Test ↗</a></div>
+          <div class="lg"><div class="lg-title">📧 Contact &amp; Social</div>
+            <div class="lrow"><div class="lname"><span>Email Address</span><small>Footer contact</small></div><input class="linput" id="lnk_email" type="email"><a class="ltest" id="lt_email" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Instagram</span><small>Footer link</small></div><input class="linput" id="lnk_ig" type="url"><a class="ltest" id="lt_ig" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>TikTok</span><small>Footer link</small></div><input class="linput" id="lnk_tt" type="url"><a class="ltest" id="lt_tt" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>LinkedIn</span><small>Footer link</small></div><input class="linput" id="lnk_li" type="url"><a class="ltest" id="lt_li" href="#" target="_blank">Test ↗</a></div>
           </div>
-          <div class="lg">
-            <div class="lg-title">🧭 Navigation Menu</div>
-            <div class="lrow"><div class="lname"><span>Process</span><small>Nav anchor link</small></div><input class="linput" id="lnk_nav_process" value="#process"><a class="ltest" href="#process">Test ↗</a></div>
-            <div class="lrow"><div class="lname"><span>Results</span><small>Nav anchor link</small></div><input class="linput" id="lnk_nav_results" value="#results"><a class="ltest" href="#results">Test ↗</a></div>
-            <div class="lrow"><div class="lname"><span>Pricing</span><small>Nav anchor link</small></div><input class="linput" id="lnk_nav_pricing" value="#pricing"><a class="ltest" href="#pricing">Test ↗</a></div>
-            <div class="lrow"><div class="lname"><span>FAQ</span><small>Nav anchor link</small></div><input class="linput" id="lnk_nav_faq" value="#faq"><a class="ltest" href="#faq">Test ↗</a></div>
+          <div class="lg"><div class="lg-title">🧭 Navigation</div>
+            <div class="lrow"><div class="lname"><span>Process</span><small>Nav anchor</small></div><input class="linput" id="lnk_nav_process"><a class="ltest" href="#">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Results</span><small>Nav anchor</small></div><input class="linput" id="lnk_nav_results"><a class="ltest" href="#">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Pricing</span><small>Nav anchor</small></div><input class="linput" id="lnk_nav_pricing"><a class="ltest" href="#">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>FAQ</span><small>Nav anchor</small></div><input class="linput" id="lnk_nav_faq"><a class="ltest" href="#">Test ↗</a></div>
           </div>
         </div>
       </div>
@@ -396,26 +526,27 @@ body{background:var(--bl);overflow:hidden}
     <div class="panel" id="panel-firebase">
       <div class="fbcard">
         <h3>Firebase Connection ✦</h3>
-        <p>Connect your Firebase Realtime Database so edits save to the cloud and update your live site from any device. One-time setup — about 5 minutes.</p>
+        <p>Connect your Realtime Database so every Save &amp; Publish syncs to the cloud — updating desktop and mobile instantly.</p>
         <div class="fbfields">
           <div class="fbf"><label>API Key</label><input type="text" id="fb_key" placeholder="AIzaSy..."></div>
           <div class="fbf"><label>Project ID</label><input type="text" id="fb_pid" placeholder="brand-rehab-abc12"></div>
-          <div class="fbf" style="grid-column:span 2"><label>Database URL</label><input type="text" id="fb_url" placeholder="https://brand-rehab-abc12-default-rtdb.firebaseio.com"></div>
+          <div class="fbf" style="grid-column:span 2"><label>Database URL (must end in .firebaseio.com)</label><input type="text" id="fb_url" placeholder="https://brand-rehab-default-rtdb.firebaseio.com"></div>
         </div>
-        <button class="fb-btn" onclick="saveFb()">Save & Connect →</button>
+        <button class="fb-btn" id="fbSaveBtn">Save &amp; Connect</button>
         <div class="fb-ok" id="fbOk"><div class="fb-dot"></div>Connected</div>
+        <div class="fb-err" id="fbErr">URL must be https://your-project-default-rtdb.firebaseio.com</div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico sd">📋</div><div><div class="cttl">Setup Guide</div><div class="csub">How to create your free Firebase project</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">📋</div><div><div class="cttl">Setup Guide</div></div><span class="cchev">▼</span></div>
         <div class="cbody">
-          <ol style="padding-left:18px;color:var(--lt);font-size:.83rem;line-height:2.1">
-            <li>Go to <strong style="color:var(--cf)">console.firebase.google.com</strong> → sign in with Google</li>
-            <li>Click <strong style="color:var(--cf)">Add project</strong> → name it <em>brand-rehab</em></li>
-            <li><strong style="color:var(--cf)">Build → Realtime Database → Create database → Start in test mode</strong></li>
-            <li>Go to <strong style="color:var(--cf)">Project Settings</strong> (gear icon) → scroll to "Your apps" → click <strong style="color:var(--cf)">&lt;/&gt;</strong></li>
-            <li>Register your app → copy <strong style="color:var(--cf)">apiKey</strong> and <strong style="color:var(--cf)">projectId</strong></li>
-            <li>Your Database URL is in the Realtime Database panel — format: <em>https://yourproject-default-rtdb.firebaseio.com</em></li>
-            <li>Paste all three values above → Save & Connect</li>
+          <ol style="padding-left:18px;color:var(--lt);font-size:.83rem;line-height:2.2">
+            <li>Go to <strong style="color:var(--cf)">console.firebase.google.com</strong></li>
+            <li>Add project → name it brand-rehab</li>
+            <li>Build → Realtime Database → Create database → Test mode</li>
+            <li>Project Settings (gear) → scroll down → click &lt;/&gt; to register web app</li>
+            <li>Copy apiKey and projectId from the config block shown</li>
+            <li>Database URL is shown in the Realtime Database panel</li>
+            <li>Paste all three here and click Save &amp; Connect</li>
           </ol>
         </div>
       </div>
@@ -424,14 +555,11 @@ body{background:var(--bl);overflow:hidden}
     <!-- PASSWORD -->
     <div class="panel" id="panel-password">
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico pk">🔒</div><div><div class="cttl">Change Admin Password</div><div class="csub">Update your login password</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">🔒</div><div><div class="cttl">Change Password</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
-          <div class="row r1"><div class="field"><label>Current Password</label><input type="password" id="pw_cur" placeholder="Current password"></div></div>
-          <div class="row r2">
-            <div class="field"><label>New Password</label><input type="password" id="pw_new" placeholder="New password (min 6 chars)"></div>
-            <div class="field"><label>Confirm</label><input type="password" id="pw_conf" placeholder="Confirm new password"></div>
-          </div>
-          <button onclick="changePw()" style="padding:10px 22px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;margin-top:4px">Update Password →</button>
+          <div class="row r1"><div class="field"><label>Current Password</label><input type="password" id="pw_cur"></div></div>
+          <div class="row r2"><div class="field"><label>New Password</label><input type="password" id="pw_new"></div><div class="field"><label>Confirm</label><input type="password" id="pw_conf"></div></div>
+          <button id="pwBtn" style="padding:10px 22px;background:var(--gp);color:#fff;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;margin-top:4px">Update Password</button>
           <div id="pw_msg" style="font-size:.78rem;margin-top:9px;display:none;font-weight:600"></div>
         </div>
       </div>
@@ -441,48 +569,103 @@ body{background:var(--bl);overflow:hidden}
 </main>
 </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ─── PASSWORD ───
-let PW = localStorage.getItem('br_pw') || 'brandrehab2025';
+<script>
+//
+// PASSWORD
+//
+var PW = localStorage.getItem('br_pw') || 'brandrehab2025';
 
-// ─── DEFAULTS ───
-const DEFS = {
-  hero:{line1:'Your brand.',line2:'Your content.',line3:'Your audience.',sub:"You already know you need to show up consistently. You just don't have the time — or the system — to make it happen every single week.",sub2:'That ends here. ✨',cta:'Book Your Free Strategy Call ↗',cta_url:'https://calendly.com',tag:'Social Content Studio · Built for Business Owners',s1n:'100+',s1l:'Business owners served',s2n:'2.3M',s2l:'Top client followers',s3n:'1 Wk',s3l:'Average launch time',s4n:'+100%',s4l:'Avg. monthly growth'},
-  pricing:{h1:'Find your phase.',h2:"We'll build the rest.",sub:'No long-term contracts. No retainers. Just the plan that fits where you are right now.',ht_t1:"You're ready to own your niche.",ht_t2:"We'll build the machine.",ht_desc:'A dedicated content team, custom growth strategy, and full marketing management — all under one roof. 40 pieces of content, ad management, A/B testing, unlimited copywriting, weekly analytics reviews, and a dedicated growth specialist who lives and breathes your brand.',ht_price:'$2,995',ht_period:'/month',
+//
+// DEFAULTS
+//
+var DEFS = {
+  hero:{
+    tag:'Social Content Studio - Built for Business Owners',
+    line1:'Your brand.',line2:'Your content.',line3:'Your audience.',
+    sub:"You already know you need to show up consistently. You just don\'t have the time -- or the system -- to make it happen every single week.",
+    sub2:'That ends here. ✨',cta:'Book Your Free Strategy Call ↗',cta_url:'https://calendly.com',
+    ghost:'See Plans',
+    s1n:'100+',s1l:'Business owners served',s2n:'2.3M',s2l:'Top client followers',
+    s3n:'1 Wk',s3l:'Average launch time',s4n:'+100%',s4l:'Avg. monthly growth'
+  },
+  pain:{
+    label:'Sound Familiar?',
+    h:"You care about|your business.|*The content keeps|falling through.",
+    sub:"You\'re not lazy. You\'re not behind. You just don\'t have a system built around you. That\'s exactly what we fix.",
+    q1:"I\'m getting distracted by conflicting advice and trying to piece together a strategy, but I haven\'t found anything that consistently gets results -- and it\'s exhausting.",
+    q2:"I\'ve tried seemingly everything to grow my audience, but I\'m hitting a wall month after month with little to no growth.",
+    q3:"I\'m doing it all by myself. I\'ve got no one to brainstorm with or guide me on what to do next -- I have so many questions with no clear answers."
+  },
+  checklist:{
+    label:'Tell Me, Which of These Have You Already Tried?',
+    h:'Check everything that applies.',
+    sub:"Every box you check is proof you need a strategy built for you -- not borrowed from someone else\'s playbook.",
+    wm:'SAME.',
+    i1:'Posted consistently for 2 weeks, burned out, and went quiet again',
+    i2:'Followed every trending audio hoping something would stick',
+    i3:"Downloaded free content templates that didn\'t fit your brand",
+    i4:'Paid for a course on content strategy that you never finished',
+    i5:"Hired a SMMA who didn\'t really get your voice or audience",
+    i6:'Tried to batch content and lost your entire day',
+    cta_txt:"If you checked more than two, you\'re not the problem.|*The missing piece is a strategy built around you.*",
+    cta_sub:'Month-to-month. No contracts. Onboarded in 3–5 days.',
+    cta_btn:"Let\'s Build Yours →"
+  },
+  process:{
+    label:'How We Work',h1:'Strategy that drives',h2:'real social growth.',
+    sub:'Three steps. Zero guesswork. A content engine built to work.',
+    s1t:'We Learn Your Brand',s1d:"Deep-dive discovery where we study your audience, voice, niche, and goals. We don\'t guess -- we build from your actual business, your actual market, your actual competitors.",
+    s2t:'We Build Your Custom Plan',s2d:'Hooks, carousels, scripts, and a full month of content -- researched, written, and structured to convert. Every post has a purpose. Every caption has a strategy behind it.',
+    s3t:'We Execute or Hand It Off',s3d:"Depending on your plan, we hand you a ready-to-post system or handle everything from edit to publish. Your only job is to show up as the face of your brand."
+  },
+  pricing:{
+    h1:'Find your phase.',h2:"We\'ll build the rest.",
+    sub:'No long-term contracts. No retainers. Just the plan that fits where you are right now.',
+    ht_t1:"You\'re ready to own your niche.",ht_t2:"We\'ll build the machine.",
+    ht_desc:'A dedicated content team, custom growth strategy, and full marketing management -- all under one roof. 40 pieces of content, ad management, A/B testing, unlimited copywriting, weekly analytics reviews, and a dedicated growth specialist who lives and breathes your brand.',
+    ht_price:'$2,995',ht_period:'/month',
     plans:[
       {name:'Content Planner',desc:'For the business owner who wants the system and will run it themselves.',price:'$37',period:'one-time',featured:false,badge:'',features:['Notion content planner template','Built-in content calendar system','Hooks + caption frameworks','Batching workflow included','Instant digital download']},
-      {name:'DIY Strategy',desc:"You need a plan. We'll build it. Ready to show up — just need to know what, when, and why.",price:'$249',period:'/month',featured:false,badge:'',features:['8 posts planned monthly','Hooks written for each post','Profile optimization','DIY batching content system','Month-to-month, cancel anytime']},
-      {name:'Done-With-You',desc:"You need the plan AND the words. We'll write both — posts ready to go.",price:'$495',period:'/month',featured:true,badge:'✦ Most Popular',features:['Custom content strategy','Monthly 30-min strategy call','12 posts planned (hooks + outlines)','4 complete carousels designed + written','8 reel scripts','Client portal access','Industry research']},
-      {name:'Content Engine',desc:"Busy owners who are done DIYing and want a real content team behind them.",price:'$1,495',period:'/month',featured:false,badge:'',features:['Custom brand & content strategy','18 posts planned monthly','3 short-form videos (edit & post)','3 carousels (designed + posted)','Monthly analytics review call','Full scripting + copywriting','SEO optimization','Client portal access']}
+      {name:'DIY Strategy',desc:"You need a plan. We\'ll build it.",price:'$249',period:'/month',featured:false,badge:'',features:['8 posts planned monthly','Hooks written for each post','Profile optimization','DIY batching content system','Month-to-month, cancel anytime']},
+      {name:'Done-With-You',desc:"You need the plan AND the words. We\'ll write both.",price:'$495',period:'/month',featured:true,badge:'✦ Most Popular',features:['Custom content strategy','Monthly 30-min strategy call','12 posts planned (hooks + outlines)','4 complete carousels designed + written','8 reel scripts','Client portal access','Industry research']},
+      {name:'Content Engine',desc:"Busy owners who are done DIYing.",price:'$1,495',period:'/month',featured:false,badge:'',features:['Custom brand & content strategy','18 posts planned monthly','3 short-form videos (edit & post)','3 carousels (designed + posted)','Monthly analytics review call','Full scripting + copywriting','SEO optimization','Client portal access']}
     ]
   },
-  testimonials:{pq_txt:'"I used to spend half my Sunday dreading Monday\'s posts. Now my entire month is planned before the week starts. I\'ve got my weekends back — and my engagement has never been higher."',pq_cite:'— Shiraz Gidwani, CEO & National Strategist · 2.3M followers',pq_hi:"I've got my weekends back",
+  testimonials:{
+    pq_txt:'"I used to spend half my Sunday dreading Monday\'s posts. Now my entire month is planned before the week starts. I\'ve got my weekends back -- and my engagement has never been higher."',
+    pq_cite:'-- Shiraz Gidwani, CEO & National Strategist - 2.3M followers',pq_hi:"I\'ve got my weekends back",
     cards:[
-      {quote:'"Felicia and the team completely transformed how I show up online. I went from posting randomly to having a clear, consistent strategy that actually converts followers into paying clients."',name:'Alexis Monroe',role:'Founder, Monroe Wellness · 48K followers',initials:'AM',featured:true},
-      {quote:'"I was stuck at 3K followers for over a year. Within 60 days of working with Brand Rehab, I broke 25K. The strategy was built for my niche — and it shows in every single metric."',name:'Jasmine Liu',role:'Business Coach · 25K followers',initials:'JL',featured:false},
-      {quote:'"The Content Engine is worth every dollar. Dedicated team, weekly reviews, and I haven\'t had to think about what to post in 4 months. My business grew 40% this quarter."',name:'Kira Reyes',role:'E-commerce Founder · 112K followers',initials:'KR',featured:false}
+      {quote:'"Felicia and the team completely transformed how I show up online."',name:'Alexis Monroe',role:'Founder, Monroe Wellness - 48K followers',initials:'AM',featured:true},
+      {quote:'"I was stuck at 3K followers for over a year. Within 60 days I broke 25K."',name:'Jasmine Liu',role:'Business Coach - 25K followers',initials:'JL',featured:false},
+      {quote:'"The Content Engine is worth every dollar. My business grew 40% this quarter."',name:'Kira Reyes',role:'E-commerce Founder - 112K followers',initials:'KR',featured:false}
     ]
   },
   team:{members:[
-    {name:'Felicia',role:'Founder & CEO',bio:"The visionary behind Brand Rehab. Felicia built this studio after watching too many talented business owners fall silent online — not because they lacked a story, but because they lacked a system."},
-    {name:'Austan',role:'Business Strategist',bio:'Austan connects content strategy to business outcomes. Every post we create serves a purpose — building audience, driving leads, and converting followers into paying customers.'},
-    {name:'Ava',role:'Technical Lead',bio:'Ava runs the production engine. From carousel design to short-form video editing, she ensures every piece of content is polished, on-brand, and optimized to perform.'}
+    {name:'Felicia',role:'Founder & CEO',bio:"The visionary behind Brand Rehab."},
+    {name:'Austan',role:'Business Strategist',bio:'Austan connects content strategy to business outcomes.'},
+    {name:'Ava',role:'Technical Lead',bio:'Ava runs the production engine.'}
   ]},
   faq:{items:[
-    {q:"What makes Brand Rehab different from buying a content template?",a:"We research your niche and build a strategy around your business. A template is built for everyone. We're built for you."},
-    {q:"Do I have to post the content myself?",a:"It depends on your plan. Plans 1 and 2 — yes, but everything is outlined or written. Plans 3 and 4 — we handle everything."},
-    {q:"How quickly can I get started?",a:"Most clients are fully onboarded within 3–5 business days. We move fast — because you've already waited long enough."},
-    {q:"What if I'm not on every platform?",a:"We'll tell you which platform actually matters for your business and build there first."},
-    {q:"Is there a contract?",a:"No long-term contracts or retainers. Month-to-month means you're always in control."},
-    {q:"How do I get started?",a:"Book your free discovery call — 15 minutes, zero pressure."}
+    {q:"What makes Brand Rehab different from a template?",a:"We research your niche and build a strategy around your business."},
+    {q:"Do I have to post the content myself?",a:"It depends on your plan."},
+    {q:"How quickly can I get started?",a:"Most clients are onboarded within 3–5 business days."},
+    {q:"What if I\'m not on every platform?",a:"We\'ll tell you which platform matters most for your business."},
+    {q:"Is there a contract?",a:"No long-term contracts. Month-to-month always."},
+    {q:"How do I get started?",a:"Book your free discovery call -- 15 minutes, zero pressure."}
   ]},
+  footer:{
+    desc:"A social content studio for busy business owners who are done figuring it out alone. Built by a female founder. Powered by strategy. Driven by results.",
+    copy:"© 2025 Brand Rehab. All rights reserved. Built for the bold. ✦"
+  },
   images:{
     hero_bg:'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1800&q=80&fit=crop',
     break1:'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1800&q=80&fit=crop',
     break2:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1800&q=80&fit=crop',
+    ib1_h:'Stop guessing. Stop wasting hours.|*Start owning your niche.*',
+    ib1_sub:'Your content should work as hard as you do. Let us build the engine.',
+    ib2_h:'A studio that moves at|the pace of your business.|*Not against it.*',
     team_0:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&fit=crop&crop=faces',
     team_1:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop&crop=faces',
     team_2:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80&fit=crop&crop=faces',
@@ -490,315 +673,501 @@ const DEFS = {
     ig_1:'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&q=80&fit=crop',
     ig_2:'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80&fit=crop',
     ig_3:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80&fit=crop',
-    ig_4:'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=80&fit=crop'
+    ig_4:'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=80&fit=crop',
+    ig_0_cap:'How We Grew This Account 4x in 60 Days',ig_0_likes:'31,204 likes - 2.1K saves',
+    ig_1_cap:'3 Content Pillars Every Business Owner Needs',ig_1_likes:'18,447 likes - 1.8K saves',
+    ig_2_cap:'Why Consistent Posting Won\'t Save Your Brand',ig_2_likes:'44,882 likes - 3.4K saves',
+    ig_3_cap:'Our Client Just Hit 100K -- Here\'s What We Did',ig_3_likes:'22,103 likes - 1.2K saves',
+    ig_4_cap:'Stop Posting Without a Strategy (Do This Instead)',ig_4_likes:'27,553 likes - 1.4K saves'
   },
-  links:{hero_cta:'https://calendly.com',nav_cta:'https://calendly.com',checklist:'https://calendly.com',sproof:'https://calendly.com',ctabanner:'https://calendly.com',email:'hello@brandrehab.co',ig:'https://instagram.com/brandrehab',tt:'https://tiktok.com/@brandrehab',li:'https://linkedin.com/company/brandrehab',nav_process:'#process',nav_results:'#results',nav_pricing:'#pricing',nav_faq:'#faq'}
+  links:{
+    hero_cta:'https://calendly.com',nav_cta:'https://calendly.com',
+    checklist:'https://calendly.com',sproof:'https://calendly.com',ctabanner:'https://calendly.com',
+    email:'hello@brandrehab.co',ig:'https://instagram.com/brandrehab',
+    tt:'https://tiktok.com/@brandrehab',li:'https://linkedin.com/company/brandrehab',
+    nav_process:'#process',nav_results:'#results',nav_pricing:'#pricing',nav_faq:'#faq'
+  }
 };
 
-function mergeDeep(t,s){for(const k in s){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k])){if(!t[k])t[k]={};mergeDeep(t[k],s[k]);}else if(!(k in t)){t[k]=s[k];}}return t;}
-let C = mergeDeep(JSON.parse(localStorage.getItem('br_content')||'{}'), JSON.parse(JSON.stringify(DEFS)));
-let dirty = false;
+function mergeDeep(t,s){
+  for(var k in s){
+    if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k])){
+      if(!t[k])t[k]={};mergeDeep(t[k],s[k]);
+    }else if(!(k in t)){t[k]=s[k];}
+  }
+  return t;
+}
 
-// ─── LOGIN ───
+var stored = JSON.parse(localStorage.getItem('br_content')||'{}');
+var C = mergeDeep(stored, JSON.parse(JSON.stringify(DEFS)));
+var dirty = false;
+
+//
+// LOGIN
+//
 function login(){
-  if(document.getElementById('lpw').value===PW){
+  var pw = document.getElementById('lpw').value;
+  if(pw === PW){
     document.getElementById('loginWrap').style.display='none';
     document.getElementById('app').style.display='block';
     initAll();
-  }else{
+  } else {
     document.getElementById('lerr').style.display='block';
     document.getElementById('lpw').style.borderColor='var(--pkd)';
   }
 }
-function logout(){
+document.getElementById('lbtn').addEventListener('click', login);
+document.getElementById('lpw').addEventListener('keydown', function(e){ if(e.key==='Enter') login(); });
+document.getElementById('logoutBtn').addEventListener('click', function(){
   document.getElementById('loginWrap').style.display='flex';
   document.getElementById('app').style.display='none';
   document.getElementById('lpw').value='';
   document.getElementById('lerr').style.display='none';
-}
+});
 
-// ─── NAVIGATION ───
-const META={hero:{t:'Hero Section',d:'Edit headline, subtext, stats and CTA'},pricing:{t:'Pricing Plans',d:'Edit plan names, prices and features'},testimonials:{t:'Testimonials',d:'Edit pull quote and client review cards'},team:{t:'Team Members',d:'Edit names, roles and bios'},faq:{t:'FAQ',d:'Add, edit or remove questions and answers'},images:{t:'Images',d:'Upload and manage every image with auto-scaling'},links:{t:'Links & Buttons',d:'Update every link and button on the site'},firebase:{t:'Firebase Setup',d:'Connect cloud database for live saving'},password:{t:'Change Password',d:'Update your admin login password'}};
-function go(id,btn){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.ni').forEach(b=>b.classList.remove('on'));
-  document.getElementById('panel-'+id).classList.add('active');
-  btn.classList.add('on');
-  document.getElementById('ptitle').textContent=META[id].t;
-  document.getElementById('pdesc').textContent=META[id].d;
-}
+//
+// NAVIGATION
+//
+var META = {
+  hero:{t:'Hero',d:'Edit headline, subtext and stats'},
+  pain:{t:'Pain Section',d:'Edit headline, subtext and quote cards'},
+  checklist:{t:'Checklist Section',d:'Edit checklist items and CTA block'},
+  process:{t:'Process Steps',d:'Edit the 3 how-it-works steps'},
+  pricing:{t:'Pricing',d:'Edit plans, prices and features'},
+  testimonials:{t:'Testimonials',d:'Edit pull quote and review cards'},
+  team:{t:'Team',d:'Edit names, roles and bios'},
+  faq:{t:'FAQ',d:'Add, edit or remove questions'},
+  footer:{t:'Footer',d:'Edit brand description and copyright'},
+  images:{t:'Images & Overlays',d:'Upload images and edit overlay text'},
+  links:{t:'Links & Buttons',d:'Update every URL on the site'},
+  firebase:{t:'Firebase Setup',d:'Connect cloud database'},
+  password:{t:'Change Password',d:'Update your login password'}
+};
+['hero','pain','checklist','process','pricing','testimonials','team','faq','footer','images','links','firebase','password'].forEach(function(id){
+  document.getElementById('nav-'+id).addEventListener('click', function(){
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
+    document.querySelectorAll('.ni').forEach(function(b){b.classList.remove('on');});
+    document.getElementById('panel-'+id).classList.add('active');
+    document.getElementById('nav-'+id).classList.add('on');
+    document.getElementById('ptitle').textContent = META[id].t;
+    document.getElementById('pdesc').textContent = META[id].d;
+  });
+});
 
-// ─── ACCORDION ───
+//
+// ACCORDION
+//
 function tog(hdr){
-  const b=hdr.nextElementSibling,c=hdr.querySelector('.cchev');
+  var b=hdr.nextElementSibling, c=hdr.querySelector('.cchev');
   b.classList.toggle('open');
-  c.style.transform=b.classList.contains('open')?'rotate(180deg)':'';
+  c.style.transform = b.classList.contains('open')?'rotate(180deg)':'';
 }
 
-// ─── DIRTY ───
-function markDirty(){dirty=true;const b=document.getElementById('statusBadge');b.className='status dirty';document.getElementById('statusTxt').textContent='Unsaved changes';}
-document.addEventListener('input',markDirty);
+//
+// DIRTY TRACKING
+//
+function markDirty(){
+  dirty=true;
+  var b=document.getElementById('statusBadge');
+  b.className='status dirty';
+  document.getElementById('statusTxt').textContent='Unsaved changes';
+}
+document.addEventListener('input', markDirty);
 
-// ─── HELPERS ───
-function gv(id){const e=document.getElementById(id);return e?e.value:'';}
-function sv(id,val){const e=document.getElementById(id);if(e)e.value=val||'';}
-function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+//
+// HELPERS
+//
+function gv(id){ var e=document.getElementById(id); return e?e.value:''; }
+function sv(id,val){ var e=document.getElementById(id); if(e) e.value=val||''; }
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-// ─── INIT ───
-function initAll(){loadHero();loadPricing();loadTestimonials();loadTeam();loadFaq();buildImageZones();loadLinks();loadFbConfig();}
+//
+// INIT ALL
+//
+function initAll(){
+  loadHero(); loadPain(); loadChecklist(); loadProcess();
+  loadPricing(); loadTestimonials(); loadTeam(); loadFaq();
+  loadFooter(); buildImageZones(); loadLinks(); loadFbConfig();
+}
 
 function loadHero(){
-  const h=C.hero;
-  sv('h_line1',h.line1);sv('h_line2',h.line2);sv('h_line3',h.line3);
-  sv('h_sub',h.sub);sv('h_sub2',h.sub2);sv('h_cta',h.cta);sv('h_tag',h.tag);
+  var h=C.hero;
+  sv('h_tag',h.tag);sv('h_line1',h.line1);sv('h_line2',h.line2);sv('h_line3',h.line3);
+  sv('h_sub',h.sub);sv('h_sub2',h.sub2);sv('h_cta',h.cta);sv('h_ghost',h.ghost);
   sv('s1n',h.s1n);sv('s1l',h.s1l);sv('s2n',h.s2n);sv('s2l',h.s2l);
   sv('s3n',h.s3n);sv('s3l',h.s3l);sv('s4n',h.s4n);sv('s4l',h.s4l);
 }
 
+function loadPain(){
+  var p=C.pain;
+  sv('pain_label',p.label);sv('pain_h',p.h);sv('pain_sub',p.sub);
+  sv('pain_q1',p.q1);sv('pain_q2',p.q2);sv('pain_q3',p.q3);
+}
+
+function loadChecklist(){
+  var c=C.checklist;
+  sv('chk_label',c.label);sv('chk_h',c.h);sv('chk_sub',c.sub);sv('chk_wm',c.wm);
+  sv('chk_i1',c.i1);sv('chk_i2',c.i2);sv('chk_i3',c.i3);
+  sv('chk_i4',c.i4);sv('chk_i5',c.i5);sv('chk_i6',c.i6);
+  sv('chk_cta_txt',c.cta_txt);sv('chk_cta_sub',c.cta_sub);sv('chk_cta_btn',c.cta_btn);
+}
+
+function loadProcess(){
+  var p=C.process;
+  sv('proc_label',p.label);sv('proc_h1',p.h1);sv('proc_h2',p.h2);sv('proc_sub',p.sub);
+  sv('proc_s1t',p.s1t);sv('proc_s1d',p.s1d);
+  sv('proc_s2t',p.s2t);sv('proc_s2d',p.s2d);
+  sv('proc_s3t',p.s3t);sv('proc_s3d',p.s3d);
+}
+
 function loadPricing(){
-  const p=C.pricing;
+  var p=C.pricing;
   sv('pr_h1',p.h1);sv('pr_h2',p.h2);sv('pr_sub',p.sub);
   sv('ht_t1',p.ht_t1);sv('ht_t2',p.ht_t2);sv('ht_desc',p.ht_desc);
   sv('ht_price',p.ht_price);sv('ht_period',p.ht_period);
-  const el=document.getElementById('plans-editor');el.innerHTML='';
-  p.plans.forEach((plan,i)=>{
-    const d=document.createElement('div');d.className='ri';
-    d.innerHTML=`<div class="rihdr"><span class="rilbl">Plan ${i+1}${plan.featured?' · ✦ Featured':''}</span></div>
-      <div class="row r2"><div class="field"><label>Plan Name</label><input type="text" id="pl_${i}_name" value="${esc(plan.name)}"></div><div class="field"><label>Price</label><input type="text" id="pl_${i}_price" value="${esc(plan.price)}"></div></div>
-      <div class="row r3"><div class="field"><label>Period (e.g. /month)</label><input type="text" id="pl_${i}_period" value="${esc(plan.period)}"></div><div class="field"><label>Badge text</label><input type="text" id="pl_${i}_badge" value="${esc(plan.badge)}" placeholder="✦ Most Popular"></div><div class="field"><label>Featured card?</label><select id="pl_${i}_feat"><option value="false"${!plan.featured?' selected':''}>No</option><option value="true"${plan.featured?' selected':''}>Yes</option></select></div></div>
-      <div class="row r1"><div class="field"><label>Description</label><textarea id="pl_${i}_desc">${esc(plan.desc)}</textarea></div></div>
-      <div class="row r1"><div class="field"><label>Features — one per line</label><textarea id="pl_${i}_feats" style="min-height:110px">${plan.features.join('\n')}</textarea></div></div>`;
+  var el=document.getElementById('plans-editor');el.innerHTML='';
+  p.plans.forEach(function(plan,i){
+    var d=document.createElement('div');d.className='ri';
+    d.innerHTML='<div class="rihdr"><span class="rilbl">Plan '+(i+1)+(plan.featured?' - ✦ Featured':'')+'</span></div>'+
+      '<div class="row r2"><div class="field"><label>Plan Name</label><input type="text" id="pl_'+i+'_name" value="'+esc(plan.name)+'"></div><div class="field"><label>Price</label><input type="text" id="pl_'+i+'_price" value="'+esc(plan.price)+'"></div></div>'+
+      '<div class="row r3"><div class="field"><label>Period</label><input type="text" id="pl_'+i+'_period" value="'+esc(plan.period)+'"></div><div class="field"><label>Badge</label><input type="text" id="pl_'+i+'_badge" value="'+esc(plan.badge)+'"></div><div class="field"><label>Featured?</label><select id="pl_'+i+'_feat"><option value="false"'+(plan.featured?'':' selected')+'>No</option><option value="true"'+(plan.featured?' selected':'')+'>Yes</option></select></div></div>'+
+      '<div class="row r1"><div class="field"><label>Description</label><textarea id="pl_'+i+'_desc">'+esc(plan.desc)+'</textarea></div></div>'+
+      '<div class="row r1"><div class="field"><label>Features -- one per line</label><textarea id="pl_'+i+'_feats" style="min-height:110px">'+plan.features.join('\n')+'</textarea></div></div>';
     el.appendChild(d);
   });
 }
 
 function loadTestimonials(){
-  const t=C.testimonials;
+  var t=C.testimonials;
   sv('pq_txt',t.pq_txt);sv('pq_cite',t.pq_cite);sv('pq_hi',t.pq_hi);
-  const el=document.getElementById('testi-editor');el.innerHTML='';
-  t.cards.forEach((card,i)=>{
-    el.innerHTML+=`<div class="ri"><div class="rihdr"><span class="rilbl">Testimonial ${i+1}${card.featured?' · ✦ Featured':''}</span></div>
-      <div class="row r1"><div class="field"><label>Quote</label><textarea id="tc_${i}_q">${esc(card.quote)}</textarea></div></div>
-      <div class="row r3"><div class="field"><label>Client Name</label><input type="text" id="tc_${i}_name" value="${esc(card.name)}"></div><div class="field"><label>Initials</label><input type="text" id="tc_${i}_init" value="${esc(card.initials)}" maxlength="2"></div><div class="field"><label>Role / Followers</label><input type="text" id="tc_${i}_role" value="${esc(card.role)}"></div></div>
-      <div class="row r1"><div class="field"><label>Featured (dark card)?</label><select id="tc_${i}_feat"><option value="false"${!card.featured?' selected':''}>No</option><option value="true"${card.featured?' selected':''}>Yes</option></select></div></div></div>`;
+  var el=document.getElementById('testi-editor');el.innerHTML='';
+  t.cards.forEach(function(card,i){
+    el.innerHTML+='<div class="ri"><div class="rihdr"><span class="rilbl">Card '+(i+1)+(card.featured?' - ✦ Featured':'')+'</span></div>'+
+      '<div class="row r1"><div class="field"><label>Quote</label><textarea id="tc_'+i+'_q">'+esc(card.quote)+'</textarea></div></div>'+
+      '<div class="row r3"><div class="field"><label>Name</label><input type="text" id="tc_'+i+'_name" value="'+esc(card.name)+'"></div><div class="field"><label>Initials</label><input type="text" id="tc_'+i+'_init" value="'+esc(card.initials)+'" maxlength="2"></div><div class="field"><label>Role</label><input type="text" id="tc_'+i+'_role" value="'+esc(card.role)+'"></div></div>'+
+      '<div class="row r1"><div class="field"><label>Featured dark card?</label><select id="tc_'+i+'_feat"><option value="false"'+(card.featured?'':' selected')+'>No</option><option value="true"'+(card.featured?' selected':'')+'>Yes</option></select></div></div></div>';
   });
 }
 
 function loadTeam(){
-  const el=document.getElementById('team-editor');el.innerHTML='';
-  C.team.members.forEach((m,i)=>{
-    el.innerHTML+=`<div class="ri"><div class="rihdr"><span class="rilbl">Member ${i+1}</span></div>
-      <div class="row r2"><div class="field"><label>Name</label><input type="text" id="tm_${i}_name" value="${esc(m.name)}"></div><div class="field"><label>Role / Title</label><input type="text" id="tm_${i}_role" value="${esc(m.role)}"></div></div>
-      <div class="row r1"><div class="field"><label>Bio</label><textarea id="tm_${i}_bio">${esc(m.bio)}</textarea></div></div>
-      <p class="hint">📷 Update this person's photo in the <strong>Images</strong> tab</p></div>`;
+  var el=document.getElementById('team-editor');el.innerHTML='';
+  C.team.members.forEach(function(m,i){
+    el.innerHTML+='<div class="ri"><div class="rihdr"><span class="rilbl">Member '+(i+1)+'</span></div>'+
+      '<div class="row r2"><div class="field"><label>Name</label><input type="text" id="tm_'+i+'_name" value="'+esc(m.name)+'"></div><div class="field"><label>Role</label><input type="text" id="tm_'+i+'_role" value="'+esc(m.role)+'"></div></div>'+
+      '<div class="row r1"><div class="field"><label>Bio</label><textarea id="tm_'+i+'_bio">'+esc(m.bio)+'</textarea></div></div>'+
+      '<p class="hint" style="margin-top:2px">Photo managed in the Images tab</p></div>';
   });
 }
 
 function loadFaq(){
-  const el=document.getElementById('faq-editor');el.innerHTML='';
-  C.faq.items.forEach((item,i)=>{
-    const d=document.createElement('div');d.className='ri';d.id='faq-'+i;
-    d.innerHTML=`<div class="rihdr"><span class="rilbl">Q${i+1}</span><button class="ridel" onclick="delFaq(${i})">✕ Remove</button></div>
-      <div class="row r1"><div class="field"><label>Question</label><input type="text" id="fq_${i}_q" value="${esc(item.q)}"></div></div>
-      <div class="row r1"><div class="field"><label>Answer</label><textarea id="fq_${i}_a">${esc(item.a)}</textarea></div></div>`;
-    document.getElementById('faq-editor').appendChild(d);
+  var el=document.getElementById('faq-editor');el.innerHTML='';
+  C.faq.items.forEach(function(item,i){
+    var d=document.createElement('div');d.className='ri';d.id='faq-'+i;
+    d.innerHTML='<div class="rihdr"><span class="rilbl">Q'+(i+1)+'</span><button class="ridel" data-idx="'+i+'">✕ Remove</button></div>'+
+      '<div class="row r1"><div class="field"><label>Question</label><input type="text" id="fq_'+i+'_q" value="'+esc(item.q)+'"></div></div>'+
+      '<div class="row r1"><div class="field"><label>Answer</label><textarea id="fq_'+i+'_a">'+esc(item.a)+'</textarea></div></div>';
+    el.appendChild(d);
+    d.querySelector('.ridel').addEventListener('click', function(){
+      C.faq.items.splice(parseInt(this.getAttribute('data-idx')),1);
+      loadFaq(); markDirty();
+    });
   });
 }
-function addFaq(){C.faq.items.push({q:'New question?',a:'Your answer here.'});loadFaq();markDirty();}
-function delFaq(i){C.faq.items.splice(i,1);loadFaq();markDirty();}
+document.getElementById('addFaqBtn').addEventListener('click', function(){
+  C.faq.items.push({q:'New question?',a:'Your answer here.'});
+  loadFaq(); markDirty();
+});
 
-// ─── IMAGE ZONES ───
-const IMG_SPECS={
+function loadFooter(){
+  sv('ft_desc',C.footer.desc);sv('ft_copy',C.footer.copy);
+}
+
+//
+// IMAGE ZONES
+//
+var IMG_SPECS = {
   hero_bg:{w:1800,h:900,shape:'Wide',ar:'16/9'},
   break1:{w:1800,h:600,shape:'Wide',ar:'3/1'},
   break2:{w:1800,h:600,shape:'Wide',ar:'3/1'},
   team_0:{w:600,h:800,shape:'Portrait',ar:'3/4'},
   team_1:{w:600,h:800,shape:'Portrait',ar:'3/4'},
   team_2:{w:600,h:800,shape:'Portrait',ar:'3/4'},
-  ig_0:{w:400,h:500,shape:'Square+',ar:'4/5'},
-  ig_1:{w:400,h:500,shape:'Square+',ar:'4/5'},
-  ig_2:{w:400,h:500,shape:'Square+',ar:'4/5'},
-  ig_3:{w:400,h:500,shape:'Square+',ar:'4/5'},
-  ig_4:{w:400,h:500,shape:'Square+',ar:'4/5'}
+  ig_0:{w:400,h:500,shape:'Post',ar:'4/5'},
+  ig_1:{w:400,h:500,shape:'Post',ar:'4/5'},
+  ig_2:{w:400,h:500,shape:'Post',ar:'4/5'},
+  ig_3:{w:400,h:500,shape:'Post',ar:'4/5'},
+  ig_4:{w:400,h:500,shape:'Post',ar:'4/5'}
 };
 
 function buildImageZones(){
-  ['hero_bg','break1','break2'].forEach(k=>{
-    const el=document.getElementById('iz-'+k);
-    if(el)el.innerHTML=makeZone(k);
+  ['hero_bg','break1','break2'].forEach(function(k){
+    var el=document.getElementById('iz-'+k);
+    if(el) el.innerHTML=makeZone(k);
   });
-  const tg=document.getElementById('team-photos-grid');
+  var tg=document.getElementById('team-photos-grid');
   if(tg){
     tg.innerHTML='';
-    [0,1,2].forEach(i=>{
-      const k='team_'+i,nm=C.team.members[i]?C.team.members[i].name:'Member '+(i+1);
-      tg.innerHTML+=`<div><p style="font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">${nm}</p><div id="iz-${k}"></div></div>`;
+    [0,1,2].forEach(function(i){
+      var k='team_'+i;
+      var nm=C.team.members[i]?C.team.members[i].name:'Member '+(i+1);
+      var wrap=document.createElement('div');
+      wrap.innerHTML='<p style="font-family:\'Cabinet Grotesk\',sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">'+nm+'</p><div id="iz-'+k+'"></div>';
+      tg.appendChild(wrap);
+      document.getElementById('iz-'+k).innerHTML=makeZone(k);
     });
-    [0,1,2].forEach(i=>{const el=document.getElementById('iz-team_'+i);if(el)el.innerHTML=makeZone('team_'+i);});
   }
-  const ig=document.getElementById('ig-photos-grid');
+  var ig=document.getElementById('ig-photos-grid');
   if(ig){
     ig.innerHTML='';
-    [0,1,2,3,4].forEach(i=>{
-      ig.innerHTML+=`<div><p style="font-family:'Cabinet Grotesk',sans-serif;font-size:.66rem;font-weight:700;color:var(--lt);margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">Post ${i+1}</p><div id="iz-ig_${i}"></div></div>`;
+    [0,1,2,3,4].forEach(function(i){
+      var k='ig_'+i;
+      var wrap=document.createElement('div');
+      wrap.style.marginBottom='16px';
+      wrap.innerHTML='<p style="font-family:\'Cabinet Grotesk\',sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">Post '+(i+1)+'</p>'+
+        '<div id="iz-'+k+'"></div>'+
+        '<div class="row r2" style="margin-top:10px">'+
+          '<div class="field"><label>Caption</label><input type="text" id="ig_'+i+'_cap" value="'+esc(C.images[k+'_cap']||'')+'"></div>'+
+          '<div class="field"><label>Likes / Saves</label><input type="text" id="ig_'+i+'_likes" value="'+esc(C.images[k+'_likes']||'')+'"></div>'+
+        '</div>';
+      ig.appendChild(wrap);
+      document.getElementById('iz-'+k).innerHTML=makeZone(k);
     });
-    [0,1,2,3,4].forEach(i=>{const el=document.getElementById('iz-ig_'+i);if(el)el.innerHTML=makeZone('ig_'+i);});
   }
+  sv('ib1_h',C.images.ib1_h||'');sv('ib1_sub',C.images.ib1_sub||'');sv('ib2_h',C.images.ib2_h||'');
 }
 
 function makeZone(key){
-  const spec=IMG_SPECS[key],url=C.images[key]||'',has=!!url;
-  return `<div class="img-zone">
-    <div class="iz-inner">
-      <div class="iz-spec-row">
-        <span class="spec-pill sp-dim">📐 ${spec.w} × ${spec.h} px</span>
-        <span class="spec-pill sp-shape">${spec.shape}</span>
-        <span class="spec-pill sp-auto">✦ Auto-scaled</span>
-      </div>
-      <div class="iz-pw" style="aspect-ratio:${spec.ar};position:relative">
-        <img id="izimg-${key}" src="${has?url:''}" alt="" style="width:100%;height:100%;object-fit:cover;display:${has?'block':'none'}" onerror="this.style.display='none';document.getElementById('izph-${key}').style.display='flex'">
-        <div id="izph-${key}" class="iz-ph" style="display:${has?'none':'flex'}">
-          <div class="iz-ph-ico">🖼️</div>
-          <div class="iz-ph-txt">No image set</div>
-          <div class="iz-ph-sub">Upload a file or paste a URL</div>
-        </div>
-      </div>
-      <div class="iz-actions">
-        <label class="iz-upload">📁 Upload<input type="file" accept="image/*" onchange="handleUpload(event,'${key}')"></label>
-        <button class="iz-url-btn" onclick="toggleUrl('${key}')">🔗 Use URL</button>
-        ${has?`<button class="iz-clear" onclick="clearImg('${key}')">✕ Clear</button>`:''}
-      </div>
-      <div class="iz-url-row" id="urlrow-${key}" style="display:none">
-        <input class="iz-url-inp" id="urlval-${key}" type="url" placeholder="https://..." value="${esc(url)}">
-        <button class="iz-url-apply" onclick="applyUrl('${key}')">Apply</button>
-      </div>
-    </div>
-  </div>`;
+  var spec=IMG_SPECS[key], url=C.images[key]||'', has=!!url;
+  return '<div class="img-zone">'+
+    '<div class="iz-inner">'+
+      '<div class="iz-spec-row">'+
+        '<span class="spec-pill sp-dim">📐 '+spec.w+' × '+spec.h+' px</span>'+
+        '<span class="spec-pill sp-shape">'+spec.shape+'</span>'+
+        '<span class="spec-pill sp-auto">✦ Auto-scaled</span>'+
+      '</div>'+
+      '<div class="iz-pw" style="aspect-ratio:'+spec.ar+'">'+
+        (has?'<img src="'+esc(url)+'" style="width:100%;height:100%;object-fit:cover;display:block">':
+        '<div class="iz-ph"><div class="iz-ph-ico">🖼️</div><div class="iz-ph-txt">No image</div><div class="iz-ph-sub">Upload or paste a URL</div></div>')+
+      '</div>'+
+      '<div class="iz-actions">'+
+        '<label class="iz-upload">📁 Upload<input type="file" accept="image/*" data-key="'+key+'"></label>'+
+        '<button class="iz-url-btn" data-key="'+key+'">🔗 URL</button>'+
+        (has?'<button class="iz-clear" data-key="'+key+'">✕ Clear</button>':'')+
+      '</div>'+
+      '<div class="iz-url-row" id="urlrow-'+key+'">'+
+        '<input class="iz-url-inp" id="urlval-'+key+'" type="url" placeholder="https://..." value="'+esc(url)+'">'+
+        '<button class="iz-url-apply" data-key="'+key+'">Apply</button>'+
+      '</div>'+
+    '</div>'+
+  '</div>';
 }
 
-function toggleUrl(key){
-  const r=document.getElementById('urlrow-'+key);
-  if(r)r.style.display=r.style.display==='none'?'flex':'none';
-}
-function applyUrl(key){
-  const v=(document.getElementById('urlval-'+key)||{}).value||'';
-  if(v.trim())setZoneImg(key,v.trim());
-}
-function handleUpload(event,key){
-  const file=event.target.files[0];if(!file)return;
-  const spec=IMG_SPECS[key];
-  const reader=new FileReader();
-  reader.onload=e=>{
-    const img=new Image();
-    img.onload=()=>{
-      const canvas=document.createElement('canvas');
-      canvas.width=spec.w;canvas.height=spec.h;
-      const ctx=canvas.getContext('2d');
-      const scale=Math.max(spec.w/img.width,spec.h/img.height);
-      const sw=img.width*scale,sh=img.height*scale;
-      ctx.drawImage(img,(spec.w-sw)/2,(spec.h-sh)/2,sw,sh);
-      setZoneImg(key,canvas.toDataURL('image/jpeg',.9));
-      showToast('Image auto-scaled to '+spec.w+'×'+spec.h+'px ✦','ok');
+document.addEventListener('change', function(e){
+  if(e.target.type==='file' && e.target.closest('.iz-upload')){
+    var key=e.target.getAttribute('data-key');
+    var file=e.target.files[0]; if(!file) return;
+    var spec=IMG_SPECS[key];
+    var reader=new FileReader();
+    reader.onload=function(ev){
+      var img=new Image();
+      img.onload=function(){
+        var canvas=document.createElement('canvas');
+        canvas.width=spec.w; canvas.height=spec.h;
+        var ctx=canvas.getContext('2d');
+        var scale=Math.max(spec.w/img.width, spec.h/img.height);
+        var sw=img.width*scale, sh=img.height*scale;
+        ctx.drawImage(img,(spec.w-sw)/2,(spec.h-sh)/2,sw,sh);
+        setZoneImg(key, canvas.toDataURL('image/jpeg',0.9));
+        showToast('Scaled to '+spec.w+'×'+spec.h+'px ✦','ok');
+      };
+      img.src=ev.target.result;
     };
-    img.src=e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-function setZoneImg(key,url){
+    reader.readAsDataURL(file);
+  }
+});
+
+document.addEventListener('click', function(e){
+  if(e.target.classList.contains('iz-url-btn')){
+    var key=e.target.getAttribute('data-key');
+    var row=document.getElementById('urlrow-'+key);
+    if(row) row.classList.toggle('open');
+  }
+  if(e.target.classList.contains('iz-url-apply')){
+    var key=e.target.getAttribute('data-key');
+    var val=document.getElementById('urlval-'+key);
+    if(val && val.value.trim()) setZoneImg(key, val.value.trim());
+  }
+  if(e.target.classList.contains('iz-clear')){
+    var key=e.target.getAttribute('data-key');
+    C.images[key]='';
+    var el=document.getElementById('iz-'+key);
+    if(el) el.innerHTML=makeZone(key);
+    markDirty();
+  }
+});
+
+function setZoneImg(key, url){
   C.images[key]=url;
-  const img=document.getElementById('izimg-'+key);
-  const ph=document.getElementById('izph-'+key);
-  if(img){img.src=url;img.style.display='block';}
-  if(ph)ph.style.display='none';
-  markDirty();
-  // rebuild zone to show clear button
-  const iz=document.getElementById('iz-'+key);
-  if(iz){iz.innerHTML=makeZone(key);}
-}
-function clearImg(key){
-  C.images[key]='';
-  const iz=document.getElementById('iz-'+key);
-  if(iz)iz.innerHTML=makeZone(key);
+  var el=document.getElementById('iz-'+key);
+  if(el) el.innerHTML=makeZone(key);
   markDirty();
 }
 
-// ─── LINKS ───
+//
+// LINKS
+//
 function loadLinks(){
-  const l=C.links;
-  const MAP={lnk_hero_cta:'hero_cta',lnk_nav_cta:'nav_cta',lnk_checklist:'checklist',lnk_sproof:'sproof',lnk_ctabanner:'ctabanner',lnk_email:'email',lnk_ig:'ig',lnk_tt:'tt',lnk_li:'li',lnk_nav_process:'nav_process',lnk_nav_results:'nav_results',lnk_nav_pricing:'nav_pricing',lnk_nav_faq:'nav_faq'};
-  Object.entries(MAP).forEach(([elId,key])=>sv(elId,l[key]));
-  document.querySelectorAll('.linput').forEach(inp=>{
-    inp.addEventListener('input',e=>{
-      const a=document.getElementById(e.target.id.replace('lnk_','lt_'));
-      if(a)a.href=e.target.value||'#';
+  var l=C.links;
+  sv('lnk_hero_cta',l.hero_cta);sv('lnk_nav_cta',l.nav_cta);sv('lnk_checklist',l.checklist);
+  sv('lnk_sproof',l.sproof);sv('lnk_ctabanner',l.ctabanner);sv('lnk_email',l.email);
+  sv('lnk_ig',l.ig);sv('lnk_tt',l.tt);sv('lnk_li',l.li);
+  sv('lnk_nav_process',l.nav_process);sv('lnk_nav_results',l.nav_results);
+  sv('lnk_nav_pricing',l.nav_pricing);sv('lnk_nav_faq',l.nav_faq);
+  document.querySelectorAll('.linput').forEach(function(inp){
+    inp.addEventListener('input', function(){
+      var a=document.getElementById(this.id.replace('lnk_','lt_'));
+      if(a) a.href=this.value||'#';
     });
   });
 }
 
-// ─── COLLECT ───
+//
+// COLLECT
+//
 function collect(){
-  C.hero={line1:gv('h_line1'),line2:gv('h_line2'),line3:gv('h_line3'),sub:gv('h_sub'),sub2:gv('h_sub2'),cta:gv('h_cta'),cta_url:gv('lnk_hero_cta')||C.hero.cta_url,tag:gv('h_tag'),s1n:gv('s1n'),s1l:gv('s1l'),s2n:gv('s2n'),s2l:gv('s2l'),s3n:gv('s3n'),s3l:gv('s3l'),s4n:gv('s4n'),s4l:gv('s4l')};
+  C.hero={tag:gv('h_tag'),line1:gv('h_line1'),line2:gv('h_line2'),line3:gv('h_line3'),
+    sub:gv('h_sub'),sub2:gv('h_sub2'),cta:gv('h_cta'),cta_url:gv('lnk_hero_cta'),ghost:gv('h_ghost'),
+    s1n:gv('s1n'),s1l:gv('s1l'),s2n:gv('s2n'),s2l:gv('s2l'),
+    s3n:gv('s3n'),s3l:gv('s3l'),s4n:gv('s4n'),s4l:gv('s4l')};
+  C.pain={label:gv('pain_label'),h:gv('pain_h'),sub:gv('pain_sub'),
+    q1:gv('pain_q1'),q2:gv('pain_q2'),q3:gv('pain_q3')};
+  C.checklist={label:gv('chk_label'),h:gv('chk_h'),sub:gv('chk_sub'),wm:gv('chk_wm'),
+    i1:gv('chk_i1'),i2:gv('chk_i2'),i3:gv('chk_i3'),i4:gv('chk_i4'),i5:gv('chk_i5'),i6:gv('chk_i6'),
+    cta_txt:gv('chk_cta_txt'),cta_sub:gv('chk_cta_sub'),cta_btn:gv('chk_cta_btn')};
+  C.process={label:gv('proc_label'),h1:gv('proc_h1'),h2:gv('proc_h2'),sub:gv('proc_sub'),
+    s1t:gv('proc_s1t'),s1d:gv('proc_s1d'),s2t:gv('proc_s2t'),s2d:gv('proc_s2d'),s3t:gv('proc_s3t'),s3d:gv('proc_s3d')};
   C.pricing.h1=gv('pr_h1');C.pricing.h2=gv('pr_h2');C.pricing.sub=gv('pr_sub');
-  C.pricing.ht_t1=gv('ht_t1');C.pricing.ht_t2=gv('ht_t2');C.pricing.ht_desc=gv('ht_desc');C.pricing.ht_price=gv('ht_price');C.pricing.ht_period=gv('ht_period');
-  C.pricing.plans.forEach((_,i)=>{C.pricing.plans[i]={name:gv(`pl_${i}_name`),price:gv(`pl_${i}_price`),period:gv(`pl_${i}_period`),badge:gv(`pl_${i}_badge`),featured:gv(`pl_${i}_feat`)==='true',desc:gv(`pl_${i}_desc`),features:gv(`pl_${i}_feats`).split('\n').map(f=>f.trim()).filter(Boolean)};});
+  C.pricing.ht_t1=gv('ht_t1');C.pricing.ht_t2=gv('ht_t2');C.pricing.ht_desc=gv('ht_desc');
+  C.pricing.ht_price=gv('ht_price');C.pricing.ht_period=gv('ht_period');
+  C.pricing.plans.forEach(function(_,i){
+    C.pricing.plans[i]={name:gv('pl_'+i+'_name'),price:gv('pl_'+i+'_price'),
+      period:gv('pl_'+i+'_period'),badge:gv('pl_'+i+'_badge'),
+      featured:gv('pl_'+i+'_feat')==='true',desc:gv('pl_'+i+'_desc'),
+      features:gv('pl_'+i+'_feats').split('\n').map(function(f){return f.trim();}).filter(Boolean)};
+  });
   C.testimonials.pq_txt=gv('pq_txt');C.testimonials.pq_cite=gv('pq_cite');C.testimonials.pq_hi=gv('pq_hi');
-  C.testimonials.cards.forEach((_,i)=>{C.testimonials.cards[i]={quote:gv(`tc_${i}_q`),name:gv(`tc_${i}_name`),initials:gv(`tc_${i}_init`),role:gv(`tc_${i}_role`),featured:gv(`tc_${i}_feat`)==='true'};});
-  C.team.members.forEach((_,i)=>{C.team.members[i].name=gv(`tm_${i}_name`);C.team.members[i].role=gv(`tm_${i}_role`);C.team.members[i].bio=gv(`tm_${i}_bio`);});
-  C.faq.items.forEach((_,i)=>{C.faq.items[i]={q:gv(`fq_${i}_q`),a:gv(`fq_${i}_a`)};});
-  C.links={hero_cta:gv('lnk_hero_cta'),nav_cta:gv('lnk_nav_cta'),checklist:gv('lnk_checklist'),sproof:gv('lnk_sproof'),ctabanner:gv('lnk_ctabanner'),email:gv('lnk_email'),ig:gv('lnk_ig'),tt:gv('lnk_tt'),li:gv('lnk_li'),nav_process:gv('lnk_nav_process'),nav_results:gv('lnk_nav_results'),nav_pricing:gv('lnk_nav_pricing'),nav_faq:gv('lnk_nav_faq')};
+  C.testimonials.cards.forEach(function(_,i){
+    C.testimonials.cards[i]={quote:gv('tc_'+i+'_q'),name:gv('tc_'+i+'_name'),
+      initials:gv('tc_'+i+'_init'),role:gv('tc_'+i+'_role'),featured:gv('tc_'+i+'_feat')==='true'};
+  });
+  C.team.members.forEach(function(_,i){
+    C.team.members[i].name=gv('tm_'+i+'_name');
+    C.team.members[i].role=gv('tm_'+i+'_role');
+    C.team.members[i].bio=gv('tm_'+i+'_bio');
+  });
+  C.faq.items.forEach(function(_,i){
+    C.faq.items[i]={q:gv('fq_'+i+'_q'),a:gv('fq_'+i+'_a')};
+  });
+  C.footer={desc:gv('ft_desc'),copy:gv('ft_copy')};
+  C.images.ib1_h=gv('ib1_h');C.images.ib1_sub=gv('ib1_sub');C.images.ib2_h=gv('ib2_h');
+  [0,1,2,3,4].forEach(function(i){
+    C.images['ig_'+i+'_cap']=gv('ig_'+i+'_cap');
+    C.images['ig_'+i+'_likes']=gv('ig_'+i+'_likes');
+  });
+  C.links={hero_cta:gv('lnk_hero_cta'),nav_cta:gv('lnk_nav_cta'),checklist:gv('lnk_checklist'),
+    sproof:gv('lnk_sproof'),ctabanner:gv('lnk_ctabanner'),email:gv('lnk_email'),
+    ig:gv('lnk_ig'),tt:gv('lnk_tt'),li:gv('lnk_li'),
+    nav_process:gv('lnk_nav_process'),nav_results:gv('lnk_nav_results'),
+    nav_pricing:gv('lnk_nav_pricing'),nav_faq:gv('lnk_nav_faq')};
 }
 
-// ─── SAVE ───
+//
+// SAVE
+//
+document.getElementById('pubBtn').addEventListener('click', saveAll);
 async function saveAll(){
-  const btn=document.getElementById('pubBtn');
-  btn.textContent='Saving…';btn.disabled=true;
-  const badge=document.getElementById('statusBadge');
-  badge.className='status saving';document.getElementById('statusTxt').textContent='Saving…';
+  var btn=document.getElementById('pubBtn');
+  btn.textContent='Saving...'; btn.disabled=true;
+  var badge=document.getElementById('statusBadge');
+  badge.className='status saving';
+  document.getElementById('statusTxt').textContent='Saving...';
   collect();
-  localStorage.setItem('br_content',JSON.stringify(C));
-  const fb=JSON.parse(localStorage.getItem("br_firebase")||"{}");
-  if(fb.dbUrl&&fb.dbUrl.startsWith("https://")&&fb.dbUrl.includes("firebaseio.com")){
+  localStorage.setItem('br_content', JSON.stringify(C));
+  // Always write to hardcoded Firebase URL + also keep localStorage as backup
+  var FIREBASE_URL = "https://brand-rehab-default-rtdb.firebaseio.com";
+  var fb=JSON.parse(localStorage.getItem('br_firebase')||'{}');
+  var writeUrl = FIREBASE_URL || (fb.dbUrl && fb.dbUrl.startsWith('https://') && fb.dbUrl.indexOf('firebaseio.com')>-1 ? fb.dbUrl : null);
+  if(writeUrl){
     try{
-      const r=await fetch(fb.dbUrl+"/content.json",{method:"PUT",body:JSON.stringify(C),headers:{"Content-Type":"application/json"}});
-      if(!r.ok)console.error("Firebase error:",r.status,await r.text());
-    }catch(e){console.error("Firebase fetch failed:",e);}
+      var r=await fetch(writeUrl+'/content.json',{
+        method:'PUT',body:JSON.stringify(C),
+        headers:{'Content-Type':'application/json'}
+      });
+      if(r.ok){ console.log('Firebase write OK'); }
+      else { console.error('Firebase write error:',r.status, await r.text()); }
+    }catch(e){ console.error('Firebase write failed:',e); }
   }
-  await new Promise(r=>setTimeout(r,500));
-  btn.textContent='Save & Publish ✦';btn.disabled=false;
-  badge.className='status saved';document.getElementById('statusTxt').textContent='All saved';
+  await new Promise(function(res){setTimeout(res,400);});
+  btn.textContent='Save & Publish ✦'; btn.disabled=false;
+  badge.className='status saved';
+  document.getElementById('statusTxt').textContent='All saved';
   dirty=false;
   showToast('Published! Site updated ✦','ok');
 }
 
-// ─── FIREBASE ───
-function saveFb(){
-  let dbUrl=gv("fb_url").trim().replace(//+$/,"");
-  if(!dbUrl.startsWith("https://")||!dbUrl.includes("firebaseio.com")){showToast("Database URL must be https://your-project-default-rtdb.firebaseio.com","err");return;}
-  localStorage.setItem("br_firebase",JSON.stringify({apiKey:gv("fb_key"),projectId:gv("fb_pid"),dbUrl:dbUrl}));
-  document.getElementById("fbOk").style.display="inline-flex";
-  showToast("Firebase connected!","ok");
-}
+//
+// FIREBASE
+//
+document.getElementById('fbSaveBtn').addEventListener('click', function(){
+  var dbUrl = gv('fb_url').trim().replace(/\/+$/,'');
+  var okEl=document.getElementById('fbOk'), errEl=document.getElementById('fbErr');
+  okEl.style.display='none'; errEl.style.display='none';
+  if(!dbUrl.startsWith('https://') || dbUrl.indexOf('firebaseio.com')<0){
+    errEl.style.display='inline-flex'; return;
+  }
+  localStorage.setItem('br_firebase', JSON.stringify({
+    apiKey:gv('fb_key'), projectId:gv('fb_pid'), dbUrl:dbUrl
+  }));
+  okEl.style.display='inline-flex';
+  showToast('Firebase connected! ✦','ok');
+});
+
 function loadFbConfig(){
-  const cfg=JSON.parse(localStorage.getItem('br_firebase')||'{}');
-  if(cfg.apiKey)sv('fb_key',cfg.apiKey);
-  if(cfg.projectId)sv('fb_pid',cfg.projectId);
-  if(cfg.dbUrl){sv('fb_url',cfg.dbUrl);document.getElementById('fbOk').style.display='inline-flex';}
+  var cfg=JSON.parse(localStorage.getItem('br_firebase')||'{}');
+  if(cfg.apiKey) sv('fb_key',cfg.apiKey);
+  if(cfg.projectId) sv('fb_pid',cfg.projectId);
+  if(cfg.dbUrl){
+    sv('fb_url',cfg.dbUrl);
+    document.getElementById('fbOk').style.display='inline-flex';
+  }
 }
 
-// ─── PASSWORD ───
-function changePw(){
-  const cur=gv('pw_cur'),nw=gv('pw_new'),conf=gv('pw_conf');
-  const msg=document.getElementById('pw_msg');msg.style.display='block';
+//
+// PASSWORD
+//
+document.getElementById('pwBtn').addEventListener('click', function(){
+  var cur=gv('pw_cur'),nw=gv('pw_new'),conf=gv('pw_conf');
+  var msg=document.getElementById('pw_msg'); msg.style.display='block';
   if(cur!==PW){msg.style.color='var(--pkd)';msg.textContent='Current password is incorrect.';return;}
-  if(nw.length<6){msg.style.color='var(--pkd)';msg.textContent='New password must be at least 6 characters.';return;}
+  if(nw.length<6){msg.style.color='var(--pkd)';msg.textContent='Password must be at least 6 characters.';return;}
   if(nw!==conf){msg.style.color='var(--pkd)';msg.textContent='Passwords do not match.';return;}
-  PW=nw;localStorage.setItem('br_pw',nw);
-  msg.style.color='var(--mtd)';msg.textContent='Password updated ✦';
-  ['pw_cur','pw_new','pw_conf'].forEach(id=>sv(id,''));
+  PW=nw; localStorage.setItem('br_pw',nw);
+  msg.style.color='var(--mtd)'; msg.textContent='Password updated ✦';
+  sv('pw_cur',''); sv('pw_new',''); sv('pw_conf','');
+});
+
+//
+// TOAST
+//
+function showToast(msg,type){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast '+(type||'ok')+' show';
+  setTimeout(function(){t.classList.remove('show');},3200);
 }
 
-// ─── TOAST ───
-function showToast(msg,type='ok'){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.className=`toast ${type} show`;
-  setTimeout(()=>t.class
+window.addEventListener('beforeunload', function(e){
+  if(dirty){e.preventDefault();e.returnValue='';}
+});
+</script>
+</body>
+</html>
