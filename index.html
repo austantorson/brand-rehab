@@ -648,7 +648,7 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
         <p class="ht-price">Starting at <em id="ht-price-amt">$2,995</em><span id="ht-price-per">/month</span></p>
       </div>
       <div style="text-align:center;flex-shrink:0">
-        <a id="ht-btn" href="#" onclick="if(!this.dataset.url){openCheckoutBtn(this);return false;}" data-name="High-Touch Content Strategy" data-price="Starting at $2,995/month" class="btn btn-dark" style="white-space:nowrap;border:none;text-decoration:none">Apply for This Plan →</a>
+        <button id="ht-btn" onclick="var u=this.dataset.url;if(u){window.open(u,'_blank');}else{openCheckout('High-Touch Content Strategy','Starting at $2,995/month');}" class="btn btn-dark" style="white-space:nowrap;border:none">Apply for This Plan →</button>
         <p style="font-size:.67rem;color:var(--latte);margin-top:10px">Exclusive. Very limited availability.</p>
       </div>
     </div>
@@ -700,7 +700,7 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 </footer>
 
 <!-- MODAL -->
-<div class="modal<div class="modal-wrap" id="checkoutModal">
+<div class="modal-ov" id="checkoutModal">
   <div class="modal">
     <button class="modal-x" onclick="closeCheckout()">&#215;</button>
     <h3>Let&#8217;s get you started. &#10024;</h3>
@@ -1061,7 +1061,17 @@ function toggleFAQ(el){const item=el.parentElement;const open=item.classList.con
 
 // Modal
 function openCheckoutBtn(btn){openCheckout(btn.dataset.name,btn.dataset.price);}
-function openCheckout(name,price){document.getElementById('modalPlanName').textContent=name;document.getElementById('modalPrice').textContent=price;document.getElementById('checkoutModal').classList.add('active');document.body.style.overflow='hidden'}
+function openCheckout(name,price){
+  document.getElementById('modalPlanName').textContent=name||'';
+  document.getElementById('modalPrice').textContent=price||'';
+  ['f_name','f_email','f_business','f_instagram','f_challenge'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.value='';
+  });
+  var btn=document.getElementById('checkoutSubmitBtn');
+  if(btn){btn.textContent='Apply for This Plan →';btn.disabled=false;}
+  document.getElementById('checkoutModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
 function closeCheckout(){document.getElementById('checkoutModal').classList.remove('active');document.body.style.overflow='';}
 function handleCheckout(){
   var name = document.getElementById('f_name').value.trim();
