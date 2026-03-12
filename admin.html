@@ -552,6 +552,13 @@ body{background:var(--bl);overflow:hidden}
       <div class="card">
         <div class="chdr" onclick="tog(this)"><div class="cico pk">🔗</div><div><div class="cttl">All Links &amp; Buttons</div><div class="csub">Update every URL on the site</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
+          <div class="lg"><div class="lg-title">💳 Pricing Plan Buttons</div>
+            <div class="lrow"><div class="lname"><span>Content Planner — $37</span><small>Button on the first pricing card</small></div><input class="linput" id="lnk_plan_0" type="url" placeholder="https://"><a class="ltest" id="lt_plan_0" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>DIY Strategy — $249/mo</span><small>Button on the second pricing card</small></div><input class="linput" id="lnk_plan_1" type="url" placeholder="https://"><a class="ltest" id="lt_plan_1" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Done-With-You ⭐ — $495/mo</span><small>Button on the featured pricing card</small></div><input class="linput" id="lnk_plan_2" type="url" placeholder="https://"><a class="ltest" id="lt_plan_2" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>Content Engine — $1,495/mo</span><small>Button on the fourth pricing card</small></div><input class="linput" id="lnk_plan_3" type="url" placeholder="https://"><a class="ltest" id="lt_plan_3" href="#" target="_blank">Test ↗</a></div>
+            <div class="lrow"><div class="lname"><span>High-Touch Strategy — $2,995+</span><small>"Apply for This Plan" button</small></div><input class="linput" id="lnk_plan_ht" type="url" placeholder="https://"><a class="ltest" id="lt_plan_ht" href="#" target="_blank">Test ↗</a></div>
+          </div>
           <div class="lg"><div class="lg-title">📅 Booking / CTA</div>
             <div class="lrow"><div class="lname"><span>Hero CTA Button</span><small>Primary button — hero section</small></div><input class="linput" id="lnk_hero_cta" type="url"><a class="ltest" id="lt_hero_cta" href="#" target="_blank">Test ↗</a></div>
             <div class="lrow"><div class="lname"><span>Nav "Book Free Call"</span><small>Top right nav button</small></div><input class="linput" id="lnk_nav_cta" type="url"><a class="ltest" id="lt_nav_cta" href="#" target="_blank">Test ↗</a></div>
@@ -1112,6 +1119,9 @@ function loadLinks(){
   sv('lnk_ig',l.ig);sv('lnk_tt',l.tt);sv('lnk_li',l.li);
   sv('lnk_nav_process',l.nav_process);sv('lnk_nav_results',l.nav_results);
   sv('lnk_nav_pricing',l.nav_pricing);sv('lnk_nav_faq',l.nav_faq);
+  var plans=C.pricing.plans||[];
+  for(var i=0;i<4;i++){sv('lnk_plan_'+i,(plans[i]&&plans[i].btn_url)||'');}
+  sv('lnk_plan_ht',C.pricing.ht_btn_url||'');
   // Pricing plan button URLs
   var plans=C.pricing.plans||[];
   for(var i=0;i<4;i++){ sv('lnk_plan_'+i, plans[i]?plans[i].btn_url||'':''); }
