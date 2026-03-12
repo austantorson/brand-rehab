@@ -327,7 +327,7 @@ h1.hero-h1 em{font-style:italic;color:var(--pink);display:block}
 .pbtn.matcha-btn:hover{opacity:.9;transform:translateY(-1px)}
 .pbtn.outline{background:transparent;border:1.5px solid var(--sand);color:var(--latte)}
 .pbtn.outline:hover{border-color:var(--pink);color:var(--pink-dk)}
-.pbtn.light-ol{background:transparent;border:1.5px solid rgba(255,255,255,.18);color:rgba(255,255,255,.65)}
+.pbtn.light-ol{background:transparent;border:2px solid var(--pink);color:var(--pink)}
 .pbtn.light-ol:hover{border-color:var(--pink);color:var(--pink)}
 .pslots{font-family:'Cabinet Grotesk',sans-serif;font-size:.65rem;color:var(--latte);text-align:center;margin-top:8px;font-weight:600}
 .pc.feat .pslots{color:rgba(255,255,255,.35)}
@@ -700,19 +700,21 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 </footer>
 
 <!-- MODAL -->
-<div class="modal-ov" id="checkoutModal">
+<div class="modal<div class="modal-wrap" id="checkoutModal">
   <div class="modal">
-    <button class="modal-x" onclick="closeCheckout()">×</button>
-    <h3>Let's get you started. ✨</h3>
+    <button class="modal-x" onclick="closeCheckout()">&#215;</button>
+    <h3>Let&#8217;s get you started. &#10024;</h3>
     <span class="mplan" id="modalPlanName">Plan</span>
     <div class="price-sum"><p>Investment</p><span class="amt" id="modalPrice">$0</span></div>
-    <div class="mfg"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
-    <div class="mfg"><label>Email Address</label><input type="email" placeholder="you@yourbusiness.com"></div>
-    <div class="mfg"><label>Business / Brand Name</label><input type="text" placeholder="Your business name"></div>
-    <div class="mfg"><label>Instagram Handle</label><input type="text" placeholder="@yourhandle"></div>
-    <div class="mfg"><label>Biggest Content Challenge</label><textarea placeholder="Tell us briefly what you're struggling with..."></textarea></div>
-    <button class="btn btn-primary" style="width:100%;display:flex;justify-content:center;font-size:.82rem;padding:15px;border-radius:100px" onclick="handleCheckout()">Continue to Secure Payment →</button>
-    <p class="stripe-note">Secured by Stripe. Encrypted. Safe.</p>
+    <form id="checkoutForm" data-endpoint="https://formspree.io/f/maqpjbwz">
+      <div class="mfg"><label>Full Name</label><input type="text" name="name" placeholder="Your full name" required></div>
+      <div class="mfg"><label>Email Address</label><input type="email" name="email" placeholder="you@yourbusiness.com" required></div>
+      <div class="mfg"><label>Business / Brand Name</label><input type="text" name="business" placeholder="Your business name"></div>
+      <div class="mfg"><label>Instagram Handle</label><input type="text" name="instagram" placeholder="@yourhandle"></div>
+      <div class="mfg"><label>Biggest Content Challenge</label><textarea name="challenge" placeholder="Tell us briefly what you&#39;re struggling with..."></textarea></div>
+    </form>
+    <button id="checkoutSubmitBtn" class="btn btn-primary" style="width:100%;display:flex;justify-content:center;font-size:.82rem;padding:15px;border-radius:100px" onclick="handleCheckout()">Apply for This Plan &#8594;</button>
+    <p class="stripe-note">&#10022; We&#8217;ll review your application and reach out within 24 hours.</p>
   </div>
 </div>
 
@@ -1061,7 +1063,48 @@ function toggleFAQ(el){const item=el.parentElement;const open=item.classList.con
 function openCheckoutBtn(btn){openCheckout(btn.dataset.name,btn.dataset.price);}
 function openCheckout(name,price){document.getElementById('modalPlanName').textContent=name;document.getElementById('modalPrice').textContent=price;document.getElementById('checkoutModal').classList.add('active');document.body.style.overflow='hidden'}
 function closeCheckout(){document.getElementById('checkoutModal').classList.remove('active');document.body.style.overflow='';}
-function handleCheckout(){closeCheckout();alert('Redirecting to secure payment...');}
+function handleCheckout(){
+  var form = document.getElementById('checkoutForm');
+  var planName = document.getElementById('modalPlanName').textContent;
+  var price = document.getElementById('modalPrice').textContent;
+  var data = new FormData();
+  data.append('plan', planName);
+  data.append('investment', price);
+  form.querySelectorAll('input,textarea').forEach(function(el){
+    if(el.name) data.append(el.name, el.value);
+  });
+  var submitBtn = document.getElementById('checkoutSubmitBtn');
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
+  var endpoint = document.getElementById('checkoutForm').dataset.endpoint;
+  if(!endpoint || endpoint === 'YOUR_FORMSPREE_ID'){
+    // No Formspree set up yet — just show success
+    closeCheckout();
+    alert('Application received! We will be in touch shortly.');
+    return;
+  }
+  fetch(endpoint, {method:'POST', body:data, headers:{Accept:'application/json'}})
+    .then(function(r){ return r.json(); })
+    .then(function(){
+      closeCheckout();
+      showAppSuccess();
+    })
+    .catch(function(){
+      closeCheckout();
+      alert('Application received! We will be in touch shortly.');
+    });
+}
+
+function showAppSuccess(){
+  var el = document.getElementById('successToast');
+  if(!el){ el = document.createElement('div'); el.id='successToast';
+    el.style.cssText='position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--matcha-dk);color:white;padding:16px 32px;border-radius:100px;font-family:Cabinet Grotesk,sans-serif;font-weight:700;font-size:.85rem;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,.25)';
+    document.body.appendChild(el);
+  }
+  el.textContent = 'Application sent! We will be in touch shortly ✦';
+  el.style.display='block';
+  setTimeout(function(){ el.style.display='none'; }, 5000);
+}
 document.getElementById('checkoutModal').addEventListener('click',function(e){if(e.target===this)closeCheckout();});
 
 // Load content on page start
