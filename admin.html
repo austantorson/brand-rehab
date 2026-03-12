@@ -1112,6 +1112,10 @@ function loadLinks(){
   sv('lnk_ig',l.ig);sv('lnk_tt',l.tt);sv('lnk_li',l.li);
   sv('lnk_nav_process',l.nav_process);sv('lnk_nav_results',l.nav_results);
   sv('lnk_nav_pricing',l.nav_pricing);sv('lnk_nav_faq',l.nav_faq);
+  // Pricing plan button URLs
+  var plans=C.pricing.plans||[];
+  for(var i=0;i<4;i++){ sv('lnk_plan_'+i, plans[i]?plans[i].btn_url||'':''); }
+  sv('lnk_plan_ht', C.pricing.ht_btn_url||'');
   document.querySelectorAll('.linput').forEach(function(inp){
     inp.addEventListener('input', function(){
       var a=document.getElementById(this.id.replace('lnk_','lt_'));
@@ -1139,12 +1143,19 @@ function collect(){
   C.pricing.ht_t1=gv('ht_t1');C.pricing.ht_t2=gv('ht_t2');C.pricing.ht_desc=gv('ht_desc');
   C.pricing.ht_price=gv('ht_price');C.pricing.ht_period=gv('ht_period');
   C.pricing.plans.forEach(function(_,i){
-    C.pricing.plans[i]={name:gv('pl_'+i+'_name'),price:gv('pl_'+i+'_price'),
-      period:gv('pl_'+i+'_period'),badge:gv('pl_'+i+'_badge'),
-      featured:gv('pl_'+i+'_feat')==='true',desc:gv('pl_'+i+'_desc'),
-      features:gv('pl_'+i+'_feats').split('\n').map(function(f){return f.trim();}).filter(Boolean),
-      btn_url:gv('pl_'+i+'_url')};
+    var urlFromLinks=gv('lnk_plan_'+i);
+    C.pricing.plans[i]={name:gv('pl_'+i+'_name')||C.pricing.plans[i].name,
+      price:gv('pl_'+i+'_price')||C.pricing.plans[i].price,
+      period:gv('pl_'+i+'_period')||C.pricing.plans[i].period,
+      badge:gv('pl_'+i+'_badge')||C.pricing.plans[i].badge||'',
+      featured:gv('pl_'+i+'_feat')==='true',
+      desc:gv('pl_'+i+'_desc')||C.pricing.plans[i].desc,
+      features:(gv('pl_'+i+'_feats')||'').split('\n').map(function(f){return f.trim();}).filter(Boolean).length>0
+        ? (gv('pl_'+i+'_feats')||'').split('\n').map(function(f){return f.trim();}).filter(Boolean)
+        : C.pricing.plans[i].features,
+      btn_url:urlFromLinks||gv('pl_'+i+'_url')||''};
   });
+  C.pricing.ht_btn_url=gv('lnk_plan_ht');
   C.testimonials.pq_txt=gv('pq_txt');C.testimonials.pq_cite=gv('pq_cite');C.testimonials.pq_hi=gv('pq_hi');
   C.testimonials.cards.forEach(function(_,i){
     C.testimonials.cards[i]={quote:gv('tc_'+i+'_q'),name:gv('tc_'+i+'_name'),

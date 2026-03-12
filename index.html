@@ -648,7 +648,7 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
         <p class="ht-price">Starting at <em id="ht-price-amt">$2,995</em><span id="ht-price-per">/month</span></p>
       </div>
       <div style="text-align:center;flex-shrink:0">
-        <button class="btn btn-dark" onclick="openCheckout('High-Touch Content Strategy','Starting at $2,995/month','monthly')" style="white-space:nowrap;border:none">Apply for This Plan →</button>
+        <a id="ht-btn" href="#" onclick="if(!this.dataset.url){openCheckoutBtn(this);return false;}" data-name="High-Touch Content Strategy" data-price="Starting at $2,995/month" class="btn btn-dark" style="white-space:nowrap;border:none;text-decoration:none">Apply for This Plan →</a>
         <p style="font-size:.67rem;color:var(--latte);margin-top:10px">Exclusive. Very limited availability.</p>
       </div>
     </div>
@@ -965,6 +965,8 @@ function applyContent(c) {
   setT('pricing-h1', p.h1); setT('pricing-h2', p.h2); setT('pricing-sub', p.sub);
   setT('ht-t1', p.ht_t1); setT('ht-t2', p.ht_t2);
   setT('ht-desc', p.ht_desc); setT('ht-price-amt', p.ht_price); setT('ht-price-per', p.ht_period);
+  var htBtn=document.getElementById('ht-btn');
+  if(htBtn&&p.ht_btn_url){htBtn.href=p.ht_btn_url;htBtn.target='_blank';htBtn.onclick=null;}
   var prGrid = document.getElementById('pricing-grid');
   if(prGrid) {
     var btnLabels = ['Get the Template','Get Started','Start Growing Now','Apply Now'];
