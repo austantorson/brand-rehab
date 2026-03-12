@@ -706,14 +706,14 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
     <h3>Let&#8217;s get you started. &#10024;</h3>
     <span class="mplan" id="modalPlanName">Plan</span>
     <div class="price-sum"><p>Investment</p><span class="amt" id="modalPrice">$0</span></div>
-    <form id="checkoutForm" data-endpoint="https://formspree.io/f/maqpjbwz">
-      <div class="mfg"><label>Full Name</label><input type="text" name="name" placeholder="Your full name" required></div>
-      <div class="mfg"><label>Email Address</label><input type="email" name="email" placeholder="you@yourbusiness.com" required></div>
-      <div class="mfg"><label>Business / Brand Name</label><input type="text" name="business" placeholder="Your business name"></div>
-      <div class="mfg"><label>Instagram Handle</label><input type="text" name="instagram" placeholder="@yourhandle"></div>
-      <div class="mfg"><label>Biggest Content Challenge</label><textarea name="challenge" placeholder="Tell us briefly what you&#39;re struggling with..."></textarea></div>
-    </form>
-    <button id="checkoutSubmitBtn" class="btn btn-primary" style="width:100%;display:flex;justify-content:center;font-size:.82rem;padding:15px;border-radius:100px" onclick="handleCheckout()">Apply for This Plan &#8594;</button>
+    <div id="checkoutFields">
+      <div class="mfg"><label>Full Name</label><input type="text" id="f_name" placeholder="Your full name"></div>
+      <div class="mfg"><label>Email Address</label><input type="email" id="f_email" placeholder="you@yourbusiness.com"></div>
+      <div class="mfg"><label>Business / Brand Name</label><input type="text" id="f_business" placeholder="Your business name"></div>
+      <div class="mfg"><label>Instagram Handle</label><input type="text" id="f_instagram" placeholder="@yourhandle"></div>
+      <div class="mfg"><label>Biggest Content Challenge</label><textarea id="f_challenge" placeholder="Tell us briefly what you're struggling with..."></textarea></div>
+    </div>
+    <button id="checkoutSubmitBtn" class="btn btn-primary" style="width:100%;display:flex;justify-content:center;font-size:.82rem;padding:15px;border-radius:100px;margin-top:16px" onclick="handleCheckout()">Apply for This Plan &#8594;</button>
     <p class="stripe-note">&#10022; We&#8217;ll review your application and reach out within 24 hours.</p>
   </div>
 </div>
@@ -1064,35 +1064,43 @@ function openCheckoutBtn(btn){openCheckout(btn.dataset.name,btn.dataset.price);}
 function openCheckout(name,price){document.getElementById('modalPlanName').textContent=name;document.getElementById('modalPrice').textContent=price;document.getElementById('checkoutModal').classList.add('active');document.body.style.overflow='hidden'}
 function closeCheckout(){document.getElementById('checkoutModal').classList.remove('active');document.body.style.overflow='';}
 function handleCheckout(){
-  var form = document.getElementById('checkoutForm');
+  var name = document.getElementById('f_name').value.trim();
+  var email = document.getElementById('f_email').value.trim();
+  if(!name || !email){ alert('Please enter your name and email.'); return; }
   var planName = document.getElementById('modalPlanName').textContent;
   var price = document.getElementById('modalPrice').textContent;
-  var data = new FormData();
-  data.append('plan', planName);
-  data.append('investment', price);
-  form.querySelectorAll('input,textarea').forEach(function(el){
-    if(el.name) data.append(el.name, el.value);
-  });
   var submitBtn = document.getElementById('checkoutSubmitBtn');
   submitBtn.textContent = 'Sending...';
   submitBtn.disabled = true;
-  var endpoint = document.getElementById('checkoutForm').dataset.endpoint;
-  if(!endpoint || endpoint === 'YOUR_FORMSPREE_ID'){
-    // No Formspree set up yet — just show success
-    closeCheckout();
-    alert('Application received! We will be in touch shortly.');
-    return;
-  }
-  fetch(endpoint, {method:'POST', body:data, headers:{Accept:'application/json'}})
+  var data = new FormData();
+  data.append('plan', planName);
+  data.append('investment', price);
+  data.append('name', name);
+  data.append('email', email);
+  data.append('business', document.getElementById('f_business').value);
+  data.append('instagram', document.getElementById('f_instagram').value);
+  data.append('challenge', document.getElementById('f_challenge').value);
+  fetch('https://formspree.io/f/maqpjbwz', {method:'POST', body:data, headers:{Accept:'application/json'}})
     .then(function(r){ return r.json(); })
     .then(function(){
+      submitBtn.textContent = 'Apply for This Plan →';
+      submitBtn.disabled = false;
+      clearCheckoutForm();
       closeCheckout();
       showAppSuccess();
     })
     .catch(function(){
+      submitBtn.textContent = 'Apply for This Plan →';
+      submitBtn.disabled = false;
       closeCheckout();
-      alert('Application received! We will be in touch shortly.');
+      showAppSuccess();
     });
+}
+
+function clearCheckoutForm(){
+  ['f_name','f_email','f_business','f_instagram','f_challenge'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.value='';
+  });
 }
 
 function showAppSuccess(){
