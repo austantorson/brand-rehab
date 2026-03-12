@@ -229,6 +229,9 @@ body{background:var(--bl);overflow:hidden}
     <button class="ni" id="nav-team"><span class="ni-ico">👥</span>Team</button>
     <button class="ni" id="nav-faq"><span class="ni-ico">💬</span>FAQ</button>
     <button class="ni" id="nav-footer"><span class="ni-ico">📄</span>Footer</button>
+    <button class="ni" id="nav-numbers"><span class="ni-ico">📊</span>By the Numbers</button>
+    <button class="ni" id="nav-sproof"><span class="ni-ico">📷</span>Client Results</button>
+    <button class="ni" id="nav-ctabanner"><span class="ni-ico">📞</span>15-Min CTA Section</button>
     <span class="sb-sec">Media</span>
     <button class="ni" id="nav-images"><span class="ni-ico">🖼️</span>Images & Overlays</button>
     <span class="sb-sec">Links</span>
@@ -439,9 +442,59 @@ body{background:var(--bl);overflow:hidden}
         <div class="cbody open">
           <div class="row r1"><div class="field"><label>Brand description</label><textarea id="ft_desc"></textarea></div></div>
           <div class="row r1"><div class="field"><label>Copyright line</label><input type="text" id="ft_copy"></div></div>
+          <div class="row r3"><div class="field"><label>Col 1 title</label><input type="text" id="ft_col1_title"></div><div class="field"><label>Col 2 title</label><input type="text" id="ft_col2_title"></div><div class="field"><label>Col 3 title</label><input type="text" id="ft_col3_title"></div></div>
+          <div class="row r3"><div class="field"><label>IG handle label</label><input type="text" id="ft_ig_label"></div><div class="field"><label>TikTok label</label><input type="text" id="ft_tt_label"></div><div class="field"><label>LinkedIn label</label><input type="text" id="ft_li_label"></div></div>
+        </div>
+      </div>
+    </div
+
+    <!-- NUMBERS -->
+    <div class="panel" id="panel-numbers">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">&#128202;</div><div><div class="cttl">Section Header</div></div><span class="cchev">&#9660;</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Eyebrow label</label><input type="text" id="nb_eyebrow"></div></div>
+          <div class="row r2"><div class="field"><label>Headline line 1</label><input type="text" id="nb_h1"></div><div class="field"><label>Headline line 2 (italic)</label><input type="text" id="nb_h2"></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">&#128293;</div><div><div class="cttl">4 Stat Blocks</div><div class="csub">Label, number and subtext for each</div></div><span class="cchev">&#9660;</span></div>
+        <div class="cbody open">
+          <div class="sgrid2">
+            <div class="scard"><div class="scard-lbl">Block 1</div><div class="row r1" style="margin-bottom:8px"><div class="field"><label>Label</label><input type="text" id="nb_b1l"></div></div><div class="row r1" style="margin-bottom:8px"><div class="field"><label>Number</label><input type="text" id="nb_b1n"></div></div><div class="row r1"><div class="field"><label>Subtext</label><input type="text" id="nb_b1s"></div></div></div>
+            <div class="scard"><div class="scard-lbl">Block 2</div><div class="row r1" style="margin-bottom:8px"><div class="field"><label>Label</label><input type="text" id="nb_b2l"></div></div><div class="row r1" style="margin-bottom:8px"><div class="field"><label>Number</label><input type="text" id="nb_b2n"></div></div><div class="row r1"><div class="field"><label>Subtext</label><input type="text" id="nb_b2s"></div></div></div>
+            <div class="scard"><div class="scard-lbl">Block 3</div><div class="row r1" style="margin-bottom:8px"><div class="field"><label>Label</label><input type="text" id="nb_b3l"></div></div><div class="row r1" style="margin-bottom:8px"><div class="field"><label>Number</label><input type="text" id="nb_b3n"></div></div><div class="row r1"><div class="field"><label>Subtext</label><input type="text" id="nb_b3s"></div></div></div>
+            <div class="scard"><div class="scard-lbl">Block 4</div><div class="row r1" style="margin-bottom:8px"><div class="field"><label>Label</label><input type="text" id="nb_b4l"></div></div><div class="row r1" style="margin-bottom:8px"><div class="field"><label>Number</label><input type="text" id="nb_b4n"></div></div><div class="row r1"><div class="field"><label>Subtext</label><input type="text" id="nb_b4s"></div></div></div>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- SOCIAL PROOF -->
+    <div class="panel" id="panel-sproof">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">&#128247;</div><div><div class="cttl">Section Header</div></div><span class="cchev">&#9660;</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Eyebrow label</label><input type="text" id="sp_eyebrow"></div></div>
+          <div class="row r2"><div class="field"><label>Headline line 1</label><input type="text" id="sp_h1"></div><div class="field"><label>Headline line 2 (italic)</label><input type="text" id="sp_h2"></div></div>
+          <div class="row r1"><div class="field"><label>CTA button text</label><input type="text" id="sp_cta_txt"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA BANNER -->
+    <div class="panel" id="panel-ctabanner">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">&#128222;</div><div><div class="cttl">Pink 15-Min CTA Section</div><div class="csub">All text in the pink call-to-action band</div></div><span class="cchev">&#9660;</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Eyebrow label (small caps above headline)</label><input type="text" id="cta_eyebrow"></div></div>
+          <div class="row r2"><div class="field"><label>Headline line 1</label><input type="text" id="cta_h1"></div><div class="field"><label>Headline line 2 (italic)</label><input type="text" id="cta_h2"></div></div>
+          <div class="row r1"><div class="field"><label>Body paragraph</label><textarea id="cta_body"></textarea></div></div>
+          <div class="row r2"><div class="field"><label>Button text</label><input type="text" id="cta_btn_txt"></div><div class="field"><label>Fine print below button</label><input type="text" id="cta_fine"></div></div>
+          <div class="row r1"><div class="field"><label>Pill tags (one per line)</label><textarea id="cta_pills" style="min-height:80px"></textarea></div></div>
+        </div>
+      </div>
+    </div>>
 
     <!-- IMAGES -->
     <div class="panel" id="panel-images">
@@ -738,12 +791,15 @@ var META = {
   team:{t:'Team',d:'Edit names, roles and bios'},
   faq:{t:'FAQ',d:'Add, edit or remove questions'},
   footer:{t:'Footer',d:'Edit brand description and copyright'},
+  numbers:{t:'By the Numbers',d:'Edit the 4 stat blocks and section headline'},
+  sproof:{t:'Client Results',d:'Edit the social proof section header'},
+  ctabanner:{t:'15-Min CTA Section',d:'Edit all text in the pink call-to-action band'},
   images:{t:'Images & Overlays',d:'Upload images and edit overlay text'},
   links:{t:'Links & Buttons',d:'Update every URL on the site'},
   firebase:{t:'Firebase Setup',d:'Connect cloud database'},
   password:{t:'Change Password',d:'Update your login password'}
 };
-['hero','pain','checklist','process','pricing','testimonials','team','faq','footer','images','links','firebase','password'].forEach(function(id){
+['hero','pain','checklist','process','pricing','testimonials','team','faq','footer','numbers','sproof','ctabanner','images','links','firebase','password'].forEach(function(id){
   document.getElementById('nav-'+id).addEventListener('click', function(){
     document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
     document.querySelectorAll('.ni').forEach(function(b){b.classList.remove('on');});
@@ -787,7 +843,7 @@ function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repla
 function initAll(){
   loadHero(); loadPain(); loadChecklist(); loadProcess();
   loadPricing(); loadTestimonials(); loadTeam(); loadFaq();
-  loadFooter(); buildImageZones(); loadLinks(); loadFbConfig();
+  loadFooter(); loadNumbers(); loadSproof(); loadCtaBanner(); buildImageZones(); loadLinks(); loadFbConfig();
 }
 
 function loadHero(){
@@ -880,6 +936,38 @@ document.getElementById('addFaqBtn').addEventListener('click', function(){
 
 function loadFooter(){
   sv('ft_desc',C.footer.desc);sv('ft_copy',C.footer.copy);
+  sv('ft_col1_title',C.footer.col1_title||'Services');
+  sv('ft_col2_title',C.footer.col2_title||'Company');
+  sv('ft_col3_title',C.footer.col3_title||'Contact');
+  sv('ft_ig_label',C.footer.ig_label||'@brandrehab');
+  sv('ft_tt_label',C.footer.tt_label||'TikTok');
+  sv('ft_li_label',C.footer.li_label||'LinkedIn');
+}
+
+function loadNumbers(){
+  var nb=C.numbers||{};
+  sv('nb_eyebrow',nb.eyebrow||'By the Numbers');
+  sv('nb_h1',nb.h1||'Growth you can'); sv('nb_h2',nb.h2||'actually measure.');
+  sv('nb_b1l',nb.b1l||'Clients Served'); sv('nb_b1n',nb.b1n||'100+'); sv('nb_b1s',nb.b1s||'');
+  sv('nb_b2l',nb.b2l||'Avg Growth'); sv('nb_b2n',nb.b2n||'+100%'); sv('nb_b2s',nb.b2s||'');
+  sv('nb_b3l',nb.b3l||'Top Client'); sv('nb_b3n',nb.b3n||'2.3M'); sv('nb_b3s',nb.b3s||'');
+  sv('nb_b4l',nb.b4l||'Onboard Time'); sv('nb_b4n',nb.b4n||'5 Days'); sv('nb_b4s',nb.b4s||'');
+}
+
+function loadSproof(){
+  var sp=C.sproof||{};
+  sv('sp_eyebrow',sp.eyebrow||'Client Results');
+  sv('sp_h1',sp.h1||'What growth'); sv('sp_h2',sp.h2||'actually looks like.');
+  sv('sp_cta_txt',sp.cta_txt||'Start Growing');
+}
+
+function loadCtaBanner(){
+  var cta=C.ctabanner||{};
+  sv('cta_eyebrow',cta.eyebrow||"You've Spent Enough Time Figuring This Out Alone");
+  sv('cta_h1',cta.h1||"A 15-minute call won't"); sv('cta_h2',cta.h2||'lock you into anything.');
+  sv('cta_body',cta.body||''); sv('cta_btn_txt',cta.btn_txt||'Book Your Free Discovery Call');
+  sv('cta_fine',cta.fine||'Month-to-month. Cancel anytime. No hidden fees.');
+  sv('cta_pills',(cta.pills||['No commitment','No pressure','Just clarity','Onboarded in 3-5 days']).join('\n'));
 }
 
 //
@@ -1068,7 +1156,19 @@ function collect(){
   C.faq.items.forEach(function(_,i){
     C.faq.items[i]={q:gv('fq_'+i+'_q'),a:gv('fq_'+i+'_a')};
   });
-  C.footer={desc:gv('ft_desc'),copy:gv('ft_copy')};
+  C.footer={desc:gv('ft_desc'),copy:gv('ft_copy'),
+    col1_title:gv('ft_col1_title'),col2_title:gv('ft_col2_title'),col3_title:gv('ft_col3_title'),
+    ig_label:gv('ft_ig_label'),tt_label:gv('ft_tt_label'),li_label:gv('ft_li_label'),
+    col1_links:C.footer.col1_links,col2_links:C.footer.col2_links};
+  C.numbers={eyebrow:gv('nb_eyebrow'),h1:gv('nb_h1'),h2:gv('nb_h2'),
+    b1l:gv('nb_b1l'),b1n:gv('nb_b1n'),b1s:gv('nb_b1s'),
+    b2l:gv('nb_b2l'),b2n:gv('nb_b2n'),b2s:gv('nb_b2s'),
+    b3l:gv('nb_b3l'),b3n:gv('nb_b3n'),b3s:gv('nb_b3s'),
+    b4l:gv('nb_b4l'),b4n:gv('nb_b4n'),b4s:gv('nb_b4s')};
+  C.sproof={eyebrow:gv('sp_eyebrow'),h1:gv('sp_h1'),h2:gv('sp_h2'),cta_txt:gv('sp_cta_txt')};
+  C.ctabanner={eyebrow:gv('cta_eyebrow'),h1:gv('cta_h1'),h2:gv('cta_h2'),
+    body:gv('cta_body'),btn_txt:gv('cta_btn_txt'),fine:gv('cta_fine'),
+    pills:gv('cta_pills').split('\n').map(function(p){return p.trim();}).filter(Boolean)};
   C.images.ib1_h=gv('ib1_h');C.images.ib1_sub=gv('ib1_sub');C.images.ib2_h=gv('ib2_h');
   [0,1,2,3,4].forEach(function(i){
     C.images['ig_'+i+'_cap']=gv('ig_'+i+'_cap');
