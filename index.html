@@ -390,7 +390,7 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 .modal-ov{position:fixed;inset:0;background:rgba(26,14,9,.78);backdrop-filter:blur(16px);z-index:9000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
 .modal-ov.active{opacity:1;pointer-events:all}
 .modal{background:white;border-radius:24px;padding:48px;max-width:520px;width:100%;position:relative;transform:translateY(20px);transition:transform .3s;max-height:92vh;overflow-y:auto}
-.modal-ov.active .modal{transform:translateY(0)}
+.modal-ov.active 
 .modal::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-pink);border-radius:24px 24px 0 0}
 .modal-x{position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--sand);background:var(--cream);cursor:none;font-size:.9rem;display:flex;align-items:center;justify-content:center;color:var(--latte);transition:all .2s;font-weight:700}
 .modal-x:hover{background:var(--rose);border-color:var(--rose)}
@@ -700,21 +700,25 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 </footer>
 
 <!-- MODAL -->
-<div class="modal-ov" id="checkoutModal">
-  <div class="modal">
-    <button class="modal-x" onclick="closeCheckout()">&#215;</button>
-    <h3>Let&#8217;s get you started. &#10024;</h3>
-    <span class="mplan" id="modalPlanName">Plan</span>
-    <div class="price-sum"><p>Investment</p><span class="amt" id="modalPrice">$0</span></div>
-    <div id="checkoutFields">
-      <div class="mfg"><label>Full Name</label><input type="text" id="f_name" placeholder="Your full name"></div>
-      <div class="mfg"><label>Email Address</label><input type="email" id="f_email" placeholder="you@yourbusiness.com"></div>
-      <div class="mfg"><label>Business / Brand Name</label><input type="text" id="f_business" placeholder="Your business name"></div>
-      <div class="mfg"><label>Instagram Handle</label><input type="text" id="f_instagram" placeholder="@yourhandle"></div>
-      <div class="mfg"><label>Biggest Content Challenge</label><textarea id="f_challenge" placeholder="Tell us briefly what you're struggling with..."></textarea></div>
+<div id="checkoutModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(26,14,9,.82);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px;overflow-y:auto">
+  <div style="background:#fff;border-radius:24px;padding:40px;max-width:500px;width:100%;position:relative;max-height:90vh;overflow-y:auto;margin:auto">
+    <button onclick="closeCheckout()" style="position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1.5px solid #e8ddd6;background:#fdf8f3;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1">&times;</button>
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#E8A0B0,#C4607A);border-radius:24px 24px 0 0"></div>
+    <h3 style="font-family:'Fraunces',serif;font-size:1.7rem;color:#2A1A14;margin:0 0 4px">Let&#8217;s get you started. &#x2728;</h3>
+    <span id="modalPlanName" style="display:inline-block;background:#FCF0F3;color:#C4607A;font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:14px">Plan</span>
+    <div style="background:#fdf8f3;border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <p style="margin:0;font-size:.78rem;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif">Investment</p>
+      <span id="modalPrice" style="font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#2A1A14">$0</span>
     </div>
-    <button id="checkoutSubmitBtn" class="btn btn-primary" style="width:100%;display:flex;justify-content:center;font-size:.82rem;padding:15px;border-radius:100px;margin-top:16px" onclick="handleCheckout()">Apply for This Plan &#8594;</button>
-    <p class="stripe-note">&#10022; We&#8217;ll review your application and reach out within 24 hours.</p>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div><label style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif;display:block;margin-bottom:5px">Full Name *</label><input id="f_name" type="text" placeholder="Your full name" style="width:100%;padding:12px 14px;border:1.5px solid #e8ddd6;border-radius:10px;font-size:.88rem;font-family:'Instrument Sans',sans-serif;outline:none;box-sizing:border-box"></div>
+      <div><label style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif;display:block;margin-bottom:5px">Email Address *</label><input id="f_email" type="email" placeholder="you@yourbusiness.com" style="width:100%;padding:12px 14px;border:1.5px solid #e8ddd6;border-radius:10px;font-size:.88rem;font-family:'Instrument Sans',sans-serif;outline:none;box-sizing:border-box"></div>
+      <div><label style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif;display:block;margin-bottom:5px">Business / Brand Name</label><input id="f_business" type="text" placeholder="Your business name" style="width:100%;padding:12px 14px;border:1.5px solid #e8ddd6;border-radius:10px;font-size:.88rem;font-family:'Instrument Sans',sans-serif;outline:none;box-sizing:border-box"></div>
+      <div><label style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif;display:block;margin-bottom:5px">Instagram Handle</label><input id="f_instagram" type="text" placeholder="@yourhandle" style="width:100%;padding:12px 14px;border:1.5px solid #e8ddd6;border-radius:10px;font-size:.88rem;font-family:'Instrument Sans',sans-serif;outline:none;box-sizing:border-box"></div>
+      <div><label style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif;display:block;margin-bottom:5px">Biggest Content Challenge</label><textarea id="f_challenge" placeholder="Tell us briefly what you're struggling with..." style="width:100%;padding:12px 14px;border:1.5px solid #e8ddd6;border-radius:10px;font-size:.88rem;font-family:'Instrument Sans',sans-serif;outline:none;box-sizing:border-box;min-height:90px;resize:vertical"></textarea></div>
+    </div>
+    <button id="checkoutSubmitBtn" onclick="handleCheckout()" style="width:100%;margin-top:20px;padding:15px;background:linear-gradient(135deg,#E8A0B0,#C4607A);color:white;border:none;border-radius:100px;font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.04em;cursor:pointer">Apply for This Plan &#x2192;</button>
+    <p style="text-align:center;margin-top:12px;font-size:.72rem;color:#9B7060">&#10022; We&#8217;ll review your application and reach out within 24 hours.</p>
   </div>
 </div>
 
@@ -1062,6 +1066,7 @@ function toggleFAQ(el){const item=el.parentElement;const open=item.classList.con
 // Modal
 function openCheckoutBtn(btn){openCheckout(btn.dataset.name,btn.dataset.price);}
 function openCheckout(name,price){
+  var m=document.getElementById('checkoutModal');
   document.getElementById('modalPlanName').textContent=name||'';
   document.getElementById('modalPrice').textContent=price||'';
   ['f_name','f_email','f_business','f_instagram','f_challenge'].forEach(function(id){
@@ -1069,10 +1074,14 @@ function openCheckout(name,price){
   });
   var btn=document.getElementById('checkoutSubmitBtn');
   if(btn){btn.textContent='Apply for This Plan →';btn.disabled=false;}
-  document.getElementById('checkoutModal').classList.add('active');
+  m.style.display='flex';
   document.body.style.overflow='hidden';
+  m.onclick=function(e){if(e.target===m)closeCheckout();};
 }
-function closeCheckout(){document.getElementById('checkoutModal').classList.remove('active');document.body.style.overflow='';}
+function closeCheckout(){
+  document.getElementById('checkoutModal').style.display='none';
+  document.body.style.overflow='';
+}
 function handleCheckout(){
   var name = document.getElementById('f_name').value.trim();
   var email = document.getElementById('f_email').value.trim();
@@ -1123,7 +1132,7 @@ function showAppSuccess(){
   el.style.display='block';
   setTimeout(function(){ el.style.display='none'; }, 5000);
 }
-document.getElementById('checkoutModal').addEventListener('click',function(e){if(e.target===this)closeCheckout();});
+
 
 // Load content on page start
 loadContent().then(applyContent);
