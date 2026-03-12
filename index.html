@@ -975,10 +975,14 @@ function applyContent(c) {
         '<p class="pc-desc">'+plan.desc+'</p>'+
         '<div class="pc-price"><span class="pc-amt">'+plan.price+'</span><span class="pc-per">'+plan.period+'</span></div>'+
         '<ul class="pc-feats">'+plan.features.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul>'+
-        '<button class="pbtn '+(plan.featured?'primary':i===1?'matcha-btn':i===3?'light-ol':'outline')+
-        '" onclick="openCheckout(\''+plan.name.replace(/'/g,"\\'")+"','"+(plan.price+' '+plan.period)+'\')">'+(btnLabels[i]||'Get Started')+'</button>'+
-        (plan.featured ? '<p class="pslots">Limited spots this month</p>' : '')+
-        '</div>';
+        (function(){
+        var btnCls='pbtn '+(plan.featured?'primary':i===1?'matcha-btn':i===3?'light-ol':'outline');
+        var btnTxt=btnLabels[i]||'Get Started';
+        var btnHtml = plan.btn_url
+          ? '<a href="'+plan.btn_url+'" target="_blank" class="'+btnCls+'" style="display:block;text-align:center;text-decoration:none">'+btnTxt+'</a>'
+          : '<button class="'+btnCls+'" data-name="'+plan.name.replace(/"/g,'&quot;')+'" data-price="'+plan.price+' '+plan.period+'" onclick="openCheckoutBtn(this)">'+btnTxt+'</button>';
+        return btnHtml+(plan.featured?'<p class="pslots">Limited spots this month</p>':'')+'</div>';
+      }())
     }).join('');
   }
 
@@ -1052,6 +1056,7 @@ reveals.forEach(el=>obs.observe(el));
 function toggleFAQ(el){const item=el.parentElement;const open=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open')}
 
 // Modal
+function openCheckoutBtn(btn){openCheckout(btn.dataset.name,btn.dataset.price);}
 function openCheckout(name,price){document.getElementById('modalPlanName').textContent=name;document.getElementById('modalPrice').textContent=price;document.getElementById('checkoutModal').classList.add('active');document.body.style.overflow='hidden'}
 function closeCheckout(){document.getElementById('checkoutModal').classList.remove('active');document.body.style.overflow='';}
 function handleCheckout(){closeCheckout();alert('Redirecting to secure payment...');}

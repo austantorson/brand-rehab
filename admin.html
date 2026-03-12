@@ -888,7 +888,8 @@ function loadPricing(){
       '<div class="row r2"><div class="field"><label>Plan Name</label><input type="text" id="pl_'+i+'_name" value="'+esc(plan.name)+'"></div><div class="field"><label>Price</label><input type="text" id="pl_'+i+'_price" value="'+esc(plan.price)+'"></div></div>'+
       '<div class="row r3"><div class="field"><label>Period</label><input type="text" id="pl_'+i+'_period" value="'+esc(plan.period)+'"></div><div class="field"><label>Badge</label><input type="text" id="pl_'+i+'_badge" value="'+esc(plan.badge)+'"></div><div class="field"><label>Featured?</label><select id="pl_'+i+'_feat"><option value="false"'+(plan.featured?'':' selected')+'>No</option><option value="true"'+(plan.featured?' selected':'')+'>Yes</option></select></div></div>'+
       '<div class="row r1"><div class="field"><label>Description</label><textarea id="pl_'+i+'_desc">'+esc(plan.desc)+'</textarea></div></div>'+
-      '<div class="row r1"><div class="field"><label>Features -- one per line</label><textarea id="pl_'+i+'_feats" style="min-height:110px">'+plan.features.join('\n')+'</textarea></div></div>';
+      '<div class="row r1"><div class="field"><label>Features -- one per line</label><textarea id="pl_'+i+'_feats" style="min-height:110px">'+plan.features.join('\n')+'</textarea></div></div>'+
+      '<div class="row r1"><div class="field"><label>Button URL (where the button links)</label><input type="text" id="pl_'+i+'_url" placeholder="https://calendly.com" value="'+esc(plan.btn_url||'')+'"></div></div>';
     el.appendChild(d);
   });
 }
@@ -1141,7 +1142,8 @@ function collect(){
     C.pricing.plans[i]={name:gv('pl_'+i+'_name'),price:gv('pl_'+i+'_price'),
       period:gv('pl_'+i+'_period'),badge:gv('pl_'+i+'_badge'),
       featured:gv('pl_'+i+'_feat')==='true',desc:gv('pl_'+i+'_desc'),
-      features:gv('pl_'+i+'_feats').split('\n').map(function(f){return f.trim();}).filter(Boolean)};
+      features:gv('pl_'+i+'_feats').split('\n').map(function(f){return f.trim();}).filter(Boolean),
+      btn_url:gv('pl_'+i+'_url')};
   });
   C.testimonials.pq_txt=gv('pq_txt');C.testimonials.pq_cite=gv('pq_cite');C.testimonials.pq_hi=gv('pq_hi');
   C.testimonials.cards.forEach(function(_,i){
