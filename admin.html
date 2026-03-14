@@ -229,6 +229,7 @@ body{background:var(--bl);overflow:hidden}
     <button class="ni" id="nav-team"><span class="ni-ico">👥</span>Team</button>
     <button class="ni" id="nav-faq"><span class="ni-ico">💬</span>FAQ</button>
     <button class="ni" id="nav-footer"><span class="ni-ico">📄</span>Footer</button>
+    <button class="ni" id="nav-reality"><span class="ni-ico">📱</span>Reality Check</button>
     <button class="ni" id="nav-numbers"><span class="ni-ico">📊</span>By the Numbers</button>
     <button class="ni" id="nav-sproof"><span class="ni-ico">📷</span>Client Results</button>
     <button class="ni" id="nav-ctabanner"><span class="ni-ico">📞</span>15-Min CTA Section</button>
@@ -448,6 +449,40 @@ body{background:var(--bl);overflow:hidden}
       </div>
     </div
 
+    <!-- REALITY CHECK -->
+    <div class="panel" id="panel-reality">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">📱</div><div><div class="cttl">Section Text</div><div class="csub">Eyebrow, headline, body and button</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Eyebrow label</label><input type="text" id="rc_eyebrow"></div></div>
+          <div class="row r1"><div class="field"><label>Headline (use quotes, italics auto on last word)</label><input type="text" id="rc_h"></div></div>
+          <div class="row r1"><div class="field"><label>Body text</label><textarea id="rc_sub" style="min-height:100px"></textarea></div></div>
+          <div class="row r2"><div class="field"><label>Button text</label><input type="text" id="rc_cta_txt"></div><div class="field"><label>Button link (or use Links &amp; Buttons tab)</label><input type="text" id="rc_cta_link" placeholder="#pricing"></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">🎬</div><div><div class="cttl">Phone Video</div><div class="csub">Video URL that fills the 9:16 phone screen</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Video URL <small style="color:var(--latte);font-weight:400">(MP4, MOV or hosted video direct link — 9:16 vertical)</small></label><input type="text" id="rc_video_url" placeholder="https://...mp4"></div></div>
+          <p style="font-size:.72rem;color:var(--latte);margin-top:8px">&#128204; Best format: vertical MP4, 1080×1920px. Upload to Cloudinary, Bunny.net, or any direct-link host and paste the URL here.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">🌄</div><div><div class="cttl">Background Image</div><div class="csub">1800×1000px · behind the phone and text</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Upload or paste URL <small style="color:var(--latte);font-weight:400">(1800×1000px wide)</small></label>
+            <div class="img-zone" id="iz-reality_bg" data-key="reality_bg" onclick="document.getElementById('if-reality_bg').click()">
+              <input type="file" id="if-reality_bg" accept="image/*" style="display:none" onchange="handleImgUpload(this,'reality_bg')">
+              <div class="iz-icon">🌄</div>
+              <div class="iz-lbl">Click to upload · 1800×1000px</div>
+              <div class="iz-sub">or drag and drop</div>
+            </div>
+            <input type="text" id="img_reality_bg" placeholder="https://... (or upload above)" style="margin-top:8px" oninput="previewImgUrl(this.value,'reality_bg')">
+          </div></div>
+        </div>
+      </div>
+    </div>
+
     <!-- NUMBERS -->
     <div class="panel" id="panel-numbers">
       <div class="card">
@@ -508,6 +543,8 @@ body{background:var(--bl);overflow:hidden}
               <tr><td><strong>Image Break 1 &amp; 2</strong></td><td>1800×600px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Cinematic strip. Centre your subject.</td></tr>
               <tr><td><strong>Team Photos ×3</strong></td><td>600×800px</td><td><span class="spec-pill sp-port">Portrait</span></td><td>Face centred, space above head.</td></tr>
               <tr><td><strong>IG Posts ×5</strong></td><td>400×500px</td><td><span class="spec-pill sp-sq">Square+</span></td><td>Social proof mock-ups.</td></tr>
+              <tr><td><strong>Reality Check BG</strong></td><td>1800×1000px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Behind the phone section. Dark images work best.</td></tr>
+              <tr><td><strong>CTA Banner BG</strong></td><td>1800×600px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Behind the pink CTA section. Keep it subtle.</td></tr>
             </tbody>
           </table>
         </div>
@@ -545,6 +582,21 @@ body{background:var(--bl);overflow:hidden}
         <div class="chdr" onclick="tog(this)"><div class="cico mt">📱</div><div><div class="cttl">Instagram Post Images</div><div class="csub">400×500px — 5 posts with editable captions</div></div><span class="cchev">▼</span></div>
         <div class="cbody open"><div id="ig-photos-grid"></div></div>
       </div>
+    
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">🎀</div><div><div class="cttl">CTA Banner Background</div><div class="csub">1800×600px · behind the pink 15-min section</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Upload or paste URL <small style="color:var(--latte);font-weight:400">(1800×600px)</small></label>
+            <div class="img-zone" id="iz-cta_bg" data-key="cta_bg" onclick="document.getElementById('if-cta_bg').click()">
+              <input type="file" id="if-cta_bg" accept="image/*" style="display:none" onchange="handleImgUpload(this,'cta_bg')">
+              <div class="iz-icon">🎀</div>
+              <div class="iz-lbl">Click to upload · 1800×600px</div>
+              <div class="iz-sub">or drag and drop</div>
+            </div>
+            <input type="text" id="img_cta_bg" placeholder="https://... (or upload above)" style="margin-top:8px" oninput="previewImgUrl(this.value,'cta_bg')">
+          </div></div>
+        </div>
+      </div>
     </div>
 
     <!-- LINKS -->
@@ -552,6 +604,9 @@ body{background:var(--bl);overflow:hidden}
       <div class="card">
         <div class="chdr" onclick="tog(this)"><div class="cico pk">🔗</div><div><div class="cttl">All Links &amp; Buttons</div><div class="csub">Update every URL on the site</div></div><span class="cchev">▼</span></div>
         <div class="cbody open">
+          <div class="lg"><div class="lg-title">📱 Section CTAs</div>
+            <div class="lrow"><div class="lname"><span>Reality Check Button</span><small>"Start posting with purpose" link</small></div><input class="linput" id="lnk_reality_cta" type="url" placeholder="#pricing"><a class="ltest" id="lt_reality_cta" href="#" target="_blank">Test ↗</a></div>
+          </div>
           <div class="lg"><div class="lg-title">💳 Pricing Plan Buttons</div>
             <div class="lrow"><div class="lname"><span>Content Planner — $37</span><small>Button on the first pricing card</small></div><input class="linput" id="lnk_plan_0" type="url" placeholder="https://"><a class="ltest" id="lt_plan_0" href="#" target="_blank">Test ↗</a></div>
             <div class="lrow"><div class="lname"><span>DIY Strategy — $249/mo</span><small>Button on the second pricing card</small></div><input class="linput" id="lnk_plan_1" type="url" placeholder="https://"><a class="ltest" id="lt_plan_1" href="#" target="_blank">Test ↗</a></div>
@@ -801,12 +856,13 @@ var META = {
   numbers:{t:'By the Numbers',d:'Edit the 4 stat blocks and section headline'},
   sproof:{t:'Client Results',d:'Edit the social proof section header'},
   ctabanner:{t:'15-Min CTA Section',d:'Edit all text in the pink call-to-action band'},
+  reality:{t:'Reality Check Section',d:'Video phone section — text, video, background and link'},
   images:{t:'Images & Overlays',d:'Upload images and edit overlay text'},
   links:{t:'Links & Buttons',d:'Update every URL on the site'},
   firebase:{t:'Firebase Setup',d:'Connect cloud database'},
   password:{t:'Change Password',d:'Update your login password'}
 };
-['hero','pain','checklist','process','pricing','testimonials','team','faq','footer','numbers','sproof','ctabanner','images','links','firebase','password'].forEach(function(id){
+['hero','pain','checklist','process','pricing','testimonials','team','faq','footer','numbers','sproof','ctabanner','reality','images','links','firebase','password'].forEach(function(id){
   document.getElementById('nav-'+id).addEventListener('click', function(){
     document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
     document.querySelectorAll('.ni').forEach(function(b){b.classList.remove('on');});
@@ -850,7 +906,7 @@ function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repla
 function initAll(){
   loadHero(); loadPain(); loadChecklist(); loadProcess();
   loadPricing(); loadTestimonials(); loadTeam(); loadFaq();
-  loadFooter(); loadNumbers(); loadSproof(); loadCtaBanner(); buildImageZones(); loadLinks(); loadFbConfig();
+  loadFooter(); loadNumbers(); loadSproof(); loadCtaBanner(); loadReality(); buildImageZones(); loadLinks(); loadFbConfig();
 }
 
 function loadHero(){
@@ -969,6 +1025,17 @@ function loadSproof(){
   sv('sp_cta_txt',sp.cta_txt||'Start Growing');
 }
 
+function loadReality(){
+  var rc=C.reality||{};
+  sv('rc_eyebrow',rc.eyebrow||'The Reality Check');
+  sv('rc_h',rc.h||'"I don’t need social media."');
+  sv('rc_sub',rc.sub||'');
+  sv('rc_cta_txt',rc.cta_txt||'Start posting with purpose ↗');
+  sv('rc_cta_link',rc.cta_link||'#pricing');
+  sv('rc_video_url',rc.video_url||'');
+  sv('img_reality_bg',rc.bg_img||'');
+  sv('img_cta_bg',(C.ctabanner&&C.ctabanner.bg_img)||'');
+}
 function loadCtaBanner(){
   var cta=C.ctabanner||{};
   sv('cta_eyebrow',cta.eyebrow||"You've Spent Enough Time Figuring This Out Alone");
@@ -1119,6 +1186,7 @@ function loadLinks(){
   sv('lnk_ig',l.ig);sv('lnk_tt',l.tt);sv('lnk_li',l.li);
   sv('lnk_nav_process',l.nav_process);sv('lnk_nav_results',l.nav_results);
   sv('lnk_nav_pricing',l.nav_pricing);sv('lnk_nav_faq',l.nav_faq);
+  sv('lnk_reality_cta',(C.reality&&C.reality.cta_link)||'#pricing');
   var plans=C.pricing.plans||[];
   for(var i=0;i<4;i++){sv('lnk_plan_'+i,(plans[i]&&plans[i].btn_url)||'');}
   sv('lnk_plan_ht',C.pricing.ht_btn_url||'');
@@ -1189,6 +1257,12 @@ function collect(){
     b3l:gv('nb_b3l'),b3n:gv('nb_b3n'),b3s:gv('nb_b3s'),
     b4l:gv('nb_b4l'),b4n:gv('nb_b4n'),b4s:gv('nb_b4s')};
   C.sproof={eyebrow:gv('sp_eyebrow'),h1:gv('sp_h1'),h2:gv('sp_h2'),cta_txt:gv('sp_cta_txt')};
+  C.reality={eyebrow:gv('rc_eyebrow'),h:gv('rc_h'),sub:gv('rc_sub'),
+    cta_txt:gv('rc_cta_txt'),cta_link:gv('rc_cta_link'),
+    video_url:gv('rc_video_url'),
+    bg_img:gv('img_reality_bg')};
+  if(!C.ctabanner) C.ctabanner={};
+  C.ctabanner.bg_img=gv('img_cta_bg');
   C.ctabanner={eyebrow:gv('cta_eyebrow'),h1:gv('cta_h1'),h2:gv('cta_h2'),
     body:gv('cta_body'),btn_txt:gv('cta_btn_txt'),fine:gv('cta_fine'),
     pills:gv('cta_pills').split('\n').map(function(p){return p.trim();}).filter(Boolean)};

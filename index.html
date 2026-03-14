@@ -72,13 +72,13 @@ h1.hero-h1 em{font-style:italic;color:var(--pink);display:block}
 .hero-sub{font-size:1.05rem;font-weight:400;color:rgba(255,255,255,.62);line-height:1.82;max-width:500px;margin-bottom:8px;animation:fadeUp .8s ease .25s both}
 .hero-sub2{font-family:'Fraunces',serif;font-size:1.22rem;font-style:italic;font-weight:400;color:var(--matcha);margin-bottom:44px;animation:fadeUp .8s ease .3s both}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .8s ease .36s both}
-.hero-stats{position:absolute;bottom:0;left:0;right:0;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);animation:fadeUp .8s ease .5s both}
-.hstat{padding:20px 0;text-align:center;background:rgba(255,255,255,.04);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.06);transition:background .3s}
+
+
 .hstat:last-child{border-right:none}
 .hstat:hover{background:rgba(232,160,176,.1)}
-.hstat .n{font-family:'Cabinet Grotesk',sans-serif;font-size:2rem;color:white;display:block;font-weight:800;line-height:1;letter-spacing:-.02em}
+
 .hstat .n em{color:var(--pink);font-style:normal}
-.hstat p{font-size:.62rem;color:rgba(255,255,255,.38);letter-spacing:.1em;text-transform:uppercase;margin-top:5px;font-weight:500}
+
 
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:none;cursor:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;border-radius:100px;transition:all .25s;padding:14px 32px}
@@ -188,15 +188,14 @@ h1.hero-h1 em{font-style:italic;color:var(--pink);display:block}
 .sproof-bg{position:absolute;inset:0;opacity:.04;background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1800&q=80&fit=crop');background-size:cover}
 .sp-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:22px;max-width:1200px;margin-left:auto;margin-right:auto}
 .iggrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1200px;margin:0 auto;align-items:start}
-.igc{background:#1e1210;border-radius:28px;border:5px solid #291710;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden;transition:transform .4s}
-.igc:hover{transform:translateY(-8px)}
+.igc{border-radius:16px;overflow:hidden;transition:transform .4s;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.igc:hover{transform:translateY(-6px)}
 .igc:nth-child(2){margin-top:28px}
 .igc:nth-child(4){margin-top:18px}
-.igc-in{aspect-ratio:9/19;overflow:hidden;position:relative;display:flex;flex-direction:column}
-.ign{position:absolute;top:0;left:50%;transform:translateX(-50%);width:50%;height:18px;background:#1e1210;border-radius:0 0 12px 12px;z-index:10}
-.igh{padding:22px 10px 8px;display:flex;align-items:center;gap:8px;background:white;flex-shrink:0}
-.igav{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:var(--grad-pink)}
-.igc:nth-child(even) .igav{background:var(--grad-matcha)}
+.igc-in{aspect-ratio:9/16;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.ign{display:none}
+.igh{display:none}
+.igav{display:none}
 .ign2{font-family:'Cabinet Grotesk',sans-serif;font-size:.56rem;font-weight:700;color:var(--coffee);display:block}
 .ighn{font-size:.44rem;color:var(--latte)}
 .igimgw{flex:1;min-height:0;position:relative;overflow:hidden}
@@ -415,8 +414,27 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 
 /* RESPONSIVE */
 @media(max-width:1024px){.pr-grid{grid-template-columns:repeat(2,1fr)}.pc.feat{transform:translateY(0)}.iggrid{grid-template-columns:repeat(3,1fr)}.igc:nth-child(4),.igc:nth-child(5){display:none}.ht-row{grid-template-columns:1fr;gap:24px}}
-@media(max-width:768px){.nav-links{display:none}.hero-stats{position:static;grid-template-columns:repeat(2,1fr)}.pain-grid{grid-template-columns:1fr;gap:32px}.checklist{grid-template-columns:1fr}.fam-cta{flex-direction:column;padding:30px 24px}.sgrid{grid-template-columns:repeat(2,1fr)}.tgrid{grid-template-columns:1fr}.psteps{grid-template-columns:1fr}.tgrid-p{grid-template-columns:1fr}.pr-grid{grid-template-columns:1fr}.ft-inner{grid-template-columns:1fr;gap:32px}.ft-bot{flex-direction:column;gap:14px}.iggrid{grid-template-columns:repeat(2,1fr)}.igc:nth-child(4){display:block}.as-in{flex-direction:column}.pull-q{padding:28px 24px}.ht-row{padding:28px}}
-@media(max-width:480px){.hero-stats{grid-template-columns:repeat(2,1fr)}.hero-btns{flex-direction:column}}
+@media(max-width:768px){.nav-links{display:none}.pain-grid{grid-template-columns:1fr;gap:32px}.checklist{grid-template-columns:1fr}.fam-cta{flex-direction:column;padding:30px 24px}.sgrid{grid-template-columns:repeat(2,1fr)}.tgrid{grid-template-columns:1fr}.psteps{grid-template-columns:1fr}.tgrid-p{grid-template-columns:1fr}.pr-grid{grid-template-columns:1fr}.ft-inner{grid-template-columns:1fr;gap:32px}.ft-bot{flex-direction:column;gap:14px}.iggrid{grid-template-columns:repeat(2,1fr)}.igc:nth-child(4){display:block}.as-in{flex-direction:column}.pull-q{padding:28px 24px}.ht-row{padding:28px}}
+@media(max-width:480px){.hero-btns{flex-direction:column}}
+
+/* ── REALITY CHECK ── */
+.reality-section{position:relative;overflow:hidden;background:var(--espresso);padding:100px 0}
+.reality-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.18;pointer-events:none}
+.reality-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.reality-phone{display:flex;justify-content:center}
+.phone-frame{width:240px;height:520px;background:#1a0e09;border-radius:40px;border:6px solid #3a2218;box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05);position:relative;overflow:hidden}
+.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:22px;background:#1a0e09;border-radius:0 0 14px 14px;z-index:10}
+.phone-screen{width:100%;height:100%;background:#000;overflow:hidden;position:relative}
+.phone-controls{position:absolute;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:12px;z-index:5}
+.phone-btn{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.2);color:white;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.phone-btn:hover{background:rgba(196,96,122,.7)}
+.reality-copy{color:white}
+.reality-sub{font-size:.97rem;color:rgba(255,255,255,.6);line-height:1.85;margin:18px 0 32px;max-width:440px}
+@media(max-width:860px){
+  .reality-inner{grid-template-columns:1fr;gap:40px}
+  .reality-phone{order:2}
+  .reality-copy{order:1}
+}
 </style>
 </head>
 <body>
@@ -453,12 +471,7 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
       <a href="#pricing" class="btn btn-ghost">See Plans</a>
     </div>
   </div>
-  <div class="hero-stats">
-    <div class="hstat"><span class="n" id="stat1-n">100+</span><p id="stat1-l">Business owners served</p></div>
-    <div class="hstat"><span class="n" id="stat2-n">2.3M</span><p id="stat2-l">Top client followers</p></div>
-    <div class="hstat"><span class="n" id="stat3-n">1 Wk</span><p id="stat3-l">Average launch time</p></div>
-    <div class="hstat"><span class="n" id="stat4-n">+100%</span><p id="stat4-l">Avg. monthly growth</p></div>
-  </div>
+
 </section>
 
 <!-- MARQUEE -->
@@ -585,8 +598,7 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
       <p id="pull-quote-text">"I used to spend half my Sunday dreading Monday's posts. Now my entire month is planned before the week starts. <em>I've got my weekends back</em> — and my engagement has never been higher."</p>
       <cite id="pull-quote-cite">— Shiraz Gidwani, CEO &amp; National Strategist · 2.3M followers</cite>
     </div>
-    <div class="tgrid" id="testimonials-grid">
-    </div>
+
   </div>
 </section>
 
@@ -599,6 +611,31 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
     </div>
   </div>
 </div>
+
+<!-- REALITY CHECK -->
+<section class="reality-section" id="reality-check">
+  <div class="reality-bg" id="reality-bg-img"></div>
+  <div class="reality-inner si">
+    <div class="reality-phone reveal">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <video id="reality-video" playsinline loop style="width:100%;height:100%;object-fit:cover;display:block"></video>
+          <div class="phone-controls">
+            <button class="phone-btn" id="reality-play" onclick="toggleRealityPlay()">&#9654;</button>
+            <button class="phone-btn" id="reality-mute" onclick="toggleRealityMute()">&#128264;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reality-copy reveal">
+      <div class="eyebrow pink"><div class="eyebrow-bar" style="background:var(--pink-dk)"></div><span id="reality-eyebrow">The Reality Check</span></div>
+      <h2 class="display-h" style="margin-top:16px" id="reality-h">"I don't need<br><em>social media."</em></h2>
+      <p class="reality-sub" id="reality-sub">Your business grows where your audience lives. And right now? They live online. Every brand that said this in 2020 watched a competitor with a phone and a Notion doc take their customers. Your audience is scrolling right now.</p>
+      <a href="#pricing" class="btn btn-primary" id="reality-cta-btn">Start posting with purpose ↗</a>
+    </div>
+  </div>
+</section>
 
 <!-- PROCESS -->
 <section class="process-section sp" id="process">
@@ -657,7 +694,7 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 
 <!-- CTA BANNER -->
 <section class="cta-banner">
-  <div class="cta-banner-bg"></div>
+  <div class="cta-banner-bg" id="cta-banner-bg"></div>
   <div class="ctas1"></div><div class="ctas2"></div>
   <div class="cta-in reveal">
     <div class="eyebrow" style="justify-content:center;margin-bottom:16px"><div class="eyebrow-bar" style="background:rgba(255,255,255,.4)"></div><span style="font-family:'Cabinet Grotesk',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65)">You've Spent Enough Time Figuring This Out Alone</span></div>
@@ -691,11 +728,11 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
     <div class="ft-brand"><a href="#" id="ft-logo">Brand<em>Rehab</em></a><p id="ft-desc">A social content studio for busy business owners who are done figuring it out alone. Built by a female founder. Powered by strategy. Driven by results.</p></div>
     <div class="ft-col"><h5>Services</h5><ul><li><a href="#pricing">Content Planner</a></li><li><a href="#pricing">DIY Strategy</a></li><li><a href="#pricing">Done-With-You</a></li><li><a href="#pricing">Content Engine</a></li><li><a href="#pricing">High-Touch Strategy</a></li></ul></div>
     <div class="ft-col"><h5>Company</h5><ul><li><a href="#process">How It Works</a></li><li><a href="#results">Results</a></li><li><a href="https://calendly.com" target="_blank">Book a Call</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-    <div class="ft-col"><h5 id="ft-col3-title">Contact</h5><ul><li><a href="/cdn-cgi/l/email-protection#7b131e1717143b19091a151f091e131a19551814"><span class="__cf_email__" data-cfemail="a5cdc0c9c9cae5c7d7c4cbc1d7c0cdc4c78bc6ca">[email&#160;protected]</span></a></li><li><a id="ft-ig-link" href="#">@brandrehab</a></li><li><a id="ft-tt-link" href="#">TikTok</a></li><li><a id="ft-li-link" href="#">LinkedIn</a></li></ul></div>
+    
   </div>
   <div class="ft-bot">
     <p id="ft-copy">© 2025 Brand Rehab. All rights reserved. Built for the bold. ✦</p>
-    <div class="soc"><a href="#" class="soc-a" id="soc-ig">📸</a><a href="#" class="soc-a" id="soc-tt">🎵</a><a href="#" class="soc-a" id="soc-li">💼</a></div>
+    <div class="soc"><a href="#" class="soc-a" id="soc-ig">📸</a></div>
   </div>
 </footer>
 
@@ -791,6 +828,15 @@ const defaultContent = {
     nav_process:'#process',nav_results:'#results',nav_pricing:'#pricing',nav_faq:'#faq'
   }
 ,
+  reality: {
+    eyebrow: 'The Reality Check',
+    h: '"I don\u2019t need social media."',
+    sub: 'Your business grows where your audience lives. And right now? They live online. Every brand that said this in 2020 watched a competitor with a phone and a Notion doc take their customers. Your audience is scrolling right now.',
+    cta_txt: 'Start posting with purpose ↗',
+    cta_link: '#pricing',
+    bg_img: '',
+    video_url: ''
+  },
   numbers: {
     eyebrow: 'By the Numbers',
     h1: 'Growth you can', h2: 'actually measure.',
@@ -1002,17 +1048,7 @@ function applyContent(c) {
     pqEl.innerHTML = hi ? txt.replace(hi, '<em>'+hi+'</em>') : txt;
   }
   setT('pull-quote-cite', t.pq_cite);
-  var tGrid = document.getElementById('testimonials-grid');
-  if(tGrid) {
-    tGrid.innerHTML = t.cards.map(function(card) {
-      return '<div class="tc'+(card.featured?' feat':'')+'">'+
-        '<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>'+
-        '<p class="tc-txt">'+card.quote+'</p>'+
-        '<div class="tc-auth"><div class="av">'+card.initials+'</div>'+
-        '<div><span class="auth-nm">'+card.name+'</span>'+
-        '<span class="auth-role">'+card.role+'</span></div></div></div>';
-    }).join('');
-  }
+  // Testimonials grid removed — pull quote only
 
   // Team
   var teamGrid = document.getElementById('team-grid');
@@ -1025,6 +1061,23 @@ function applyContent(c) {
         '<p class="tp-bio">'+m.bio+'</p></div>';
     }).join('');
   }
+
+
+  // Reality Check section
+  var rc = c.reality || defaultContent.reality;
+  setT('reality-eyebrow', rc.eyebrow);
+  setT('reality-h', rc.h);
+  setT('reality-sub', rc.sub);
+  var rcBtn = document.getElementById('reality-cta-btn');
+  if(rcBtn){ rcBtn.textContent = rc.cta_txt; rcBtn.href = rc.cta_link||lnk.reality_cta||'#pricing'; }
+  var rcBg = document.getElementById('reality-bg-img');
+  if(rcBg && rc.bg_img) rcBg.style.backgroundImage = "url('"+rc.bg_img+"')";
+  var rcVid = document.getElementById('reality-video');
+  if(rcVid && rc.video_url){ rcVid.src = rc.video_url; rcVid.load(); }
+
+  // CTA banner background image
+  var ctaBannerBg = document.getElementById('cta-banner-bg');
+  if(ctaBannerBg && cta.bg_img) ctaBannerBg.style.backgroundImage = "url('"+cta.bg_img+"')";
 
   // FAQ
   var faqContainer = document.getElementById('faq-items');
@@ -1061,6 +1114,19 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 reveals.forEach(el=>obs.observe(el));
 
 // FAQ
+function toggleRealityPlay(){
+  var v=document.getElementById('reality-video');
+  var btn=document.getElementById('reality-play');
+  if(!v.src){return;}
+  if(v.paused){v.play();btn.innerHTML='&#9646;&#9646;';}
+  else{v.pause();btn.innerHTML='&#9654;';}
+}
+function toggleRealityMute(){
+  var v=document.getElementById('reality-video');
+  var btn=document.getElementById('reality-mute');
+  v.muted=!v.muted;
+  btn.innerHTML=v.muted?'&#128263;':'&#128264;';
+}
 function toggleFAQ(el){const item=el.parentElement;const open=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open')}
 
 // Modal
