@@ -195,6 +195,8 @@ body{background:var(--bl);overflow:hidden}
   body{overflow:auto}
   .main{height:auto}
 }
+.status.error{background:rgba(220,60,60,.12);border-color:rgba(220,60,60,.3);color:#cc3333}.status.error .sdot{background:#cc3333}
+.toast.warn{background:var(--mocha)}
 </style>
 </head>
 <body>
@@ -1160,6 +1162,10 @@ document.addEventListener('change', function(e){
       img.src=ev.target.result;
     };
     reader.readAsDataURL(file);
+    // Warn if file is large (will bloat Firebase)
+    if(file.size > 500000){
+      showToast('Tip: Large images slow Firebase. Use Cloudinary URL instead for best results.','warn');
+    }
   }
 });
 
@@ -1309,22 +1315,41 @@ async function saveAll(){
   var FIREBASE_URL = "https://brand-rehab-default-rtdb.firebaseio.com";
   var fb=JSON.parse(localStorage.getItem('br_firebase')||'{}');
   var writeUrl = FIREBASE_URL || (fb.dbUrl && fb.dbUrl.startsWith('https://') && fb.dbUrl.indexOf('firebaseio.com')>-1 ? fb.dbUrl : null);
+  var firebaseOk = false;
   if(writeUrl){
     try{
+      var payload = JSON.stringify(C);
+      var payloadKB = Math.round(payload.length/1024);
       var r=await fetch(writeUrl+'/content.json',{
-        method:'PUT',body:JSON.stringify(C),
+        method:'PUT',body:payload,
         headers:{'Content-Type':'application/json'}
       });
-      if(r.ok){ console.log('Firebase write OK'); }
-      else { console.error('Firebase write error:',r.status, await r.text()); }
-    }catch(e){ console.error('Firebase write failed:',e); }
+      if(r.ok){
+        firebaseOk = true;
+        console.log('Firebase write OK, payload: '+payloadKB+'KB');
+      } else {
+        var errText = await r.text();
+        console.error('Firebase write error:',r.status, errText);
+        showToast('Firebase error '+r.status+'. Check console for details.','err');
+      }
+    }catch(e){
+      console.error('Firebase write failed:',e);
+      showToast('Could not reach Firebase. Check your internet connection.','err');
+    }
+  } else {
+    showToast('No Firebase URL configured. Go to Firebase Setup tab.','err');
   }
-  await new Promise(function(res){setTimeout(res,400);});
+  await new Promise(function(res){setTimeout(res,300);});
   btn.textContent='Save & Publish ✦'; btn.disabled=false;
-  badge.className='status saved';
-  document.getElementById('statusTxt').textContent='All saved';
-  dirty=false;
-  showToast('Published! Site updated ✦','ok');
+  if(firebaseOk){
+    badge.className='status saved';
+    document.getElementById('statusTxt').textContent='Live ✔';
+    dirty=false;
+    showToast('Published! Live on site ✶','ok');
+  } else {
+    badge.className='status error';
+    document.getElementById('statusTxt').textContent='Save failed';
+  }
 }
 
 //
