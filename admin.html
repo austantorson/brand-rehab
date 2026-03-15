@@ -458,7 +458,8 @@ body{background:var(--bl);overflow:hidden}
         <div class="cbody open">
           <div class="row r1"><div class="field"><label>Eyebrow label</label><input type="text" id="rc_eyebrow"></div></div>
           <div class="row r1"><div class="field"><label>Headline (use quotes, italics auto on last word)</label><input type="text" id="rc_h"></div></div>
-          <div class="row r1"><div class="field"><label>Body text</label><textarea id="rc_sub" style="min-height:100px"></textarea></div></div>
+          <div class="row r1"><div class="field"><label>Paragraph 1 — main statement</label><textarea id="rc_sub" style="min-height:60px"></textarea></div></div>
+          <div class="row r1"><div class="field"><label>Paragraph 2 — supporting detail</label><textarea id="rc_sub2" style="min-height:60px"></textarea></div></div>
           <div class="row r2"><div class="field"><label>Button text</label><input type="text" id="rc_cta_txt"></div><div class="field"><label>Button link (or use Links &amp; Buttons tab)</label><input type="text" id="rc_cta_link" placeholder="#pricing"></div></div>
         </div>
       </div>
@@ -1049,6 +1050,7 @@ function loadReality(){
   sv('rc_eyebrow',rc.eyebrow||'The Reality Check');
   sv('rc_h',rc.h||'"I don’t need social media."');
   sv('rc_sub',rc.sub||'');
+  sv('rc_sub2',rc.sub2||'');
   sv('rc_cta_txt',rc.cta_txt||'Start posting with purpose ↗');
   sv('rc_cta_link',rc.cta_link||'#pricing');
   sv('rc_video_url',rc.video_url||'');
@@ -1281,7 +1283,7 @@ function collect(){
     b3l:gv('nb_b3l'),b3n:gv('nb_b3n'),b3s:gv('nb_b3s'),
     b4l:gv('nb_b4l'),b4n:gv('nb_b4n'),b4s:gv('nb_b4s')};
   C.sproof={eyebrow:gv('sp_eyebrow'),h1:gv('sp_h1'),h2:gv('sp_h2'),cta_txt:gv('sp_cta_txt')};
-  C.reality={eyebrow:gv('rc_eyebrow'),h:gv('rc_h'),sub:gv('rc_sub'),
+  C.reality={eyebrow:gv('rc_eyebrow'),h:gv('rc_h'),sub:gv('rc_sub'),sub2:gv('rc_sub2'),
     cta_txt:gv('rc_cta_txt'),cta_link:gv('rc_cta_link'),
     video_url:gv('rc_video_url'),
     bg_img:gv('img_reality_bg')};

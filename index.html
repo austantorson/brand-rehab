@@ -404,31 +404,27 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 .r1{transition-delay:.12s}.r2{transition-delay:.24s}.r3{transition-delay:.36s}
 
 /* RESPONSIVE */
-@media(max-width:1024px){.pr-grid{grid-template-columns:repeat(2,1fr)}.pc.feat{transform:translateY(0)}.iggrid{grid-template-columns:repeat(3,1fr)}.igc:nth-child(4),.igc:nth-child(5){display:none}.ht-row{grid-template-columns:1fr;gap:24px}}
-@media(max-width:768px){.nav-links{display:none}.pain-grid{grid-template-columns:1fr;gap:32px}.checklist{grid-template-columns:1fr}.fam-cta{flex-direction:column;padding:30px 24px}.tgrid{grid-template-columns:1fr}.psteps{grid-template-columns:1fr}.tgrid-p{grid-template-columns:1fr}.pr-grid{grid-template-columns:1fr}.ft-inner{grid-template-columns:1fr;gap:32px}.ft-bot{flex-direction:column;gap:14px}.iggrid{grid-template-columns:repeat(2,1fr)}.igc:nth-child(4){display:block}.as-in{flex-direction:column}.pull-q{padding:28px 24px}.ht-row{padding:28px}}
-@media(max-width:480px){.hero-btns{flex-direction:column}}
-@media(max-width:768px){
-  .hero-content{padding:60px 6% 60px;max-width:100%}
-  .hero-h1{font-size:clamp(2.4rem,8vw,3.8rem)}
-  .hero-sub{max-width:100%}
-}
+
+
+
+
 
 /* ── REALITY CHECK ── */
 .reality-section{display:grid;grid-template-columns:1fr 1fr;min-height:700px}
 .reality-left{background:var(--cream);display:flex;align-items:center;padding:80px 60px 80px 8%}
 .reality-copy{max-width:480px}
-.reality-sub{font-size:.97rem;color:var(--mocha);line-height:1.85;margin:18px 0 32px;max-width:420px}
+
 .reality-right{position:relative;overflow:hidden;background:var(--blush);display:flex;align-items:center;justify-content:center;padding:70px 40px}
 .reality-right-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.22;pointer-events:none}
 .reality-phone{position:relative;z-index:2}
 .iphone-wrap{position:relative}
 .iphone-glow{position:absolute;bottom:-50px;left:50%;transform:translateX(-50%);width:200px;height:80px;background:var(--pink-dk);border-radius:50%;filter:blur(50px);opacity:.4;pointer-events:none}
-.iphone-outer{position:relative;width:270px}
+.iphone-outer{position:relative;width:340px}
 .iphone-btn-vol1,.iphone-btn-vol2{position:absolute;left:-4px;width:4px;background:#2c2c2e;border-radius:2px 0 0 2px}
 .iphone-btn-vol1{top:108px;height:38px}
 .iphone-btn-vol2{top:158px;height:38px}
 .iphone-btn-power{position:absolute;right:-4px;top:128px;width:4px;height:60px;background:#2c2c2e;border-radius:0 2px 2px 0}
-.iphone-body{width:270px;background:linear-gradient(160deg,#1c1c1e 0%,#2c2c2e 50%,#1c1c1e 100%);border-radius:54px;padding:11px;box-shadow:0 0 0 1px rgba(255,255,255,.13),0 0 0 2.5px rgba(0,0,0,.9),0 50px 100px rgba(0,0,0,.8),0 25px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(255,255,255,.04);position:relative}
+.iphone-body{width:340px;background:linear-gradient(160deg,#1c1c1e 0%,#2c2c2e 50%,#1c1c1e 100%);border-radius:54px;padding:11px;box-shadow:0 0 0 1px rgba(255,255,255,.13),0 0 0 2.5px rgba(0,0,0,.9),0 50px 100px rgba(0,0,0,.8),0 25px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(255,255,255,.04);position:relative}
 .iphone-screen{background:#000;border-radius:44px;overflow:hidden;position:relative;aspect-ratio:9/19.5;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);width:100%}
 .iphone-island{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:110px;height:33px;background:#000;border-radius:20px;z-index:10;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;box-shadow:0 0 0 1px rgba(255,255,255,.06)}
 .iphone-island-cam{width:12px;height:12px;border-radius:50%;background:#0d0d0d;border:2.5px solid #1a1a1a;box-shadow:0 0 0 1.5px rgba(100,180,255,.3),inset 0 0 5px rgba(100,180,255,.2)}
@@ -438,11 +434,7 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 .iphone-ctrl-btn:hover{background:rgba(90,155,196,.65)}
 .iphone-ctrl-btn svg{pointer-events:none;flex-shrink:0}
 .iphone-home-bar{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:100px;height:5px;background:rgba(255,255,255,.28);border-radius:3px;z-index:5}
-@media(max-width:900px){
-  .reality-section{grid-template-columns:1fr}
-  .reality-left{padding:60px 6%;order:1}
-  .reality-right{padding:60px 6% 80px;order:2;min-height:580px}
-}
+
 
 /* ── PROCESS BG ── */
 .process-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.07;pointer-events:none}
@@ -497,10 +489,7 @@ nav.scrolled .hamburger span{background:var(--coffee)}
 #nav-drawer .drawer-cta:hover{background:#b3556e}
 #nav-drawer-backdrop{display:none;position:fixed;inset:0;z-index:1000;background:transparent;cursor:default}
 #nav-drawer-backdrop.open{display:block}
-@media(max-width:768px){
-  .hamburger{display:flex}
-  .nav-links{display:none !important}
-}
+
 
 /* ── BY THE NUMBERS ── */
 .stats-section{background:white;position:relative;overflow:hidden}
@@ -514,44 +503,96 @@ nav.scrolled .hamburger span{background:var(--coffee)}
 .sblk .lbl{font-family:'Cabinet Grotesk',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--latte);display:block;margin-bottom:12px}
 .sblk .n{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--coffee);display:block;line-height:1;margin-bottom:10px}
 .sblk .sub{font-size:.78rem;color:var(--mocha);line-height:1.5}
-@media(max-width:768px){.sgrid{grid-template-columns:repeat(2,1fr)}.sblk:nth-child(2){border-right:none}.sblk:nth-child(3){border-top:1px solid var(--rose)}.sblk:nth-child(4){border-top:1px solid var(--rose);border-right:none}}
 
-@media(max-width:900px){.iggrid{grid-template-columns:repeat(3,1fr)}.igc:nth-child(4),.igc:nth-child(5){display:none}}
-@media(max-width:560px){.iggrid{grid-template-columns:repeat(2,1fr)}.igc:nth-child(4){display:block}}
+
+
+
 /* ── COMPREHENSIVE MOBILE ── */
-@media(max-width:768px){
+
+
+
+/* ════════════════════════════════
+   RESPONSIVE — ALL BREAKPOINTS
+   ════════════════════════════════ */
+@media(max-width:1024px){
+  .pr-grid{grid-template-columns:repeat(2,1fr)}
+  .pc.feat{transform:translateY(0)}
+  .iggrid{grid-template-columns:repeat(3,1fr)}
+  .igc:nth-child(4),.igc:nth-child(5){display:none}
+  .ht-row{grid-template-columns:1fr;gap:24px}
+}
+@media(max-width:900px){
   .reality-section{grid-template-columns:1fr}
-  .reality-left{padding:50px 6%;order:1}
-  .reality-right{padding:50px 6% 60px;order:2;min-height:500px}
-  .iphone-outer{width:200px}
-  .iphone-body{width:200px}
-  .iphone-btn-vol1,.iphone-btn-vol2,.iphone-btn-power{display:none}
-  .iggrid{grid-template-columns:repeat(2,1fr);gap:16px}
-  .igc:nth-child(2){margin-top:20px}
-  .igc:nth-child(4){margin-top:12px}
-  .igc:nth-child(5){display:none}
-  .ig-iphone-outer{width:120px}
-  .ig-iphone-body{width:120px}
-  .sproof{padding:60px 5%}
-  .reality-copy{max-width:100%}
-  .reality-sub{max-width:100%}
+  .reality-left{padding:60px 6%;order:1}
+  .reality-right{padding:50px 6% 70px;order:2;min-height:auto}
+  .iphone-outer{width:300px}
+  .iphone-body{width:300px}
+  .iggrid{grid-template-columns:repeat(3,1fr)}
+  .igc:nth-child(4),.igc:nth-child(5){display:none}
+}
+@media(max-width:768px){
+  /* Nav */
+  .hamburger{display:flex}
+  .nav-links{display:none !important}
+  /* Hero */
+  .hero-content{padding:80px 6% 70px;max-width:100%}
+  .hero-h1{font-size:clamp(2.4rem,8vw,3.8rem)}
+  .hero-sub{max-width:100%}
+  .hero-btns{flex-wrap:wrap}
+  /* Pain */
+  .pain-grid{grid-template-columns:1fr;gap:32px}
+  /* Stats */
   .sgrid{grid-template-columns:repeat(2,1fr)}
   .sblk:nth-child(2){border-right:none}
   .sblk:nth-child(3){border-top:1px solid var(--rose)}
   .sblk:nth-child(4){border-top:1px solid var(--rose);border-right:none}
-  nav{padding:16px 5%}
+  /* Reality Check */
+  .reality-section{grid-template-columns:1fr}
+  .reality-left{padding:50px 6%;order:1}
+  .reality-right{padding:40px 6% 60px;order:2}
+  .iphone-outer{width:260px}
+  .iphone-body{width:260px}
+  .iphone-btn-vol1,.iphone-btn-vol2,.iphone-btn-power{display:none}
+  .reality-copy{max-width:100%}
+  .reality-sub{max-width:100%}
+  /* IG Grid */
+  .iggrid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .igc:nth-child(2){margin-top:20px}
+  .igc:nth-child(4){margin-top:12px}
+  .igc:nth-child(5){display:none}
+  .ig-iphone-outer{width:130px}
+  .ig-iphone-body{width:130px}
+  /* Layout */
+  .checklist{grid-template-columns:1fr}
+  .fam-cta{flex-direction:column;padding:30px 24px}
+  .tgrid{grid-template-columns:1fr}
+  .psteps{grid-template-columns:1fr}
+  .tgrid-p{grid-template-columns:1fr}
+  .pr-grid{grid-template-columns:1fr}
   .ft-inner{grid-template-columns:1fr;gap:28px}
   .ft-bot{flex-direction:column;gap:12px;text-align:center}
+  .sp-hdr{flex-direction:column;align-items:flex-start;gap:16px}
+  nav{padding:16px 5%}
 }
 @media(max-width:480px){
-  .iphone-outer{width:170px}
-  .iphone-body{width:170px}
-  .ig-iphone-outer{width:100px}
-  .ig-iphone-body{width:100px}
-  .iggrid{grid-template-columns:repeat(3,1fr);gap:10px}
-  .igc:nth-child(4),.igc:nth-child(5){display:none}
+  .hero-btns{flex-direction:column}
   .hero-h1{font-size:clamp(2rem,9vw,3.2rem)}
+  .iphone-outer{width:220px}
+  .iphone-body{width:220px}
+  .ig-iphone-outer{width:110px}
+  .ig-iphone-body{width:110px}
+  .iggrid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .igc:nth-child(4){display:none}
+  .igc:nth-child(5){display:none}
 }
+
+/* ── REALITY DIVIDER ── */
+.reality-divider{display:flex;align-items:center;gap:12px;margin:16px 0 14px}
+.reality-divider span{flex:1;height:1px;background:var(--pink);opacity:.4}
+.reality-divider em{font-family:'Cabinet Grotesk',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pink-dk);font-style:normal;white-space:nowrap}
+.reality-sub-wrap{margin:0 0 28px}
+
+.reality-sub2{font-size:.93rem;color:var(--latte);line-height:1.8;margin:0;max-width:420px}
 </style>
 </head>
 <body>
@@ -747,7 +788,11 @@ nav.scrolled .hamburger span{background:var(--coffee)}
     <div class="reality-copy reveal">
       <div class="eyebrow pink"><div class="eyebrow-bar" style="background:var(--pink-dk)"></div><span id="reality-eyebrow">The Reality Check</span></div>
       <h2 class="display-h" style="margin-top:16px" id="reality-h">“I don’t need<br><em>social media.”</em></h2>
-      <p class="reality-sub" id="reality-sub">Your business grows where your audience lives. And right now? They live online. Every brand that said this in 2020 watched a competitor with a phone and a Notion doc take their customers. Your audience is scrolling right now.</p>
+      <div id="reality-sub-wrap" class="reality-sub-wrap">
+        <div class="reality-divider"><span></span><em>The truth is</em><span></span></div>
+        <p class="reality-sub" id="reality-sub">Your business grows where your audience lives. And right now? They live online.</p>
+        <p class="reality-sub2" id="reality-sub2">Every brand that said this in 2020 watched a competitor with a phone and a Notion doc take their customers. Your audience is scrolling right now.</p>
+      </div>
       <a href="#pricing" class="btn btn-primary" id="reality-cta-btn">Start posting with purpose ↗</a>
     </div>
   </div>
@@ -763,7 +808,8 @@ nav.scrolled .hamburger span{background:var(--coffee)}
             <div class="iphone-island"><div class="iphone-island-cam"></div></div>
             <div class="iphone-screen" id="reality-screen">
               <video id="reality-video" playsinline loop style="width:100%;height:100%;object-fit:cover;display:block;border-radius:34px;position:absolute;inset:0"></video>
-              <iframe id="reality-iframe" style="display:none;position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:34px" allow="autoplay; fullscreen" allowfullscreen></iframe>
+              <iframe id="reality-iframe" style="display:none;position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:34px;pointer-events:none" allow="autoplay; fullscreen" allowfullscreen></iframe>
+              <div id="yt-click-shield" style="display:none;position:absolute;inset:0;z-index:4;cursor:pointer;border-radius:34px" onclick="handleYTShieldClick()"></div>
               <div class="iphone-controls" id="reality-controls">
                 <button class="iphone-ctrl-btn" id="reality-play" onclick="toggleRealityPlay()"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></button>
                 <button class="iphone-ctrl-btn" id="reality-mute" onclick="toggleRealityMute()"><svg width="16" height="16" viewBox="0 0 24 24" fill="white" id="mute-icon-unmuted"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="white" id="mute-icon-muted" style="display:none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg></button>
@@ -974,7 +1020,8 @@ const defaultContent = {
   reality: {
     eyebrow: 'The Reality Check',
     h: '\u201cI don\u2019t need social media.\u201d',
-    sub: 'Your business grows where your audience lives. And right now? They live online. Every brand that said this in 2020 watched a competitor with a phone and a Notion doc take their customers. Your audience is scrolling right now.',
+    sub: 'Your business grows where your audience lives. And right now? They live online.',
+    sub2: 'Every brand that said this in 2020 watched a competitor with a phone and a Notion doc take their customers. Your audience is scrolling right now.',
     cta_txt: 'Start posting with purpose \u2197',
     cta_link: '#pricing',
     bg_img: '',
@@ -1217,6 +1264,9 @@ function applyContent(c) {
   setT('reality-eyebrow', rc.eyebrow);
   setT('reality-h', rc.h);
   setT('reality-sub', rc.sub);
+  // Split sub into two paras if it has a sentence break marker
+  var sub2El = document.getElementById('reality-sub2');
+  if(sub2El && rc.sub2) setT('reality-sub2', rc.sub2);
   var rcBtn = document.getElementById('reality-cta-btn');
   if(rcBtn){ rcBtn.textContent = rc.cta_txt||'Start posting with purpose'; rcBtn.href = rc.cta_link||lnk.reality_cta||'#pricing'; }
   var rcBg = document.getElementById('reality-bg-img');
@@ -1289,50 +1339,106 @@ function getYouTubeId(url){
   var m = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
   return m ? m[1] : null;
 }
+var ytPlayer = null;
+var ytMuted = true;
+var ytPaused = false;
+
 function setRealityVideo(url){
   var vid = document.getElementById('reality-video');
   var ifr = document.getElementById('reality-iframe');
+  var shield = document.getElementById('yt-click-shield');
   var controls = document.getElementById('reality-controls');
-  if(!url){ 
-    if(vid) vid.style.display='block';
-    if(ifr) ifr.style.display='none';
-    return; 
+  if(!url){
+    if(vid){vid.style.display='block';}
+    if(ifr){ifr.style.display='none';}
+    if(shield){shield.style.display='none';}
+    return;
   }
   var ytId = getYouTubeId(url);
   if(ytId){
-    // YouTube — use iframe, hide native controls
     if(ifr){
-      ifr.src='https://www.youtube.com/embed/'+ytId+'?autoplay=1&mute=1&loop=1&playlist='+ytId+'&controls=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1';
+      ifr.src='https://www.youtube-nocookie.com/embed/'+ytId+'?autoplay=1&mute=1&loop=1&playlist='+ytId+'&controls=0&playsinline=1&rel=0&modestbranding=1&enablejsapi=1';
       ifr.style.display='block';
+      ifr.style.pointerEvents='none';
     }
-    if(vid){ vid.src=''; vid.style.display='none'; }
-    if(controls) controls.style.display='none';
+    if(shield){shield.style.display='block';}
+    if(vid){vid.src='';vid.style.display='none';}
+    if(controls){
+      controls.style.display='flex';
+      // Update mute icon to show muted state (starts muted)
+      ytMuted=true; ytPaused=false;
+      var on=document.getElementById('mute-icon-unmuted');
+      var off=document.getElementById('mute-icon-muted');
+      if(on) on.style.display='none';
+      if(off) off.style.display='block';
+      var playBtn=document.getElementById('reality-play');
+      if(playBtn) playBtn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+    }
   } else {
-    // Direct video URL (MP4, Google Drive, etc.)
-    if(vid){ vid.src=url; vid.load(); vid.style.display='block'; }
-    if(ifr){ ifr.src=''; ifr.style.display='none'; }
-    if(controls) controls.style.display='flex';
+    if(vid){vid.src=url;vid.load();vid.style.display='block';}
+    if(ifr){ifr.src='';ifr.style.display='none';}
+    if(shield){shield.style.display='none';}
+    if(controls){controls.style.display='flex';}
+  }
+}
+function handleYTShieldClick(){
+  // Click on the shield — toggle play/pause via postMessage
+  toggleRealityPlay();
+}
+function sendYTCommand(cmd, args){
+  var ifr = document.getElementById('reality-iframe');
+  if(ifr && ifr.contentWindow){
+    ifr.contentWindow.postMessage(JSON.stringify({event:'command',func:cmd,args:args||[]}), '*');
   }
 }
 function toggleRealityPlay(){
   var v=document.getElementById('reality-video');
   var btn=document.getElementById('reality-play');
-  if(!v.src&&!v.currentSrc)return;
-  if(v.paused){
-    v.play();
-    btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-  } else {
-    v.pause();
-    btn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>';
+  var ifr=document.getElementById('reality-iframe');
+  if(ifr && ifr.style.display!='none'){
+    // YouTube
+    if(ytPaused){
+      sendYTCommand('playVideo');
+      ytPaused=false;
+      btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+    } else {
+      sendYTCommand('pauseVideo');
+      ytPaused=true;
+      btn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>';
+    }
+  } else if(v && (v.src||v.currentSrc)){
+    if(v.paused){
+      v.play();
+      btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+    } else {
+      v.pause();
+      btn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>';
+    }
   }
 }
 function toggleRealityMute(){
   var v=document.getElementById('reality-video');
-  v.muted=!v.muted;
+  var ifr=document.getElementById('reality-iframe');
   var on=document.getElementById('mute-icon-unmuted');
   var off=document.getElementById('mute-icon-muted');
-  if(on) on.style.display=v.muted?'none':'block';
-  if(off) off.style.display=v.muted?'block':'none';
+  if(ifr && ifr.style.display!='none'){
+    // YouTube
+    if(ytMuted){
+      sendYTCommand('unMute');
+      ytMuted=false;
+      if(on) on.style.display='block';
+      if(off) off.style.display='none';
+    } else {
+      sendYTCommand('mute');
+      ytMuted=true;
+      if(on) on.style.display='none';
+      if(off) off.style.display='block';
+    }
+  } else if(v){
+    v.muted=!v.muted;
+    if(on) on.style.display=v.muted?'none':'block';
+    if(off) off.style.display=v.muted?'block':'none';
+  }
 }
 function toggleFAQ(el){const item=el.parentElement;const open=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open')}
 
