@@ -429,7 +429,7 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 .iphone-btn-vol2{top:158px;height:38px}
 .iphone-btn-power{position:absolute;right:-4px;top:128px;width:4px;height:60px;background:#2c2c2e;border-radius:0 2px 2px 0}
 .iphone-body{width:270px;background:linear-gradient(160deg,#1c1c1e 0%,#2c2c2e 50%,#1c1c1e 100%);border-radius:54px;padding:11px;box-shadow:0 0 0 1px rgba(255,255,255,.13),0 0 0 2.5px rgba(0,0,0,.9),0 50px 100px rgba(0,0,0,.8),0 25px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(255,255,255,.04);position:relative}
-.iphone-screen{background:#000;border-radius:44px;overflow:hidden;position:relative;aspect-ratio:9/19.5;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
+.iphone-screen{background:#000;border-radius:44px;overflow:hidden;position:relative;aspect-ratio:9/19.5;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);width:100%}
 .iphone-island{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:110px;height:33px;background:#000;border-radius:20px;z-index:10;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;box-shadow:0 0 0 1px rgba(255,255,255,.06)}
 .iphone-island-cam{width:12px;height:12px;border-radius:50%;background:#0d0d0d;border:2.5px solid #1a1a1a;box-shadow:0 0 0 1.5px rgba(100,180,255,.3),inset 0 0 5px rgba(100,180,255,.2)}
 .iphone-screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
@@ -461,10 +461,10 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 .ig-btn-vol2{top:82px;height:20px}
 .ig-btn-power{position:absolute;right:-3px;top:66px;width:3px;height:32px;background:#2c2c2e;border-radius:0 2px 2px 0}
 .ig-iphone-body{width:140px;background:linear-gradient(160deg,#1c1c1e 0%,#2c2c2e 50%,#1c1c1e 100%);border-radius:28px;padding:6px;box-shadow:0 0 0 1px rgba(255,255,255,.13),0 0 0 1.5px rgba(0,0,0,.9),0 30px 60px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.18);position:relative}
-.ig-screen{background:#000;border-radius:23px;overflow:hidden;position:relative;aspect-ratio:9/19.5;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
+.ig-screen{background:#000;border-radius:23px;overflow:hidden;position:relative;aspect-ratio:9/19.5;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);width:100%}
 .ig-island{position:absolute;top:7px;left:50%;transform:translateX(-50%);width:56px;height:17px;background:#000;border-radius:10px;z-index:10;display:flex;align-items:center;justify-content:flex-end;padding-right:5px}
 .ig-island-cam{width:6px;height:6px;border-radius:50%;background:#0d0d0d;border:1.5px solid #1a1a1a;box-shadow:0 0 0 1px rgba(100,180,255,.25)}
-.ig-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ig-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .ig-home-bar{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:50px;height:3px;background:rgba(255,255,255,.28);border-radius:2px;z-index:5}
 
 /* ── HAMBURGER MENU ── */
@@ -500,8 +500,6 @@ nav.scrolled .hamburger span{background:var(--coffee)}
 @media(max-width:768px){
   .hamburger{display:flex}
   .nav-links{display:none !important}
-  }
-  }
 }
 
 /* ── BY THE NUMBERS ── */
@@ -519,7 +517,42 @@ nav.scrolled .hamburger span{background:var(--coffee)}
 @media(max-width:768px){.sgrid{grid-template-columns:repeat(2,1fr)}.sblk:nth-child(2){border-right:none}.sblk:nth-child(3){border-top:1px solid var(--rose)}.sblk:nth-child(4){border-top:1px solid var(--rose);border-right:none}}
 
 @media(max-width:900px){.iggrid{grid-template-columns:repeat(3,1fr)}.igc:nth-child(4),.igc:nth-child(5){display:none}}
-@media(max-width:560px){.iggrid{grid-template-columns:repeat(2,1fr)}.igc:nth-child(4){display:block}}</style>
+@media(max-width:560px){.iggrid{grid-template-columns:repeat(2,1fr)}.igc:nth-child(4){display:block}}
+/* ── COMPREHENSIVE MOBILE ── */
+@media(max-width:768px){
+  .reality-section{grid-template-columns:1fr}
+  .reality-left{padding:50px 6%;order:1}
+  .reality-right{padding:50px 6% 60px;order:2;min-height:500px}
+  .iphone-outer{width:200px}
+  .iphone-body{width:200px}
+  .iphone-btn-vol1,.iphone-btn-vol2,.iphone-btn-power{display:none}
+  .iggrid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .igc:nth-child(2){margin-top:20px}
+  .igc:nth-child(4){margin-top:12px}
+  .igc:nth-child(5){display:none}
+  .ig-iphone-outer{width:120px}
+  .ig-iphone-body{width:120px}
+  .sproof{padding:60px 5%}
+  .reality-copy{max-width:100%}
+  .reality-sub{max-width:100%}
+  .sgrid{grid-template-columns:repeat(2,1fr)}
+  .sblk:nth-child(2){border-right:none}
+  .sblk:nth-child(3){border-top:1px solid var(--rose)}
+  .sblk:nth-child(4){border-top:1px solid var(--rose);border-right:none}
+  nav{padding:16px 5%}
+  .ft-inner{grid-template-columns:1fr;gap:28px}
+  .ft-bot{flex-direction:column;gap:12px;text-align:center}
+}
+@media(max-width:480px){
+  .iphone-outer{width:170px}
+  .iphone-body{width:170px}
+  .ig-iphone-outer{width:100px}
+  .ig-iphone-body{width:100px}
+  .iggrid{grid-template-columns:repeat(3,1fr);gap:10px}
+  .igc:nth-child(4),.igc:nth-child(5){display:none}
+  .hero-h1{font-size:clamp(2rem,9vw,3.2rem)}
+}
+</style>
 </head>
 <body>
 
@@ -728,9 +761,10 @@ nav.scrolled .hamburger span{background:var(--coffee)}
           <div class="iphone-btn-power"></div>
           <div class="iphone-body">
             <div class="iphone-island"><div class="iphone-island-cam"></div></div>
-            <div class="iphone-screen">
-              <video id="reality-video" playsinline loop style="width:100%;height:100%;object-fit:cover;display:block;border-radius:34px"></video>
-              <div class="iphone-controls">
+            <div class="iphone-screen" id="reality-screen">
+              <video id="reality-video" playsinline loop style="width:100%;height:100%;object-fit:cover;display:block;border-radius:34px;position:absolute;inset:0"></video>
+              <iframe id="reality-iframe" style="display:none;position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:34px" allow="autoplay; fullscreen" allowfullscreen></iframe>
+              <div class="iphone-controls" id="reality-controls">
                 <button class="iphone-ctrl-btn" id="reality-play" onclick="toggleRealityPlay()"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></button>
                 <button class="iphone-ctrl-btn" id="reality-mute" onclick="toggleRealityMute()"><svg width="16" height="16" viewBox="0 0 24 24" fill="white" id="mute-icon-unmuted"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="white" id="mute-icon-muted" style="display:none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg></button>
               </div>
@@ -1056,12 +1090,14 @@ function applyContent(c) {
     ib2h.innerHTML = pts2.map(function(p,i){ return (i===pts2.length-1 && p.charAt(0)==='*') ? '<em>'+p.slice(1,-1)+'</em>' : p; }).join('<br>');
   }
 
-  // By the Numbers
-  setT('nums-eyebrow', nb.eyebrow); setT('nums-h1', nb.h1); setT('nums-h2', nb.h2);
-  setT('nb1-lbl', nb.b1l); setT('nb1-n', nb.b1n); setT('nb1-sub', nb.b1s);
-  setT('nb2-lbl', nb.b2l); setT('nb2-n', nb.b2n); setT('nb2-sub', nb.b2s);
-  setT('nb3-lbl', nb.b3l); setT('nb3-n', nb.b3n); setT('nb3-sub', nb.b3s);
-  setT('nb4-lbl', nb.b4l); setT('nb4-n', nb.b4n); setT('nb4-sub', nb.b4s);
+  // By the Numbers — with fallback safety
+  var nb2 = c.numbers || defaultContent.numbers;
+  setT('nums-eyebrow', nb2.eyebrow || nb.eyebrow);
+  setT('nums-h1', nb2.h1 || nb.h1); setT('nums-h2', nb2.h2 || nb.h2);
+  setT('nb1-lbl', nb2.b1l); setT('nb1-n', nb2.b1n); setT('nb1-sub', nb2.b1s);
+  setT('nb2-lbl', nb2.b2l); setT('nb2-n', nb2.b2n); setT('nb2-sub', nb2.b2s);
+  setT('nb3-lbl', nb2.b3l); setT('nb3-n', nb2.b3n); setT('nb3-sub', nb2.b3s);
+  setT('nb4-lbl', nb2.b4l); setT('nb4-n', nb2.b4n); setT('nb4-sub', nb2.b4s);
 
   // Social Proof
   setT('sp-eyebrow', sp.eyebrow); setT('sp-h1', sp.h1); setT('sp-h2', sp.h2);
@@ -1185,8 +1221,7 @@ function applyContent(c) {
   if(rcBtn){ rcBtn.textContent = rc.cta_txt||'Start posting with purpose'; rcBtn.href = rc.cta_link||lnk.reality_cta||'#pricing'; }
   var rcBg = document.getElementById('reality-bg-img');
   if(rcBg && rc.bg_img) rcBg.style.backgroundImage = "url('"+rc.bg_img+"')";
-  var rcVid = document.getElementById('reality-video');
-  if(rcVid && rc.video_url){ rcVid.src=rc.video_url; rcVid.load(); }
+  setRealityVideo(rc.video_url||'');
 
   // Process section background image
   var processBg = document.getElementById('process-bg-img');
@@ -1249,6 +1284,36 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 reveals.forEach(el=>obs.observe(el));
 
 // FAQ
+function getYouTubeId(url){
+  if(!url) return null;
+  var m = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+function setRealityVideo(url){
+  var vid = document.getElementById('reality-video');
+  var ifr = document.getElementById('reality-iframe');
+  var controls = document.getElementById('reality-controls');
+  if(!url){ 
+    if(vid) vid.style.display='block';
+    if(ifr) ifr.style.display='none';
+    return; 
+  }
+  var ytId = getYouTubeId(url);
+  if(ytId){
+    // YouTube — use iframe, hide native controls
+    if(ifr){
+      ifr.src='https://www.youtube.com/embed/'+ytId+'?autoplay=1&mute=1&loop=1&playlist='+ytId+'&controls=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1';
+      ifr.style.display='block';
+    }
+    if(vid){ vid.src=''; vid.style.display='none'; }
+    if(controls) controls.style.display='none';
+  } else {
+    // Direct video URL (MP4, Google Drive, etc.)
+    if(vid){ vid.src=url; vid.load(); vid.style.display='block'; }
+    if(ifr){ ifr.src=''; ifr.style.display='none'; }
+    if(controls) controls.style.display='flex';
+  }
+}
 function toggleRealityPlay(){
   var v=document.getElementById('reality-video');
   var btn=document.getElementById('reality-play');
