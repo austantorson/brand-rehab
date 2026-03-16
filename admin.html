@@ -1287,10 +1287,9 @@ function collect(){
     cta_txt:gv('rc_cta_txt'),cta_link:gv('rc_cta_link'),
     video_url:gv('rc_video_url'),
     bg_img:gv('img_reality_bg')};
-  if(!C.ctabanner) C.ctabanner={};
-  C.ctabanner.bg_img=gv('img_cta_bg');
   C.ctabanner={eyebrow:gv('cta_eyebrow'),h1:gv('cta_h1'),h2:gv('cta_h2'),
     body:gv('cta_body'),btn_txt:gv('cta_btn_txt'),fine:gv('cta_fine'),
+    bg_img:gv('img_cta_bg'),
     pills:gv('cta_pills').split('\n').map(function(p){return p.trim();}).filter(Boolean)};
   C.images.ib1_h=gv('ib1_h');C.images.ib1_sub=gv('ib1_sub');C.images.ib2_h=gv('ib2_h');
   C.images.process_bg=gv('img_process_bg');
