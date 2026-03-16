@@ -504,10 +504,10 @@ nav.scrolled .hamburger span{background:var(--coffee)}
 .sproof{padding:108px 5% 120px;background:var(--espresso);position:relative;overflow:visible}
 .sproof-bg{position:absolute;inset:0;opacity:.08;background-size:cover;background-position:center}
 .sp-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:22px;max-width:1200px;margin-left:auto;margin-right:auto}
-.iggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;max-width:860px;margin:0 auto;align-items:center;overflow:visible;padding-bottom:20px}
+.iggrid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;max-width:1100px;margin:0 auto;align-items:center;overflow:visible;padding-bottom:20px}
 .igc{transition:transform .4s;display:flex;justify-content:center}
 .igc:hover{transform:translateY(-6px)}
-.igc:nth-child(2){margin-top:60px}
+.igc:nth-child(2){margin-top:60px}.igc:nth-child(4){margin-top:60px}
 .igc-in{position:relative;display:flex;justify-content:center}
 .ig-phone-glow{display:none}
 .ig-btn-vol1,.ig-btn-vol2{position:absolute;left:-4px;width:4px;background:#2c2c2e;border-radius:2px 0 0 2px}
@@ -522,7 +522,7 @@ nav.scrolled .hamburger span{background:var(--coffee)}
 .ig-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:33px}
 .ig-home-bar{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:65px;height:4px;background:rgba(255,255,255,.28);border-radius:2px;z-index:5}
 .sp-cta-wrap{text-align:center;margin-top:56px}
-@media(max-width:900px){.iggrid{grid-template-columns:repeat(3,1fr);gap:28px;max-width:680px}}
+@media(max-width:900px){.iggrid{grid-template-columns:repeat(2,1fr);gap:28px;max-width:500px}}
 @media(max-width:768px){.iggrid{grid-template-columns:1fr;gap:40px;max-width:100%;padding:0 20px 20px}.igc:nth-child(2){margin-top:0}.igc{justify-content:center}.ig-iphone-outer{width:200px}.ig-iphone-body{width:200px}.sp-hdr{flex-direction:column;align-items:flex-start;gap:16px}}
 @media(max-width:480px){.iggrid{gap:36px;padding:0 16px 16px}.ig-iphone-outer{width:180px}.ig-iphone-body{width:180px}}
 
@@ -856,7 +856,7 @@ nav.scrolled .hamburger span{background:var(--coffee)}
     <div class="ft-brand"><a href="#" id="ft-logo">Brand<em>Rehab</em></a><p id="ft-desc">A social content studio for busy business owners who are done figuring it out alone. Built by a female founder. Powered by strategy. Driven by results.</p></div>
     <div class="ft-col"><h5>Services</h5><ul><li><a href="#pricing">Content Planner</a></li><li><a href="#pricing">DIY Strategy</a></li><li><a href="#pricing">Done-With-You</a></li><li><a href="#pricing">Content Engine</a></li><li><a href="#pricing">High-Touch Strategy</a></li></ul></div>
     <div class="ft-col"><h5>Company</h5><ul><li><a href="#process">How It Works</a></li><li><a href="#results">Results</a></li><li><a href="https://calendly.com" target="_blank">Book a Call</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-    <div class="ft-col"><h5 id="ft-col3-title">Contact</h5><ul><li><a href="/cdn-cgi/l/email-protection#7b131e1717143b19091a151f091e131a19551814"><span class="__cf_email__" data-cfemail="a5cdc0c9c9cae5c7d7c4cbc1d7c0cdc4c78bc6ca">[email&#160;protected]</span></a></li><li><a id="ft-ig-link" href="#">@brandrehab</a></li><li><a id="ft-tt-link" href="#">TikTok</a></li><li><a id="ft-li-link" href="#">LinkedIn</a></li></ul></div>
+    
   </div>
   <div class="ft-bot">
     <p id="ft-copy">© 2025 Brand Rehab. All rights reserved. Built for the bold. ✦</p>
@@ -1106,7 +1106,7 @@ function applyContent(c) {
   if(spCtaBtn){ spCtaBtn.textContent = sp.cta_txt; applyLink(spCtaBtn, lnk.sproof); }
         var igGrid = document.getElementById('ig-grid');
   if(igGrid) {
-    igGrid.innerHTML = [0,1,2].map(function(i) {
+    igGrid.innerHTML = [0,1,2,3].map(function(i) {
       var src = img['ig_'+i] || '';
       var media = '';
       if(src) {
@@ -1136,7 +1136,7 @@ function applyContent(c) {
         '</div></div></div>';
     }).join('');
     // Set MP4 src after render to ensure autoplay works
-    [0,1,2].forEach(function(i) {
+    [0,1,2,3].forEach(function(i) {
       var src = img['ig_'+i] || '';
       if(src && /\.(mp4|webm|mov|ogg)$/i.test(src)) {
         var vid = document.getElementById('ig-vid-'+i);
@@ -1255,9 +1255,9 @@ function applyContent(c) {
   setT('reality-eyebrow', rc.eyebrow);
   setT('reality-h', rc.h);
   var rcSubEl = document.getElementById('reality-sub');
-  if(rcSubEl) rcSubEl.textContent = rc.sub || '';
+  if(rcSubEl && rc.sub) rcSubEl.textContent = rc.sub;
   var rcSub2El = document.getElementById('reality-sub2');
-  if(rcSub2El) rcSub2El.textContent = rc.sub2 || '';
+  if(rcSub2El && rc.sub2) rcSub2El.textContent = rc.sub2;
   var rcBtn = document.getElementById('reality-cta-btn');
   if(rcBtn){ rcBtn.textContent = rc.cta_txt || 'Start posting with purpose'; rcBtn.href = rc.cta_link || '#pricing'; }
   var rcBg = document.getElementById('reality-bg-img');
@@ -1300,7 +1300,7 @@ function applyContent(c) {
   document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){ obs.observe(el); });
 }
 
-function setT(id, text) { const el=document.getElementById(id); if(el) el.textContent=text||''; }
+function setT(id, text) { const el=document.getElementById(id); if(el && (text||text===0)) el.textContent=text; }
 
 // Custom cursor
 const cursor = document.getElementById('cursor');

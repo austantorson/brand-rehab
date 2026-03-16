@@ -549,7 +549,7 @@ body{background:var(--bl);overflow:hidden}
               <tr><td><strong>Hero Background</strong></td><td>1800×900px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Full screen. Keep subject centred.</td></tr>
               <tr><td><strong>Image Break 1 &amp; 2</strong></td><td>1800×600px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Cinematic strip. Centre your subject.</td></tr>
               <tr><td><strong>Team Photos ×3</strong></td><td>600×800px</td><td><span class="spec-pill sp-port">Portrait</span></td><td>Face centred, space above head.</td></tr>
-              <tr><td><strong>IG Posts ×3</strong></td><td>1080×1920px</td><td><span class="spec-pill sp-port">9:16 Portrait</span></td><td>Full-screen iPhone frame. Upload vertical images only.</td></tr>
+              <tr><td><strong>IG Posts ×4</strong></td><td>1080×1920px</td><td><span class="spec-pill sp-port">9:16 Portrait</span></td><td>Full-screen iPhone frame. Upload vertical images only.</td></tr>
               <tr><td><strong>Reality Check BG</strong></td><td>1800×1000px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Behind the phone section. Dark images work best.</td></tr>
               <tr><td><strong>CTA Banner BG</strong></td><td>1800×600px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Behind the pink CTA section. Keep it subtle.</td></tr>
               <tr><td><strong>How We Work BG</strong></td><td>1800×900px</td><td><span class="spec-pill sp-wide">Wide</span></td><td>Dark section. Low-opacity overlay. Dark images best.</td></tr>
@@ -1092,7 +1092,7 @@ function buildImageZones(){
   var tg=document.getElementById('team-photos-grid');
   if(tg){
     tg.innerHTML='';
-    [0,1,2].forEach(function(i){
+    [0,1,2,3].forEach(function(i){
       var k='team_'+i;
       var nm=C.team.members[i]?C.team.members[i].name:'Member '+(i+1);
       var wrap=document.createElement('div');
@@ -1293,7 +1293,7 @@ function collect(){
     pills:gv('cta_pills').split('\n').map(function(p){return p.trim();}).filter(Boolean)};
   C.images.ib1_h=gv('ib1_h');C.images.ib1_sub=gv('ib1_sub');C.images.ib2_h=gv('ib2_h');
   C.images.process_bg=gv('img_process_bg');
-  [0,1,2].forEach(function(i){
+  [0,1,2,3].forEach(function(i){
     C.images['ig_'+i+'_cap']=gv('ig_'+i+'_cap');
     C.images['ig_'+i+'_likes']=gv('ig_'+i+'_likes');
   });
