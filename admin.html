@@ -1104,18 +1104,30 @@ function buildImageZones(){
   var ig=document.getElementById('ig-photos-grid');
   if(ig){
     ig.innerHTML='';
-    [0,1,2,3,4].forEach(function(i){
+    [0,1,2,3].forEach(function(i){
       var k='ig_'+i;
+      var currentVal=C.images[k]||'';
+      var isYT=currentVal.indexOf('youtube.com')>-1||currentVal.indexOf('youtu.be')>-1;
+      // If current value is a YT URL, clear it from C.images so makeZone shows empty (not broken img)
+      if(isYT) C.images[k]='';
       var wrap=document.createElement('div');
-      wrap.style.marginBottom='16px';
-      wrap.innerHTML='<p style="font-family:\'Cabinet Grotesk\',sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">Post '+(i+1)+'</p>'+
-        '<div id="iz-'+k+'"></div>'+
-        '<div class="row r2" style="margin-top:10px">'+
-          '<div class="field"><label>Caption</label><input type="text" id="ig_'+i+'_cap" value="'+esc(C.images[k+'_cap']||'')+'"></div>'+
-          '<div class="field"><label>Likes / Saves</label><input type="text" id="ig_'+i+'_likes" value="'+esc(C.images[k+'_likes']||'')+'"></div>'+
-        '</div>';
+      wrap.style.cssText='margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.06)';
+      wrap.innerHTML=
+        '<p style="font-family:\'Cabinet Grotesk\',sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);margin-bottom:10px;text-transform:uppercase;letter-spacing:.1em">Phone '+(i+1)+'</p>'+
+        '<div class="field" style="margin-bottom:12px">'+
+          '<label style="font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--latte);display:block;margin-bottom:6px">'+
+            'YouTube URL &nbsp;<span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--latte);opacity:.7">— paste any youtube.com or youtu.be link</span>'+
+          '</label>'+
+          '<input type="text" id="ig_'+i+'_yt" placeholder="https://youtube.com/watch?v=..." value="'+esc(isYT?currentVal:'')+'">'+
+        '</div>'+
+        '<div style="font-size:.65rem;color:var(--latte);opacity:.6;margin-bottom:10px;padding:6px 10px;background:rgba(255,255,255,.04);border-radius:6px">'+
+          '✦ YouTube takes priority. If a YouTube URL is set above, the image below is ignored.'+
+        '</div>'+
+        '<div id="iz-'+k+'"></div>';
       ig.appendChild(wrap);
       document.getElementById('iz-'+k).innerHTML=makeZone(k);
+      // Restore the YT value in C.images so collect() still gets it
+      if(isYT) C.images[k]=currentVal;
     });
   }
   sv('ib1_h',C.images.ib1_h||'');sv('ib1_sub',C.images.ib1_sub||'');sv('ib2_h',C.images.ib2_h||'');
@@ -1294,6 +1306,10 @@ function collect(){
   C.images.ib1_h=gv('ib1_h');C.images.ib1_sub=gv('ib1_sub');C.images.ib2_h=gv('ib2_h');
   C.images.process_bg=gv('img_process_bg');
   [0,1,2,3].forEach(function(i){
+    var ytVal=gv('ig_'+i+'_yt');
+    if(ytVal && (ytVal.indexOf('youtube.com')>-1||ytVal.indexOf('youtu.be')>-1)){
+      C.images['ig_'+i]=ytVal;
+    }
     C.images['ig_'+i+'_cap']=gv('ig_'+i+'_cap');
     C.images['ig_'+i+'_likes']=gv('ig_'+i+'_likes');
   });
