@@ -1189,14 +1189,29 @@ function applyContent(c) {
   if(prGrid) {
     var btnLabels = ['Get the Template','Get Started','Start Growing Now','Apply Now'];
     prGrid.innerHTML = p.plans.map(function(plan,i) {
+      var btnClass = 'pbtn '+(plan.featured?'primary':i===1?'matcha-btn':i===3?'light-ol':'outline');
+      var btnTxt = btnLabels[i]||'Get Started';
+      var btnUrl = plan.btn_url||'';
+      var btnHtml;
+      if(btnUrl && btnUrl.indexOf('openCheckout(') > -1) {
+        // openCheckout shortcode
+        var match = btnUrl.match(/openCheckout\(([^)]+)\)/);
+        var args = match ? match[1].split(',').map(function(s){return s.trim().replace(/^['"]|['"]$/g,'');}) : ['',''];
+        btnHtml = '<button class="'+btnClass+'" onclick="openCheckout(\''+args[0]+'\',\''+args[1]+'\')">'+btnTxt+'</button>';
+      } else if(btnUrl) {
+        // External URL
+        btnHtml = '<a href="'+btnUrl+'" target="_blank" class="'+btnClass+'" style="display:block;text-align:center;text-decoration:none">'+btnTxt+'</a>';
+      } else {
+        // Default — open form with plan name and price
+        btnHtml = '<button class="'+btnClass+'" onclick="openCheckout(\''+plan.name.replace(/'/g,"\\'")+'\',' +"'\''+(plan.price+' '+plan.period)+'\')"+'>' + btnTxt+'</button>';
+      }
       return '<div class="pc'+(plan.featured?' feat':'')+'">'+
         (plan.featured||plan.badge ? '<div class="pbadge">'+(plan.badge||'Most Popular')+'</div>' : '')+
         '<div class="pc-nm">'+plan.name+'</div>'+
         '<p class="pc-desc">'+plan.desc+'</p>'+
         '<div class="pc-price"><span class="pc-amt">'+plan.price+'</span><span class="pc-per">'+plan.period+'</span></div>'+
         '<ul class="pc-feats">'+plan.features.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul>'+
-        '<button class="pbtn '+(plan.featured?'primary':i===1?'matcha-btn':i===3?'light-ol':'outline')+
-        '" onclick="openCheckout(\''+plan.name.replace(/'/g,"\\'")+"','"+(plan.price+' '+plan.period)+'\')">'+(btnLabels[i]||'Get Started')+'</button>'+
+        btnHtml+
         (plan.featured ? '<p class="pslots">Limited spots this month</p>' : '')+
         '</div>';
     }).join('');
