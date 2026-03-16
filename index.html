@@ -647,7 +647,7 @@ nav.scrolled .hamburger span{background:var(--coffee)}
         <p>If you checked more than two, you're not the problem.<br><em>The missing piece is a strategy built around you.</em></p>
         <p>Month-to-month. No contracts. Onboarded in 3–5 days.</p>
       </div>
-      <a href="https://calendly.com" target="_blank" class="btn btn-primary" style="white-space:nowrap;flex-shrink:0">Let's Build Yours →</a>
+      <a href="https://calendly.com" class="btn btn-primary" style="white-space:nowrap;flex-shrink:0">Let's Build Yours →</a>
     </div>
   </div>
 </section>
@@ -1032,8 +1032,8 @@ async function loadContent() {
 function applyLink(el, url) {
   if(!el || !url) return;
   if(url.indexOf('openCheckout(') > -1) {
-    // Extract the openCheckout call and wire it as onclick
     el.href = '#';
+    el.removeAttribute('target');
     el.onclick = function(e) {
       e.preventDefault();
       var match = url.match(/openCheckout\(([^)]+)\)/);
@@ -1041,6 +1041,7 @@ function applyLink(el, url) {
         var args = match[1].split(',').map(function(s){ return s.trim().replace(/^['"]|['"]$/g,''); });
         openCheckout(args[0]||'', args[1]||'');
       }
+      return false;
     };
   } else {
     el.href = url;
@@ -1273,7 +1274,13 @@ function applyContent(c) {
 
   // HT button URL
   var htBtn = document.getElementById('ht-btn');
-  if(htBtn && p.ht_btn_url){ htBtn.href = p.ht_btn_url; htBtn.target = '_blank'; htBtn.onclick = null; }
+  if(htBtn) {
+    var htUrl = p.ht_btn_url || '';
+    if(htUrl) {
+      applyLink(htBtn, htUrl);
+      if(htUrl.indexOf('openCheckout(') === -1) htBtn.target = '_blank';
+    }
+  }
 
   // Footer social icons
   var socIg = document.getElementById('soc-ig');
