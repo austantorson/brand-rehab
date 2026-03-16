@@ -874,6 +874,7 @@ nav.scrolled .hamburger span{background:var(--coffee)}
     <div style="background:#fdf8f3;border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px"><p style="margin:0;font-size:.78rem;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif">Investment</p><span id="modalPrice" style="font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#2A1A14">$0</span></div>
     <div style="display:flex;flex-direction:column;gap:12px">
       <div><label style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif;display:block;margin-bottom:5px">Full Name *</label><input id="f_name" type="text" placeholder="Your full name" style="width:100%;padding:12px 14px;border:1.5px solid #e8ddd6;border-radius:10px;font-size:.88rem;font-family:'Instrument Sans',sans-serif;outline:none;box-sizing:border-box"></div>
+      <div><label style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif;display:block;margin-bottom:5px">Phone Number</label><input id="f_phone" type="tel" placeholder="Your phone number" style="width:100%;padding:12px 14px;border:1.5px solid #e8ddd6;border-radius:10px;font-size:.88rem;font-family:'Instrument Sans',sans-serif;outline:none;box-sizing:border-box"></div>
       <div><label style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif;display:block;margin-bottom:5px">Email Address *</label><input id="f_email" type="email" placeholder="you@yourbusiness.com" style="width:100%;padding:12px 14px;border:1.5px solid #e8ddd6;border-radius:10px;font-size:.88rem;font-family:'Instrument Sans',sans-serif;outline:none;box-sizing:border-box"></div>
       <div><label style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif;display:block;margin-bottom:5px">Business / Brand Name</label><input id="f_business" type="text" placeholder="Your business name" style="width:100%;padding:12px 14px;border:1.5px solid #e8ddd6;border-radius:10px;font-size:.88rem;font-family:'Instrument Sans',sans-serif;outline:none;box-sizing:border-box"></div>
       <div><label style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9B7060;font-family:'Cabinet Grotesk',sans-serif;display:block;margin-bottom:5px">Instagram Handle</label><input id="f_instagram" type="text" placeholder="@yourhandle" style="width:100%;padding:12px 14px;border:1.5px solid #e8ddd6;border-radius:10px;font-size:.88rem;font-family:'Instrument Sans',sans-serif;outline:none;box-sizing:border-box"></div>
@@ -1028,6 +1029,24 @@ async function loadContent() {
   return stored ? mergeDeep(stored, JSON.parse(JSON.stringify(defaultContent))) : defaultContent;
 }
 
+function applyLink(el, url) {
+  if(!el || !url) return;
+  if(url.indexOf('openCheckout(') > -1) {
+    // Extract the openCheckout call and wire it as onclick
+    el.href = '#';
+    el.onclick = function(e) {
+      e.preventDefault();
+      var match = url.match(/openCheckout\(([^)]+)\)/);
+      if(match) {
+        var args = match[1].split(',').map(function(s){ return s.trim().replace(/^['"]|['"]$/g,''); });
+        openCheckout(args[0]||'', args[1]||'');
+      }
+    };
+  } else {
+    el.href = url;
+    el.onclick = null;
+  }
+}
 function applyContent(c) {
   const h = c.hero;
   const img = c.images || defaultContent.images;
@@ -1041,7 +1060,7 @@ function applyContent(c) {
   setT('hero-line1', h.line1); setT('hero-line2', h.line2); setT('hero-line3', h.line3);
   setT('hero-sub-text', h.sub); setT('hero-sub2-text', h.sub2);
   var ctaBtn = document.getElementById('hero-cta-btn');
-  if(ctaBtn){ctaBtn.textContent = h.cta; ctaBtn.href = h.cta_url || lnk.hero_cta;}
+  if(ctaBtn){ctaBtn.textContent = h.cta; applyLink(ctaBtn, h.cta_url || lnk.hero_cta);}
   var ghostBtn = document.querySelector('.hero-btns .btn-ghost');
   if(ghostBtn && h.ghost) ghostBtn.textContent = h.ghost;
   var tagEl = document.querySelector('.hero-tag span:last-child');
@@ -1083,7 +1102,7 @@ function applyContent(c) {
   // Social Proof
   setT('sp-eyebrow', sp.eyebrow); setT('sp-h1', sp.h1); setT('sp-h2', sp.h2);
   var spCtaBtn = document.getElementById('sp-cta-btn');
-  if(spCtaBtn){ spCtaBtn.textContent = sp.cta_txt; spCtaBtn.href = lnk.sproof; }
+  if(spCtaBtn){ spCtaBtn.textContent = sp.cta_txt; applyLink(spCtaBtn, lnk.sproof); }
         var igGrid = document.getElementById('ig-grid');
   if(igGrid) {
     igGrid.innerHTML = [0,1,2].map(function(i) {
@@ -1129,7 +1148,7 @@ function applyContent(c) {
   setT('cta-eyebrow', cta.eyebrow); setT('cta-h1', cta.h1); setT('cta-h2', cta.h2);
   setT('cta-body', cta.body); setT('cta-fine', cta.fine);
   var ctaBannerBtn = document.getElementById('cta-btn');
-  if(ctaBannerBtn){ ctaBannerBtn.textContent = cta.btn_txt; ctaBannerBtn.href = lnk.ctabanner; }
+  if(ctaBannerBtn){ ctaBannerBtn.textContent = cta.btn_txt; applyLink(ctaBannerBtn, lnk.ctabanner); }
   var ctaPills = document.getElementById('cta-pills');
   if(ctaPills && cta.pills) {
     ctaPills.innerHTML = cta.pills.map(function(p){ return '<span class="cpill">'+p+'</span>'; }).join('');
@@ -1137,12 +1156,12 @@ function applyContent(c) {
 
   // Nav
   var navCta = document.querySelector('.nav-cta');
-  if(navCta) navCta.href = lnk.nav_cta;
+  applyLink(navCta, lnk.nav_cta);
   var navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
   var navMap = [lnk.nav_process, lnk.nav_results, lnk.nav_pricing, lnk.nav_faq];
   navLinks.forEach(function(a,i){ if(navMap[i]) a.href = navMap[i]; });
   var chkBtn = document.querySelector('.fam-cta .btn-primary');
-  if(chkBtn) chkBtn.href = lnk.checklist;
+  applyLink(chkBtn, lnk.checklist);
 
   // Footer
   setT('ft-desc', ft.desc); setT('ft-copy', ft.copy);
@@ -1383,6 +1402,7 @@ function handleCheckout(){
   var data=new FormData();
   data.append('plan',document.getElementById('modalPlanName').textContent);
   data.append('name',name);data.append('email',email);
+  data.append('phone',document.getElementById('f_phone').value);
   data.append('business',document.getElementById('f_business').value);
   data.append('instagram',document.getElementById('f_instagram').value);
   data.append('challenge',document.getElementById('f_challenge').value);
