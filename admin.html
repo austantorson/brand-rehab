@@ -587,7 +587,7 @@ body{background:var(--bl);overflow:hidden}
         <div class="cbody open"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" id="team-photos-grid"></div></div>
       </div>
       <div class="card">
-        <div class="chdr" onclick="tog(this)"><div class="cico mt">📱</div><div><div class="cttl">Instagram Post Images</div><div class="csub">400×500px — 5 posts with editable captions</div></div><span class="cchev">▼</span></div>
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">📱</div><div><div class="cttl">Instagram Post Images</div><div class="csub">1080×1920px — 4 phone slots · image or YouTube URL</div></div><span class="cchev">▼</span></div>
         <div class="cbody open"><div id="ig-photos-grid"></div></div>
       </div>
     
@@ -890,6 +890,8 @@ var META = {
     document.getElementById('nav-'+id).classList.add('on');
     document.getElementById('ptitle').textContent = META[id].t;
     document.getElementById('pdesc').textContent = META[id].d;
+    // Rebuild image zones when Images panel is opened so Firebase data is loaded
+    if(id === 'images') buildImageZones();
   });
 });
 
