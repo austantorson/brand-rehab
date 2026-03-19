@@ -2,6 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta property="og:title" id="og-title" content="Brand Rehab — Social Content Studio">
+<meta property="og:description" id="og-desc" content="We grow your brand on social media so you don't have to. Strategy-driven content for busy business owners.">
+<meta property="og:image" id="og-image" content="">
+<meta property="og:url" content="https://brandrehab.online">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="tw-title" content="Brand Rehab — Social Content Studio">
+<meta name="twitter:description" id="tw-desc" content="We grow your brand on social media so you don't have to.">
+<meta name="twitter:image" id="tw-image" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brand Rehab | Social Content Studio for Boss Babes & Business Owners</title>
 <meta name="description" content="Brand Rehab is a social media content studio helping busy business owners build consistent, converting content. Stop guessing. Start growing.">
@@ -1281,6 +1290,18 @@ function applyContent(c) {
       if(htUrl.indexOf('openCheckout(') === -1) htBtn.target = '_blank';
     }
   }
+
+  // OG / SMS Link Preview meta tags
+  var seo = c.seo || defaultContent.seo;
+  var ogTitle = document.getElementById('og-title');
+  var ogDesc = document.getElementById('og-desc');
+  var ogImg = document.getElementById('og-image');
+  var twTitle = document.getElementById('tw-title');
+  var twDesc = document.getElementById('tw-desc');
+  var twImg = document.getElementById('tw-image');
+  if(seo.title){ if(ogTitle) ogTitle.content=seo.title; if(twTitle) twTitle.content=seo.title; document.title=seo.title; }
+  if(seo.desc){ if(ogDesc) ogDesc.content=seo.desc; if(twDesc) twDesc.content=seo.desc; }
+  if(seo.img){ if(ogImg) ogImg.content=seo.img; if(twImg) twImg.content=seo.img; }
 
   // Footer social icons
   var socIg = document.getElementById('soc-ig');

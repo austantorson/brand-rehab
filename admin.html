@@ -242,6 +242,7 @@ body{background:var(--bl);overflow:hidden}
     <span class="sb-sec">Settings</span>
     <button class="ni" id="nav-firebase"><span class="ni-ico">⚙️</span>Firebase Setup</button>
     <button class="ni" id="nav-password"><span class="ni-ico">🔒</span>Change Password</button>
+    <button class="ni" id="nav-seo"><span class="ni-ico">📲</span>Link Preview (SMS)</button>
   </nav>
   <div class="sb-foot">
     <button class="pub-btn" id="pubBtn">Save &amp; Publish ✦</button>
@@ -701,6 +702,45 @@ body{background:var(--bl);overflow:hidden}
     </div>
 
   </div>
+<div class="panel" id="panel-seo">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">📲</div><div><div class="cttl">SMS & Social Link Preview</div><div class="csub">Controls the image, title and description shown when your URL is shared</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div style="background:rgba(176,210,236,.08);border:1px solid rgba(176,210,236,.2);border-radius:12px;padding:14px 16px;margin-bottom:18px">
+            <p style="font-size:.74rem;color:var(--latte);line-height:1.7;margin:0">
+              <strong style="color:var(--lt)">📐 OG Image size: 1200 × 630 px</strong><br>
+              This is the image shown when your link is shared via SMS, iMessage, Instagram DMs, WhatsApp, Facebook, Twitter/X, or LinkedIn. Use a bold, high-contrast image with your brand name visible. Upload to Google Drive or Cloudinary and paste the direct URL below.
+            </p>
+          </div>
+          <div class="row r1"><div class="field">
+            <label>Page Title</label>
+            <input type="text" id="seo_title" placeholder="Brand Rehab — Social Content Studio">
+            <p style="font-size:.65rem;color:var(--latte);margin-top:4px">Shown as the bold headline in link previews. Keep under 60 characters.</p>
+          </div></div>
+          <div class="row r1"><div class="field">
+            <label>Description</label>
+            <textarea id="seo_desc" style="min-height:70px" placeholder="We grow your brand on social media so you don't have to."></textarea>
+            <p style="font-size:.65rem;color:var(--latte);margin-top:4px">2–3 sentences shown under the title. Keep under 160 characters.</p>
+          </div></div>
+          <div class="row r1"><div class="field">
+            <label>Preview Image URL <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--latte)">(1200 × 630px · JPG or PNG)</span></label>
+            <input type="text" id="seo_img" placeholder="https://drive.google.com/uc?export=view&id=...">
+            <p style="font-size:.65rem;color:var(--latte);margin-top:4px">Upload to Google Drive or Cloudinary → paste direct URL here. Must end in .jpg or .png for best compatibility.</p>
+          </div></div>
+          <div id="seo_preview_wrap" style="margin-top:16px;display:none">
+            <p style="font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--latte);margin-bottom:8px">Preview</p>
+            <div style="border:1px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;max-width:400px">
+              <div id="seo_img_preview" style="width:100%;aspect-ratio:1200/630;background:#111;background-size:cover;background-position:center"></div>
+              <div style="padding:10px 14px;background:rgba(255,255,255,.04)">
+                <p id="seo_title_preview" style="font-size:.78rem;font-weight:700;color:var(--lt);margin:0 0 3px;font-family:'Cabinet Grotesk',sans-serif">Title</p>
+                <p id="seo_desc_preview" style="font-size:.68rem;color:var(--latte);margin:0;line-height:1.5">Description</p>
+                <p style="font-size:.6rem;color:rgba(255,255,255,.3);margin:4px 0 0">brandrehab.online</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </main>
 </div>
 </div>
@@ -840,11 +880,29 @@ var dirty = false;
 //
 // LOGIN
 //
-function login(){
+async function login(){
   var pw = document.getElementById('lpw').value;
   if(pw === PW){
     document.getElementById('loginWrap').style.display='none';
-    document.getElementById('app').style.display='block';
+    document.getElementById('app').style.display='flex';
+    // Show loading state
+    document.getElementById('app').style.opacity='0.5';
+    // Fetch latest data from Firebase before building panels
+    try {
+      var FIREBASE_URL = 'https://brand-rehab-default-rtdb.firebaseio.com';
+      var res = await fetch(FIREBASE_URL + '/content.json');
+      if(res.ok){
+        var fbData = await res.json();
+        if(fbData){
+          // Merge Firebase data into C so all panels have fresh data
+          C = mergeDeep(fbData, JSON.parse(JSON.stringify(DEFS)));
+          localStorage.setItem('br_content', JSON.stringify(C));
+        }
+      }
+    } catch(e){
+      console.warn('Firebase read failed, using localStorage:', e);
+    }
+    document.getElementById('app').style.opacity='1';
     initAll();
   } else {
     document.getElementById('lerr').style.display='block';
@@ -880,9 +938,10 @@ var META = {
   images:{t:'Images & Overlays',d:'Upload images and edit overlay text'},
   links:{t:'Links & Buttons',d:'Update every URL on the site'},
   firebase:{t:'Firebase Setup',d:'Connect cloud database'},
-  password:{t:'Change Password',d:'Update your login password'}
+  password:{t:'Change Password',d:'Update your login password'},
+  seo:{t:'Link Preview (SMS / Social)',d:'Update the image and text shown when your URL is shared via text or social media'}
 };
-['hero','pain','checklist','process','pricing','testimonials','team','faq','footer','numbers','sproof','ctabanner','reality','images','links','firebase','password'].forEach(function(id){
+['hero','pain','checklist','process','pricing','testimonials','team','faq','footer','numbers','sproof','ctabanner','reality','images','links','firebase','password','seo'].forEach(function(id){
   document.getElementById('nav-'+id).addEventListener('click', function(){
     document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
     document.querySelectorAll('.ni').forEach(function(b){b.classList.remove('on');});
@@ -913,7 +972,10 @@ function markDirty(){
   b.className='status dirty';
   document.getElementById('statusTxt').textContent='Unsaved changes';
 }
-document.addEventListener('input', markDirty);
+document.addEventListener('input', function(e){
+  markDirty();
+  if(e.target.id==='seo_img'||e.target.id==='seo_title'||e.target.id==='seo_desc') updateSeoPreview();
+});
 
 //
 // HELPERS
@@ -928,7 +990,7 @@ function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repla
 function initAll(){
   loadHero(); loadPain(); loadChecklist(); loadProcess();
   loadPricing(); loadTestimonials(); loadTeam(); loadFaq();
-  loadFooter(); loadNumbers(); loadSproof(); loadCtaBanner(); loadReality(); buildImageZones(); loadLinks(); loadFbConfig();
+  loadFooter(); loadNumbers(); loadSproof(); loadCtaBanner(); loadReality(); buildImageZones(); loadLinks(); loadFbConfig(); loadSeo();
 }
 
 function loadHero(){
@@ -1098,7 +1160,7 @@ function buildImageZones(){
       var k='team_'+i;
       var nm=C.team.members[i]?C.team.members[i].name:'Member '+(i+1);
       var wrap=document.createElement('div');
-      wrap.innerHTML='<p style="font-family:\'Cabinet Grotesk\',sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">'+nm+'</p><div id="iz-'+k+'"></div>';
+      wrap.innerHTML='<p style="font-family:sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">'+nm+'</p><div id="iz-'+k+'"></div>';
       tg.appendChild(wrap);
       document.getElementById('iz-'+k).innerHTML=makeZone(k);
     });
@@ -1108,31 +1170,58 @@ function buildImageZones(){
     ig.innerHTML='';
     [0,1,2,3].forEach(function(i){
       var k='ig_'+i;
-      var currentVal=C.images[k]||'';
-      var isYT=currentVal.indexOf('youtube.com')>-1||currentVal.indexOf('youtu.be')>-1;
-      // If current value is a YT URL, clear it from C.images so makeZone shows empty (not broken img)
+      var stored=C.images[k]||'';
+      var isYT=stored.indexOf('youtube.com')>-1||stored.indexOf('youtu.be')>-1;
+      var ytVal=isYT?stored:'';
+      // If stored is YT, temporarily blank it so makeZone shows empty image zone
       if(isYT) C.images[k]='';
+
       var wrap=document.createElement('div');
-      wrap.style.cssText='margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.06)';
-      wrap.innerHTML=
-        '<p style="font-family:\'Cabinet Grotesk\',sans-serif;font-size:.7rem;font-weight:700;color:var(--lt);margin-bottom:10px;text-transform:uppercase;letter-spacing:.1em">Phone '+(i+1)+'</p>'+
-        '<div class="field" style="margin-bottom:12px">'+
-          '<label style="font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--latte);display:block;margin-bottom:6px">'+
-            'YouTube URL &nbsp;<span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--latte);opacity:.7">— paste any youtube.com or youtu.be link</span>'+
+      wrap.style.cssText='margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.08)';
+
+      // Build the slot HTML
+      var slotHtml=
+        '<p style="font-family:var(--f-cab),sans-serif;font-size:.72rem;font-weight:700;'+
+          'color:var(--lt);margin:0 0 14px;text-transform:uppercase;letter-spacing:.1em">'+
+          '✶ Phone '+(i+1)+'</p>'+
+
+        // YouTube URL field
+        '<div style="margin-bottom:12px">'+
+          '<label style="font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;'+
+            'color:var(--latte);display:block;margin-bottom:5px">'+
+            'YouTube URL'+
           '</label>'+
-          '<input type="text" id="ig_'+i+'_yt" placeholder="https://youtube.com/watch?v=..." value="'+esc(isYT?currentVal:'')+'">'+
+          '<input type="text" id="ig_'+i+'_yt" '+
+            'placeholder="https://youtube.com/watch?v=... or https://youtu.be/..." '+
+            'value="'+esc(ytVal)+'" '+
+            'style="width:100%;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);'+
+              'border-radius:8px;color:white;font-size:.82rem;font-family:sans-serif;'+
+              'box-sizing:border-box;outline:none">'+
+          '<p style="font-size:.62rem;color:var(--latte);opacity:.65;margin:5px 0 0">'+
+            'Paste any YouTube URL — video will autoplay silently on the phone screen'+
+          '</p>'+
         '</div>'+
-        '<div style="font-size:.65rem;color:var(--latte);opacity:.6;margin-bottom:10px;padding:6px 10px;background:rgba(255,255,255,.04);border-radius:6px">'+
-          '✦ YouTube takes priority. If a YouTube URL is set above, the image below is ignored.'+
+
+        // Divider
+        '<div style="display:flex;align-items:center;gap:10px;margin:14px 0">'+
+          '<span style="flex:1;height:1px;background:rgba(255,255,255,.08)"></span>'+
+          '<span style="font-size:.6rem;color:var(--latte);opacity:.5;font-family:sans-serif;'+
+            'text-transform:uppercase;letter-spacing:.1em">or upload / paste image URL</span>'+
+          '<span style="flex:1;height:1px;background:rgba(255,255,255,.08)"></span>'+
         '</div>'+
+
+        // Image upload zone
         '<div id="iz-'+k+'"></div>';
+
+      wrap.innerHTML=slotHtml;
       ig.appendChild(wrap);
       document.getElementById('iz-'+k).innerHTML=makeZone(k);
-      // Restore the YT value in C.images so collect() still gets it
-      if(isYT) C.images[k]=currentVal;
+
+      // Restore YT value
+      if(isYT) C.images[k]=stored;
     });
   }
-  sv('ib1_h',C.images.ib1_h||'');sv('ib1_sub',C.images.ib1_sub||'');sv('ib2_h',C.images.ib2_h||'');
+    sv('ib1_h',C.images.ib1_h||'');sv('ib1_sub',C.images.ib1_sub||'');sv('ib2_h',C.images.ib2_h||'');
 }
 
 function makeZone(key){
@@ -1145,8 +1234,10 @@ function makeZone(key){
         '<span class="spec-pill sp-auto">✦ Auto-scaled</span>'+
       '</div>'+
       '<div class="iz-pw" style="aspect-ratio:'+spec.ar+'">'+
-        (has?'<img src="'+esc(url)+'" style="width:100%;height:100%;object-fit:cover;display:block">':
-        '<div class="iz-ph"><div class="iz-ph-ico">🖼️</div><div class="iz-ph-txt">No image</div><div class="iz-ph-sub">Upload or paste a URL</div></div>')+
+        (has && (url.indexOf('youtube.com')>-1||url.indexOf('youtu.be')>-1) ?
+          '<div style="width:100%;height:100%;background:#000;display:flex;align-items:center;justify-content:center;border-radius:8px"><span style="font-size:2rem">▶️</span><span style="color:white;font-size:.75rem;margin-left:8px;font-family:sans-serif">YouTube</span></div>'
+          : has ? '<img src="'+esc(url)+'" style="width:100%;height:100%;object-fit:cover;display:block">'
+          : '<div class="iz-ph"><div class="iz-ph-ico">🖼️</div><div class="iz-ph-txt">No image yet</div><div class="iz-ph-sub">Upload a file or paste a URL below</div></div>')+
       '</div>'+
       '<div class="iz-actions">'+
         '<label class="iz-upload">📁 Upload<input type="file" accept="image/*" data-key="'+key+'"></label>'+
@@ -1308,13 +1399,20 @@ function collect(){
   C.images.ib1_h=gv('ib1_h');C.images.ib1_sub=gv('ib1_sub');C.images.ib2_h=gv('ib2_h');
   C.images.process_bg=gv('img_process_bg');
   [0,1,2,3].forEach(function(i){
-    var ytVal=gv('ig_'+i+'_yt');
+    var ytVal=(gv('ig_'+i+'_yt')||'').trim();
+    var imgVal=C.images['ig_'+i]||'';
+    // YouTube takes priority over image
     if(ytVal && (ytVal.indexOf('youtube.com')>-1||ytVal.indexOf('youtu.be')>-1)){
       C.images['ig_'+i]=ytVal;
+    } else if(!ytVal && imgVal && (imgVal.indexOf('youtube.com')>-1||imgVal.indexOf('youtu.be')>-1)){
+      // YT field was cleared — remove YT from images
+      C.images['ig_'+i]='';
     }
+    // image zone url is already in C.images[ig_i] via setZoneImg
     C.images['ig_'+i+'_cap']=gv('ig_'+i+'_cap');
     C.images['ig_'+i+'_likes']=gv('ig_'+i+'_likes');
   });
+  C.seo={title:gv('seo_title'),desc:gv('seo_desc'),img:gv('seo_img')};
   C.links={hero_cta:gv('lnk_hero_cta'),nav_cta:gv('lnk_nav_cta'),checklist:gv('lnk_checklist'),
     sproof:gv('lnk_sproof'),ctabanner:gv('lnk_ctabanner'),email:gv('lnk_email'),
     ig:gv('lnk_ig'),tt:gv('lnk_tt'),li:gv('lnk_li'),
@@ -1326,6 +1424,27 @@ function collect(){
 // SAVE
 //
 document.getElementById('pubBtn').addEventListener('click', saveAll);
+function loadSeo(){
+  var s=C.seo||{};
+  sv('seo_title',s.title||'');
+  sv('seo_desc',s.desc||'');
+  sv('seo_img',s.img||'');
+  updateSeoPreview();
+}
+function updateSeoPreview(){
+  var img=document.getElementById('seo_img');
+  var wrap=document.getElementById('seo_preview_wrap');
+  var imgDiv=document.getElementById('seo_img_preview');
+  var titleEl=document.getElementById('seo_title_preview');
+  var descEl=document.getElementById('seo_desc_preview');
+  if(!img) return;
+  var url=img.value.trim();
+  if(url){ wrap.style.display='block'; imgDiv.style.backgroundImage="url('"+url+"')"; }
+  else { wrap.style.display='none'; }
+  if(titleEl) titleEl.textContent=document.getElementById('seo_title').value||'Your Page Title';
+  if(descEl) descEl.textContent=document.getElementById('seo_desc').value||'Your description here';
+}
+
 async function saveAll(){
   var btn=document.getElementById('pubBtn');
   btn.textContent='Saving...'; btn.disabled=true;
