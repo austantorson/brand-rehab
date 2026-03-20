@@ -949,11 +949,11 @@ const defaultContent = {
     team_0:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&fit=crop&crop=faces',
     team_1:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop&crop=faces',
     team_2:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80&fit=crop&crop=faces',
-    ig_0:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80&fit=crop',
-    ig_1:'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&q=80&fit=crop',
-    ig_2:'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80&fit=crop',
-    ig_3:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80&fit=crop',
-    ig_4:'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=80&fit=crop'
+    ig_0:'',
+    ig_1:'',
+    ig_2:'',
+    ig_3:'',
+    ig_4:''
   },
   links:{
     hero_cta:'https://calendly.com',nav_cta:'https://calendly.com',
@@ -1015,7 +1015,7 @@ const defaultContent = {
   }
 };
 
-function mergeDeep(t,s){for(const k in s){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k])){if(!t[k])t[k]={};mergeDeep(t[k],s[k]);}else if(!(k in t)){t[k]=s[k];}}return t;}
+function mergeDeep(t,s){for(const k in s){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k])){if(!t[k])t[k]={};mergeDeep(t[k],s[k]);}else if(!(k in t)||t[k]===null||t[k]===''){t[k]=s[k];}else if(Array.isArray(s[k])&&Array.isArray(t[k])&&t[k].length===0){t[k]=s[k];}}return t;}
 
 async function loadContent() {
   // HARDCODED Firebase URL — always reads from cloud on every device
@@ -1066,6 +1066,7 @@ function applyContent(c) {
   const sp = c.sproof || defaultContent.sproof;
   const cta = c.ctabanner || defaultContent.ctabanner;
 
+  try {
   // Hero
   setT('hero-line1', h.line1); setT('hero-line2', h.line2); setT('hero-line3', h.line3);
   setT('hero-sub-text', h.sub); setT('hero-sub2-text', h.sub2);
@@ -1198,7 +1199,8 @@ function applyContent(c) {
   var prGrid = document.getElementById('pricing-grid');
   if(prGrid) {
     var btnLabels = ['Get the Template','Get Started','Start Growing Now','Apply Now'];
-    prGrid.innerHTML = p.plans.map(function(plan,i) {
+    var plans = (p && p.plans && p.plans.length) ? p.plans : defaultContent.pricing.plans;
+    prGrid.innerHTML = plans.map(function(plan,i) {
       var btnClass = 'pbtn '+(plan.featured?'primary':i===1?'matcha-btn':i===3?'light-ol':'outline');
       var btnTxt = btnLabels[i]||'Get Started';
       var btnUrl = plan.btn_url||'';
@@ -1228,36 +1230,46 @@ function applyContent(c) {
   }
 
   // Testimonials
-  var t = c.testimonials;
-  var pqEl = document.getElementById('pull-quote-text');
-  if(pqEl) {
-    var hi = t.pq_hi || ''; var txt = t.pq_txt || '';
-    pqEl.innerHTML = hi ? txt.replace(hi, '<em>'+hi+'</em>') : txt;
-  }
-  setT('pull-quote-cite', t.pq_cite);
-  var tGrid = document.getElementById('testimonials-grid');
-  if(tGrid) {
-    tGrid.innerHTML = t.cards.map(function(card) {
-      return '<div class="tc'+(card.featured?' feat':'')+'">'+
-        '<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>'+
-        '<p class="tc-txt">'+card.quote+'</p>'+
-        '<div class="tc-auth"><div class="av">'+card.initials+'</div>'+
-        '<div><span class="auth-nm">'+card.name+'</span>'+
-        '<span class="auth-role">'+card.role+'</span></div></div></div>';
-    }).join('');
-  }
+  try {
+    var t = c.testimonials || defaultContent.testimonials;
+    var pqEl = document.getElementById('pull-quote-text');
+    if(pqEl) {
+      var hi = t.pq_hi || ''; var txt = t.pq_txt || '';
+      pqEl.innerHTML = hi ? txt.replace(hi, '<em>'+hi+'</em>') : txt;
+    }
+    setT('pull-quote-cite', t.pq_cite);
+    var tGrid = document.getElementById('testimonials-grid');
+    var tCards = (t.cards && t.cards.length) ? t.cards : defaultContent.testimonials.cards;
+    if(tGrid) {
+      tGrid.innerHTML = tCards.map(function(card) {
+        return '<div class="tc'+(card.featured?' feat':'')+'">'+
+          '<div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>'+
+          '<p class="tc-txt">'+card.quote+'</p>'+
+          '<div class="tc-auth"><div class="av">'+card.initials+'</div>'+
+          '<div><span class="auth-nm">'+card.name+'</span>'+
+          '<span class="auth-role">'+card.role+'</span></div></div></div>';
+      }).join('');
+    }
+  } catch(e) { console.warn('Testimonials error:', e); }
 
   // Team
-  var teamGrid = document.getElementById('team-grid');
-  if(teamGrid) {
-    teamGrid.innerHTML = c.team.members.map(function(m,i) {
-      var photo = img['team_'+i] || m.photo || '';
-      return '<div class="tp reveal'+(i>0?' r'+i:'')+'">'+
-        '<div class="tp-photo"><img src="'+photo+'" alt="'+m.name+'" loading="lazy"><div class="tp-photo-ov"></div></div>'+
-        '<div class="tp-nm">'+m.name+'</div><div class="tp-role">'+m.role+'</div>'+
-        '<p class="tp-bio">'+m.bio+'</p></div>';
-    }).join('');
-  }
+  try {
+    var teamGrid = document.getElementById('team-grid');
+    var teamMembers = (c.team && c.team.members && c.team.members.length) ? c.team.members : defaultContent.team.members;
+    if(teamGrid) {
+      teamGrid.innerHTML = teamMembers.map(function(m,i) {
+        var photo = (img && img['team_'+i]) || m.photo || '';
+        return '<div class="tp reveal'+(i>0?' r'+i:'')+'">'+
+          '<div class="tp-photo">'+
+            (photo ? '<img src="'+photo+'" alt="'+m.name+'" loading="lazy">' : '<div class="tp-ph-blank"></div>')+
+            '<div class="tp-photo-ov"></div>'+
+          '</div>'+
+          '<div class="tp-nm">'+m.name+'</div>'+
+          '<div class="tp-role">'+m.role+'</div>'+
+          '<p class="tp-bio">'+m.bio+'</p></div>';
+      }).join('');
+    }
+  } catch(e) { console.warn('Team error:', e); }
 
   // Reality Check section
   var rc = c.reality || defaultContent.reality;
@@ -1307,18 +1319,22 @@ function applyContent(c) {
   var socIg = document.getElementById('soc-ig');
   if(socIg) socIg.href = lnk.ig || '#';
 
-    // FAQ
-  var faqContainer = document.getElementById('faq-items');
-  if(faqContainer) {
-    faqContainer.innerHTML = c.faq.items.map(function(item) {
-      return '<div class="faq-item">'+
-        '<div class="faq-q" onclick="toggleFAQ(this)">'+
-        '<h4>'+item.q+'</h4><button class="faq-tog">+</button></div>'+
-        '<div class="faq-ans"><p>'+item.a+'</p></div></div>';
-    }).join('');
-  }
+  // FAQ
+  try {
+    var faqContainer = document.getElementById('faq-items');
+    var faqItems = (c.faq && c.faq.items && c.faq.items.length) ? c.faq.items : defaultContent.faq.items;
+    if(faqContainer) {
+      faqContainer.innerHTML = faqItems.map(function(item) {
+        return '<div class="faq-item">'+
+          '<div class="faq-q" onclick="toggleFAQ(this)">'+
+          '<h4>'+item.q+'</h4><button class="faq-tog">+</button></div>'+
+          '<div class="faq-ans"><p>'+item.a+'</p></div></div>';
+      }).join('');
+    }
+  } catch(e) { console.warn('FAQ error:', e); }
 
   document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){ obs.observe(el); });
+  } catch(e) { console.error('applyContent error:', e); }
 }
 
 function setT(id, text) { const el=document.getElementById(id); if(el && (text||text===0)) el.textContent=text; }
