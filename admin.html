@@ -844,11 +844,11 @@ var DEFS = {
     team_0:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&fit=crop&crop=faces',
     team_1:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop&crop=faces',
     team_2:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80&fit=crop&crop=faces',
-    ig_0:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80&fit=crop',
-    ig_1:'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&q=80&fit=crop',
-    ig_2:'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80&fit=crop',
-    ig_3:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80&fit=crop',
-    ig_4:'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=80&fit=crop',
+    ig_0:'',
+    ig_1:'',
+    ig_2:'',
+    ig_3:'',
+    ig_4:'',
     ig_0_cap:'How We Grew This Account 4x in 60 Days',ig_0_likes:'31,204 likes - 2.1K saves',
     ig_1_cap:'3 Content Pillars Every Business Owner Needs',ig_1_likes:'18,447 likes - 1.8K saves',
     ig_2_cap:'Why Consistent Posting Won\'t Save Your Brand',ig_2_likes:'44,882 likes - 3.4K saves',
@@ -1149,6 +1149,8 @@ var IMG_SPECS = {
 };
 
 function buildImageZones(){
+  try {
+  if(!C.images) C.images={};
   ['hero_bg','break1','break2'].forEach(function(k){
     var el=document.getElementById('iz-'+k);
     if(el) el.innerHTML=makeZone(k);
@@ -1166,6 +1168,7 @@ function buildImageZones(){
     });
   }
   var ig=document.getElementById('ig-photos-grid');
+  if(!C.images) C.images={};
   if(ig){
     ig.innerHTML='';
     [0,1,2,3].forEach(function(i){
@@ -1173,59 +1176,42 @@ function buildImageZones(){
       var stored=C.images[k]||'';
       var isYT=stored.indexOf('youtube.com')>-1||stored.indexOf('youtu.be')>-1;
       var ytVal=isYT?stored:'';
-      // If stored is YT, temporarily blank it so makeZone shows empty image zone
+      // Temporarily blank YT from C.images so makeZone shows empty image zone
       if(isYT) C.images[k]='';
 
       var wrap=document.createElement('div');
       wrap.style.cssText='margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.08)';
 
-      // Build the slot HTML
-      var slotHtml=
-        '<p style="font-family:var(--f-cab),sans-serif;font-size:.72rem;font-weight:700;'+
-          'color:var(--lt);margin:0 0 14px;text-transform:uppercase;letter-spacing:.1em">'+
-          '✶ Phone '+(i+1)+'</p>'+
+      wrap.innerHTML=
+        '<p style="font-size:.72rem;font-weight:700;color:var(--lt);margin:0 0 14px;text-transform:uppercase;letter-spacing:.1em">Phone '+(i+1)+'</p>'+
 
-        // YouTube URL field
-        '<div style="margin-bottom:12px">'+
-          '<label style="font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;'+
-            'color:var(--latte);display:block;margin-bottom:5px">'+
-            'YouTube URL'+
-          '</label>'+
-          '<input type="text" id="ig_'+i+'_yt" '+
-            'placeholder="https://youtube.com/watch?v=... or https://youtu.be/..." '+
-            'value="'+esc(ytVal)+'" '+
-            'style="width:100%;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);'+
-              'border-radius:8px;color:white;font-size:.82rem;font-family:sans-serif;'+
-              'box-sizing:border-box;outline:none">'+
-          '<p style="font-size:.62rem;color:var(--latte);opacity:.65;margin:5px 0 0">'+
-            'Paste any YouTube URL — video will autoplay silently on the phone screen'+
-          '</p>'+
-        '</div>'+
+        '<label style="font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--latte);display:block;margin-bottom:5px">YouTube URL</label>'+
+        '<input type="text" id="igyt'+i+'" placeholder="https://youtube.com/watch?v=..." value="'+esc(ytVal)+'" style="width:100%;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:8px;color:white;font-size:.82rem;box-sizing:border-box;outline:none;margin-bottom:5px">'+
+        '<p style="font-size:.62rem;color:var(--latte);opacity:.65;margin:0 0 14px">Paste YouTube link — autoplays silently on loop inside the phone</p>'+
 
-        // Divider
-        '<div style="display:flex;align-items:center;gap:10px;margin:14px 0">'+
+        '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">'+
           '<span style="flex:1;height:1px;background:rgba(255,255,255,.08)"></span>'+
-          '<span style="font-size:.6rem;color:var(--latte);opacity:.5;font-family:sans-serif;'+
-            'text-transform:uppercase;letter-spacing:.1em">or upload / paste image URL</span>'+
+          '<span style="font-size:.6rem;color:var(--latte);opacity:.5;text-transform:uppercase;letter-spacing:.1em">or image / direct video URL</span>'+
           '<span style="flex:1;height:1px;background:rgba(255,255,255,.08)"></span>'+
         '</div>'+
 
-        // Image upload zone
         '<div id="iz-'+k+'"></div>';
 
-      wrap.innerHTML=slotHtml;
       ig.appendChild(wrap);
       document.getElementById('iz-'+k).innerHTML=makeZone(k);
-
       // Restore YT value
       if(isYT) C.images[k]=stored;
     });
   }
     sv('ib1_h',C.images.ib1_h||'');sv('ib1_sub',C.images.ib1_sub||'');sv('ib2_h',C.images.ib2_h||'');
+  } catch(e){ console.error('buildImageZones error:', e); }
 }
 
 function makeZone(key){
-  var spec=IMG_SPECS[key], url=C.images[key]||'', has=!!url;
+  var spec=IMG_SPECS[key];
+  if(!spec) return '<div style="padding:10px;color:var(--latte);font-size:.75rem">No spec for '+key+'</div>';
+  if(!C.images) C.images={};
+  var url=C.images[key]||'', has=!!url;
   return '<div class="img-zone">'+
     '<div class="iz-inner">'+
       '<div class="iz-spec-row">'+
@@ -1399,16 +1385,13 @@ function collect(){
   C.images.ib1_h=gv('ib1_h');C.images.ib1_sub=gv('ib1_sub');C.images.ib2_h=gv('ib2_h');
   C.images.process_bg=gv('img_process_bg');
   [0,1,2,3].forEach(function(i){
-    var ytVal=(gv('ig_'+i+'_yt')||'').trim();
-    var imgVal=C.images['ig_'+i]||'';
-    // YouTube takes priority over image
+    var ytEl=document.getElementById('igyt'+i);
+    var ytVal=ytEl?ytEl.value.trim():'';
     if(ytVal && (ytVal.indexOf('youtube.com')>-1||ytVal.indexOf('youtu.be')>-1)){
       C.images['ig_'+i]=ytVal;
-    } else if(!ytVal && imgVal && (imgVal.indexOf('youtube.com')>-1||imgVal.indexOf('youtu.be')>-1)){
-      // YT field was cleared — remove YT from images
+    } else if(!ytVal && C.images['ig_'+i] && (C.images['ig_'+i].indexOf('youtube.com')>-1||C.images['ig_'+i].indexOf('youtu.be')>-1)){
       C.images['ig_'+i]='';
     }
-    // image zone url is already in C.images[ig_i] via setZoneImg
     C.images['ig_'+i+'_cap']=gv('ig_'+i+'_cap');
     C.images['ig_'+i+'_likes']=gv('ig_'+i+'_likes');
   });
