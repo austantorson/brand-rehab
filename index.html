@@ -418,8 +418,9 @@ footer::before{content:'';display:block;height:3px;background:var(--grad-warm)}
 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal{opacity:1;transform:translateY(0);transition:opacity .9s ease,transform .9s ease}
+.reveal.hidden{opacity:0;transform:translateY(30px)}
+.reveal.hidden.visible{opacity:1;transform:translateY(0)}
 .r1{transition-delay:.12s}.r2{transition-delay:.24s}.r3{transition-delay:.36s}
 
 /* RESPONSIVE */
@@ -1366,7 +1367,8 @@ function closeMenu(){document.getElementById('nav-drawer').classList.remove('ope
 // Reveal
 const reveals=document.querySelectorAll('.reveal');
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.07});
-reveals.forEach(el=>obs.observe(el));
+// Add hidden class so animation works, but only when JS is running
+reveals.forEach(el=>{el.classList.add('hidden'); obs.observe(el);});
 
 // FAQ
 var ytMuted = true;
