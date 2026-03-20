@@ -1176,34 +1176,34 @@ function buildImageZones(){
       var stored=C.images[k]||'';
       var isYT=stored.indexOf('youtube.com')>-1||stored.indexOf('youtu.be')>-1;
       var ytVal=isYT?stored:'';
-      // Temporarily blank YT from C.images so makeZone shows empty image zone
       if(isYT) C.images[k]='';
 
       var wrap=document.createElement('div');
-      wrap.style.cssText='margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.08)';
+      wrap.style.cssText='margin-bottom:32px;padding:20px;background:rgba(255,255,255,.04);border-radius:12px;border:1px solid rgba(255,255,255,.1)';
 
       wrap.innerHTML=
-        '<p style="font-size:.72rem;font-weight:700;color:var(--lt);margin:0 0 14px;text-transform:uppercase;letter-spacing:.1em">Phone '+(i+1)+'</p>'+
+        '<p style="font-size:.8rem;font-weight:700;color:#ffffff;margin:0 0 16px;text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:10px">Phone '+(i+1)+'</p>'+
 
-        '<label style="font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--latte);display:block;margin-bottom:5px">&#9654; YouTube / Video URL — paste here</label>'+
-        '<input type="text" id="igyt'+i+'" placeholder="https://youtube.com/watch?v=..." value="'+esc(ytVal)+'" style="width:100%;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:8px;color:white;font-size:.82rem;box-sizing:border-box;outline:none;margin-bottom:5px">'+
-        '<p style="font-size:.62rem;color:var(--latte);opacity:.65;margin:0 0 14px">Paste YouTube link — autoplays silently on loop inside the phone</p>'+
-
-        '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">'+
-          '<span style="flex:1;height:1px;background:rgba(255,255,255,.08)"></span>'+
-          '<span style="font-size:.6rem;color:var(--latte);opacity:.5;text-transform:uppercase;letter-spacing:.1em">or image / direct video URL</span>'+
-          '<span style="flex:1;height:1px;background:rgba(255,255,255,.08)"></span>'+
+        '<div style="background:#1a1a2e;border:2px solid #5a9bc4;border-radius:10px;padding:14px;margin-bottom:16px">'+
+          '<label style="font-size:.72rem;font-weight:700;color:#b0d2ec;display:block;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">&#9654; YouTube URL (paste here)</label>'+
+          '<input type="text" id="igyt'+i+'" '+
+            'placeholder="https://youtube.com/shorts/... or https://youtu.be/..." '+
+            'value="'+esc(ytVal)+'" '+
+            'style="width:100%;padding:12px 14px;background:#ffffff;border:1px solid #cccccc;border-radius:8px;'+
+              'color:#000000;font-size:.85rem;box-sizing:border-box;outline:none">'+
+          '<p style="font-size:.68rem;color:#b0d2ec;margin:6px 0 0;opacity:.8">Paste any YouTube link — shorts, regular video, or youtu.be links all work</p>'+
         '</div>'+
+
+        '<div style="font-size:.65rem;color:rgba(255,255,255,.4);text-align:center;margin-bottom:10px;letter-spacing:.06em;text-transform:uppercase">— or upload an image below —</div>'+
 
         '<div id="iz-'+k+'"></div>';
 
       ig.appendChild(wrap);
       document.getElementById('iz-'+k).innerHTML=makeZone(k);
-      // Restore YT value
       if(isYT) C.images[k]=stored;
     });
   }
-    sv('ib1_h',C.images.ib1_h||'');sv('ib1_sub',C.images.ib1_sub||'');sv('ib2_h',C.images.ib2_h||'');
+      sv('ib1_h',C.images.ib1_h||'');sv('ib1_sub',C.images.ib1_sub||'');sv('ib2_h',C.images.ib2_h||'');
   } catch(e){ console.error('buildImageZones error:', e); }
 }
 
