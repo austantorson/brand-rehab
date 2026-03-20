@@ -1185,7 +1185,7 @@ function buildImageZones(){
       wrap.innerHTML=
         '<p style="font-size:.72rem;font-weight:700;color:var(--lt);margin:0 0 14px;text-transform:uppercase;letter-spacing:.1em">Phone '+(i+1)+'</p>'+
 
-        '<label style="font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--latte);display:block;margin-bottom:5px">YouTube URL</label>'+
+        '<label style="font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--latte);display:block;margin-bottom:5px">&#9654; YouTube / Video URL — paste here</label>'+
         '<input type="text" id="igyt'+i+'" placeholder="https://youtube.com/watch?v=..." value="'+esc(ytVal)+'" style="width:100%;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:8px;color:white;font-size:.82rem;box-sizing:border-box;outline:none;margin-bottom:5px">'+
         '<p style="font-size:.62rem;color:var(--latte);opacity:.65;margin:0 0 14px">Paste YouTube link — autoplays silently on loop inside the phone</p>'+
 
@@ -1387,9 +1387,18 @@ function collect(){
   [0,1,2,3].forEach(function(i){
     var ytEl=document.getElementById('igyt'+i);
     var ytVal=ytEl?ytEl.value.trim():'';
+    // Also check if a YT url was pasted into the image zone URL field
+    var imgZoneVal=document.getElementById('urlval-ig_'+i);
+    var imgZoneUrl=imgZoneVal?imgZoneVal.value.trim():'';
+    var isImgZoneYT=imgZoneUrl && (imgZoneUrl.indexOf('youtube.com')>-1||imgZoneUrl.indexOf('youtu.be')>-1);
     if(ytVal && (ytVal.indexOf('youtube.com')>-1||ytVal.indexOf('youtu.be')>-1)){
       C.images['ig_'+i]=ytVal;
-    } else if(!ytVal && C.images['ig_'+i] && (C.images['ig_'+i].indexOf('youtube.com')>-1||C.images['ig_'+i].indexOf('youtu.be')>-1)){
+    } else if(isImgZoneYT){
+      // YouTube pasted into image zone — move it to the YT field and save
+      C.images['ig_'+i]=imgZoneUrl;
+      if(ytEl) ytEl.value=imgZoneUrl;
+    } else if(!ytVal && !isImgZoneYT && C.images['ig_'+i] && (C.images['ig_'+i].indexOf('youtube.com')>-1||C.images['ig_'+i].indexOf('youtu.be')>-1)){
+      // YT was cleared
       C.images['ig_'+i]='';
     }
     C.images['ig_'+i+'_cap']=gv('ig_'+i+'_cap');
