@@ -243,6 +243,7 @@ body{background:var(--bl);overflow:hidden}
     <button class="ni" id="nav-firebase"><span class="ni-ico">⚙️</span>Firebase Setup</button>
     <button class="ni" id="nav-password"><span class="ni-ico">🔒</span>Change Password</button>
     <button class="ni" id="nav-seo"><span class="ni-ico">📲</span>Link Preview (SMS)</button>
+    <button class="ni" id="nav-cp"><span class="ni-ico">📋</span>Content Planner</button>
   </nav>
   <div class="sb-foot">
     <button class="pub-btn" id="pubBtn">Save &amp; Publish ✦</button>
@@ -741,6 +742,119 @@ body{background:var(--bl);overflow:hidden}
         </div>
       </div>
     </div>
+
+    <!-- ══ CONTENT PLANNER PANEL ══ -->
+    <div class="panel" id="panel-cp">
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">📜</div><div><div class="cttl">Ticker Bar</div><div class="csub">8 items that scroll across the top</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r2">
+            <div class="field"><label>Item 1 (plain)</label><input type="text" id="cp_t1"></div>
+            <div class="field"><label>Item 2 (italic)</label><input type="text" id="cp_t2"></div>
+          </div>
+          <div class="row r2">
+            <div class="field"><label>Item 3 (plain)</label><input type="text" id="cp_t3"></div>
+            <div class="field"><label>Item 4 (italic)</label><input type="text" id="cp_t4"></div>
+          </div>
+          <div class="row r2">
+            <div class="field"><label>Item 5 (plain)</label><input type="text" id="cp_t5"></div>
+            <div class="field"><label>Item 6 (italic)</label><input type="text" id="cp_t6"></div>
+          </div>
+          <div class="row r2">
+            <div class="field"><label>Item 7 (plain)</label><input type="text" id="cp_t7"></div>
+            <div class="field"><label>Item 8 (italic)</label><input type="text" id="cp_t8"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">📢</div><div><div class="cttl">Marquee Bar</div><div class="csub">6 items in the scrolling marquee</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r2">
+            <div class="field"><label>Item 1</label><input type="text" id="cp_m1"></div>
+            <div class="field"><label>Item 2</label><input type="text" id="cp_m2"></div>
+          </div>
+          <div class="row r2">
+            <div class="field"><label>Item 3</label><input type="text" id="cp_m3"></div>
+            <div class="field"><label>Item 4</label><input type="text" id="cp_m4"></div>
+          </div>
+          <div class="row r2">
+            <div class="field"><label>Item 5</label><input type="text" id="cp_m5"></div>
+            <div class="field"><label>Item 6</label><input type="text" id="cp_m6"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">✏️</div><div><div class="cttl">Header Row</div><div class="csub">Eyebrow, headline, body text, and 4 trust pills</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r2">
+            <div class="field"><label>Eyebrow</label><input type="text" id="cp_eyebrow"></div>
+            <div class="field"><label>Headline Line 1</label><input type="text" id="cp_h1"></div>
+          </div>
+          <div class="row r1"><div class="field"><label>Headline Line 2 (italic)</label><input type="text" id="cp_h2"></div></div>
+          <div class="row r1"><div class="field"><label>Body Text</label><textarea id="cp_body" style="min-height:80px"></textarea></div></div>
+          <div class="row r2">
+            <div class="field"><label>Trust Pill 1</label><input type="text" id="cp_pill1"></div>
+            <div class="field"><label>Trust Pill 2</label><input type="text" id="cp_pill2"></div>
+          </div>
+          <div class="row r2">
+            <div class="field"><label>Trust Pill 3</label><input type="text" id="cp_pill3"></div>
+            <div class="field"><label>Trust Pill 4</label><input type="text" id="cp_pill4"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico pk">💳</div><div><div class="cttl">Pricing & CTA</div><div class="csub">Price, was price, note, button text and URL</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r2">
+            <div class="field"><label>Was Price</label><input type="text" id="cp_price_was"></div>
+            <div class="field"><label>Current Price</label><input type="text" id="cp_price"></div>
+          </div>
+          <div class="row r1"><div class="field"><label>Price Note</label><input type="text" id="cp_price_note"></div></div>
+          <div class="row r2">
+            <div class="field"><label>Button Text</label><input type="text" id="cp_btn_txt"></div>
+            <div class="field"><label>Button URL</label><input type="text" id="cp_btn_url"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico sd">💻</div><div><div class="cttl">Laptop Frame</div><div class="csub">Browser bar URL + screenshot image (1400 × 700px)</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r1"><div class="field"><label>Browser Bar URL text</label><input type="text" id="cp_lurl"></div></div>
+          <div class="row r1"><div class="field">
+            <label>Screenshot Image URL <span style="font-weight:400;color:var(--latte);text-transform:none;letter-spacing:0">(1400 × 700px · paste direct URL)</span></label>
+            <input type="text" id="cp_screen_img" placeholder="https://... (Google Drive, Cloudinary, imgbb)">
+            <p style="font-size:.65rem;color:var(--latte);margin-top:5px">Use Google Drive: right-click → Share → Anyone with link → paste File ID into https://drive.google.com/uc?export=view&amp;id=FILE_ID</p>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chdr" onclick="tog(this)"><div class="cico mt">🔢</div><div><div class="cttl">4 Step Cards</div><div class="csub">Title and body text for each step</div></div><span class="cchev">▼</span></div>
+        <div class="cbody open">
+          <div class="row r2">
+            <div class="field"><label>Step 1 Title</label><input type="text" id="cp_s1t"></div>
+            <div class="field"><label>Step 1 Text</label><textarea id="cp_s1b" style="min-height:60px"></textarea></div>
+          </div>
+          <div class="row r2">
+            <div class="field"><label>Step 2 Title</label><input type="text" id="cp_s2t"></div>
+            <div class="field"><label>Step 2 Text</label><textarea id="cp_s2b" style="min-height:60px"></textarea></div>
+          </div>
+          <div class="row r2">
+            <div class="field"><label>Step 3 Title</label><input type="text" id="cp_s3t"></div>
+            <div class="field"><label>Step 3 Text</label><textarea id="cp_s3b" style="min-height:60px"></textarea></div>
+          </div>
+          <div class="row r2">
+            <div class="field"><label>Step 4 Title</label><input type="text" id="cp_s4t"></div>
+            <div class="field"><label>Step 4 Text</label><textarea id="cp_s4b" style="min-height:60px"></textarea></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /panel-cp -->
 </main>
 </div>
 </div>
@@ -939,9 +1053,10 @@ var META = {
   links:{t:'Links & Buttons',d:'Update every URL on the site'},
   firebase:{t:'Firebase Setup',d:'Connect cloud database'},
   password:{t:'Change Password',d:'Update your login password'},
-  seo:{t:'Link Preview (SMS / Social)',d:'Update the image and text shown when your URL is shared via text or social media'}
+  seo:{t:'Link Preview (SMS / Social)',d:'Update the image and text shown when your URL is shared via text or social media'},
+  cp:{t:'Content Planner Section',d:'Edit ticker, marquee, headlines, body, trust pills, pricing, button, laptop screenshot, and 4 steps'}
 };
-['hero','pain','checklist','process','pricing','testimonials','team','faq','footer','numbers','sproof','ctabanner','reality','images','links','firebase','password','seo'].forEach(function(id){
+['hero','pain','checklist','process','pricing','testimonials','team','faq','footer','numbers','sproof','ctabanner','reality','images','links','firebase','password','seo','cp'].forEach(function(id){
   document.getElementById('nav-'+id).addEventListener('click', function(){
     document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
     document.querySelectorAll('.ni').forEach(function(b){b.classList.remove('on');});
@@ -990,7 +1105,7 @@ function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repla
 function initAll(){
   loadHero(); loadPain(); loadChecklist(); loadProcess();
   loadPricing(); loadTestimonials(); loadTeam(); loadFaq();
-  loadFooter(); loadNumbers(); loadSproof(); loadCtaBanner(); loadReality(); buildImageZones(); loadLinks(); loadFbConfig(); loadSeo();
+  loadFooter(); loadNumbers(); loadSproof(); loadCtaBanner(); loadReality(); buildImageZones(); loadLinks(); loadFbConfig(); loadSeo(); loadCp();
 }
 
 function loadHero(){
@@ -1405,6 +1520,20 @@ function collect(){
     C.images['ig_'+i+'_likes']=gv('ig_'+i+'_likes');
   });
   C.seo={title:gv('seo_title'),desc:gv('seo_desc'),img:gv('seo_img')};
+  var cpT=[],cpM=[],cpP=[],cpS=[];
+  for(var i=0;i<8;i++) cpT.push(gv('cp_t'+(i+1)));
+  for(var i=0;i<6;i++) cpM.push(gv('cp_m'+(i+1)));
+  for(var i=0;i<4;i++) cpP.push(gv('cp_pill'+(i+1)));
+  for(var i=0;i<4;i++) cpS.push({title:gv('cp_s'+(i+1)+'t'),text:gv('cp_s'+(i+1)+'b')});
+  C.cp={
+    ticker:cpT,marquee:cpM,
+    eyebrow:gv('cp_eyebrow'),h1:gv('cp_h1'),h2:gv('cp_h2'),body:gv('cp_body'),
+    pills:cpP,
+    price_was:gv('cp_price_was'),price:gv('cp_price'),price_note:gv('cp_price_note'),
+    btn_txt:gv('cp_btn_txt'),btn_url:gv('cp_btn_url'),
+    lurl:gv('cp_lurl'),screen_img:gv('cp_screen_img'),
+    steps:cpS
+  };
   C.links={hero_cta:gv('lnk_hero_cta'),nav_cta:gv('lnk_nav_cta'),checklist:gv('lnk_checklist'),
     sproof:gv('lnk_sproof'),ctabanner:gv('lnk_ctabanner'),email:gv('lnk_email'),
     ig:gv('lnk_ig'),tt:gv('lnk_tt'),li:gv('lnk_li'),
@@ -1416,6 +1545,19 @@ function collect(){
 // SAVE
 //
 document.getElementById('pubBtn').addEventListener('click', saveAll);
+function loadCp(){
+  var cp=C.cp||{};
+  var t=cp.ticker||[]; for(var i=0;i<8;i++){sv('cp_t'+(i+1),t[i]||'');}
+  var m=cp.marquee||[]; for(var i=0;i<6;i++){sv('cp_m'+(i+1),m[i]||'');}
+  sv('cp_eyebrow',cp.eyebrow||'');sv('cp_h1',cp.h1||'');sv('cp_h2',cp.h2||'');
+  sv('cp_body',cp.body||'');
+  var p=cp.pills||[]; for(var i=0;i<4;i++){sv('cp_pill'+(i+1),p[i]||'');}
+  sv('cp_price_was',cp.price_was||'');sv('cp_price',cp.price||'');sv('cp_price_note',cp.price_note||'');
+  sv('cp_btn_txt',cp.btn_txt||'');sv('cp_btn_url',cp.btn_url||'');
+  sv('cp_lurl',cp.lurl||'');sv('cp_screen_img',cp.screen_img||'');
+  var s=cp.steps||[];
+  for(var i=0;i<4;i++){sv('cp_s'+(i+1)+'t',s[i]?s[i].title:'');sv('cp_s'+(i+1)+'b',s[i]?s[i].text:'');}
+}
 function loadSeo(){
   var s=C.seo||{};
   sv('seo_title',s.title||'');
