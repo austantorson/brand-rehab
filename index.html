@@ -546,6 +546,262 @@ nav.scrolled .hamburger span{background:var(--coffee)}
 
 .process-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.07;pointer-events:none}
 </style>
+
+
+<!-- ══ CONTENT PLANNER SECTION STYLES ══ -->
+<style>
+.cp-section{
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-weight:300;
+  color:var(--coffee);
+  overflow:hidden;
+}
+
+/* ── TICKER — dark ──────────────────────────────── */
+.cp-ticker-dark{background:white;padding:15px 0;overflow:hidden;border-bottom:1px solid var(--sand);}
+.cp-ticker-track{display:flex;white-space:nowrap;animation:cpTick 32s linear infinite;}
+.cp-ticker-track:hover{animation-play-state:paused;}
+@keyframes cpTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.cp-ti{
+  font-size:11px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--latte);padding:0 40px;
+  border-right:1px solid var(--sand);flex-shrink:0;
+}
+.cp-ti.ac{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:15px;letter-spacing:0.06em;color:var(--coffee);
+  border-right-color:var(--sand);
+}
+
+/* ── MARQUEE — sandstone ────────────────────────── */
+.cp-marquee{background:white;padding:16px 0;overflow:hidden;}
+.cp-mq-track{display:flex;white-space:nowrap;animation:cpTick 22s linear infinite;}
+.cp-mq-track:hover{animation-play-state:paused;}
+.cp-mi{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:20px;font-weight:400;color:var(--coffee);padding:0 32px;flex-shrink:0;
+}
+.cp-msep{font-style:normal;color:rgba(42,26,20,0.3);}
+
+/* ── BODY WRAPPER ───────────────────────────────── */
+.cp-body{background:white;}
+
+/* ══════════════════════════════════════════════════
+   HEADER ROW — 3 columns, no top padding/border
+══════════════════════════════════════════════════ */
+.cp-header-row{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:0;
+  /* no top padding — sits flush under marquee */
+}
+
+/* — Col 1: Headline — */
+.cp-col-head{
+  padding:32px 44px 32px 64px;
+  border-right:1px solid rgba(42,26,20,0.1);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.cp-eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:10px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--coffee);margin-bottom:14px;
+}
+.cp-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--sand);}
+/* [EDIT] main headline */
+.cp-planner-h{
+  font-family:'Fraunces',serif;font-weight:900;font-style:italic;
+  font-size:clamp(32px,3.8vw,54px);
+  line-height:0.92;color:var(--coffee);
+}
+
+/* — Col 2: Body text + 2×2 trust grid — */
+.cp-col-body{
+  padding:32px 44px;
+  border-right:1px solid rgba(42,26,20,0.1);
+  display:flex;flex-direction:column;justify-content:center;gap:20px;
+}
+/* [EDIT] body paragraph */
+.cp-header-body{
+  font-size:13.5px;font-weight:300;line-height:1.85;color:var(--coffee);
+}
+/* 2×2 trust grid */
+.cp-trust{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px 20px;
+}
+.cp-trust-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--latte);
+  white-space:nowrap;
+}
+.cp-trust-dot{
+  width:3px;height:3px;border-radius:50%;
+  background:var(--sand);flex-shrink:0;
+}
+
+/* — Col 3: Price left + Button right, always side by side — */
+.cp-col-cta{
+  padding:32px 64px 32px 44px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.cp-price-block{
+  display:flex;flex-direction:column;gap:2px;
+  flex-shrink:0;
+}
+/* [EDIT] was/current price */
+.cp-price-was{
+  font-size:11px;font-weight:300;letter-spacing:0.12em;
+  color:var(--latte);text-decoration:line-through;
+}
+.cp-price{
+  font-family:'Fraunces',serif;font-weight:900;font-style:italic;
+  font-size:clamp(44px,4.5vw,64px);
+  line-height:1;color:var(--coffee);
+}
+.cp-price-note{
+  font-size:9px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--latte);
+}
+/* [EDIT] button text + href */
+.cp-btn{
+  display:inline-block;
+  font-family:'Cabinet Grotesk',sans-serif;font-size:10px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  background:var(--coffee);color:var(--cream);
+  padding:13px 28px;
+  text-decoration:none;
+  transition:background .25s,transform .15s;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.cp-btn:hover{background:var(--sand);color:var(--coffee);transform:translateY(-1px);}
+
+/* ── LAPTOP / IMAGE FRAME — flush under header row ── */
+.cp-laptop-wrap{
+  margin:0 64px;
+  background:rgba(42,26,20,0.14);
+  border-radius:12px 12px 0 0;
+  padding:10px 10px 0;
+  /* no top border — header-row bottom border acts as divider */
+}
+.cp-laptop-bar{
+  background:rgba(42,26,20,0.16);
+  border-radius:8px 8px 0 0;
+  padding:10px 16px;
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid rgba(42,26,20,0.07);
+}
+.cp-ldot{width:10px;height:10px;border-radius:50%;}
+.cp-lr{background:#ff5f57;}.cp-ly{background:#febc2e;}.cp-lg{background:#28c840;}
+/* [EDIT] browser bar URL */
+.cp-lurl{
+  margin-left:14px;background:rgba(255,255,255,0.3);
+  border-radius:5px;padding:4px 16px;
+  font-size:11px;color:rgba(42,26,20,0.45);
+  font-family:-apple-system,sans-serif;flex:1;max-width:380px;
+}
+.cp-screen{background:var(--cream);overflow:hidden;}
+.cp-screen-img{width:100%;display:block;}
+.cp-placeholder{
+  width:100%;aspect-ratio:16/7;background:var(--cream);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+}
+.cp-placeholder-icon{font-size:32px;opacity:0.2;}
+.cp-placeholder-text{
+  font-size:11px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--latte);text-align:center;line-height:1.8;
+}
+.cp-placeholder-code{
+  font-family:monospace;font-size:10px;background:rgba(42,26,20,0.05);
+  color:var(--latte);padding:6px 12px;border-radius:4px;
+}
+
+/* ── STEPS — full width, flush under laptop ─────── */
+.cp-steps-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:white;
+  border-top:1px solid rgba(42,26,20,0.08);
+}
+.cp-step{
+  padding:28px 28px;
+  border-right:1px solid rgba(42,26,20,0.08);
+  border-bottom:2px solid var(--sand);
+}
+.cp-step:last-child{border-right:none;}
+.cp-step-n{
+  font-family:'Fraunces',serif;font-weight:900;font-style:italic;
+  font-size:clamp(48px,4.5vw,72px);line-height:0.85;
+  color:rgba(42,26,20,0.07);display:block;margin-bottom:-2px;
+}
+/* [EDIT] step title */
+.cp-step-title{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:16px;color:var(--coffee);margin-bottom:6px;
+}
+/* [EDIT] step body */
+.cp-step-text{font-size:12px;font-weight:300;line-height:1.75;color:var(--coffee);}
+
+/* ── SCROLL REVEAL ──────────────────────────────── */
+.cp-reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+.cp-reveal.cp-vis{opacity:1;transform:translateY(0);}
+.cp-d1{transition-delay:.12s;}
+.cp-d2{transition-delay:.24s;}
+.cp-d3{transition-delay:.36s;}
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+
+/* Tablet ≤1080px: headline spans full top, body+CTA side by side below */
+@media(max-width:1080px){
+  .cp-header-row{grid-template-columns:1fr 1fr;}
+  .cp-col-head{
+    grid-column:1/3;
+    padding:28px 40px;
+    border-right:none;
+    flex-direction:row;align-items:center;gap:40px;
+  }
+  .cp-col-body{padding:28px 40px;border-right:1px solid rgba(42,26,20,0.1);}
+  .cp-col-cta{padding:28px 40px;}
+  .cp-laptop-wrap{margin:0 40px;}
+}
+
+/* Tablet ≤768px: 3 cols all stack, but price block stays row */
+@media(max-width:768px){
+  .cp-header-row{grid-template-columns:1fr;}
+  .cp-col-head{
+    grid-column:1;
+    flex-direction:column;align-items:flex-start;gap:0;
+    padding:24px 24px 20px;
+    border-right:none;
+  }
+  .cp-col-body{
+    padding:20px 24px;
+    border-right:none;
+  }
+  .cp-col-cta{
+    padding:20px 24px 24px;
+    /* price + button stay side by side — no change needed,
+       flexbox row with justify-content:space-between handles it */
+  }
+  .cp-laptop-wrap{margin:0 24px;}
+  .cp-steps-grid{grid-template-columns:1fr 1fr;}
+  .cp-step:nth-child(2){border-right:none;}
+  .cp-step:nth-child(1),.cp-step:nth-child(2){border-bottom:1px solid rgba(42,26,20,0.08);}
+  .cp-ti{padding:0 24px;}
+  .cp-mi{font-size:17px;padding:0 22px;}
+}
+
+/* Mobile ≤420px: price block can wrap if very narrow */
+@media(max-width:420px){
+  .cp-col-cta{flex-wrap:wrap;gap:16px;}
+  .cp-price{font-size:44px;}
+}
+</style>
 </head>
 <body>
 
@@ -792,6 +1048,147 @@ nav.scrolled .hamburger span{background:var(--coffee)}
   </div>
 </section>
 
+<!-- CONTENT PLANNER -->
+<section class="cp-section">
+
+  <!-- ══ DARK TICKER ════════════════════════════════ -->
+  <div class="cp-ticker-dark">
+    <div class="cp-ticker-track">
+      <!-- [EDIT] ticker labels -->
+      <span class="cp-ti" id="cp-t1">Content Planner 2026</span>
+      <span class="cp-ti ac" id="cp-t2">The Notion Template</span>
+      <span class="cp-ti" id="cp-t3">IG Grid Preview</span>
+      <span class="cp-ti ac" id="cp-t4">Strategy. Simplified.</span>
+      <span class="cp-ti" id="cp-t5">Multi-Platform</span>
+      <span class="cp-ti ac" id="cp-t6">$37 One-Time</span>
+      <span class="cp-ti" id="cp-t7">Caption Library</span>
+      <span class="cp-ti ac" id="cp-t8">No Setup Required</span>
+      <span class="cp-ti">Content Planner 2026</span>
+      <span class="cp-ti ac">The Notion Template</span>
+      <span class="cp-ti">IG Grid Preview</span>
+      <span class="cp-ti ac">Strategy. Simplified.</span>
+      <span class="cp-ti">Multi-Platform</span>
+      <span class="cp-ti ac">$37 One-Time</span>
+      <span class="cp-ti">Caption Library</span>
+      <span class="cp-ti ac">No Setup Required</span>
+    </div>
+  </div>
+
+  <!-- ══ SANDSTONE MARQUEE ══════════════════════════ -->
+  <div class="cp-marquee">
+    <div class="cp-mq-track">
+      <!-- [EDIT] marquee items -->
+      <span class="cp-mi" id="cp-m1">Best Selling Template</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi" id="cp-m2">10,000+ Creators</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi" id="cp-m3">IG Grid Preview</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi" id="cp-m4">Built for 2026</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi" id="cp-m5">No Setup Required</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi" id="cp-m6">Notion Is Free</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi">Best Selling Template</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi">10,000+ Creators</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi">IG Grid Preview</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi">Built for 2026</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi">No Setup Required</span><span class="cp-mi cp-msep">—</span>
+      <span class="cp-mi">Notion Is Free</span><span class="cp-mi cp-msep">—</span>
+    </div>
+  </div>
+
+  <!-- ══ SINGLE SECTION ════════════════════════════ -->
+  <div class="cp-body">
+
+    <!-- 3-COLUMN HEADER ROW -->
+    <div class="cp-header-row">
+
+      <!-- Col 1 — Headline -->
+      <div class="cp-col-head cp-reveal">
+        <!-- [EDIT] eyebrow -->
+        <p class="cp-eyebrow" id="cp-eyebrow">Inside the Planner</p>
+        <!-- [EDIT] headline -->
+        <h2 class="cp-planner-h" id="cp-h1">Inside the</h2><h2 class="cp-planner-h" style="margin-top:0"><em id="cp-h2">planner.</em></h2>
+      </div>
+
+      <!-- Col 2 — Body text + trust dots -->
+      <div class="cp-col-body cp-reveal cp-d1">
+        <!-- [EDIT] body paragraph -->
+        <p class="cp-header-body" id="cp-body">We've built the #1 Best-Selling Social Media Content Planner for 2026 — trusted by business owners, social media managers, digital marketers, and content creators who are serious about growth.</p>
+        <!-- Trust indicators — positioned at bottom of the text col -->
+        <div class="cp-trust">
+          <!-- [EDIT] trust labels -->
+          <div class="cp-trust-item"><span class="cp-trust-dot"></span><span id="cp-pill1">Instant Download</span></div>
+          <div class="cp-trust-item"><span class="cp-trust-dot"></span><span id="cp-pill2">Notion Free to Use</span></div>
+          <div class="cp-trust-item"><span class="cp-trust-dot"></span><span id="cp-pill3">No Subscription</span></div>
+          <div class="cp-trust-item"><span class="cp-trust-dot"></span><span id="cp-pill4">All Devices</span></div>
+        </div>
+      </div>
+
+      <!-- Col 3 — Price left + Button right, always inline -->
+      <div class="cp-col-cta cp-reveal cp-d2">
+        <div class="cp-price-block">
+          <!-- [EDIT] was/current price + note -->
+          <p class="cp-price-was" id="cp-price-was">Was $97</p>
+          <div class="cp-price" id="cp-price">$37</div>
+          <p class="cp-price-note" id="cp-price-note">One-Time · No Subscription</p>
+        </div>
+        <!-- [EDIT] button + checkout link -->
+        <a id="cp-btn" href="https://shop.beacons.ai/feliciakathryn/cf02f919-3b88-498a-8c0b-b7fcbde1fe98" class="cp-btn" target="_blank" rel="noopener">Get the Template</a>
+      </div>
+
+    </div><!-- /cp-header-row -->
+
+    <!-- LAPTOP / IMAGE FRAME -->
+    <div class="cp-laptop-wrap cp-reveal cp-d1">
+      <div class="cp-laptop-bar">
+        <div class="cp-ldot cp-lr"></div>
+        <div class="cp-ldot cp-ly"></div>
+        <div class="cp-ldot cp-lg"></div>
+        <!-- [EDIT] browser bar URL -->
+        <div class="cp-lurl" id="cp-lurl">notion.so / Social Media Content Planner 2026</div>
+      </div>
+      <div class="cp-screen">
+        <!--
+          TO SWAP IN YOUR NOTION SCREENSHOT:
+          1. Delete the cp-placeholder div
+          2. Uncomment the <img> tag below
+          3. Set src="your-screenshot-url.jpg"
+          Best size: 1400 × 700px
+        -->
+        <div class="cp-placeholder" id="cp-screen-placeholder">
+          <div class="cp-placeholder-icon">📅</div>
+          <p class="cp-placeholder-text">Your Notion Screenshot Goes Here<br>Recommended: 1400 × 700px</p>
+        </div>
+        <img id="cp-screen-img" src="" alt="Content Planner Screenshot" class="cp-screen-img" style="display:none">
+      </div>
+    </div>
+
+    <!-- STEPS — flush, full width -->
+    <div class="cp-steps-grid cp-reveal cp-d2">
+      <!-- [EDIT] steps -->
+      <div class="cp-step">
+        <span class="cp-step-n">01</span>
+        <div class="cp-step-title" id="cp-step1-title">Purchase</div>
+        <p class="cp-step-text" id="cp-step1-text">Secure checkout. $37 one-time. Immediate access — no waiting, no upsells, no confusion.</p>
+      </div>
+      <div class="cp-step">
+        <span class="cp-step-n">02</span>
+        <div class="cp-step-title" id="cp-step2-title">Receive Your PDF</div>
+        <p class="cp-step-text" id="cp-step2-text">A beautifully formatted PDF lands in your inbox instantly with your unique Notion template link.</p>
+      </div>
+      <div class="cp-step">
+        <span class="cp-step-n">03</span>
+        <div class="cp-step-title" id="cp-step3-title">Create a Free Account</div>
+        <p class="cp-step-text" id="cp-step3-text">Notion is free for personal use. Sign up at notion.so — 60 seconds, no credit card required.</p>
+      </div>
+      <div class="cp-step">
+        <span class="cp-step-n">04</span>
+        <div class="cp-step-title" id="cp-step4-title">Duplicate & Go</div>
+        <p class="cp-step-text" id="cp-step4-text">Open the link, hit "Duplicate," and your planner is live. Start planning your first month immediately.</p>
+      </div>
+    </div>
+
+  </div><!-- /cp-body -->
+
+</section>
+
 <!-- TEAM -->
 <section class="team-section">
   <div class="si">
@@ -964,6 +1361,28 @@ const defaultContent = {
     ig_2:'https://youtube.com/shorts/LQ6oj-lWt4o',
     ig_3:'https://youtube.com/shorts/p9z8jCdlsOY',
     ig_4:''
+  },
+  cp:{
+    ticker:['Content Planner 2026','The Notion Template','IG Grid Preview','Strategy. Simplified.','Multi-Platform','$37 One-Time','Caption Library','No Setup Required'],
+    marquee:['Best Selling Template','10,000+ Creators','IG Grid Preview','Built for 2026','No Setup Required','Notion Is Free'],
+    eyebrow:'Inside the Planner',
+    h1:'Inside the',
+    h2:'planner.',
+    body:"We've built the #1 Best-Selling Social Media Content Planner for 2026 — trusted by business owners, social media managers, digital marketers, and content creators who are serious about growth.",
+    pills:['Instant Download','Notion Free to Use','No Subscription','All Devices'],
+    price_was:'Was $97',
+    price:'$37',
+    price_note:'One-Time · No Subscription',
+    btn_txt:'Get the Template',
+    btn_url:'https://shop.beacons.ai/feliciakathryn/cf02f919-3b88-498a-8c0b-b7fcbde1fe98',
+    lurl:'notion.so / Social Media Content Planner 2026',
+    screen_img:'',
+    steps:[
+      {title:'Purchase',text:'Secure checkout. $37 one-time. Immediate access — no waiting, no upsells, no confusion.'},
+      {title:'Receive Your PDF',text:'A beautifully formatted PDF lands in your inbox instantly with your unique Notion template link.'},
+      {title:'Create a Free Account',text:'Notion is free for personal use. Sign up at notion.so — 60 seconds, no credit card required.'},
+      {title:'Duplicate & Go',text:'Open the link, hit "Duplicate," and your planner is live. Start planning your first month immediately.'}
+    ]
   },
   links:{
     hero_cta:'https://calendly.com',nav_cta:'https://calendly.com',
@@ -1319,6 +1738,37 @@ function applyContent(c) {
     }
   }
 
+  // Content Planner section
+  try {
+    var cp = c.cp || defaultContent.cp;
+    var setCP = function(id, val){ var el=document.getElementById(id); if(el && val) el.textContent=val; };
+    // Ticker — update first 8 (second 8 are duplicates for seamless loop)
+    if(cp.ticker){ cp.ticker.forEach(function(v,i){ setCP('cp-t'+(i+1), v); }); }
+    // Marquee — update first 6
+    if(cp.marquee){ cp.marquee.forEach(function(v,i){ setCP('cp-m'+(i+1), v); }); }
+    // Header
+    setCP('cp-eyebrow', cp.eyebrow);
+    setCP('cp-h1', cp.h1);
+    setCP('cp-h2', cp.h2);
+    setCP('cp-body', cp.body);
+    // Trust pills
+    if(cp.pills){ cp.pills.forEach(function(v,i){ setCP('cp-pill'+(i+1), v); }); }
+    // CTA
+    setCP('cp-price-was', cp.price_was);
+    setCP('cp-price', cp.price);
+    setCP('cp-price-note', cp.price_note);
+    var cpBtn = document.getElementById('cp-btn');
+    if(cpBtn){ if(cp.btn_txt) cpBtn.textContent=cp.btn_txt; if(cp.btn_url) cpBtn.href=cp.btn_url; }
+    setCP('cp-lurl', cp.lurl);
+    // Screen image
+    var cpImg = document.getElementById('cp-screen-img');
+    var cpPh = document.getElementById('cp-screen-placeholder');
+    if(cp.screen_img){ if(cpImg){cpImg.src=cp.screen_img;cpImg.style.display='block';} if(cpPh) cpPh.style.display='none'; }
+    else { if(cpImg) cpImg.style.display='none'; if(cpPh) cpPh.style.display='flex'; }
+    // Steps
+    if(cp.steps){ cp.steps.forEach(function(s,i){ setCP('cp-step'+(i+1)+'-title', s.title); setCP('cp-step'+(i+1)+'-text', s.text); }); }
+  } catch(e){ console.warn('CP section error:', e); }
+
   // OG / SMS Link Preview meta tags
   var seo = c.seo || defaultContent.seo;
   var ogTitle = document.getElementById('og-title');
@@ -1492,6 +1942,14 @@ document.getElementById('checkoutModal').addEventListener('click',function(e){if
 
 // Load content on page start
 loadContent().then(applyContent);
+</script>
+
+<!-- Content Planner observer -->
+<script>
+const cpObs = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('cp-vis'); cpObs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.cp-reveal').forEach(el => cpObs.observe(el));
 </script>
 </body>
 </html>
